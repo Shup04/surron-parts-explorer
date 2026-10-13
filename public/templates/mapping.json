@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "assetId": "replace-with-your-asset-id",
+  "units": "m",
+  "upAxis": "Y",
+  "mappings": [
+    {
+      "objectKey": "id:replace-with-your-object-id",
+      "partId": "shaft",
+      "explosion": {
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "distance": 0.1,
+        "duration": 0.7,
+        "easing": "smooth",
+        "verification": "demonstration"
+      }
+    }
+  ]
+}

@@ -7,3 +7,4 @@ package-lock.json
 public/templates
 .agent
 AGENTS.md
+next-env.d.ts

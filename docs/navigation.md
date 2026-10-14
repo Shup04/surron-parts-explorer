@@ -14,6 +14,14 @@ The public tree organizes the motorcycle into 14 systems. It is a presentation l
 
 Service sections start collapsed. Counts indicate immediate displayed children, including service sections, rather than raw source rows. Reference details group repeated descriptions by existing catalog identity within the selected role; they retain every occurrence, source, callout, specification and quantity. Distinct OEM identities are never merged because their names resemble each other.
 
+## Exploring the hierarchy
+
+**Parts** opens or closes navigation. A branch arrow expands its children without changing the selection; the component name selects it. Selection reveals its ancestors and scrolls its row into view. Search clears after choosing a result so the selected item can be located in the tree. **Browse components** in assembly details reveals that branch instead of displaying a second child list.
+
+The viewer breadcrumb and back arrow provide parent navigation. From a selected part, back returns to its current assembly; from an assembly, it moves up one level. **Complete motorcycle** and the header home link return to the overview. Details open for selected parts and curated reference groups, and can be closed on any screen size. On phones and tablets, the drawer traps keyboard focus, closes with Escape even from the search field, and restores focus to its trigger. Hidden components have a crossed-out tree label and a Show action; isolation has an explicit exit control. Assemblies stay assembled until the user requests an exploded view.
+
+Catalog filters and source/verification evidence are collapsed by default, with active filters disclosed on linked URLs. Reviewer corrections, conflicting claims and alternate source occurrences remain available. The header **Tools** menu keeps catalog review and model mapping available without taking over the public explorer.
+
 ## Evidence and installed variants
 
 The supplied database does not establish a verified installed motorcycle configuration. Generic inspection roles therefore identify what to inspect without choosing an OEM variant. Each component section says **Installed variant not confirmed** and keeps source candidates separate. The source/year selectors filter evidence, not physical fitment. Empty evidence filters leave the inspection organization available with no matching candidates.

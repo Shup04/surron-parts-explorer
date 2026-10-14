@@ -4,6 +4,7 @@ test('renders real geometry, selects by raycast, navigates and restores browser 
   page,
 }) => {
   const errors: string[] = [];
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/?demo=1');
   const viewer = page.getByTestId('viewer');
@@ -11,7 +12,7 @@ test('renders real geometry, selects by raycast, navigates and restores browser 
   await expect
     .poll(async () => Number(await viewer.getAttribute('data-visible-meshes')))
     .toBeGreaterThan(10);
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('The machine, piece by piece.');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Sur-Ron Light Bee X');
   // The raycast target is discovered from the actual rendered geometry, not a DOM substitute.
   const bounds = await viewer.boundingBox();
   expect(bounds).not.toBeNull();
@@ -28,7 +29,7 @@ test('renders real geometry, selects by raycast, navigates and restores browser 
   expect(hit, 'Synthetic motorcycle geometry must respond to pointer raycasts').toBe(true);
   await expect(page).toHaveURL(/assembly=/);
   await page.goBack();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('The machine, piece by piece.');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Sur-Ron Light Bee X');
   expect(errors).toEqual([]);
 });
 
@@ -40,6 +41,8 @@ test('search, exploded assembly controls, visibility, isolation and deep links w
   await page.locator('.search-result').filter({ hasText: 'Left jackshaft bearing' }).click();
   await expect(page).toHaveURL(/part=bearing-left/);
   await expect(page.getByRole('heading', { level: 2 })).toHaveText('Left jackshaft bearing');
+  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
+  await page.getByRole('button', { name: 'Exploded', exact: true }).click();
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-scene-ready', 'true');
   await page.getByRole('button', { name: 'Isolate', exact: true }).click();
@@ -87,7 +90,7 @@ test('unknown deep links recover to the motorcycle and keyboard navigation works
   page,
 }) => {
   await page.goto('/?demo=1&motorcycle=unknown&assembly=not-present&part=missing');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('The machine, piece by piece.');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Sur-Ron Light Bee X');
   await page.keyboard.press('/');
   await expect(page.getByRole('textbox', { name: 'Search parts' })).toBeFocused();
   await page.keyboard.type('battery');

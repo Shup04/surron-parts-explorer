@@ -119,11 +119,21 @@ test('OEM targets include review edits and geometry replacement preserves the so
   await expect(page.getByTestId('geometry-unassigned')).toHaveCount(0);
   await expect(page.locator('.oem-part-details h2')).toHaveText('Reviewed fixture bearing label');
   await expect(page.locator('.oem-part-details .oem-number')).toHaveText('Z-6000-2Z-26-10-08');
-  await expect(page.locator('.oem-part-details .source-card')).toContainText('Motorino');
-  await expect(page.locator('.oem-part-details .source-card')).toContainText(
+  const source = page
+    .locator('.oem-part-details details')
+    .filter({ has: page.locator('summary', { hasText: 'Source & verification' }) });
+  await expect(source).not.toHaveAttribute('open');
+  await source.locator('summary').click();
+  await expect(source.locator('.source-card')).toBeVisible();
+  await expect(source.locator('.source-card')).toContainText('Motorino');
+  await expect(source.locator('.source-card')).toContainText(
     `Page ${row.page} · Figure ${row.figure} · Item ${row.callout}`,
   );
-  await expect(page.getByRole('button', { name: 'Toggle isolation', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Isolate', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Show assembly', exact: true })).toBeVisible();
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', /^[1-9]\d*$/);
+  await page.getByRole('button', { name: 'Show assembly', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Isolate', exact: true })).toBeVisible();
 
   await page.reload();
   await expect(page).toHaveURL(/workspace=local/);

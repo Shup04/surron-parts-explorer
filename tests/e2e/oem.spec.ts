@@ -7,6 +7,9 @@ const bushingNumber = '61234-YQ2A-0000';
 const sourceName = 'Sur-Ron Light Bee X Spare Parts Catalog (2021 reference)';
 
 async function selectHistoricalReference(page: Page) {
+  const filters = page.locator('.catalog-filter-disclosure');
+  if (!(await filters.evaluate((element) => (element as HTMLDetailsElement).open)))
+    await filters.getByText('Catalog filters', { exact: true }).click();
   await page.getByLabel('Catalog source', { exact: true }).selectOption('lbx2021');
   await page.getByLabel('Catalog model year', { exact: true }).selectOption('2021');
   await page.getByRole('textbox', { name: 'Search parts', exact: true }).fill(bushingNumber);
@@ -29,6 +32,7 @@ test('real OEM lookup works without geometry and retains source page, quantity a
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
+  await expect(page.getByRole('complementary', { name: 'Component information' })).toBeHidden();
   await selectHistoricalReference(page);
   await expect(page).toHaveURL(new RegExp(`part=${bushingId}`));
   await expect(
@@ -38,10 +42,21 @@ test('real OEM lookup works without geometry and retains source page, quantity a
   ).toHaveText('Midshaft right bushing');
   const details = page.getByRole('complementary', { name: 'Component information' });
   await expect(details).toContainText(bushingNumber);
-  await expect(details).toContainText('No 3D representation assigned');
-  await expect(details).toContainText(sourceName);
-  await expect(details).toContainText('17_02');
-  await expect(details).toContainText('15');
+  await expect(page.getByTestId('geometry-unassigned')).toBeVisible();
+  await expect(
+    details.locator('dt').filter({ hasText: 'Quantity in source' }).locator('+ dd'),
+  ).toHaveText('1');
+  const source = details
+    .locator('details')
+    .filter({ has: page.locator('summary', { hasText: 'Source & verification' }) });
+  await expect(source).not.toHaveAttribute('open');
+  await source.locator('summary').click();
+  await expect(source.getByText(sourceName, { exact: true })).toBeVisible();
+  await expect(source.getByText('Page 15 · Figure 17 · Item 17_02', { exact: true })).toBeVisible();
+  await expect(source.getByRole('link', { name: 'Open reference' })).toHaveAttribute(
+    'href',
+    /#page=15$/,
+  );
   const link = page.url();
   await page.reload();
   await expect(
@@ -91,7 +106,7 @@ test('source filters, occurrence navigation and browser history retain historica
 test('mobile browser history restores a selected part and its detail sheet', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(`/?assembly=jackshaft&part=${bushingId}&source=lbx2021&year=2021`);
-  const details = page.getByRole('complementary', { name: 'Component information' });
+  const details = page.getByRole('dialog', { name: 'Component information' });
   await expect(details).toHaveClass(/mobile-open/);
   await expect(details.getByRole('heading', { level: 2 })).toHaveText('Midshaft right bushing');
   await details
@@ -174,9 +189,16 @@ test('local catalog review persists corrections, exports original claims and app
       .getByRole('complementary', { name: 'Component information' })
       .getByRole('heading', { level: 2 }),
   ).toHaveText('Reviewed midshaft bushing');
-  await expect(page.getByRole('complementary', { name: 'Component information' })).toContainText(
-    'No 3D representation assigned',
-  );
+  await expect(page.getByTestId('geometry-unassigned')).toBeVisible();
+  const details = page.getByRole('complementary', { name: 'Component information' });
+  await expect(
+    details.locator('dt').filter({ hasText: 'Quantity in source' }).locator('+ dd'),
+  ).toHaveText('2 · corrected');
+  await details.locator('summary', { hasText: 'Source & verification' }).click();
+  await expect(details.getByText('Verification: source checked.')).toBeVisible();
+  await expect(
+    details.getByText(/Reviewer note: Browser test: local reviewer correction/),
+  ).toBeVisible();
 });
 
 test('review filters retain missing-number rows and reject invalid patches and mismatched PDFs', async ({

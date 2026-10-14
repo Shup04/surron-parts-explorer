@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowUpRight, Focus } from 'lucide-react';
+import type { ReactNode } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import type { OemDatabase } from '@/oem/types';
 import { getOccurrenceDetails } from '@/oem/queries';
 
@@ -10,13 +11,14 @@ export function OemDetails({
   occurrenceId,
   hasGeometry,
   onNavigate,
-  onIsolate,
+  actions,
 }: {
   database: OemDatabase;
   occurrenceId: string;
   hasGeometry: boolean;
   onNavigate: (id: string) => void;
-  onIsolate: () => void;
+  onIsolate?: () => void;
+  actions?: ReactNode;
 }) {
   const detail = getOccurrenceDetails(database, occurrenceId);
   if (!detail) return null;
@@ -27,53 +29,25 @@ export function OemDetails({
   return (
     <div className="oem-part-details">
       <h2>{part.normalizedName}</h2>
-      <code className="oem-number">{part.oemNumber ?? 'OEM number not recorded'}</code>
-      <span className="verification-badge">
-        <span />
-        {occurrence.reviewStatus.replaceAll('-', ' ')}
-      </span>
-      <p className="part-description">{row.originalDescription}</p>
+      {part.oemNumber && <code className="oem-number">{part.oemNumber}</code>}
+      {actions}
       <div className="detail-section">
-        <h3>Part identification</h3>
         <dl>
-          <dt>Assembly</dt>
-          <dd>
-            <button className="inline-link" onClick={() => onNavigate(assembly.id)}>
-              {assembly.name}
-            </button>
-          </dd>
-          <dt>Quantity in source</dt>
-          <dd>
-            {occurrence.quantity ?? 'Not recorded'}
-            {patch && 'quantity' in patch && <small> · reviewer correction</small>}
-          </dd>
-          <dt>Callout</dt>
-          <dd>{row.callout ?? 'Unnumbered source row'}</dd>
-          {row.itemType !== 'unknown' && (
-            <>
-              <dt>Source item type</dt>
-              <dd>{row.itemType}</dd>
-            </>
-          )}
           {row.dimensionsText && (
             <>
-              <dt>Documented dimensions</dt>
+              <dt>Source dimensions</dt>
               <dd>
                 {row.dimensionsText}
-                {row.dimensionUnitText && (
-                  <small className="oem-list-number">{row.dimensionUnitText}</small>
-                )}
+                {row.dimensionUnitText && ` ${row.dimensionUnitText}`}
               </dd>
             </>
           )}
           {row.weightText && (
             <>
-              <dt>Documented weight</dt>
+              <dt>Source weight</dt>
               <dd>
                 {row.weightText}
-                {row.weightUnitText && (
-                  <small className="oem-list-number">{row.weightUnitText}</small>
-                )}
+                {row.weightUnitText && ` ${row.weightUnitText}`}
               </dd>
             </>
           )}
@@ -83,15 +57,25 @@ export function OemDetails({
               <dd>{row.material}</dd>
             </>
           )}
+          <dt>Source assembly</dt>
+          <dd>
+            <button className="inline-link" onClick={() => onNavigate(assembly.id)}>
+              {assembly.name}
+            </button>
+          </dd>
+          {occurrence.quantity !== null && (
+            <>
+              <dt>Quantity in source</dt>
+              <dd>
+                {occurrence.quantity}
+                {patch && 'quantity' in patch && <small> · corrected</small>}
+              </dd>
+            </>
+          )}
         </dl>
-        {row.dimensionsText && (
-          <p className="muted">
-            Transcribed source dimensions; mechanical measurements await verification.
-          </p>
-        )}
       </div>
-      <div className="detail-section">
-        <h3>Source documentation</h3>
+      <details className="detail-section oem-conflict">
+        <summary>Source &amp; verification</summary>
         <div className="source-card">
           <strong>{source.title}</strong>
           <p>
@@ -106,23 +90,46 @@ export function OemDetails({
             Open reference <ArrowUpRight size={12} />
           </a>
         </div>
+        {row.originalDescription && <p className="muted">{row.originalDescription}</p>}
         <p className="muted">
-          {row.modelYears.length
-            ? `Source year claim: ${row.modelYears.join(', ')}.`
-            : 'Model year is unspecified in this source.'}{' '}
+          {row.modelYears.length ? `Source year claim: ${row.modelYears.join(', ')}. ` : ''}
           {source.kind === 'web'
             ? 'Retailer reference; fitment is unverified.'
             : 'Catalog inclusion does not establish cross-year fitment.'}
         </p>
-      </div>
+        <p className="muted">
+          Verification: {occurrence.reviewStatus.replaceAll('-', ' ')}.
+          {row.dimensionsText && occurrence.reviewStatus !== 'mechanically-verified'
+            ? ' Source dimensions have not been mechanically verified.'
+            : ''}
+        </p>
+        {row.itemType !== 'unknown' && <p className="muted">Source item type: {row.itemType}.</p>}
+        {row.notes.map((note, i) => (
+          <p className="muted" key={i}>
+            {note}
+          </p>
+        ))}
+        {patch?.note && <p className="muted">Reviewer note: {patch.note}</p>}
+        <p>
+          <Link
+            className="inline-link"
+            href={`/catalog?occurrence=${encodeURIComponent(occurrenceId)}`}
+          >
+            Review this source record <ArrowUpRight size={12} />
+          </Link>
+        </p>
+        {!hasGeometry && (
+          <Link className="inline-link" href="/editor">
+            Map imported geometry <ArrowUpRight size={12} />
+          </Link>
+        )}
+      </details>
       {conflicts.length > 0 && (
-        <div className="detail-section">
-          <h3>
-            Source discrepancies <span>{conflicts.length}</span>
-          </h3>
+        <details className="detail-section oem-conflict">
+          <summary>Source discrepancies ({conflicts.length})</summary>
           {conflicts.map((conflict) => (
-            <details className="oem-conflict" key={conflict.id}>
-              <summary>{conflict.kind.replaceAll('-', ' ')} · review needed</summary>
+            <div className="source-card" key={conflict.id}>
+              <strong>{conflict.kind.replaceAll('-', ' ')} · review needed</strong>
               <p className="muted">{conflict.explanation}</p>
               {conflict.claims.map((claim) => {
                 const evidence = getOccurrenceDetails(database, claim.occurrenceId);
@@ -139,15 +146,13 @@ export function OemDetails({
                   </button>
                 );
               })}
-            </details>
+            </div>
           ))}
-        </div>
+        </details>
       )}
       {otherOccurrences.length > 0 && (
-        <div className="detail-section">
-          <h3>
-            Other source occurrences <span>{otherOccurrences.length}</span>
-          </h3>
+        <details className="detail-section oem-conflict">
+          <summary>Other source occurrences ({otherOccurrences.length})</summary>
           <ul className="component-list">
             {otherOccurrences.map((other) => {
               const entry = getOccurrenceDetails(database, other.id)!;
@@ -167,46 +172,8 @@ export function OemDetails({
               );
             })}
           </ul>
-        </div>
-      )}
-      <div className="detail-section">
-        <h3>3D inspection</h3>
-        {hasGeometry ? (
-          <button className="text-button" onClick={onIsolate}>
-            <Focus size={15} />
-            Toggle isolation
-          </button>
-        ) : (
-          <>
-            <p className="muted">No 3D representation assigned.</p>
-            <Link className="inline-link" href="/editor">
-              Map imported geometry <ArrowUpRight size={12} />
-            </Link>
-          </>
-        )}
-      </div>
-      {row.notes.length > 0 && (
-        <details className="detail-section oem-conflict">
-          <summary>Source notes</summary>
-          {row.notes.map((note, i) => (
-            <p className="muted" key={i}>
-              {note}
-            </p>
-          ))}
         </details>
       )}
-      {patch?.note && (
-        <div className="detail-section">
-          <h3>Reviewer note</h3>
-          <p className="muted">{patch.note}</p>
-        </div>
-      )}
-      <Link
-        className="inline-link"
-        href={`/catalog?occurrence=${encodeURIComponent(occurrenceId)}`}
-      >
-        Review this source record <ArrowUpRight size={12} />
-      </Link>
     </div>
   );
 }

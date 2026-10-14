@@ -5,13 +5,11 @@ import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowLeft,
-  ArrowUpRight,
   Box,
   Check,
   ChevronDown,
   ChevronRight,
   CircleHelp,
-  Crosshair,
   Expand,
   Eye,
   EyeOff,
@@ -19,11 +17,9 @@ import {
   Layers3,
   Link2,
   Menu,
-  MousePointer2,
   RotateCcw,
   Search,
   Settings2,
-  SlidersHorizontal,
   X,
 } from 'lucide-react';
 import { demoCatalog } from '@/data/catalog';
@@ -33,6 +29,7 @@ import { applyReviewPatches } from '@/oem/review';
 import { availableModelYears } from '@/oem/queries';
 import { loadReviewPatches } from '@/catalog-review/storage';
 import { OemDetails } from './OemDetails';
+import { PartDetails } from './PartDetails';
 import { CuratedPartsTree, CuratedAssemblyDetails } from './CuratedParts';
 import {
   buildCuratedNavigation,
@@ -62,13 +59,7 @@ import {
   searchParts,
 } from '@/core/catalog';
 import { createExplorerUrl } from '@/core/navigation';
-import type {
-  AssetDefinition,
-  Catalog,
-  MappingConfig,
-  Part,
-  ViewerDiagnostics,
-} from '@/core/types';
+import type { AssetDefinition, Catalog, MappingConfig, ViewerDiagnostics } from '@/core/types';
 import { assetRegistry } from '@/config/assets';
 
 const Viewer = dynamic(() => import('@/viewer/Viewer'), {
@@ -105,14 +96,20 @@ export default function Explorer() {
   );
   const [navOpen, setNavOpen] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
+  const [compact, setCompact] = useState(false);
+  const [revealRequest, setRevealRequest] = useState(0);
   const [helpOpen, setHelpOpen] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [notice, setNotice] = useState('');
   const [diagnostics, setDiagnostics] = useState<ViewerDiagnostics>();
-  const stage = useRef<HTMLDivElement>(null);
+  const workspace = useRef<HTMLDivElement>(null);
   const search = useRef<HTMLInputElement>(null);
-  const autoExplosion = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const navPanel = useRef<HTMLElement>(null);
+  const detailPanel = useRef<HTMLElement>(null);
+  const partsButton = useRef<HTMLButtonElement>(null);
+  const detailsButton = useRef<HTMLButtonElement>(null);
+  const revealNode = useRef<string | null>(null);
   const index = useMemo(() => buildCatalogIndex(catalog), [catalog]);
   const curatedEnabled =
     !demoMode &&
@@ -137,13 +134,19 @@ export default function Explorer() {
     selectedId && navigation ? navigationForOccurrence(navigation, selectedId) : undefined;
   const presentationNode = activeNode ?? selectionNode;
   const navigationPath =
-    activeNode && navigation
+    presentationNode && navigation
       ? [
-          ...navigationAncestors(navigation, activeNode.id).map((id) => navigation.byId.get(id)!),
-          activeNode,
+          ...navigationAncestors(navigation, presentationNode.id).map(
+            (id) => navigation.byId.get(id)!,
+          ),
+          presentationNode,
         ]
       : [];
-  const overview = assemblyId === catalog.motorcycleId && !activeNode;
+  const overview =
+    assemblyId === catalog.motorcycleId &&
+    !activeNode &&
+    (!selection || selection.kind === 'motorcycle');
+  const detailsVisible = detailOpen && !overview;
   const isFull = assemblyId === catalog.motorcycleId;
   const results = useMemo(
     () => (query.trim() ? searchParts(index, query, 101) : []),
@@ -152,14 +155,58 @@ export default function Explorer() {
   const breadcrumbs = [...getAncestors(index, assembly.id), assembly];
   const childParts = getChildren(index, detail.id);
   const detailBreadcrumbs = [...getAncestors(index, detail.id), detail];
-  const featuredAssembly = catalog.parts.find(
-    (part) =>
-      part.kind === 'assembly' &&
-      getChildren(index, part.id).some((child) => child.kind === 'component'),
-  );
   const assetEntry =
     assetRegistry.find((entry) => entry.asset.assemblyId === assemblyId) ??
     assetRegistry.find((entry) => entry.asset.assemblyId === catalog.motorcycleId);
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 1100px)');
+    const update = () => {
+      setCompact(media.matches);
+      setNavOpen(!media.matches);
+    };
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    if (!compact || (!navOpen && !detailsVisible)) return;
+    const panel = navOpen ? navPanel.current : detailPanel.current;
+    if (!panel) return;
+    const trigger = navOpen ? partsButton.current : detailsButton.current;
+    const focusable = () =>
+      [
+        ...panel.querySelectorAll<HTMLElement>(
+          'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), summary, [tabindex="0"]',
+        ),
+      ].filter((element) => element.getClientRects().length > 0);
+    (navOpen ? search.current : focusable()[0])?.focus();
+    const trap = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return;
+      const items = focusable();
+      const first = items[0];
+      const last = items.at(-1);
+      if (
+        event.shiftKey &&
+        (document.activeElement === first || !panel.contains(document.activeElement))
+      ) {
+        event.preventDefault();
+        last?.focus();
+      } else if (
+        !event.shiftKey &&
+        (document.activeElement === last || !panel.contains(document.activeElement))
+      ) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener('keydown', trap);
+    return () => {
+      document.removeEventListener('keydown', trap);
+      trigger?.focus();
+    };
+  }, [compact, navOpen, detailsVisible]);
 
   useEffect(() => {
     let disposed = false;
@@ -294,7 +341,7 @@ export default function Explorer() {
           ...getAncestors(activeIndex, state.partId ?? state.assemblyId).map((part) => part.id),
         ]),
       );
-      setNavOpen(false);
+      if (compact) setNavOpen(false);
       setHoveredId(null);
       setHiddenIds([]);
       setIsolatedId(null);
@@ -302,7 +349,7 @@ export default function Explorer() {
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
-  }, [catalog, database, demoMode, localWorkspace, curatedEnabled]);
+  }, [catalog, database, demoMode, localWorkspace, curatedEnabled, compact]);
 
   const navigate = useCallback(
     (partId: string, presentationId?: string) => {
@@ -333,36 +380,49 @@ export default function Explorer() {
       setExpanded(
         (prev) => new Set([...prev, ...getAncestors(index, partId).map((p) => p.id), nextAssembly]),
       );
-      setIsolatedId(null);
-      setHiddenIds([]);
+      setIsolatedId((previous) => (previous === partId ? previous : null));
+      setHiddenIds((previous) =>
+        nextAssembly !== assemblyId ? [] : previous.filter((id) => id !== partId),
+      );
       setHoveredId(null);
       if (nextAssembly !== assemblyId) setExplosion(0);
-      setNavOpen(false);
+      if (compact) setNavOpen(false);
+      setQuery('');
       setDetailOpen(!!presentationId || part.kind === 'component');
       setNotice(`${part.name} selected`);
     },
-    [assemblyId, catalog.motorcycleId, index, localWorkspace, demoMode, filters, configurationId],
+    [
+      assemblyId,
+      catalog.motorcycleId,
+      index,
+      localWorkspace,
+      demoMode,
+      filters,
+      configurationId,
+      compact,
+    ],
   );
 
-  useEffect(() => {
-    if (isFull) return;
-    autoExplosion.current = setTimeout(() => {
-      setExplosion(1);
-      autoExplosion.current = null;
-    }, 650);
-    return () => {
-      if (autoExplosion.current) clearTimeout(autoExplosion.current);
-    };
-  }, [assemblyId, isFull]);
-
   const adjustExplosion = (amount: number) => {
-    if (autoExplosion.current) clearTimeout(autoExplosion.current);
-    autoExplosion.current = null;
     setExplosion(amount);
   };
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        document
+          .querySelectorAll(
+            '.explorer-ux .viewer-options[open], .explorer-ux .workspace-tools[open]',
+          )
+          .forEach((menu) => menu.removeAttribute('open'));
+        setNavOpen((previous) => (compact ? false : previous));
+        setDetailOpen(false);
+        setHelpOpen(false);
+        setStatsOpen(false);
+        setIsolatedId(null);
+        if (compact) partsButton.current?.focus();
+        return;
+      }
       if (
         event.target instanceof HTMLInputElement ||
         event.target instanceof HTMLTextAreaElement ||
@@ -372,19 +432,14 @@ export default function Explorer() {
       if (event.key === '/') {
         event.preventDefault();
         setNavOpen(true);
+        if (compact) setDetailOpen(false);
         requestAnimationFrame(() => search.current?.focus());
-      }
-      if (event.key === 'Escape') {
-        setNavOpen(false);
-        setDetailOpen(false);
-        setHelpOpen(false);
-        setIsolatedId(null);
       }
       if (event.key.toLowerCase() === 'r') setResetToken((v) => v + 1);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, []);
+  }, [compact]);
 
   const toggleHidden = (id: string) =>
     setHiddenIds((prev) =>
@@ -492,9 +547,29 @@ export default function Explorer() {
     );
   };
   const navigateParent = () => {
+    if (selection?.kind === 'component') {
+      const parent = selectionNode?.parentId && navigation?.byId.get(selectionNode.parentId);
+      if (parent) {
+        navigateNode(parent);
+        return;
+      }
+      navigate(assembly.id);
+      return;
+    }
     const parent = activeNode?.parentId && navigation?.byId.get(activeNode.parentId);
     if (parent) navigateNode(parent);
     else navigate(assembly.parentId ?? catalog.motorcycleId);
+  };
+  const browseParts = (nodeId: string | null = presentationNode?.id ?? null) => {
+    revealNode.current = nodeId;
+    setRevealRequest((value) => value + 1);
+    setQuery('');
+    setNavOpen(true);
+    if (compact) setDetailOpen(false);
+    if (nodeId && navigation)
+      setExpanded(
+        (previous) => new Set([...previous, ...navigationAncestors(navigation, nodeId), nodeId]),
+      );
   };
   useEffect(() => {
     if (!navigation) return;
@@ -506,6 +581,21 @@ export default function Explorer() {
         (previous) => new Set([...previous, ...navigationAncestors(navigation, node.id)]),
       );
   }, [navigation, navId, selectedId]);
+  useEffect(() => {
+    if (!navOpen || query) return;
+    const frame = requestAnimationFrame(() => {
+      const target = revealNode.current;
+      revealNode.current = null;
+      const row = target
+        ? [...(navPanel.current?.querySelectorAll<HTMLElement>('.tree-row') ?? [])].find(
+            (item) => item.dataset.navigationId === target,
+          )
+        : navPanel.current?.querySelector<HTMLElement>('.tree-row.active');
+      row?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+      if (target) row?.querySelector<HTMLButtonElement>('.tree-select')?.focus();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [selectedId, navId, navOpen, query, revealRequest]);
   function changeConfiguration(id: string) {
     const config = verifiedConfigurations.find((item) => item.id === id);
     setConfigurationId(config?.id ?? '');
@@ -521,7 +611,8 @@ export default function Explorer() {
       return (
         <li key={part.id}>
           <div
-            className={`tree-row ${selectedId === part.id || (!selectedId && assemblyId === part.id) ? 'active' : ''}`}
+            className={`tree-row ${selectedId === part.id || (!selectedId && assemblyId === part.id) ? 'active' : ''} ${hiddenIds.includes(part.id) ? 'is-hidden' : ''}`}
+            data-navigation-id={part.id}
             style={{ paddingLeft: 8 + depth * 15 }}
           >
             {children.length > 0 ? (
@@ -543,10 +634,21 @@ export default function Explorer() {
               onMouseLeave={() => setHoveredId(null)}
               aria-current={selectedId === part.id ? 'true' : undefined}
             >
-              <span className={`part-dot ${part.kind}`} />
-              <span>{part.name}</span>
-              {children.length > 0 && <small>{children.length.toString().padStart(2, '0')}</small>}
+              <span className="tree-label">{part.name}</span>
+              {children.length > 0 && (
+                <small aria-hidden="true">{children.length.toString().padStart(2, '0')}</small>
+              )}
             </button>
+            {part.kind === 'component' && (demoMode || mappedIds.has(part.id)) && (
+              <button
+                className="tree-visibility"
+                aria-label={`${hiddenIds.includes(part.id) ? 'Show' : 'Hide'} ${part.name}`}
+                aria-pressed={hiddenIds.includes(part.id)}
+                onClick={() => toggleHidden(part.id)}
+              >
+                {hiddenIds.includes(part.id) ? <EyeOff size={15} /> : <Eye size={15} />}
+              </button>
+            )}
           </div>
           {children.length > 0 && expanded.has(part.id) && (
             <ul>{renderTree(part.id, depth + 1)}</ul>
@@ -555,9 +657,34 @@ export default function Explorer() {
       );
     });
 
+  const detailActions = detail.kind === 'component' && hasGeometry && (
+    <div className="detail-actions">
+      <button
+        aria-pressed={isolatedId === detail.id}
+        onClick={() => {
+          setIsolatedId(isolatedId === detail.id ? null : detail.id);
+          setHiddenIds((previous) => previous.filter((id) => id !== detail.id));
+        }}
+      >
+        <Focus size={16} />
+        {isolatedId === detail.id ? 'Show assembly' : 'Isolate'}
+      </button>
+      <button
+        aria-pressed={hiddenIds.includes(detail.id)}
+        onClick={() => {
+          setIsolatedId(null);
+          toggleHidden(detail.id);
+        }}
+      >
+        {hiddenIds.includes(detail.id) ? <Eye size={16} /> : <EyeOff size={16} />}
+        {hiddenIds.includes(detail.id) ? 'Show part' : 'Hide part'}
+      </button>
+    </div>
+  );
+
   return (
-    <main className="explorer-shell">
-      <header className="topbar">
+    <main className="explorer-shell explorer-ux">
+      <header className="topbar" inert={compact && (navOpen || detailsVisible)}>
         <Link
           className="brand"
           href="/"
@@ -574,45 +701,67 @@ export default function Explorer() {
             SUR-RON<span className="brand-sub">PARTS EXPLORER</span>
           </span>
         </Link>
-        <div className="header-model">
-          <span className="status-dot" />
-          LIGHT BEE X<span className="header-divider" />
-          STOCK EXPLORER
-        </div>
-        <Link href="/catalog" className="editor-link">
-          <span>Catalog review</span>
-        </Link>
-        <Link href={demoMode ? '/editor?demo=1' : '/editor'} className="editor-link">
-          <Settings2 size={16} />
-          <span>Model editor</span>
-          <ArrowUpRight size={14} />
-        </Link>
+        <div className="header-model">LIGHT BEE X</div>
+        <details className="workspace-tools">
+          <summary>
+            Tools <Settings2 size={16} />
+          </summary>
+          <div className="tools-menu">
+            <Link href="/catalog">Catalog review</Link>
+            <Link href={demoMode ? '/editor?demo=1' : '/editor'}>Model editor</Link>
+            {!demoMode && <Link href="/?demo=1">Geometry demonstration</Link>}
+            {demoMode && <Link href="/">OEM motorcycle explorer</Link>}
+          </div>
+        </details>
       </header>
 
-      <div className="workspace">
+      <div
+        ref={workspace}
+        className={`workspace ${navOpen ? 'with-navigation' : ''} ${detailOpen && !overview ? 'with-details' : ''}`}
+      >
+        {compact && (navOpen || (detailOpen && !overview)) && (
+          <button
+            className="panel-backdrop"
+            aria-label="Dismiss open panel"
+            tabIndex={-1}
+            onClick={() => {
+              setNavOpen(false);
+              setDetailOpen(false);
+            }}
+          />
+        )}
         <aside
+          ref={navPanel}
+          id="parts-navigation"
+          hidden={!navOpen}
           className={`catalog-panel ${navOpen ? 'mobile-open' : ''}`}
           aria-label="Parts navigation"
+          role={compact ? 'dialog' : undefined}
+          aria-modal={compact && navOpen ? true : undefined}
+          inert={compact && detailsVisible}
         >
           <div className="panel-heading">
-            <span className="eyebrow">ASSEMBLY INDEX</span>
-            <button
-              className="mobile-only icon-button"
-              aria-label="Close parts navigation"
-              onClick={() => setNavOpen(false)}
-            >
-              <X size={18} />
-            </button>
+            <span className="eyebrow">PARTS</span>
             <span className="count-tag">
               {navigation ? `${navigation.roots.length} systems` : catalog.parts.length - 1}
             </span>
+            <button
+              className="icon-button"
+              aria-label="Close parts navigation"
+              onClick={() => {
+                setNavOpen(false);
+                partsButton.current?.focus();
+              }}
+            >
+              <X size={18} />
+            </button>
           </div>
           <div className="search-box">
             <Search size={16} />
             <input
               ref={search}
               aria-label="Search parts"
-              placeholder="Find a part or OEM number"
+              placeholder="Part name or OEM number"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />
@@ -625,105 +774,109 @@ export default function Explorer() {
             )}
           </div>
           {!demoMode && !localWorkspace && (
-            <div className="catalog-filters">
-              <select
-                aria-label="Catalog model year"
-                value={filters.modelYear ?? ''}
-                onChange={(event) =>
-                  changeSourceFilter({
-                    modelYear:
-                      event.target.value === 'unknown'
-                        ? 'unknown'
-                        : event.target.value
-                          ? Number(event.target.value)
-                          : undefined,
-                  })
-                }
-              >
-                <option value="">All source years</option>
-                {availableModelYears(database).map((year) => (
-                  <option key={year} value={year}>
-                    MY{year}
-                  </option>
-                ))}
-                <option value="unknown">Year unspecified</option>
-              </select>
-              <select
-                aria-label="Catalog source"
-                value={filters.sourceId ?? ''}
-                onChange={(event) =>
-                  changeSourceFilter({ sourceId: event.target.value || undefined })
-                }
-              >
-                <option value="">All source documents</option>
-                {database.sources.map((source) => (
-                  <option key={source.id} value={source.id}>
-                    {source.title}
-                  </option>
-                ))}
-              </select>
-              {verifiedConfigurations.length > 0 && (
-                <select
-                  aria-label="Verified motorcycle configuration"
-                  value={configurationId}
-                  onChange={(event) => changeConfiguration(event.target.value)}
-                >
-                  <option value="">Installed configuration unconfirmed</option>
-                  {verifiedConfigurations.map((config) => (
-                    <option key={config.id} value={config.id}>
-                      {config.name} · MY{config.modelYear}
-                    </option>
-                  ))}
-                </select>
-              )}
-              <small>
-                Source-year filter · installed configuration{' '}
-                {configurationId && !navigation?.warnings.length ? 'selected' : 'unconfirmed'}.
-              </small>
-            </div>
+            <details
+              className="catalog-filter-disclosure"
+              open={!!filters.modelYear || !!filters.sourceId || undefined}
+            >
+              <summary>
+                Catalog filters{(filters.modelYear || filters.sourceId) && <span> · active</span>}
+              </summary>
+              <div className="catalog-filters">
+                <label>
+                  Source year
+                  <select
+                    aria-label="Catalog model year"
+                    value={filters.modelYear ?? ''}
+                    onChange={(event) =>
+                      changeSourceFilter({
+                        modelYear:
+                          event.target.value === 'unknown'
+                            ? 'unknown'
+                            : event.target.value
+                              ? Number(event.target.value)
+                              : undefined,
+                      })
+                    }
+                  >
+                    <option value="">All source years</option>
+                    {availableModelYears(database).map((year) => (
+                      <option key={year} value={year}>
+                        MY{year}
+                      </option>
+                    ))}
+                    <option value="unknown">Year unspecified</option>
+                  </select>
+                </label>
+                <label>
+                  Source document
+                  <select
+                    aria-label="Catalog source"
+                    value={filters.sourceId ?? ''}
+                    onChange={(event) =>
+                      changeSourceFilter({ sourceId: event.target.value || undefined })
+                    }
+                  >
+                    <option value="">All source documents</option>
+                    {database.sources.map((source) => (
+                      <option key={source.id} value={source.id}>
+                        {source.title}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                {verifiedConfigurations.length > 0 && (
+                  <select
+                    aria-label="Verified motorcycle configuration"
+                    value={configurationId}
+                    onChange={(event) => changeConfiguration(event.target.value)}
+                  >
+                    <option value="">Installed configuration unconfirmed</option>
+                    {verifiedConfigurations.map((config) => (
+                      <option key={config.id} value={config.id}>
+                        {config.name} · MY{config.modelYear}
+                      </option>
+                    ))}
+                  </select>
+                )}
+                <small>
+                  Source years filter references; they do not confirm installed parts or fitment.
+                </small>
+              </div>
+            </details>
           )}
           <button
-            className={`motorcycle-button ${isFull ? 'active' : ''}`}
+            className={`motorcycle-button ${overview ? 'active' : ''}`}
+            aria-current={overview ? 'true' : undefined}
             onClick={() => navigate(catalog.motorcycleId)}
           >
             <Layers3 size={18} />
-            <span>
-              Complete motorcycle<small>Sur-Ron Light Bee X</small>
-            </span>
-            <ChevronRight size={16} />
+            <span>Complete motorcycle</span>
           </button>
           <div className="catalog-scroll">
             {query.trim() ? (
               <div className="search-results">
                 <p className="eyebrow">
-                  {results.length} {navigation ? 'REFERENCE MATCHES' : 'MATCHING PARTS'}
+                  {results.length > 100 ? '100+' : results.length}{' '}
+                  {navigation ? 'REFERENCE MATCHES' : 'MATCHING PARTS'}
                 </p>
                 {results.length ? (
                   results.slice(0, 100).map((part) => (
                     <button
                       key={part.id}
                       className="search-result"
-                      onClick={() => {
-                        navigate(part.id);
-                        setQuery('');
-                      }}
+                      onClick={() => navigate(part.id)}
                     >
-                      <Box size={16} />
                       <span>
                         {part.name}
                         <small>
                           {part.oemNumber ??
                             part.genericDesignation ??
-                            index.byId.get(part.parentId ?? '')?.name ??
-                            'Motorcycle'}
+                            index.byId.get(part.parentId ?? '')?.name}
                           {!demoMode && part.sources[0] && (
                             <>
                               {' '}
-                              ·{' '}
-                              {part.sources[0].document.includes('2021')
-                                ? '2021'
-                                : part.sources[0].document.split(' — ')[0]}{' '}
-                              · {part.sources[0].item ?? 'Unnumbered row'}
+                              · {part.sources[0].document.split(' — ')[0]} ·{' '}
+                              {part.sources[0].item ?? 'Unnumbered row'}
                             </>
                           )}
                         </small>
@@ -733,7 +886,8 @@ export default function Explorer() {
                   ))
                 ) : (
                   <p className="empty-state">
-                    No matching parts. Try an assembly name or a verified designation.
+                    No matching parts. Try a part name or OEM number
+                    {filters.modelYear || filters.sourceId ? ', or clear the catalog filters' : ''}.
                   </p>
                 )}
                 {results.length > 100 && (
@@ -750,6 +904,10 @@ export default function Explorer() {
                     selectedId={selectedId}
                     onToggle={toggleExpanded}
                     onNavigate={navigateNode}
+                    hiddenIds={hiddenIds}
+                    mappedIds={mappedIds}
+                    onToggleHidden={toggleHidden}
+                    onHover={setHoveredId}
                   />
                 ) : (
                   renderTree(catalog.motorcycleId)
@@ -758,25 +916,45 @@ export default function Explorer() {
             )}
           </div>
           <div className="catalog-footer">
-            <span className="verification-dot" />
-            <div>
-              <strong>{demoMode ? 'Geometry demonstration' : 'Motorcycle systems'}</strong>
-              <p>
-                {demoMode
-                  ? 'Synthetic geometry and sample metadata.'
-                  : 'Full OEM references remain available through search and assembly details.'}
-              </p>
-              {navigation && (
-                <Link className="inline-link" href="/catalog">
-                  Complete OEM catalog
-                </Link>
-              )}
-            </div>
+            {navigation ? (
+              <Link className="inline-link" href="/catalog">
+                Complete OEM reference catalog
+              </Link>
+            ) : (
+              <small className="muted">Demonstration parts · not mechanical specifications</small>
+            )}
           </div>
         </aside>
 
-        <section className="viewer-panel" aria-label="Interactive motorcycle viewer" ref={stage}>
-          <div className="viewer-title">
+        <section
+          className="viewer-panel"
+          aria-label="Interactive motorcycle viewer"
+          inert={compact && (navOpen || detailsVisible)}
+        >
+          <div className="viewer-bar">
+            <button
+              ref={partsButton}
+              className="toolbar-button"
+              aria-expanded={navOpen}
+              aria-controls="parts-navigation"
+              onClick={() => {
+                setNavOpen((value) => !value);
+                if (compact) setDetailOpen(false);
+              }}
+            >
+              <Menu size={18} />
+              Parts
+            </button>
+            {!overview && (
+              <button
+                className="icon-button"
+                aria-label="Parent assembly"
+                title="Back to parent assembly"
+                onClick={navigateParent}
+              >
+                <ArrowLeft size={18} />
+              </button>
+            )}
             <nav className="breadcrumbs" aria-label="Assembly breadcrumb">
               {navigationPath.length ? (
                 <>
@@ -786,7 +964,12 @@ export default function Explorer() {
                   {navigationPath.map((node) => (
                     <span key={node.id}>
                       <ChevronRight size={12} />
-                      <button onClick={() => navigateNode(node)}>{node.name}</button>
+                      <button
+                        onClick={() => navigateNode(node)}
+                        aria-current={node.id === presentationNode?.id ? 'location' : undefined}
+                      >
+                        {node.name}
+                      </button>
                     </span>
                   ))}
                 </>
@@ -794,32 +977,34 @@ export default function Explorer() {
                 breadcrumbs.map((part, i) => (
                   <span key={part.id}>
                     {i > 0 && <ChevronRight size={12} />}
-                    <button onClick={() => navigate(part.id)}>
+                    <button
+                      onClick={() => navigate(part.id)}
+                      aria-current={i === breadcrumbs.length - 1 ? 'location' : undefined}
+                    >
                       {part.kind === 'motorcycle' ? 'Light Bee X' : part.name}
                     </button>
                   </span>
                 ))
               )}
             </nav>
-            <div className="viewer-heading">
-              <div>
-                <div className="eyebrow">
-                  {overview ? 'EXPLORE EVERY CONNECTION' : 'ASSEMBLY WORKBENCH'}
-                </div>
-                <h1>
-                  {overview ? 'The machine, piece by piece.' : (activeNode?.name ?? assembly.name)}
-                </h1>
-              </div>
-              <span className="demo-pill">
-                {hasImportedGeometry
-                  ? 'IMPORTED MODEL'
-                  : showViewer
-                    ? 'SYNTHETIC MODEL'
-                    : 'CATALOG RECORD'}
-              </span>
-            </div>
+            <button
+              ref={detailsButton}
+              className="toolbar-button"
+              disabled={overview}
+              aria-expanded={detailOpen && !overview}
+              aria-controls="component-details"
+              onClick={() => {
+                setDetailOpen((value) => !value);
+                if (compact) setNavOpen(false);
+              }}
+            >
+              Details
+            </button>
           </div>
-          <div className="canvas-wrap">
+          <h1 className="sr-only">
+            {overview ? 'Sur-Ron Light Bee X' : (activeNode?.name ?? assembly.name)}
+          </h1>
+          <div className={`canvas-wrap ${!overview && hasGeometry ? 'assembly-canvas' : ''}`}>
             {showViewer ? (
               <Viewer
                 catalog={sceneCatalog}
@@ -838,88 +1023,88 @@ export default function Explorer() {
               />
             ) : (
               <div className="geometry-empty" data-testid="geometry-unassigned">
-                <Box size={36} strokeWidth={1} />
+                <Box size={30} strokeWidth={1} />
                 <h2>No 3D representation assigned</h2>
-                <p>
-                  {activeNode?.name ?? detail.name} is available for reference browsing. Map an
-                  imported model to this record to inspect its geometry.
-                </p>
-                <Link href="/editor">
-                  Open model mapping editor <ArrowUpRight size={15} />
-                </Link>
-                <Link href="/?demo=1">Explore the interactive geometry demonstration</Link>
-              </div>
-            )}
-            {showDemonstration && (
-              <div className="geometry-disclaimer">
-                Synthetic overview · no OEM component geometry mapped
+                <p>{activeNode?.name ?? detail.name} is available in the parts catalog.</p>
+                <button
+                  className="text-button"
+                  onClick={() => {
+                    setDetailOpen(true);
+                    if (compact) setNavOpen(false);
+                  }}
+                >
+                  View part information <ChevronRight size={15} />
+                </button>
+                <details>
+                  <summary>Model options</summary>
+                  <Link href="/editor">Open model mapping editor</Link>
+                  <Link href="/?demo=1">Explore the geometry demonstration</Link>
+                </details>
               </div>
             )}
           </div>
-          {hoveredId && index.byId.has(hoveredId) && (
-            <div className="hover-label">
-              <span className="status-dot" />
-              {index.byId.get(hoveredId)!.name}
-              <small>Click to inspect</small>
-            </div>
-          )}
-          {assetMessage && (
-            <div className="asset-notice" role="status">
-              {assetMessage}
-            </div>
-          )}
           <div className="viewer-tools">
             <button
               className="icon-button"
               aria-label="Reset camera"
               title="Reset camera (R)"
-              onClick={() => setResetToken((v) => v + 1)}
+              disabled={!showViewer}
+              onClick={() => setResetToken((value) => value + 1)}
             >
               <RotateCcw size={18} />
             </button>
-            <button
-              className="icon-button"
-              aria-label="Toggle fullscreen"
-              title="Fullscreen"
-              onClick={() => {
-                if (document.fullscreenElement) void document.exitFullscreen();
-                else
-                  void stage.current
-                    ?.requestFullscreen()
-                    .catch(() => setNotice('Fullscreen is unavailable in this browser.'));
-              }}
-            >
-              <Expand size={18} />
-            </button>
-            <span />
-            <button
-              className={`icon-button ${helpOpen ? 'active' : ''}`}
-              aria-label="Viewer help"
-              aria-expanded={helpOpen}
-              onClick={() => setHelpOpen((v) => !v)}
-            >
-              <CircleHelp size={18} />
-            </button>
-            <button
-              className={`icon-button ${statsOpen ? 'active' : ''}`}
-              aria-label="Performance diagnostics"
-              aria-expanded={statsOpen}
-              onClick={() => setStatsOpen((v) => !v)}
-            >
-              <SlidersHorizontal size={18} />
-            </button>
+            <details className="viewer-options">
+              <summary>Viewer options</summary>
+              <div
+                className="tools-menu"
+                onClick={(event) => event.currentTarget.closest('details')?.removeAttribute('open')}
+              >
+                <button
+                  onClick={() => {
+                    if (document.fullscreenElement) void document.exitFullscreen();
+                    else
+                      void workspace.current
+                        ?.requestFullscreen()
+                        .catch(() => setNotice('Fullscreen is unavailable in this browser.'));
+                  }}
+                >
+                  Toggle fullscreen <Expand size={16} />
+                </button>
+                <button
+                  aria-expanded={helpOpen}
+                  onClick={() => {
+                    setHelpOpen((value) => !value);
+                    setStatsOpen(false);
+                  }}
+                >
+                  Viewer help <CircleHelp size={16} />
+                </button>
+                <button
+                  aria-expanded={statsOpen}
+                  onClick={() => {
+                    setStatsOpen((value) => !value);
+                    setHelpOpen(false);
+                  }}
+                >
+                  Performance diagnostics
+                </button>
+              </div>
+            </details>
           </div>
           {helpOpen && (
             <div className="viewer-popover help-popover">
-              <strong>At your fingertips</strong>
+              <strong>Viewer controls</strong>
+              <button
+                className="icon-button"
+                aria-label="Close viewer help"
+                onClick={() => setHelpOpen(false)}
+              >
+                <X size={16} />
+              </button>
+              <p>Drag to rotate · Scroll to zoom · Right-drag to pan.</p>
+              <p>Touch: one finger to rotate, two to pan and zoom.</p>
               <p>
-                Drag to orbit · Scroll to zoom
-                <br />
-                Right-drag to pan
-              </p>
-              <p>Touch: one finger to orbit, two to pan and pinch to zoom.</p>
-              <p>
-                Use the parts list with Tab and Enter. <kbd>R</kbd> resets the camera; <kbd>/</kbd>{' '}
+                Use Tab and Enter in the parts list. <kbd>R</kbd> resets the camera; <kbd>/</kbd>{' '}
                 opens search; <kbd>Esc</kbd> closes panels.
               </p>
             </div>
@@ -927,6 +1112,13 @@ export default function Explorer() {
           {statsOpen && (
             <div className="viewer-popover stats-popover">
               <strong>Scene diagnostics</strong>
+              <button
+                className="icon-button"
+                aria-label="Close performance diagnostics"
+                onClick={() => setStatsOpen(false)}
+              >
+                <X size={16} />
+              </button>
               <dl>
                 <dt>Visible meshes</dt>
                 <dd>{diagnostics?.meshes ?? '—'}</dd>
@@ -939,66 +1131,48 @@ export default function Explorer() {
                 <dt>Textures</dt>
                 <dd>{diagnostics?.textures ?? '—'}</dd>
               </dl>
-              <p>
-                Demand rendering · Adaptive pixel ratio
-                <br />
-                Counts update while the scene renders.
-              </p>
+              <p>Demand rendering · Y up · metres</p>
             </div>
           )}
-          {isolatedId && (
-            <button className="isolation-banner" onClick={() => setIsolatedId(null)}>
-              <Focus size={15} />
-              Isolating {index.byId.get(isolatedId)?.name}
-              <X size={15} />
-            </button>
+          {assetMessage && (
+            <div className="asset-notice" role="status">
+              {assetMessage}
+            </div>
           )}
           <div className="stage-bottom">
-            {overview ? (
-              <div className="explore-hint">
-                <MousePointer2 size={19} />
-                <span>
-                  Select an assembly to see how it comes together.
-                  <small>Rotate, inspect, and explore from the inside out.</small>
-                </span>
-                <>
-                  {(navigation || featuredAssembly) && (
-                    <button
-                      className="text-button"
-                      onClick={() =>
-                        navigation
-                          ? navigateNode(navigation.byId.get('jackshaft')!)
-                          : navigate(featuredAssembly!.id)
-                      }
-                    >
-                      Explore{' '}
-                      {navigation
-                        ? 'jackshaft'
-                        : featuredAssembly!.name.replace(/ assembly$/i, '').toLowerCase()}{' '}
-                      <ArrowUpRight size={16} />
-                    </button>
-                  )}
-                </>
+            {(isolatedId || hiddenIds.length > 0) && (
+              <div className="visibility-status">
+                {isolatedId && (
+                  <button
+                    className="isolation-banner"
+                    aria-label="Exit isolation"
+                    onClick={() => setIsolatedId(null)}
+                  >
+                    <Focus size={15} />
+                    Isolating {index.byId.get(isolatedId)?.name}
+                    <X size={15} />
+                  </button>
+                )}
+                {hiddenIds.length > 0 && (
+                  <button className="text-button" onClick={() => setHiddenIds([])}>
+                    <Eye size={15} />
+                    Show {hiddenIds.length} hidden
+                  </button>
+                )}
               </div>
-            ) : hasGeometry ? (
+            )}
+            {!overview && hasGeometry ? (
               <div className="explosion-controls">
                 <div className="explosion-title">
-                  <Layers3 size={19} />
-                  <div>
-                    <strong>Exploded view</strong>
-                    <small>
-                      {localAsset || assetEntry
-                        ? 'Configured vectors; unmapped vectors use approximate layout'
-                        : 'Demonstration layout · not mechanically verified'}
-                    </small>
-                  </div>
-                  <output htmlFor="explosion-range">
-                    {Math.round(explosion * 100)}
-                    <span>%</span>
-                  </output>
+                  <strong>Exploded view</strong>
+                  <output htmlFor="explosion-range">{Math.round(explosion * 100)}%</output>
                 </div>
                 <div className="explosion-slider">
-                  <button onClick={() => adjustExplosion(0)} aria-label="Reassemble">
+                  <button
+                    aria-label="Reassemble"
+                    aria-pressed={explosion === 0}
+                    onClick={() => adjustExplosion(0)}
+                  >
                     Assembled
                   </button>
                   <input
@@ -1009,89 +1183,36 @@ export default function Explorer() {
                     max="1"
                     step="0.01"
                     value={explosion}
-                    onChange={(e) => adjustExplosion(Number(e.target.value))}
+                    onChange={(event) => adjustExplosion(Number(event.target.value))}
                   />
-                  <button onClick={() => adjustExplosion(1)}>Exploded</button>
-                </div>
-                <div className="explosion-footer">
-                  <button onClick={navigateParent}>
-                    <ArrowLeft size={14} />
-                    Parent assembly
-                  </button>
-                  <button
-                    onClick={() => {
-                      setHiddenIds([]);
-                      setIsolatedId(null);
-                    }}
-                  >
-                    {hiddenIds.length
-                      ? `Show ${hiddenIds.length} hidden`
-                      : 'All components visible'}
-                    <Eye size={14} />
+                  <button aria-pressed={explosion === 1} onClick={() => adjustExplosion(1)}>
+                    Exploded
                   </button>
                 </div>
               </div>
-            ) : (
-              <button className="text-button" onClick={navigateParent}>
-                <ArrowLeft size={14} />
-                Parent assembly
-              </button>
+            ) : null}
+            {(demoMode || showDemonstration) && (
+              <small className="model-status">
+                Demonstration geometry · not mechanically accurate
+              </small>
             )}
-            <div className="viewer-footnote">
-              <span>
-                <span className="status-dot" />
-                {navigation
-                  ? overview
-                    ? 'MOTORCYCLE OVERVIEW'
-                    : activeNode?.children.length
-                      ? `${activeNode.children.length} INSPECTION GROUPS`
-                      : 'COMPONENT REFERENCE'
-                  : isFull
-                    ? 'MOTORCYCLE OVERVIEW'
-                    : `${getDescendants(index, assemblyId).length} CATALOG COMPONENTS`}
-              </span>
-              <span>
-                Y UP <span className="muted">/</span> METRES
-              </span>
-            </div>
-          </div>
-          <div className="mobile-controls">
-            <button
-              onClick={() => {
-                setNavOpen(true);
-                setDetailOpen(false);
-              }}
-            >
-              <Menu size={18} />
-              Parts
-            </button>
-            <button
-              onClick={() => {
-                setDetailOpen((v) => !v);
-                setNavOpen(false);
-              }}
-            >
-              <Box size={18} />
-              Details
-            </button>
           </div>
         </section>
 
         <aside
-          className={`detail-panel ${detailOpen ? 'mobile-open' : ''}`}
+          ref={detailPanel}
+          id="component-details"
+          hidden={!detailOpen || overview}
+          className={`detail-panel ${detailOpen && !overview ? 'mobile-open' : ''}`}
           aria-label="Component information"
+          role={compact ? 'dialog' : undefined}
+          aria-modal={compact && detailOpen && !overview ? true : undefined}
+          inert={compact && navOpen}
         >
           <div className="panel-heading">
             <span className="eyebrow">
-              {detail.kind === 'component' ? 'COMPONENT DETAILS' : 'ASSEMBLY DETAILS'}
+              {detail.kind === 'component' ? 'PART DETAILS' : 'ASSEMBLY DETAILS'}
             </span>
-            <button
-              className="icon-button mobile-only"
-              aria-label="Close component details"
-              onClick={() => setDetailOpen(false)}
-            >
-              <X size={18} />
-            </button>
             <button
               className="icon-button share-button"
               aria-label="Copy share link"
@@ -1099,22 +1220,44 @@ export default function Explorer() {
             >
               {copied ? <Check size={17} /> : <Link2 size={17} />}
             </button>
+            <button
+              className="icon-button"
+              aria-label="Close component details"
+              onClick={() => {
+                setDetailOpen(false);
+                detailsButton.current?.focus();
+              }}
+            >
+              <X size={18} />
+            </button>
           </div>
           <div className="detail-scroll">
             <nav className="detail-breadcrumbs" aria-label="Part hierarchy">
-              {detailBreadcrumbs.map((part) => (
-                <button key={part.id} onClick={() => navigate(part.id)}>
-                  {part.kind === 'motorcycle' ? 'Motorcycle' : part.name}
-                </button>
-              ))}
+              {navigationPath.length ? (
+                <>
+                  <button onClick={() => navigate(catalog.motorcycleId)}>Motorcycle</button>
+                  {navigationPath.slice(0, -1).map((node) => (
+                    <button key={node.id} onClick={() => navigateNode(node)}>
+                      {node.name}
+                    </button>
+                  ))}
+                </>
+              ) : (
+                detailBreadcrumbs.slice(0, -1).map((part) => (
+                  <button key={part.id} onClick={() => navigate(part.id)}>
+                    {part.kind === 'motorcycle' ? 'Motorcycle' : part.name}
+                  </button>
+                ))
+              )}
             </nav>
             {!demoMode && database.occurrences.some((occurrence) => occurrence.id === detail.id) ? (
               <OemDetails
+                key={detail.id}
                 database={database}
                 occurrenceId={detail.id}
                 hasGeometry={hasGeometry}
+                actions={detailActions}
                 onNavigate={navigateOccurrence}
-                onIsolate={() => setIsolatedId(isolatedId === detail.id ? null : detail.id)}
               />
             ) : navigation && (activeNode || isFull) ? (
               <CuratedAssemblyDetails
@@ -1124,18 +1267,13 @@ export default function Explorer() {
                 database={database}
                 onNavigate={navigateNode}
                 onSelectOccurrence={navigateOccurrence}
+                onBrowseParts={browseParts}
               />
             ) : !demoMode && !localWorkspace ? (
               <>
                 <h2>{detail.name}</h2>
-                <p className="part-description">{detail.description}</p>
-                <div className="detail-section">
-                  <h3>
-                    {detail.kind === 'motorcycle'
-                      ? 'Source assembly groups'
-                      : 'Documented occurrences'}{' '}
-                    <span>{childParts.length}</span>
-                  </h3>
+                <details className="detail-section oem-conflict">
+                  <summary>OEM reference parts · {childParts.length}</summary>
                   <ul className="component-list">
                     {childParts.map((part) => (
                       <li key={part.id}>
@@ -1143,10 +1281,7 @@ export default function Explorer() {
                           <span>
                             {part.name}
                             <small className="oem-list-number">
-                              {part.oemNumber ??
-                                (part.kind === 'assembly'
-                                  ? `${getChildren(index, part.id).length} records`
-                                  : 'Number not recorded')}
+                              {part.oemNumber}
                               {part.quantity !== null && ` · Qty ${part.quantity}`}
                               {part.sources[0]?.item && ` · ${part.sources[0].item}`}
                             </small>
@@ -1156,221 +1291,30 @@ export default function Explorer() {
                       </li>
                     ))}
                   </ul>
-                </div>
-                <p className="muted">
-                  Source occurrences may describe complete assemblies, variants and their individual
-                  components. Quantities are not a summed motorcycle bill of materials.
-                </p>
+                </details>
                 <Link className="inline-link" href="/catalog">
-                  Review source records
+                  Complete OEM reference catalog
                 </Link>
               </>
             ) : (
               <>
-                <div className="part-emblem">
-                  <Box size={36} strokeWidth={1} />
-                  <span>
-                    {detail.kind === 'component' ? 'COMPONENT' : 'ASSEMBLY'}
-                    <small>{detail.id}</small>
-                  </span>
-                </div>
-                <h2>{detail.name}</h2>
-                <span
-                  className={`verification-badge ${detail.verification === 'mechanically-verified' ? 'verified' : ''}`}
-                >
-                  <span />
-                  {detail.verification.replaceAll('-', ' ')}
-                </span>
-                <p className="part-description">{detail.description}</p>
-                <div className="detail-actions">
-                  <button
-                    onClick={() => {
-                      setIsolatedId(isolatedId === detail.id ? null : detail.id);
-                      setHiddenIds((v) => v.filter((id) => id !== detail.id));
-                    }}
-                    className={isolatedId === detail.id ? 'active' : ''}
-                  >
-                    <Focus size={16} />
-                    {isolatedId === detail.id ? 'Show assembly' : 'Isolate'}
-                  </button>
-                  <button
-                    onClick={() => {
-                      setResetToken((v) => v + 1);
-                    }}
-                  >
-                    <Crosshair size={16} />
-                    Focus
-                  </button>
-                </div>
-                <div className="detail-section">
-                  <h3>Identification</h3>
-                  <dl>
-                    <dt>OEM part number</dt>
-                    <dd>{detail.oemNumber ?? <span className="unknown">Unknown</span>}</dd>
-                    <dt>Generic designation</dt>
-                    <dd>
-                      {detail.genericDesignation ?? <span className="unknown">Unverified</span>}
-                    </dd>
-                    <dt>Quantity in assembly</dt>
-                    <dd>{detail.quantity ?? <span className="unknown">Unconfirmed</span>}</dd>
-                    <dt>Material</dt>
-                    <dd>{detail.material ?? <span className="unknown">Unknown</span>}</dd>
-                    <dt>Parent assembly</dt>
-                    <dd>
-                      {detail.parentId ? (
-                        <button className="inline-link" onClick={() => navigate(detail.parentId!)}>
-                          {index.byId.get(detail.parentId)?.name}
-                        </button>
-                      ) : (
-                        'Motorcycle root'
-                      )}
-                    </dd>
-                  </dl>
-                </div>
-                <div className="detail-section">
-                  <h3>Specifications & dimensions</h3>
-                  {Object.keys(detail.specifications).length || detail.dimensions.length ? (
-                    <dl>
-                      {Object.entries(detail.specifications).map(([key, value]) => (
-                        <div className="definition-pair" key={key}>
-                          <dt>{key}</dt>
-                          <dd>{value}</dd>
-                        </div>
-                      ))}
-                      {detail.dimensions.map((dim, i) => (
-                        <div className="definition-pair" key={i}>
-                          <dt>{dim.label}</dt>
-                          <dd>
-                            {dim.value} {dim.unit}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  ) : (
-                    <p className="muted">
-                      Awaiting verified source information. Geometry is not a measurement reference.
-                    </p>
-                  )}
-                </div>
+                <PartDetails
+                  key={detail.id}
+                  part={detail}
+                  actions={detailActions}
+                  parentName={index.byId.get(detail.parentId ?? '')?.name}
+                  onNavigate={navigate}
+                />
                 {childParts.length > 0 && (
-                  <div className="detail-section">
-                    <h3>
-                      Inside this assembly <span>{childParts.length}</span>
-                    </h3>
-                    <ul className="component-list">
-                      {childParts.map((part) => (
-                        <li key={part.id}>
-                          <button onClick={() => navigate(part.id)}>
-                            <span className="part-dot" />
-                            <span>{part.name}</span>
-                            <ChevronRight size={13} />
-                          </button>
-                          <button
-                            aria-label={`${hiddenIds.includes(part.id) ? 'Show' : 'Hide'} ${part.name}`}
-                            onClick={() => toggleHidden(part.id)}
-                          >
-                            {hiddenIds.includes(part.id) ? <EyeOff size={16} /> : <Eye size={16} />}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <button className="text-button" onClick={() => browseParts()}>
+                    Browse components <ChevronRight size={15} />
+                  </button>
                 )}
-                <>
-                  {detail.images.length > 0 && (
-                    <div className="detail-section part-images">
-                      {detail.images
-                        .filter((image) => /^(https?:\/\/|\/(?!\/))/.test(image.url))
-                        .map((image) => (
-                          <figure key={image.url}>
-                            <img src={image.url} alt={image.alt} loading="lazy" />
-                            <figcaption>{image.alt}</figcaption>
-                          </figure>
-                        ))}
-                    </div>
-                  )}
-                </>
-                <div className="detail-section">
-                  <h3>Source documentation</h3>
-                  {detail.sources.length ? (
-                    detail.sources.map((source, i) => (
-                      <div className="source-card" key={i}>
-                        <strong>{source.document}</strong>
-                        <p>
-                          {[
-                            source.page && `Page ${source.page}`,
-                            source.diagram && `Diagram ${source.diagram}`,
-                            source.item && `Item ${source.item}`,
-                          ]
-                            .filter(Boolean)
-                            .join(' · ')}
-                        </p>
-                        {source.url && /^https?:\/\//.test(source.url) && (
-                          <a href={source.url} target="_blank" rel="noreferrer">
-                            Open source <ArrowUpRight size={12} />
-                          </a>
-                        )}
-                        {source.notes && <p>{source.notes}</p>}
-                      </div>
-                    ))
-                  ) : (
-                    <p className="muted">
-                      No factory drawing linked. OEM numbers and fitment remain unverified.
-                    </p>
-                  )}
-                </div>
-                <div className="detail-section">
-                  <h3>Compatibility</h3>
-                  {detail.compatibility.length ? (
-                    detail.compatibility.map((fit, i) => (
-                      <p className="muted" key={i}>
-                        {fit.model} · {fit.years.length ? fit.years.join(', ') : 'Years unknown'}
-                        <br />
-                        {fit.verification.replaceAll('-', ' ')}
-                      </p>
-                    ))
-                  ) : (
-                    <p className="muted">No confirmed model or model-year fitment.</p>
-                  )}
-                  {detail.alternatives.length > 0 && (
-                    <>
-                      <h3>Cross-referenced alternatives</h3>
-                      {detail.alternatives.map((alt) => (
-                        <p className="muted" key={alt.id}>
-                          {alt.id} · {alt.relation.replaceAll('-', ' ')}
-                          <br />
-                          {alt.notes}
-                        </p>
-                      ))}
-                    </>
-                  )}
-                </div>
-                <div className="data-note">
-                  <CircleHelp size={16} />
-                  <p>
-                    Identification before assumption.
-                    <br />
-                    Only sourced, verified data belongs on a real build.
-                  </p>
-                </div>
               </>
             )}
           </div>
         </aside>
       </div>
-      <footer className="app-footer">
-        <span>
-          STOCK EXPLORER <span className="muted">/</span> LBX
-        </span>
-        <span>
-          {demoMode
-            ? 'Synthetic geometry demonstration'
-            : 'Sourced OEM records · model-year fitment requires verification'}
-        </span>
-        <Link href={demoMode ? '/editor?demo=1' : '/editor'}>
-          LOCAL MODEL WORKBENCH <ArrowUpRight size={12} />
-        </Link>
-      </footer>
       <div className="sr-only" aria-live="polite">
         {notice}
       </div>

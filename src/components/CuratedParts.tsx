@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, Eye, EyeOff } from 'lucide-react';
 import type { NavigationNode, ReferenceGroup } from '@/navigation/model';
 import type { OemDatabase } from '@/oem/types';
 import { getOccurrenceDetails } from '@/oem/queries';
@@ -13,6 +13,10 @@ interface TreeProps {
   selectedId: string | null;
   onToggle: (id: string) => void;
   onNavigate: (node: NavigationNode) => void;
+  hiddenIds?: string[];
+  mappedIds?: Set<string>;
+  onToggleHidden?: (id: string) => void;
+  onHover?: (id: string | null) => void;
   depth?: number;
 }
 
@@ -24,15 +28,21 @@ export function CuratedPartsTree({
   selectedId,
   onToggle,
   onNavigate,
+  hiddenIds = [],
+  mappedIds,
+  onToggleHidden,
+  onHover,
   depth = 0,
 }: TreeProps) {
   return nodes.map((node) => {
     const active = node.occurrenceId ? selectedId === node.occurrenceId : activeId === node.id;
     const open = expanded.has(node.id);
+    const hidden = node.occurrenceId ? hiddenIds.includes(node.occurrenceId) : false;
     return (
       <li key={node.id} data-navigation-kind={node.kind}>
         <div
-          className={`tree-row ${active ? 'active' : ''}`}
+          className={`tree-row ${active ? 'active' : ''} ${hidden ? 'is-hidden' : ''}`}
+          data-navigation-id={node.id}
           style={{ paddingLeft: 8 + depth * 15 }}
         >
           {node.children.length ? (
@@ -40,6 +50,7 @@ export function CuratedPartsTree({
               className="tree-toggle"
               aria-label={`${open ? 'Collapse' : 'Expand'} ${node.name}`}
               aria-expanded={open}
+              aria-controls={`navigation-children-${node.id}`}
               onClick={() => onToggle(node.id)}
             >
               {open ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
@@ -51,18 +62,28 @@ export function CuratedPartsTree({
             className="tree-select"
             onClick={() => onNavigate(node)}
             aria-current={active ? 'true' : undefined}
+            title={node.name}
+            onMouseEnter={() => node.occurrenceId && onHover?.(node.occurrenceId)}
+            onMouseLeave={() => node.occurrenceId && onHover?.(null)}
+            onFocus={() => node.occurrenceId && onHover?.(node.occurrenceId)}
+            onBlur={() => node.occurrenceId && onHover?.(null)}
           >
-            <span
-              className={`part-dot ${node.kind === 'component' || node.kind === 'installed' ? 'component' : 'assembly'}`}
-            />
-            <span>{node.name}</span>
-            {node.children.length > 0 && (
-              <small>{node.children.length.toString().padStart(2, '0')}</small>
-            )}
+            <span className="tree-label">{node.name}</span>
+            {node.children.length > 0 && <small aria-hidden="true">{node.children.length}</small>}
           </button>
+          {node.occurrenceId && mappedIds?.has(node.occurrenceId) && onToggleHidden && (
+            <button
+              className="tree-visibility"
+              aria-label={`${hidden ? 'Show' : 'Hide'} ${node.name}`}
+              aria-pressed={hidden}
+              onClick={() => onToggleHidden(node.occurrenceId!)}
+            >
+              {hidden ? <EyeOff size={15} /> : <Eye size={15} />}
+            </button>
+          )}
         </div>
         {node.children.length > 0 && open && (
-          <ul>
+          <ul id={`navigation-children-${node.id}`}>
             <CuratedPartsTree
               nodes={node.children}
               expanded={expanded}
@@ -70,6 +91,10 @@ export function CuratedPartsTree({
               selectedId={selectedId}
               onToggle={onToggle}
               onNavigate={onNavigate}
+              hiddenIds={hiddenIds}
+              mappedIds={mappedIds}
+              onToggleHidden={onToggleHidden}
+              onHover={onHover}
               depth={depth + 1}
             />
           </ul>
@@ -85,34 +110,7 @@ interface DetailsProps {
   database: OemDatabase;
   onNavigate: (node: NavigationNode) => void;
   onSelectOccurrence: (id: string) => void;
-}
-
-function ChildList({
-  nodes,
-  onNavigate,
-}: {
-  nodes: NavigationNode[];
-  onNavigate: DetailsProps['onNavigate'];
-}) {
-  return (
-    <ul className="component-list">
-      {nodes.map((child) => (
-        <li key={child.id}>
-          <button onClick={() => onNavigate(child)}>
-            <span>
-              {child.name}
-              {child.children.length > 0 && (
-                <small className="oem-list-number">
-                  {child.children.length} {child.children.length === 1 ? 'section' : 'sections'}
-                </small>
-              )}
-            </span>
-            <ChevronRight size={13} />
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
+  onBrowseParts?: (nodeId: string | null) => void;
 }
 
 /** Each button opens one exact source occurrence; source quantities are never summed. */
@@ -145,11 +143,9 @@ function OccurrenceButton({
         {sourceRow.callout && ` · ${sourceRow.callout}`}
         {occurrence.quantity !== null && ` · Qty ${occurrence.quantity}`}
       </small>
-      <small>
-        {sourceRow.modelYears.length
-          ? `Source years: ${sourceRow.modelYears.join(', ')}`
-          : 'Source year unspecified'}
-      </small>
+      {sourceRow.modelYears.length > 0 && (
+        <small>Source years: {sourceRow.modelYears.join(', ')}</small>
+      )}
       {sourceRow.dimensionsText && (
         <small>
           {sourceRow.dimensionsText}
@@ -177,8 +173,8 @@ function ReferenceParts({
         {title} · {references.length}
       </summary>
       <p className="muted">
-        Source references may include alternatives and historical revisions. They do not identify
-        the installed variant. Quantities belong to each source occurrence.
+        Alternatives and historical revisions may differ from your motorcycle. Quantities are
+        specific to each source.
       </p>
       {references.length ? (
         references.map((reference) => (
@@ -208,25 +204,20 @@ function ReferenceParts({
 
 export function CuratedAssemblyDetails({
   node,
-  roots,
   database,
   onNavigate,
   onSelectOccurrence,
+  onBrowseParts,
 }: DetailsProps) {
   if (!node)
     return (
       <>
         <h2>Sur-Ron Light Bee X</h2>
-        <p className="part-description">
-          Browse motorcycle systems and serviceable components. OEM references are available within
-          each section and through search.
-        </p>
-        <div className="detail-section">
-          <h3>
-            Motorcycle systems <span>{roots.length}</span>
-          </h3>
-          <ChildList nodes={roots} onNavigate={onNavigate} />
-        </div>
+        {onBrowseParts && (
+          <button className="text-button" onClick={() => onBrowseParts(null)}>
+            Browse motorcycle systems
+          </button>
+        )}
         <Link className="inline-link" href="/catalog">
           Complete OEM reference catalog
         </Link>
@@ -255,23 +246,17 @@ export function CuratedAssemblyDetails({
               ))}
             </>
           ) : (
-            <>
-              <h3>Installed variant not confirmed</h3>
-              <p className="muted">
-                This section identifies a component to inspect or service. It does not establish
-                which OEM variant is installed or confirm fitment from a catalog year alone.
-              </p>
-            </>
+            <p className="muted">
+              Installed variant not confirmed. Compare the OEM references below with your
+              motorcycle.
+            </p>
           )}
         </div>
       )}
-      {regularChildren.length > 0 && (
-        <div className="detail-section">
-          <h3>
-            Components & assemblies <span>{regularChildren.length}</span>
-          </h3>
-          <ChildList nodes={regularChildren} onNavigate={onNavigate} />
-        </div>
+      {regularChildren.length > 0 && onBrowseParts && (
+        <button className="text-button" onClick={() => onBrowseParts(node.id)}>
+          Browse components <ChevronRight size={14} aria-hidden="true" />
+        </button>
       )}
       {serviceChildren.map((service) => (
         <details className="detail-section oem-conflict" key={service.id}>
@@ -279,10 +264,10 @@ export function CuratedAssemblyDetails({
             {service.name}
             {service.children.length > 0 && ` · ${service.children.length} sections`}
           </summary>
-          {service.children.length > 0 && (
-            <ChildList nodes={service.children} onNavigate={onNavigate} />
-          )}
-          <button className="inline-link" onClick={() => onNavigate(service)}>
+          <button
+            className="inline-link"
+            onClick={() => (onBrowseParts ? onBrowseParts(service.id) : onNavigate(service))}
+          >
             Browse {service.name.toLocaleLowerCase()}
           </button>
         </details>

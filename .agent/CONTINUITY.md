@@ -1,7 +1,9 @@
 [PLANS]
-- 2026-10-14T01:48:47Z [USER] Refine existing public parts navigation only. Preserve all catalog records, source PDFs, model mappings and 3D engine; no reimport or redesign.
+- 2026-10-14T02:26:21Z [USER] Pass 1 UX overhaul: improve exploration, navigation, details and responsive interaction. Preserve curated hierarchy, catalog, geometry, engine and studio. No visual styling redesign.
 
 [DECISIONS]
+- 2026-10-14T02:26:21Z [CODE] Overview has no details column; desktop panels are optional, tablet/phone panels are modal drawers with focus containment/restoration. Explicit explosion controls replace automatic explosion. Child lists live in navigation; source/verification metadata is disclosed on demand. Existing palette and typography retained.
+- 2026-10-14T02:26:21Z [CODE] Presentation breadcrumbs and parent navigation follow curated physical roles even when exact OEM occurrence provenance belongs to another source assembly. Renderer ancestry and all catalog identities remain unchanged. Workspace fullscreen keeps Parts and Details available.
 - 2026-10-14T01:48:47Z [CODE] src/navigation adds an independent 14-system presentation tree with explicit scoped identity selectors, collapsed service sections and reference candidates. The nav query addresses UI groups; part/assembly retain original IDs and renderer ancestry.
 - 2026-10-14T01:48:47Z [CODE] No installed configuration is evidenced in supplied data. Generic physical inspection roles do not choose an OEM variant. VerifiedConfiguration registry ships empty; only explicit evidence, matching motorcycle/year and unambiguous occurrence assignments add installed children.
 - 2026-10-14T01:05:29Z [CODE] Separate exact OEM CatalogPart identity from source-row PartOccurrence; missing OEMs retain individual identities. Source figure groups stay flat under motorcycle unless reviewed relationships establish more. No inferred BOM totals or interchangeability.
@@ -13,12 +15,15 @@
 - 2026-10-14T01:05:29Z [TOOL] Browser/build need normalprocess permissions; /opt/google/chrome/chrome available. Concurrent Playwright runs delete shared artifacts; final run must be sequential across agents and workers.
 
 [PROGRESS]
+- 2026-10-14T02:26:21Z [CODE] UX implementation includes separate expansion/selection, selection reveal, hidden-state indication, essential part details, consolidated inspection controls, compact viewer/header disclosures, assembled-by-default navigation and mobile keyboard behavior. No data/core/viewer/editor/navigation-domain files changed.
+- 2026-10-14T02:26:21Z [TOOL] UX production build, TypeScript and 130 unit/integration tests pass. Final serial Chromium run passes all 29 flows in 1.1 minutes on isolated port31388, including real bearing raycast/tree identity, camera orbit/pan/zoom/reset, full mapping/OEM regressions, phone/tablet drawers and fullscreen. Desktop/laptop/tablet/phone screenshots inspected. Own preview stopped; existing servers untouched.
 - 2026-10-14T01:48:47Z [CODE] Navigation refinement implemented with full catalog search, grouped source claims, filtered evidence, legacy links and local OEM editor integration preserved. No data/core/viewer/editor/OEM domain files changed. Parent button and history edge cases fixed.
 - 2026-10-14T01:48:47Z [TOOL] 130 unit/integration tests, 23 serial Chromium browser flows, TypeScript, format checks and production build pass. Browser final run used isolated production preview on port31387 after reused dev server reload loop and dependency interruption; unchanged lockfile restored offline. Desktop/mobile navigation screenshots checked, no mobile horizontal overflow.
 - 2026-10-14T01:05:29Z [CODE] Source ingestion committed3f4f327. Domain builds1396occurrences,683identities,30groups,270discrepancycandidates;0mappedOEMparts. New public/review/editorintegration anddocs implemented; public/review/editorintegration complete. Domain milestone1a50638 committed.
 - 2026-10-14T01:05:29Z [TOOL] Final117unit/integration checks,16serial Chromiumbrowserflows,typecheck,formatcheck andproductionbuild passed. Productiondesktop/mobile screenshots visuallychecked; mobile390px hasnohorizontaloverflow. Temporary productionpreview stopped.
 
 [OUTCOMES]
+- 2026-10-14T02:26:21Z [CODE] UX overhaul complete with preserved 14-system navigation, 1396 OEM occurrences and 683 identities. Accurate stock geometry remains unavailable; physical-device gestures and Safari/Firefox are unverified. No deployment or visual styling redesign performed.
 - 2026-10-14T01:05:29Z [CODE] No accurate GLB assets or mechanically confirmed cross-year compatibility supplied. AllOEMgeometryawaitsmapping. No deployment performed.
 
 - 2026-10-14T01:12:00Z [CODE] Integration preserves sourcechecked vsmechanicallyverified dimensions; filtering clears bulkselection; browserhistory restoresmobile details. No source PDFs/artwork published. Publicdeployment stillnotperformed.

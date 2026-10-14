@@ -2,13 +2,21 @@ import { expect, test, type Page } from '@playwright/test';
 import { oemDatabase } from '../../src/data/oem';
 
 function componentInformation(page: Page) {
-  return page.getByRole('complementary', { name: 'Component information' });
+  return page.locator('#component-details');
+}
+
+async function openCatalogFilters(page: Page) {
+  const disclosure = page.locator('.catalog-filter-disclosure');
+  if ((await disclosure.getAttribute('open')) === null)
+    await disclosure.locator(':scope > summary').click();
 }
 
 test('fourteen motorcycle systems expose meaningful front-wheel roles and collapsed service parts', async ({
   page,
 }) => {
   await page.goto('/');
+  await expect(componentInformation(page)).toBeHidden();
+  const overviewUrl = page.url();
   const tree = page.locator('.parts-tree');
   await expect(tree.locator(':scope > li')).toHaveCount(14);
   await expect(page.locator('.catalog-panel .panel-heading .count-tag')).toHaveText('14 systems');
@@ -17,10 +25,10 @@ test('fourteen motorcycle systems expose meaningful front-wheel roles and collap
   await expect(tree.locator('[data-navigation-kind="installed"]')).toHaveCount(0);
 
   await tree.getByRole('button', { name: 'Expand Front wheel', exact: true }).click();
+  await expect(page).toHaveURL(overviewUrl);
+  await expect(componentInformation(page)).toBeHidden();
   for (const name of ['Tire', 'Rim and spokes', 'Hub', 'Axle', 'Wheel bearings', 'Brake rotor'])
-    await expect(
-      tree.getByRole('button', { name: new RegExp(`^${name}(?:\\s*\\d+)?$`) }),
-    ).toBeVisible();
+    await expect(tree.getByRole('button', { name, exact: true })).toBeVisible();
   const service = tree.getByRole('button', { name: 'Expand Service parts', exact: true });
   await expect(service).toHaveAttribute('aria-expanded', 'false');
   await expect(tree).not.toContainText('51200-YQ2A-0000');
@@ -28,6 +36,11 @@ test('fourteen motorcycle systems expose meaningful front-wheel roles and collap
   await tree.getByRole('button', { name: 'Tire', exact: true }).click();
   await expect.poll(() => new URL(page.url()).searchParams.get('nav')).toBe('nav.front-wheel.tire');
   await expect(componentInformation(page).getByRole('heading', { level: 2 })).toHaveText('Tire');
+  await expect(tree.getByRole('button', { name: 'Tire', exact: true })).toHaveAttribute(
+    'aria-current',
+    'true',
+  );
+  await expect(componentInformation(page).locator('.component-list')).toHaveCount(0);
   await expect(componentInformation(page)).toContainText('Installed variant not confirmed');
   await expect(componentInformation(page).getByTestId('navigation-references')).not.toHaveAttribute(
     'open',
@@ -57,9 +70,8 @@ test('curated navigation preserves assembly history, avoids duplicate entries an
   expect(await page.evaluate(() => history.length)).toBe(historyLength);
   await page.goBack();
   await expect(page).toHaveURL(original);
-  await expect(componentInformation(page).getByRole('heading', { level: 2 })).toHaveText(
-    'Front wheel',
-  );
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Front wheel');
+  await expect(componentInformation(page)).toBeHidden();
   await page.goForward();
   await page.getByRole('button', { name: 'Parent assembly', exact: true }).click();
   await expect(componentInformation(page).getByRole('heading', { level: 2 })).toHaveText(
@@ -108,6 +120,7 @@ test('jackshaft bearing references preserve distinct OEMs, source quantities and
     .poll(() => new URL(page.url()).searchParams.get('part'))
     .toBe(historicalOccurrence.id);
   await expect(details.locator('.oem-number')).toHaveText(historicalNumber);
+  await details.getByText('Source & verification', { exact: true }).click();
   await expect(details).toContainText(historicalRow.callout!);
   await expect(page.getByTestId('geometry-unassigned')).toBeVisible();
   await page.reload();
@@ -147,8 +160,8 @@ test('brake navigation distinguishes physical positions without selecting catalo
   await page.goto('/?nav=brakes');
   const tree = page.locator('.parts-tree');
   await expect(componentInformation(page).getByRole('heading', { level: 2 })).toHaveText('Brakes');
-  await expect(tree.getByRole('button', { name: /^Front brake(?:\s*\d+)?$/ })).toBeVisible();
-  await expect(tree.getByRole('button', { name: /^Rear brake(?:\s*\d+)?$/ })).toBeVisible();
+  await expect(tree.getByRole('button', { name: 'Front brake', exact: true })).toBeVisible();
+  await expect(tree.getByRole('button', { name: 'Rear brake', exact: true })).toBeVisible();
   await expect(tree.getByRole('button', { name: 'Brake pads', exact: true })).toBeVisible();
   await expect(tree.getByRole('button', { name: 'Brake levers', exact: true })).toBeVisible();
   await expect(tree.locator('[data-navigation-kind="installed"]')).toHaveCount(0);
@@ -167,6 +180,7 @@ test('battery slots remain unconfirmed after year filtering and chargers stay ou
   await expect(details.getByRole('heading', { level: 2 })).toHaveText('Battery pack');
   await expect(details).toContainText('Installed variant not confirmed');
   await expect(page.locator('.parts-tree')).not.toContainText(/Charger|32Ah|38Ah|40Ah|60V/);
+  await openCatalogFilters(page);
   await page.getByLabel('Catalog model year', { exact: true }).selectOption('2021');
   await expect(details.getByRole('heading', { level: 2 })).toHaveText('Battery pack');
   await expect(details).toContainText('Installed variant not confirmed');
@@ -213,4 +227,29 @@ test('decals remain searchable and their existing occurrence links survive reloa
   await page.goto(`/?assembly=stickers&part=${encodeURIComponent(occurrence.id)}`);
   await expect(componentInformation(page).locator('.oem-number')).toHaveText(part.oemNumber!);
   await expect(page.locator('.parts-tree')).not.toContainText(/Decal|Sticker/i);
+});
+
+test('an OEM occurrence returns to its curated physical assembly when its source group differs', async ({
+  page,
+}) => {
+  const axle = oemDatabase.occurrences.find(
+    (occurrence) =>
+      occurrence.assemblyId === 'front-suspension' &&
+      oemDatabase.parts.find((part) => part.id === occurrence.partId)?.oemNumber ===
+        '51250-YQ2A-0300',
+  );
+  expect(axle).toBeDefined();
+  await page.goto(`/?part=${axle!.id}`);
+  const breadcrumb = page.getByRole('navigation', { name: 'Assembly breadcrumb' });
+  await expect(breadcrumb).toContainText('Front wheel');
+  await expect(breadcrumb).toContainText('Axle');
+  await expect(page.getByRole('navigation', { name: 'Part hierarchy' })).toContainText(
+    'Front wheel',
+  );
+  await expect(
+    page.locator('[data-navigation-id="nav.front-wheel.axle"] .tree-select'),
+  ).toHaveAttribute('aria-current', 'true');
+  await page.getByRole('button', { name: 'Parent assembly', exact: true }).click();
+  await expect.poll(() => new URL(page.url()).searchParams.get('nav')).toBe('front-wheel');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Front wheel');
 });

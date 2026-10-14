@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-front-rear-brake-disc-kit",
+    "title": "Lithium Powersports — Surron Light Bee FRONT / REAR BRAKE DISC KIT",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-front-rear-brake-disc-kit",
+    "sha256": "eaa5de102baf1ed277a1e10118d98cfd21a964446ba36cde1a5be7c4c23fecf1",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:04.527809Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-front-rear-brake-disc-kit-p1-r1",
+      "sourceId": "lithium-front-rear-brake-disc-kit",
+      "page": 1,
+      "figure": "front-rear-brake-disc-kit",
+      "callout": "02",
+      "rowIndex": 1,
+      "oemNumber": "52171-YQ2A-0100",
+      "originalDescription": "Surron Light Bee S/X OEM Front & Rear Brake Discs",
+      "normalizedName": "S/X OEM Front & Rear Brake Discs",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-s-x-oem-front-rear-brake-discs"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "brake-discs",
+      "assemblyName": "Optional brake disc kit",
+      "rawText": "Item 02 | SKU: 52171-YQ2A-0100 | Surron Light Bee S/X OEM Front & Rear Brake Discs"
+    },
+    {
+      "id": "lithium-front-rear-brake-disc-kit-p1-r2",
+      "sourceId": "lithium-front-rear-brake-disc-kit",
+      "page": 1,
+      "figure": "front-rear-brake-disc-kit",
+      "callout": null,
+      "rowIndex": 2,
+      "oemNumber": "FB03-006-05-010-F3",
+      "originalDescription": "Surron Light Bee X OEM Screw FB03006 M5*10",
+      "normalizedName": "Screw FB03006 M5*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-fb03006-m5-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "brake-discs",
+      "assemblyName": "Optional brake disc kit",
+      "rawText": "Item unstated | SKU: FB03-006-05-010-F3 | Surron Light Bee X OEM Screw FB03006 M5*10"
+    },
+    {
+      "id": "lithium-front-rear-brake-disc-kit-p1-r3",
+      "sourceId": "lithium-front-rear-brake-disc-kit",
+      "page": 1,
+      "figure": "front-rear-brake-disc-kit",
+      "callout": null,
+      "rowIndex": 3,
+      "oemNumber": "FB03-006-06-013-F3",
+      "originalDescription": "Surron Light Bee X OEM Screw FB03006 M5*10 (FB03-006-06-013-F3)",
+      "normalizedName": "Screw FB03006 M5*10 (FB03-006-06-013-F3)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-fb03006-m6-13"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "brake-discs",
+      "assemblyName": "Optional brake disc kit",
+      "rawText": "Item unstated | SKU: FB03-006-06-013-F3 | Surron Light Bee X OEM Screw FB03006 M5*10 (FB03-006-06-013-F3)"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "front-rear-brake-disc-kit"
+      ],
+      "detectedRows": 3,
+      "importedRows": 3,
+      "reviewRowIds": [
+        "lithium-front-rear-brake-disc-kit-p1-r1",
+        "lithium-front-rear-brake-disc-kit-p1-r2",
+        "lithium-front-rear-brake-disc-kit-p1-r3"
+      ],
+      "exceptions": [],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 3."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

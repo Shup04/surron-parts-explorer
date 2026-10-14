@@ -1,0 +1,905 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-motor-system",
+    "title": "Lithium Powersports — Surron Light Bee MOTOR SYSTEM",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-motor-system",
+    "sha256": "c3ab78f3431a4ee3e124384d840ce657be81a957c5d230a14a5b14d47b22a223",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:05.716918Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-motor-system-p1-r1",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "1",
+      "rowIndex": 1,
+      "oemNumber": "11100-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM Motor Assy.",
+      "normalizedName": "Motor Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-assy-11100-yq2a-z1"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 1 | SKU: 11100-YQ2A-Z1 | Surron Light Bee X OEM Motor Assy."
+    },
+    {
+      "id": "lithium-motor-system-p1-r2",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "1",
+      "rowIndex": 2,
+      "oemNumber": "11100-YQ2A-Z3",
+      "originalDescription": "Surron Light Bee X OEM Motor Assembly (25MY)",
+      "normalizedName": "Motor Assembly (25MY)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-assy-25my-11100-yq2a-z3"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 1 | SKU: 11100-YQ2A-Z3 | Surron Light Bee X OEM Motor Assembly (25MY)"
+    },
+    {
+      "id": "lithium-motor-system-p1-r3",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "1",
+      "rowIndex": 3,
+      "oemNumber": "11100-Y029E-Z1",
+      "originalDescription": "Surron Light Bee X OEM Motor Assembly (26MY)",
+      "normalizedName": "Motor Assembly (26MY)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-assembly-26my"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 1 | SKU: 11100-Y029E-Z1 | Surron Light Bee X OEM Motor Assembly (26MY)"
+    },
+    {
+      "id": "lithium-motor-system-p1-r4",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "2",
+      "rowIndex": 4,
+      "oemNumber": "11100-YQ2A-0401",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Motor (4KW)",
+      "normalizedName": "(MY25) Motor (4KW)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-4kw"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 2 | SKU: 11100-YQ2A-0401 | Surron Light Bee X OEM (MY25) Motor (4KW)"
+    },
+    {
+      "id": "lithium-motor-system-p1-r5",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "2",
+      "rowIndex": 5,
+      "oemNumber": "11100-Y029E-00B0",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Motor (4KW / 72V 5500rpm)",
+      "normalizedName": "(MY26) Motor (4KW / 72V 5500rpm)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-motor-4kw-72v-5500rpm"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 2 | SKU: 11100-Y029E-00B0 | Surron Light Bee X OEM (MY26) Motor (4KW / 72V 5500rpm)"
+    },
+    {
+      "id": "lithium-motor-system-p1-r6",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "2",
+      "rowIndex": 6,
+      "oemNumber": "11100-YQ2A-0201",
+      "originalDescription": "Surron Light Bee X OEM Motor (3KW)",
+      "normalizedName": "Motor (3KW)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-3kw"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 2 | SKU: 11100-YQ2A-0201 | Surron Light Bee X OEM Motor (3KW)"
+    },
+    {
+      "id": "lithium-motor-system-p1-r7",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "3",
+      "rowIndex": 7,
+      "oemNumber": "13201-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM Primary pulley Assy.",
+      "normalizedName": "Primary pulley Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-primary-pulley-assy"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 3 | SKU: 13201-YQ2A-Z1 | Surron Light Bee X OEM Primary pulley Assy."
+    },
+    {
+      "id": "lithium-motor-system-p1-r8",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "4",
+      "rowIndex": 8,
+      "oemNumber": "B6-003-05-016",
+      "originalDescription": "Surron Light Bee X OEM Woodruff Key(5*5*16mm)",
+      "normalizedName": "Woodruff Key(5*5*16mm)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-woodruff-key5-5-16mm"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 4 | SKU: B6-003-05-016 | Surron Light Bee X OEM Woodruff Key(5*5*16mm)"
+    },
+    {
+      "id": "lithium-motor-system-p1-r9",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "5",
+      "rowIndex": 9,
+      "oemNumber": "13201-YQ2A-0400",
+      "originalDescription": "Surron Light Bee X OEM Primary Pulley",
+      "normalizedName": "Primary Pulley",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-primary-pulley"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 5 | SKU: 13201-YQ2A-0400 | Surron Light Bee X OEM Primary Pulley"
+    },
+    {
+      "id": "lithium-motor-system-p1-r10",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "6",
+      "rowIndex": 10,
+      "oemNumber": "FB05-002-23-12-1-F4",
+      "originalDescription": "Surron Light Bee X OEM Primary pulley Washer （Φ23*Φ12*1）",
+      "normalizedName": "Primary pulley Washer （Φ23*Φ12*1）",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-primary-pulley-washer-23-12-1"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 6 | SKU: FB05-002-23-12-1-F4 | Surron Light Bee X OEM Primary pulley Washer （Φ23*Φ12*1）"
+    },
+    {
+      "id": "lithium-motor-system-p1-r11",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "7",
+      "rowIndex": 11,
+      "oemNumber": "B2-007-12-F2",
+      "originalDescription": "Surron Light Bee X OEM Nut B2007 M12*1.25",
+      "normalizedName": "Nut B2007 M12*1.25",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-nut-b2007-m12-1-25"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 7 | SKU: B2-007-12-F2 | Surron Light Bee X OEM Nut B2007 M12*1.25"
+    },
+    {
+      "id": "lithium-motor-system-p1-r12",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "8",
+      "rowIndex": 12,
+      "oemNumber": "32331-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM Motor screws",
+      "normalizedName": "Motor screws",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-screws"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 8 | SKU: 32331-YQ2A-Z1 | Surron Light Bee X OEM Motor screws"
+    },
+    {
+      "id": "lithium-motor-system-p1-r13",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "9",
+      "rowIndex": 13,
+      "oemNumber": "B3-001-08-020-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M8*20",
+      "normalizedName": "Screw B3001 M8*20",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m8-20"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 9 | SKU: B3-001-08-020-F0 | Surron Light Bee X OEM Screw B3001 M8*20"
+    },
+    {
+      "id": "lithium-motor-system-p1-r14",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "10",
+      "rowIndex": 14,
+      "oemNumber": "B3-001-08-025-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M8*25",
+      "normalizedName": "Screw B3001 M8*25",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m8-25"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 10 | SKU: B3-001-08-025-F0 | Surron Light Bee X OEM Screw B3001 M8*25"
+    },
+    {
+      "id": "lithium-motor-system-p1-r15",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "11",
+      "rowIndex": 15,
+      "oemNumber": "11172-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Motor Position Adjuster Fix Pin",
+      "normalizedName": "Motor Position Adjuster Fix Pin",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-position-adjuster-fix-plate"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 11 | SKU: 11172-YQ2A-0000 | Surron Light Bee X OEM Motor Position Adjuster Fix Pin"
+    },
+    {
+      "id": "lithium-motor-system-p1-r16",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "12",
+      "rowIndex": 16,
+      "oemNumber": "FB03-005-006-F2",
+      "originalDescription": "Surron Light Bee X OEM Screw PB3.5*6",
+      "normalizedName": "Screw PB3.5*6",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-pb3-5-6"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 12 | SKU: FB03-005-006-F2 | Surron Light Bee X OEM Screw PB3.5*6"
+    },
+    {
+      "id": "lithium-motor-system-p1-r17",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "13",
+      "rowIndex": 17,
+      "oemNumber": "32332-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Primary pulley inner plate",
+      "normalizedName": "Primary pulley inner plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-primary-pulley-inner-plate"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 13 | SKU: 32332-YQ2A-0000 | Surron Light Bee X OEM Primary pulley inner plate"
+    },
+    {
+      "id": "lithium-motor-system-p1-r18",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "14",
+      "rowIndex": 18,
+      "oemNumber": "32331-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Primary Pulley Outer Cover",
+      "normalizedName": "Primary Pulley Outer Cover",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-primary-pulley-outer-cover"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 14 | SKU: 32331-YQ2A-0000 | Surron Light Bee X OEM Primary Pulley Outer Cover"
+    },
+    {
+      "id": "lithium-motor-system-p1-r19",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "15",
+      "rowIndex": 19,
+      "oemNumber": "B3-002-06-010-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3002 M6*10",
+      "normalizedName": "Screw B3002 M6*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3002-m6-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 15 | SKU: B3-002-06-010-F0 | Surron Light Bee X OEM Screw B3002 M6*10"
+    },
+    {
+      "id": "lithium-motor-system-p1-r20",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "16",
+      "rowIndex": 20,
+      "oemNumber": "11216-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Motor Support Bushing",
+      "normalizedName": "Motor Support Bushing",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-support-bushing"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 16 | SKU: 11216-YQ2A-0000 | Surron Light Bee X OEM Motor Support Bushing"
+    },
+    {
+      "id": "lithium-motor-system-p1-r21",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "17",
+      "rowIndex": 21,
+      "oemNumber": "11171-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Motor Position Adjuster",
+      "normalizedName": "Motor Position Adjuster",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-position-adjuster"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 17 | SKU: 11171-YQ2A-0000 | Surron Light Bee X OEM Motor Position Adjuster"
+    },
+    {
+      "id": "lithium-motor-system-p1-r22",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "18",
+      "rowIndex": 22,
+      "oemNumber": "B3-001-08-040-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M8*40",
+      "normalizedName": "Screw B3001 M8*40",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m8-40"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 18 | SKU: B3-001-08-040-F0 | Surron Light Bee X OEM Screw B3001 M8*40"
+    },
+    {
+      "id": "lithium-motor-system-p1-r23",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "19",
+      "rowIndex": 23,
+      "oemNumber": "B3-001-08-045-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M8*45",
+      "normalizedName": "Screw B3001 M8*45",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m8-45"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 19 | SKU: B3-001-08-045-F0 | Surron Light Bee X OEM Screw B3001 M8*45"
+    },
+    {
+      "id": "lithium-motor-system-p1-r24",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "20",
+      "rowIndex": 24,
+      "oemNumber": "21152-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Hall Sensor",
+      "normalizedName": "Hall Sensor",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-hall-sensor"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 20 | SKU: 21152-YQ2A-0000 | Surron Light Bee X OEM Hall Sensor"
+    },
+    {
+      "id": "lithium-motor-system-p1-r25",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": "21",
+      "rowIndex": 25,
+      "oemNumber": "B7-001-25-35-07",
+      "originalDescription": "Surron Light Bee X OEM Motor Shaft Seal",
+      "normalizedName": "Motor Shaft Seal",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-shaft-seal"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item 21 | SKU: B7-001-25-35-07 | Surron Light Bee X OEM Motor Shaft Seal"
+    },
+    {
+      "id": "lithium-motor-system-p1-r26",
+      "sourceId": "lithium-motor-system",
+      "page": 1,
+      "figure": "motor-system",
+      "callout": null,
+      "rowIndex": 26,
+      "oemNumber": "11100-YQ1A-0000",
+      "originalDescription": "Surron Light Bee S OEM Motor Assy. (2KW)",
+      "normalizedName": "S OEM Motor Assy. (2KW)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-s-oem-motor-assy-2kw-11100-yq1a-0000"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "motor",
+      "assemblyName": "Motor",
+      "rawText": "Item unstated | SKU: 11100-YQ1A-0000 | Surron Light Bee S OEM Motor Assy. (2KW)"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "motor-system"
+      ],
+      "detectedRows": 26,
+      "importedRows": 26,
+      "reviewRowIds": [
+        "lithium-motor-system-p1-r1",
+        "lithium-motor-system-p1-r2",
+        "lithium-motor-system-p1-r3",
+        "lithium-motor-system-p1-r4",
+        "lithium-motor-system-p1-r5",
+        "lithium-motor-system-p1-r6",
+        "lithium-motor-system-p1-r7",
+        "lithium-motor-system-p1-r8",
+        "lithium-motor-system-p1-r9",
+        "lithium-motor-system-p1-r10",
+        "lithium-motor-system-p1-r11",
+        "lithium-motor-system-p1-r12",
+        "lithium-motor-system-p1-r13",
+        "lithium-motor-system-p1-r14",
+        "lithium-motor-system-p1-r15",
+        "lithium-motor-system-p1-r16",
+        "lithium-motor-system-p1-r17",
+        "lithium-motor-system-p1-r18",
+        "lithium-motor-system-p1-r19",
+        "lithium-motor-system-p1-r20",
+        "lithium-motor-system-p1-r21",
+        "lithium-motor-system-p1-r22",
+        "lithium-motor-system-p1-r23",
+        "lithium-motor-system-p1-r24",
+        "lithium-motor-system-p1-r25",
+        "lithium-motor-system-p1-r26"
+      ],
+      "exceptions": [],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 26."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

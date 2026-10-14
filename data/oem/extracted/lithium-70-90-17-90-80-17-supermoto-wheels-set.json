@@ -1,0 +1,808 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+    "title": "Lithium Powersports — Surron Light Bee 70/90-17&90/80-17 SUPERMOTO WHEELS SET",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-70-90-17-90-80-17-supermoto-wheels-set",
+    "sha256": "b43b6549bc806218ce88831946e31637b9c1a718e2b7734e5d234eb532d9a933",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:01.364111Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r1",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "01",
+      "rowIndex": 1,
+      "oemNumber": "51200-YQ2A-Z3",
+      "originalDescription": "Surron Light Bee OEM Supermoto Wheel Set 17 inch",
+      "normalizedName": "Supermoto Wheel Set 17 inch",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-oem-supermoto-wheel-set-17-inch"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 01 | SKU: 51200-YQ2A-Z3 | Surron Light Bee OEM Supermoto Wheel Set 17 inch"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r2",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "2",
+      "rowIndex": 2,
+      "oemNumber": "51200-YQ2A-Z4",
+      "originalDescription": "Surron Light Bee X OEM Front SM Wheel Assy.",
+      "normalizedName": "Front SM Wheel Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-sm-wheel-assy"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 2 | SKU: 51200-YQ2A-Z4 | Surron Light Bee X OEM Front SM Wheel Assy."
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r3",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "3",
+      "rowIndex": 3,
+      "oemNumber": "51231-YQ2A-Z3",
+      "originalDescription": "Surron Light Bee X OEM Front SM Tire + Front SM Inner Tube",
+      "normalizedName": "Front SM Tire + Front SM Inner Tube",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-sm-tire-front-sm-inner-tube"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 3 | SKU: 51231-YQ2A-Z3 | Surron Light Bee X OEM Front SM Tire + Front SM Inner Tube"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r4",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "4",
+      "rowIndex": 4,
+      "oemNumber": "51231-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM front Super Moto Tire",
+      "normalizedName": "front Super Moto Tire",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-super-moto-tire-51231-yq2a-0100"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 4 | SKU: 51231-YQ2A-0100 | Surron Light Bee X OEM front Super Moto Tire"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r5",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "5",
+      "rowIndex": 5,
+      "oemNumber": "51232-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Front SM Inner Tube",
+      "normalizedName": "Front SM Inner Tube",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-super-moto-inner-tube-51232-yq2a-0100"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 5 | SKU: 51232-YQ2A-0100 | Surron Light Bee X OEM Front SM Inner Tube"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r6",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "6",
+      "rowIndex": 6,
+      "oemNumber": "51266-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Rim Band ( SM Wheel )",
+      "normalizedName": "Rim Band ( SM Wheel )",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rim-band-super-moto-wheel-51266-yq2a-0100"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 6 | SKU: 51266-YQ2A-0100 | Surron Light Bee X OEM Rim Band ( SM Wheel )"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r7",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "7",
+      "rowIndex": 7,
+      "oemNumber": "51270-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Front Wheel Rim Assy",
+      "normalizedName": "Front Wheel Rim Assy",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-wheel-rim-assy"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 7 | SKU: 51270-YQ2A-0100 | Surron Light Bee X OEM Front Wheel Rim Assy"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r8",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "9",
+      "rowIndex": 8,
+      "oemNumber": "51291-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Front SM Spokes",
+      "normalizedName": "Front SM Spokes",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-sm-spokes"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 9 | SKU: 51291-YQ2A-0100 | Surron Light Bee X OEM Front SM Spokes"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r9",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "10",
+      "rowIndex": 9,
+      "oemNumber": "52171-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM Front Brake Disc Assy. (52171-YQ2A-Z1)",
+      "normalizedName": "Front Brake Disc Assy. (52171-YQ2A-Z1)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-brake-disc-assy-52171-yq2a-z1"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 10 | SKU: 52171-YQ2A-Z1 | Surron Light Bee X OEM Front Brake Disc Assy. (52171-YQ2A-Z1)"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r10",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "11",
+      "rowIndex": 10,
+      "oemNumber": "52171-YQ2A-0001",
+      "originalDescription": "Surron Light Bee X OEM Front Brake Disc",
+      "normalizedName": "Front Brake Disc",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-brake-disc"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 11 | SKU: 52171-YQ2A-0001 | Surron Light Bee X OEM Front Brake Disc"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r11",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "12",
+      "rowIndex": 11,
+      "oemNumber": "FB03-006-05-010-F3",
+      "originalDescription": "Surron Light Bee X OEM Screw FB03006 M5*10",
+      "normalizedName": "Screw FB03006 M5*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-fb03006-m5-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 12 | SKU: FB03-006-05-010-F3 | Surron Light Bee X OEM Screw FB03006 M5*10"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r12",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "13",
+      "rowIndex": 12,
+      "oemNumber": "51300-YQ2A-Z4",
+      "originalDescription": "Surron Light Bee X OEM Rear SM Wheel Assy.",
+      "normalizedName": "Rear SM Wheel Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-sm-wheel-assy"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 13 | SKU: 51300-YQ2A-Z4 | Surron Light Bee X OEM Rear SM Wheel Assy."
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r13",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "14",
+      "rowIndex": 13,
+      "oemNumber": "52271-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM Rear Brake Disc Assy. (52271-YQ2A-Z1)",
+      "normalizedName": "Rear Brake Disc Assy. (52271-YQ2A-Z1)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-brake-disc-assy-52271-yq2a-z1"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 14 | SKU: 52271-YQ2A-Z1 | Surron Light Bee X OEM Rear Brake Disc Assy. (52271-YQ2A-Z1)"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r14",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "15",
+      "rowIndex": 14,
+      "oemNumber": "52271-YQ2A-0001",
+      "originalDescription": "Surron Light Bee X OEM Rear Brake Disc",
+      "normalizedName": "Rear Brake Disc",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-brake-disc"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 15 | SKU: 52271-YQ2A-0001 | Surron Light Bee X OEM Rear Brake Disc"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r15",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "16",
+      "rowIndex": 15,
+      "oemNumber": "FB03-006-06-013-F3",
+      "originalDescription": "Surron Light Bee X OEM Screw FB03006 M5*10 (FB03-006-06-013-F3)",
+      "normalizedName": "Screw FB03006 M5*10 (FB03-006-06-013-F3)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-fb03006-m6-13"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 16 | SKU: FB03-006-06-013-F3 | Surron Light Bee X OEM Screw FB03006 M5*10 (FB03-006-06-013-F3)"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r16",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "17",
+      "rowIndex": 16,
+      "oemNumber": "51331-YQ2A-Z3",
+      "originalDescription": "Surron Light Bee X OEM Rear SM Tire + Rear SM Inner Tube",
+      "normalizedName": "Rear SM Tire + Rear SM Inner Tube",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-sm-tire-rear-sm-inner-tube"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 17 | SKU: 51331-YQ2A-Z3 | Surron Light Bee X OEM Rear SM Tire + Rear SM Inner Tube"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r17",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "19",
+      "rowIndex": 17,
+      "oemNumber": "51332-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Rear SM Inner Tube",
+      "normalizedName": "Rear SM Inner Tube",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-super-moto-inner-tube-51332-yq2a-0000"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 19 | SKU: 51332-YQ2A-0000 | Surron Light Bee X OEM Rear SM Inner Tube"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r18",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": null,
+      "rowIndex": 18,
+      "oemNumber": null,
+      "originalDescription": "",
+      "normalizedName": "Unidentified source entry",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults."
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item unstated | SKU: unstated | "
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r19",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "21",
+      "rowIndex": 19,
+      "oemNumber": "51370-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Rear Wheel Rim Assy",
+      "normalizedName": "Rear Wheel Rim Assy",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-wheel-rim-assy"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 21 | SKU: 51370-YQ2A-0100 | Surron Light Bee X OEM Rear Wheel Rim Assy"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r20",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "23",
+      "rowIndex": 20,
+      "oemNumber": "51391-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Rear SM Spokes",
+      "normalizedName": "Rear SM Spokes",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-sm-spokes"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 23 | SKU: 51391-YQ2A-0100 | Surron Light Bee X OEM Rear SM Spokes"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r21",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "24",
+      "rowIndex": 21,
+      "oemNumber": "13204-YQ2A-Z3",
+      "originalDescription": "Surron Light Bee X OEM Sprocket (42T) Assy.",
+      "normalizedName": "Sprocket (42T) Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-sprocket-42t-assy"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 24 | SKU: 13204-YQ2A-Z3 | Surron Light Bee X OEM Sprocket (42T) Assy."
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r22",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "25",
+      "rowIndex": 22,
+      "oemNumber": "13204-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Sprocket (42T)",
+      "normalizedName": "Sprocket (42T)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-sprocket-42t-13204-yq2a-0100"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 25 | SKU: 13204-YQ2A-0100 | Surron Light Bee X OEM Sprocket (42T)"
+    },
+    {
+      "id": "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r23",
+      "sourceId": "lithium-70-90-17-90-80-17-supermoto-wheels-set",
+      "page": 1,
+      "figure": "70-90-17-90-80-17-supermoto-wheels-set",
+      "callout": "26",
+      "rowIndex": 23,
+      "oemNumber": "B3-001-08-016-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M8*16",
+      "normalizedName": "Screw B3001 M8*16",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m8-16"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "supermoto",
+      "assemblyName": "Optional supermoto wheels",
+      "rawText": "Item 26 | SKU: B3-001-08-016-F0 | Surron Light Bee X OEM Screw B3001 M8*16"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "70-90-17-90-80-17-supermoto-wheels-set"
+      ],
+      "detectedRows": 23,
+      "importedRows": 23,
+      "reviewRowIds": [
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r1",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r2",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r3",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r4",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r5",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r6",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r7",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r8",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r9",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r10",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r11",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r12",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r13",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r14",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r15",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r16",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r17",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r18",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r19",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r20",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r21",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r22",
+        "lithium-70-90-17-90-80-17-supermoto-wheels-set-p1-r23"
+      ],
+      "exceptions": [
+        {
+          "callout": null,
+          "reason": "Advertised 22 parts but parsed 23 cards; do not claim complete coverage.",
+          "evidence": "https://lithiumpowersports.com/collections/surron-light-bee-70-90-17-90-80-17-supermoto-wheels-set"
+        }
+      ],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 22."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

@@ -1,0 +1,1086 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-drive-system",
+    "title": "Lithium Powersports — Surron Light Bee DRIVE SYSTEM",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-drive-system",
+    "sha256": "437204379d96e13405b0bc74b812aeab77063c2da29bc3f9c3e6d2e2e91b656f",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:02.791705Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-drive-system-p1-r1",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "1",
+      "rowIndex": 1,
+      "oemNumber": "13114-YQ2A-0600",
+      "originalDescription": "Surron Light Bee X OEM 420 Gold Chain",
+      "normalizedName": "420 Gold Chain",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-420-gold-chain"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 1 | SKU: 13114-YQ2A-0600 | Surron Light Bee X OEM 420 Gold Chain"
+    },
+    {
+      "id": "lithium-drive-system-p1-r2",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "2",
+      "rowIndex": 2,
+      "oemNumber": "61280-Y029E-Z2",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Mid. Shaft Assy.(Large Set)",
+      "normalizedName": "(MY26) Mid. Shaft Assy.(Large Set)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-mid-shaft-assy-1"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 2 | SKU: 61280-Y029E-Z2 | Surron Light Bee X OEM (MY26) Mid. Shaft Assy.(Large Set)"
+    },
+    {
+      "id": "lithium-drive-system-p1-r3",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "2",
+      "rowIndex": 3,
+      "oemNumber": "61280-YQ2A-Z2",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Mid. Shaft Assy.",
+      "normalizedName": "(MY25) Mid. Shaft Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my25-mid-shaft-assy"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 2 | SKU: 61280-YQ2A-Z2 | Surron Light Bee X OEM (MY25) Mid. Shaft Assy."
+    },
+    {
+      "id": "lithium-drive-system-p1-r4",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "2",
+      "rowIndex": 4,
+      "oemNumber": "61280-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM (MY17-24) Mid. Shaft Assy.",
+      "normalizedName": "(MY17-24) Mid. Shaft Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my17-24-mid-shaft-assy"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 2 | SKU: 61280-YQ2A-Z1 | Surron Light Bee X OEM (MY17-24) Mid. Shaft Assy."
+    },
+    {
+      "id": "lithium-drive-system-p1-r5",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "3",
+      "rowIndex": 5,
+      "oemNumber": "61234-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Mid. Shaft R Bushing",
+      "normalizedName": "(MY26) Mid. Shaft R Bushing",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-mid-shaft-r-bushing"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 3 | SKU: 61234-Y029E-0000 | Surron Light Bee X OEM (MY26) Mid. Shaft R Bushing"
+    },
+    {
+      "id": "lithium-drive-system-p1-r6",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "3",
+      "rowIndex": 6,
+      "oemNumber": "61234-YQ2A-0001",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Mid. Shaft R Bushing",
+      "normalizedName": "(MY25) Mid. Shaft R Bushing",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-r-midshaft-bushing"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 3 | SKU: 61234-YQ2A-0001 | Surron Light Bee X OEM (MY25) Mid. Shaft R Bushing"
+    },
+    {
+      "id": "lithium-drive-system-p1-r7",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "4",
+      "rowIndex": 7,
+      "oemNumber": "61280-Y029E-Z1",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Mid. Shaft Assy Plus Plus",
+      "normalizedName": "(MY26) Mid. Shaft Assy Plus Plus",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-mid-shaft-assy-plus-plus"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 4 | SKU: 61280-Y029E-Z1 | Surron Light Bee X OEM (MY26) Mid. Shaft Assy Plus Plus"
+    },
+    {
+      "id": "lithium-drive-system-p1-r8",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "4",
+      "rowIndex": 8,
+      "oemNumber": "61280-YQ2A-Z4",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Mid. Shaft Assy Plus Plus",
+      "normalizedName": "(MY25) Mid. Shaft Assy Plus Plus",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my25-mid-shaft-assy-plus-plus"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 4 | SKU: 61280-YQ2A-Z4 | Surron Light Bee X OEM (MY25) Mid. Shaft Assy Plus Plus"
+    },
+    {
+      "id": "lithium-drive-system-p1-r9",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "4",
+      "rowIndex": 9,
+      "oemNumber": "61280-YQ2A-Z3",
+      "originalDescription": "Surron Light Bee X OEM (MY17-24) Mid. Shaft Assy Plus Plus",
+      "normalizedName": "(MY17-24) Mid. Shaft Assy Plus Plus",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my17-24-mid-shaft-assy-plus-plus"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 4 | SKU: 61280-YQ2A-Z3 | Surron Light Bee X OEM (MY17-24) Mid. Shaft Assy Plus Plus"
+    },
+    {
+      "id": "lithium-drive-system-p1-r10",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "5",
+      "rowIndex": 10,
+      "oemNumber": "B3-001A-06-025-F0",
+      "originalDescription": "Surron Light Bee X OEM (MY17-25) Screw B3002 M6*25",
+      "normalizedName": "(MY17-25) Screw B3002 M6*25",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my17-25-screw-b3002-m6-25"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 5 | SKU: B3-001A-06-025-F0 | Surron Light Bee X OEM (MY17-25) Screw B3002 M6*25"
+    },
+    {
+      "id": "lithium-drive-system-p1-r11",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "6",
+      "rowIndex": 11,
+      "oemNumber": "B7-001-17-26-07",
+      "originalDescription": "Surron Light Bee X OEM MY26 R. Midshaft Oil Seal (15-24-7)",
+      "normalizedName": "MY26 R. Midshaft Oil Seal (15-24-7)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-r-midshaft-oil-seal-15-24-7",
+        "Card title says 15-24-7 while the exact SKU contains 17-26-07. Both retained; no dimensional correction inferred."
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "part-number-title-dimension-disagreement"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 6 | SKU: B7-001-17-26-07 | Surron Light Bee X OEM MY26 R. Midshaft Oil Seal (15-24-7)"
+    },
+    {
+      "id": "lithium-drive-system-p1-r12",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "6",
+      "rowIndex": 12,
+      "oemNumber": "B7-001-15-24-07",
+      "originalDescription": "Surron Light Bee X OEM R. Midshaft Oil Seal (15-24-7)",
+      "normalizedName": "R. Midshaft Oil Seal (15-24-7)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-r-midshaft-oil-seal-15-24-7"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 6 | SKU: B7-001-15-24-07 | Surron Light Bee X OEM R. Midshaft Oil Seal (15-24-7)"
+    },
+    {
+      "id": "lithium-drive-system-p1-r13",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "7",
+      "rowIndex": 13,
+      "oemNumber": "13105-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Secondary Drive Front Sprocket (14T)",
+      "normalizedName": "(MY26) Secondary Drive Front Sprocket (14T)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-secondary-drive-front-sprocket-14t"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 7 | SKU: 13105-Y029E-0000 | Surron Light Bee X OEM (MY26) Secondary Drive Front Sprocket (14T)"
+    },
+    {
+      "id": "lithium-drive-system-p1-r14",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "7",
+      "rowIndex": 14,
+      "oemNumber": "13105-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Secondary Drive Front Sprocket (14T)",
+      "normalizedName": "(MY25) Secondary Drive Front Sprocket (14T)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-secondary-drive-front-sprocket-14t"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 7 | SKU: 13105-YQ2A-0000 | Surron Light Bee X OEM (MY25) Secondary Drive Front Sprocket (14T)"
+    },
+    {
+      "id": "lithium-drive-system-p1-r15",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "8",
+      "rowIndex": 15,
+      "oemNumber": "61280-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Mid. Shaft Assy.",
+      "normalizedName": "(MY26) Mid. Shaft Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-mid-shaft-assy"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 8 | SKU: 61280-Y029E-0000 | Surron Light Bee X OEM (MY26) Mid. Shaft Assy."
+    },
+    {
+      "id": "lithium-drive-system-p1-r16",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "8",
+      "rowIndex": 16,
+      "oemNumber": "61280-YQ2A-0001",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Mid. Shaft Assy.",
+      "normalizedName": "(MY25) Mid. Shaft Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-midshaft-assy"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 8 | SKU: 61280-YQ2A-0001 | Surron Light Bee X OEM (MY25) Mid. Shaft Assy."
+    },
+    {
+      "id": "lithium-drive-system-p1-r17",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "9",
+      "rowIndex": 17,
+      "oemNumber": "Z-6001-2RS-28-12-08",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Swingarm Pivot Bearing",
+      "normalizedName": "(MY26) Swingarm Pivot Bearing",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-swingarm-pivot-bearing"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 9 | SKU: Z-6001-2RS-28-12-08 | Surron Light Bee X OEM (MY26) Swingarm Pivot Bearing"
+    },
+    {
+      "id": "lithium-drive-system-p1-r18",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "9",
+      "rowIndex": 18,
+      "oemNumber": "Z-6000-2RS-26-10-08",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Swingarm Pivot Bearing",
+      "normalizedName": "(MY25) Swingarm Pivot Bearing",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my25-swingarm-pivot-bearing"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 9 | SKU: Z-6000-2RS-26-10-08 | Surron Light Bee X OEM (MY25) Swingarm Pivot Bearing"
+    },
+    {
+      "id": "lithium-drive-system-p1-r19",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "10",
+      "rowIndex": 19,
+      "oemNumber": "B7-001-15-26-06",
+      "originalDescription": "Surron Light Bee X OEM MY25 L. Midshaft Oil Seal B7-001-15-26-06",
+      "normalizedName": "MY25 L. Midshaft Oil Seal B7-001-15-26-06",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-l-midshaft-oil-seal-15-26-6"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 10 | SKU: B7-001-15-26-06 | Surron Light Bee X OEM MY25 L. Midshaft Oil Seal B7-001-15-26-06"
+    },
+    {
+      "id": "lithium-drive-system-p1-r20",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "10",
+      "rowIndex": 20,
+      "oemNumber": "B7-001-17-28-06",
+      "originalDescription": "Surron Light Bee X OEM MY26 R. Midshaft Oil Seal (17-28-6)",
+      "normalizedName": "MY26 R. Midshaft Oil Seal (17-28-6)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-r-midshaft-oil-seal-17-28-6"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 10 | SKU: B7-001-17-28-06 | Surron Light Bee X OEM MY26 R. Midshaft Oil Seal (17-28-6)"
+    },
+    {
+      "id": "lithium-drive-system-p1-r21",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "11",
+      "rowIndex": 21,
+      "oemNumber": "13202-YQ2A-0500",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Primary Drive Rear Pulley",
+      "normalizedName": "(MY25) Primary Drive Rear Pulley",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-primary-drive-rear-pulley-25my-13202-yq2a-0500"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 11 | SKU: 13202-YQ2A-0500 | Surron Light Bee X OEM (MY25) Primary Drive Rear Pulley"
+    },
+    {
+      "id": "lithium-drive-system-p1-r22",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "11",
+      "rowIndex": 22,
+      "oemNumber": "13202-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Primary Drive Rear Pulley",
+      "normalizedName": "(MY26) Primary Drive Rear Pulley",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-primary-drive-rear-pulley"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 11 | SKU: 13202-Y029E-0000 | Surron Light Bee X OEM (MY26) Primary Drive Rear Pulley"
+    },
+    {
+      "id": "lithium-drive-system-p1-r23",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "11",
+      "rowIndex": 23,
+      "oemNumber": "13202-YQ2A-0400",
+      "originalDescription": "Surron Light Bee X OEM (MY17-24) Primary Drive Rear Pulley",
+      "normalizedName": "(MY17-24) Primary Drive Rear Pulley",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-primary-drive-rear-pulley-new-p-n-13202-yq2a-0400"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 11 | SKU: 13202-YQ2A-0400 | Surron Light Bee X OEM (MY17-24) Primary Drive Rear Pulley"
+    },
+    {
+      "id": "lithium-drive-system-p1-r24",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "12",
+      "rowIndex": 24,
+      "oemNumber": "13111-YQ2A-0400",
+      "originalDescription": "Surron Light Bee X Drive Belt",
+      "normalizedName": "Drive Belt",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-x-segway-x160-260-gates-gtx-560-8mx-belt"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 12 | SKU: 13111-YQ2A-0400 | Surron Light Bee X Drive Belt"
+    },
+    {
+      "id": "lithium-drive-system-p1-r25",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "12",
+      "rowIndex": 25,
+      "oemNumber": "B3-001-06-016-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M6*16",
+      "normalizedName": "Screw B3001 M6*16",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m6-16"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 12 | SKU: B3-001-06-016-F0 | Surron Light Bee X OEM Screw B3001 M6*16"
+    },
+    {
+      "id": "lithium-drive-system-p1-r26",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "13",
+      "rowIndex": 26,
+      "oemNumber": "61233-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Mid. Shaft L Bushing",
+      "normalizedName": "(MY26) Mid. Shaft L Bushing",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-mid-shaft-l-bushing"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 13 | SKU: 61233-Y029E-0000 | Surron Light Bee X OEM (MY26) Mid. Shaft L Bushing"
+    },
+    {
+      "id": "lithium-drive-system-p1-r27",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "13",
+      "rowIndex": 27,
+      "oemNumber": "61233-YQ2A-0001",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Mid. Shaft L Bushing",
+      "normalizedName": "(MY25) Mid. Shaft L Bushing",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-l-midshaft-bushing"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 13 | SKU: 61233-YQ2A-0001 | Surron Light Bee X OEM (MY25) Mid. Shaft L Bushing"
+    },
+    {
+      "id": "lithium-drive-system-p1-r28",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "15",
+      "rowIndex": 28,
+      "oemNumber": "13211-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Primary Chain Drive Front Sprocket (13T)",
+      "normalizedName": "Primary Chain Drive Front Sprocket (13T)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-primary-chain-drive-front-sprocket-13t"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 15 | SKU: 13211-YQ2A-0000 | Surron Light Bee X OEM Primary Chain Drive Front Sprocket (13T)"
+    },
+    {
+      "id": "lithium-drive-system-p1-r29",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "16",
+      "rowIndex": 29,
+      "oemNumber": "13212-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Primary Chain Drive Rear Sprocket (30T)",
+      "normalizedName": "Primary Chain Drive Rear Sprocket (30T)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-primary-chain-drive-rear-sprocket-30t"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 16 | SKU: 13212-YQ2A-0000 | Surron Light Bee X OEM Primary Chain Drive Rear Sprocket (30T)"
+    },
+    {
+      "id": "lithium-drive-system-p1-r30",
+      "sourceId": "lithium-drive-system",
+      "page": 1,
+      "figure": "drive-system",
+      "callout": "17",
+      "rowIndex": 30,
+      "oemNumber": "13117-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Primary Chain (420-42links)",
+      "normalizedName": "Primary Chain (420-42links)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-primary-chain-420-42links"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "jackshaft",
+      "assemblyName": "Drive system and midshaft",
+      "rawText": "Item 17 | SKU: 13117-YQ2A-0000 | Surron Light Bee X OEM Primary Chain (420-42links)"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "drive-system"
+      ],
+      "detectedRows": 30,
+      "importedRows": 30,
+      "reviewRowIds": [
+        "lithium-drive-system-p1-r1",
+        "lithium-drive-system-p1-r2",
+        "lithium-drive-system-p1-r3",
+        "lithium-drive-system-p1-r4",
+        "lithium-drive-system-p1-r5",
+        "lithium-drive-system-p1-r6",
+        "lithium-drive-system-p1-r7",
+        "lithium-drive-system-p1-r8",
+        "lithium-drive-system-p1-r9",
+        "lithium-drive-system-p1-r10",
+        "lithium-drive-system-p1-r11",
+        "lithium-drive-system-p1-r12",
+        "lithium-drive-system-p1-r13",
+        "lithium-drive-system-p1-r14",
+        "lithium-drive-system-p1-r15",
+        "lithium-drive-system-p1-r16",
+        "lithium-drive-system-p1-r17",
+        "lithium-drive-system-p1-r18",
+        "lithium-drive-system-p1-r19",
+        "lithium-drive-system-p1-r20",
+        "lithium-drive-system-p1-r21",
+        "lithium-drive-system-p1-r22",
+        "lithium-drive-system-p1-r23",
+        "lithium-drive-system-p1-r24",
+        "lithium-drive-system-p1-r25",
+        "lithium-drive-system-p1-r26",
+        "lithium-drive-system-p1-r27",
+        "lithium-drive-system-p1-r28",
+        "lithium-drive-system-p1-r29",
+        "lithium-drive-system-p1-r30"
+      ],
+      "exceptions": [],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 30."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

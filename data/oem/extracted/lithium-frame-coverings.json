@@ -1,0 +1,1218 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-frame-coverings",
+    "title": "Lithium Powersports — Surron Light Bee FRAME COVERINGS",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-frame-coverings",
+    "sha256": "c16680c216d7b7315ba48fe43f21a8ddcf1ebae9fb77cebc752e471428c96bb2",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:03.473785Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-frame-coverings-p1-r1",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "01",
+      "rowIndex": 1,
+      "oemNumber": "32340-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Key Switch Holder",
+      "normalizedName": "Key Switch Holder",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-s-x-oem-replacement-ignition-cover"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 01 | SKU: 32340-YQ2A-0000 | Surron Light Bee X OEM Key Switch Holder"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r2",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "2",
+      "rowIndex": 2,
+      "oemNumber": "B3-002-06-012-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3002 M6*12",
+      "normalizedName": "Screw B3002 M6*12",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3002-m6-12"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 2 | SKU: B3-002-06-012-F0 | Surron Light Bee X OEM Screw B3002 M6*12"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r3",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "3",
+      "rowIndex": 3,
+      "oemNumber": "32231-Y029E-Z1",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Battery Compartment Cover Assembly",
+      "normalizedName": "(MY26) Battery Compartment Cover Assembly",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-battery-compartment-cover-assembly-1"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 3 | SKU: 32231-Y029E-Z1 | Surron Light Bee X OEM (MY26) Battery Compartment Cover Assembly"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r4",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "4",
+      "rowIndex": 4,
+      "oemNumber": "41762-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery Compartment Cover pivot pin",
+      "normalizedName": "Battery Compartment Cover pivot pin",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-cap-pivot-pin"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 4 | SKU: 41762-YQ2A-0000 | Surron Light Bee X OEM Battery Compartment Cover pivot pin"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r5",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "5",
+      "rowIndex": 5,
+      "oemNumber": "B4-007-05-F4",
+      "originalDescription": "Surron Light Bee X OEM E-Clip (Inner Dia. Φ5)",
+      "normalizedName": "E-Clip (Inner Dia. Φ5)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-e-clip-inner-dia-5"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 5 | SKU: B4-007-05-F4 | Surron Light Bee X OEM E-Clip (Inner Dia. Φ5)"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r6",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "6",
+      "rowIndex": 6,
+      "oemNumber": "32231-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Battery Compartment Cover",
+      "normalizedName": "(MY26) Battery Compartment Cover",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-battery-compartment-cover-assembly"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 6 | SKU: 32231-YQ2A-0000 | Surron Light Bee X OEM (MY26) Battery Compartment Cover"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r7",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "6",
+      "rowIndex": 7,
+      "oemNumber": "32231-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Battery Compartment Cover",
+      "normalizedName": "(MY26) Battery Compartment Cover",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-battery-compartment-cover"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 6 | SKU: 32231-Y029E-0000 | Surron Light Bee X OEM (MY26) Battery Compartment Cover"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r8",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "7",
+      "rowIndex": 8,
+      "oemNumber": "82124-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Battery Cap Metal LOGO",
+      "normalizedName": "Battery Cap Metal LOGO",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-cap-metal-logo"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 7 | SKU: 82124-YQ2A-0100 | Surron Light Bee X OEM Battery Cap Metal LOGO"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r9",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "8",
+      "rowIndex": 9,
+      "oemNumber": "B2-001-06-F2",
+      "originalDescription": "Surron Light Bee X OEM Nut B2001 M6 (B2-001-06-F2)",
+      "normalizedName": "Nut B2001 M6 (B2-001-06-F2)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-nut-b2001-m6"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 8 | SKU: B2-001-06-F2 | Surron Light Bee X OEM Nut B2001 M6 (B2-001-06-F2)"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r10",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "9",
+      "rowIndex": 10,
+      "oemNumber": "26290-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Battery cap Lock Hook",
+      "normalizedName": "(MY26) Battery cap Lock Hook",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-battery-cap-lock-hook"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 9 | SKU: 26290-Y029E-0000 | Surron Light Bee X OEM (MY26) Battery cap Lock Hook"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r11",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "9",
+      "rowIndex": 11,
+      "oemNumber": "26290-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Battery cap Lock Hook",
+      "normalizedName": "(MY25) Battery cap Lock Hook",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-cap-lock-hook"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 9 | SKU: 26290-YQ2A-0000 | Surron Light Bee X OEM (MY25) Battery cap Lock Hook"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r12",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": null,
+      "rowIndex": 12,
+      "oemNumber": null,
+      "originalDescription": "",
+      "normalizedName": "Unidentified source entry",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults."
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item unstated | SKU: unstated | "
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r13",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "11",
+      "rowIndex": 13,
+      "oemNumber": "32233-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery Compartment Cover rubber bumper",
+      "normalizedName": "Battery Compartment Cover rubber bumper",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-cap-rubber-bumper"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 11 | SKU: 32233-YQ2A-0000 | Surron Light Bee X OEM Battery Compartment Cover rubber bumper"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r14",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "12",
+      "rowIndex": 14,
+      "oemNumber": "26341-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Battery Front Buffer",
+      "normalizedName": "(MY25) Battery Front Buffer",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-front-buffer"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 12 | SKU: 26341-YQ2A-0000 | Surron Light Bee X OEM (MY25) Battery Front Buffer"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r15",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "12",
+      "rowIndex": 15,
+      "oemNumber": "26341-YQ2A-0001",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Battery Front Buffer",
+      "normalizedName": "(MY26) Battery Front Buffer",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-battery-front-buffer"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 12 | SKU: 26341-YQ2A-0001 | Surron Light Bee X OEM (MY26) Battery Front Buffer"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r16",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "13",
+      "rowIndex": 16,
+      "oemNumber": "32353-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery Front Positioning Block",
+      "normalizedName": "Battery Front Positioning Block",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-front-positioning-block"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 13 | SKU: 32353-YQ2A-0000 | Surron Light Bee X OEM Battery Front Positioning Block"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r17",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "14",
+      "rowIndex": 17,
+      "oemNumber": "B3-003-05-012-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3003 M5*12",
+      "normalizedName": "Screw B3003 M5*12",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-bm5-12"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 14 | SKU: B3-003-05-012-F0 | Surron Light Bee X OEM Screw B3003 M5*12"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r18",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "15",
+      "rowIndex": 18,
+      "oemNumber": "B2-012-05-F2",
+      "originalDescription": "Surron Light Bee X OEM Nut B2012 M5",
+      "normalizedName": "Nut B2012 M5",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-nut-b2012-m5"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 15 | SKU: B2-012-05-F2 | Surron Light Bee X OEM Nut B2012 M5"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r19",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "16",
+      "rowIndex": 19,
+      "oemNumber": "32355-YQ2A-0001",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Battery rear mud plate",
+      "normalizedName": "(MY26) Battery rear mud plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-battery-rear-mud-plate"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 16 | SKU: 32355-YQ2A-0001 | Surron Light Bee X OEM (MY26) Battery rear mud plate"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r20",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "16",
+      "rowIndex": 20,
+      "oemNumber": "32355-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Battery rear mud plate",
+      "normalizedName": "(MY25) Battery rear mud plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-rear-mud-plate"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 16 | SKU: 32355-YQ2A-0000 | Surron Light Bee X OEM (MY25) Battery rear mud plate"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r21",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "17",
+      "rowIndex": 21,
+      "oemNumber": "FB03-001-06-012-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw FB03001 M6*12",
+      "normalizedName": "Screw FB03001 M6*12",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-fb03001-m6-12"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 17 | SKU: FB03-001-06-012-F0 | Surron Light Bee X OEM Screw FB03001 M6*12"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r22",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "18",
+      "rowIndex": 22,
+      "oemNumber": "32365-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Belt mudguard",
+      "normalizedName": "Belt mudguard",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-belt-mudguard"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 18 | SKU: 32365-YQ2A-0000 | Surron Light Bee X OEM Belt mudguard"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r23",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "19",
+      "rowIndex": 23,
+      "oemNumber": "FB03-003-04-013-F3",
+      "originalDescription": "Surron Light Bee X OEM Screw FB03003 M4*13",
+      "normalizedName": "Screw FB03003 M4*13",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-fb03003-m4-13"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 19 | SKU: FB03-003-04-013-F3 | Surron Light Bee X OEM Screw FB03003 M4*13"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r24",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": null,
+      "rowIndex": 24,
+      "oemNumber": null,
+      "originalDescription": "",
+      "normalizedName": "Unidentified source entry",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults."
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item unstated | SKU: unstated | "
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r25",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "21",
+      "rowIndex": 25,
+      "oemNumber": "26343-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery bottom Buffer",
+      "normalizedName": "Battery bottom Buffer",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-bottom-buffer-foam"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 21 | SKU: 26343-YQ2A-0000 | Surron Light Bee X OEM Battery bottom Buffer"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r26",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": null,
+      "rowIndex": 26,
+      "oemNumber": null,
+      "originalDescription": "",
+      "normalizedName": "Unidentified source entry",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults."
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item unstated | SKU: unstated | "
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r27",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "23",
+      "rowIndex": 27,
+      "oemNumber": "B3-003-05-010-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3003 M5*10",
+      "normalizedName": "Screw B3003 M5*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3003-m5-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 23 | SKU: B3-003-05-010-F0 | Surron Light Bee X OEM Screw B3003 M5*10"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r28",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "24",
+      "rowIndex": 28,
+      "oemNumber": "32358-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery Bottom Positioning Block",
+      "normalizedName": "Battery Bottom Positioning Block",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-bottom-positioning-block"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 24 | SKU: 32358-YQ2A-0000 | Surron Light Bee X OEM Battery Bottom Positioning Block"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r29",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "25",
+      "rowIndex": 29,
+      "oemNumber": "32361-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Controller Mud Guard",
+      "normalizedName": "Controller Mud Guard",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-controller-mud-guard"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 25 | SKU: 32361-YQ2A-0000 | Surron Light Bee X OEM Controller Mud Guard"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r30",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": null,
+      "rowIndex": 30,
+      "oemNumber": null,
+      "originalDescription": "",
+      "normalizedName": "Unidentified source entry",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults."
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item unstated | SKU: unstated | "
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r31",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "27",
+      "rowIndex": 31,
+      "oemNumber": "B3-002-06-010-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3002 M6*10",
+      "normalizedName": "Screw B3002 M6*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3002-m6-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 27 | SKU: B3-002-06-010-F0 | Surron Light Bee X OEM Screw B3002 M6*10"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r32",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "28",
+      "rowIndex": 32,
+      "oemNumber": "32356-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery L Positioning Block",
+      "normalizedName": "Battery L Positioning Block",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-positioning-block-left"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 28 | SKU: 32356-YQ2A-0000 | Surron Light Bee X OEM Battery L Positioning Block"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r33",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": "29",
+      "rowIndex": 33,
+      "oemNumber": "32357-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery R Positioning Block",
+      "normalizedName": "Battery R Positioning Block",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-positioning-block-right"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item 29 | SKU: 32357-YQ2A-0000 | Surron Light Bee X OEM Battery R Positioning Block"
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r34",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": null,
+      "rowIndex": 34,
+      "oemNumber": null,
+      "originalDescription": "",
+      "normalizedName": "Unidentified source entry",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults."
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item unstated | SKU: unstated | "
+    },
+    {
+      "id": "lithium-frame-coverings-p1-r35",
+      "sourceId": "lithium-frame-coverings",
+      "page": 1,
+      "figure": "frame-coverings",
+      "callout": null,
+      "rowIndex": 35,
+      "oemNumber": null,
+      "originalDescription": "",
+      "normalizedName": "Unidentified source entry",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults."
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "battery-body",
+      "assemblyName": "Frame and battery coverings",
+      "rawText": "Item unstated | SKU: unstated | "
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "frame-coverings"
+      ],
+      "detectedRows": 35,
+      "importedRows": 35,
+      "reviewRowIds": [
+        "lithium-frame-coverings-p1-r1",
+        "lithium-frame-coverings-p1-r2",
+        "lithium-frame-coverings-p1-r3",
+        "lithium-frame-coverings-p1-r4",
+        "lithium-frame-coverings-p1-r5",
+        "lithium-frame-coverings-p1-r6",
+        "lithium-frame-coverings-p1-r7",
+        "lithium-frame-coverings-p1-r8",
+        "lithium-frame-coverings-p1-r9",
+        "lithium-frame-coverings-p1-r10",
+        "lithium-frame-coverings-p1-r11",
+        "lithium-frame-coverings-p1-r12",
+        "lithium-frame-coverings-p1-r13",
+        "lithium-frame-coverings-p1-r14",
+        "lithium-frame-coverings-p1-r15",
+        "lithium-frame-coverings-p1-r16",
+        "lithium-frame-coverings-p1-r17",
+        "lithium-frame-coverings-p1-r18",
+        "lithium-frame-coverings-p1-r19",
+        "lithium-frame-coverings-p1-r20",
+        "lithium-frame-coverings-p1-r21",
+        "lithium-frame-coverings-p1-r22",
+        "lithium-frame-coverings-p1-r23",
+        "lithium-frame-coverings-p1-r24",
+        "lithium-frame-coverings-p1-r25",
+        "lithium-frame-coverings-p1-r26",
+        "lithium-frame-coverings-p1-r27",
+        "lithium-frame-coverings-p1-r28",
+        "lithium-frame-coverings-p1-r29",
+        "lithium-frame-coverings-p1-r30",
+        "lithium-frame-coverings-p1-r31",
+        "lithium-frame-coverings-p1-r32",
+        "lithium-frame-coverings-p1-r33",
+        "lithium-frame-coverings-p1-r34",
+        "lithium-frame-coverings-p1-r35"
+      ],
+      "exceptions": [
+        {
+          "callout": null,
+          "reason": "Advertised 29 parts but parsed 35 cards; do not claim complete coverage.",
+          "evidence": "https://lithiumpowersports.com/collections/surron-light-bee-frame-coverings"
+        }
+      ],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 29."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

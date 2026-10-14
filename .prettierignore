@@ -8,3 +8,6 @@ public/templates
 .agent
 AGENTS.md
 next-env.d.ts
+
+# Deterministic generated evidence and catalog snapshots
+data/oem/

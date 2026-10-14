@@ -1,0 +1,429 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-my17-25-decal-set",
+    "title": "Lithium Powersports — Surron Light Bee (MY17-25) DECAL SET",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-my17-25-decal-set",
+    "sha256": "460b7858c98f736f1dfc9fc3d66d4b9f528d9d6c84c7fcdad4a720de2bb76aab",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:06.495783Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-my17-25-decal-set-p1-r1",
+      "sourceId": "lithium-my17-25-decal-set",
+      "page": 1,
+      "figure": "my17-25-decal-set",
+      "callout": "1",
+      "rowIndex": 1,
+      "oemNumber": "82120-YQ2F-Z2",
+      "originalDescription": "Surron Light Bee X OEM Decal Set (Green)",
+      "normalizedName": "Decal Set (Green)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-decal-set-green"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "decals",
+      "assemblyName": "Decals",
+      "rawText": "Item 1 | SKU: 82120-YQ2F-Z2 | Surron Light Bee X OEM Decal Set (Green)"
+    },
+    {
+      "id": "lithium-my17-25-decal-set-p1-r2",
+      "sourceId": "lithium-my17-25-decal-set",
+      "page": 1,
+      "figure": "my17-25-decal-set",
+      "callout": "1",
+      "rowIndex": 2,
+      "oemNumber": "82410-Y029A-0100",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Decal Set (Green+Orange)",
+      "normalizedName": "(MY25) Decal Set (Green+Orange)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-decal-set-blue-and-purple"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "decals",
+      "assemblyName": "Decals",
+      "rawText": "Item 1 | SKU: 82410-Y029A-0100 | Surron Light Bee X OEM (MY25) Decal Set (Green+Orange)"
+    },
+    {
+      "id": "lithium-my17-25-decal-set-p1-r3",
+      "sourceId": "lithium-my17-25-decal-set",
+      "page": 1,
+      "figure": "my17-25-decal-set",
+      "callout": "1",
+      "rowIndex": 3,
+      "oemNumber": "82120-YQ2F-0000",
+      "originalDescription": "Surron Light Bee X OEM Decal Set (Orange)",
+      "normalizedName": "Decal Set (Orange)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-decal-set-orange-82120-yq2f-0000"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "decals",
+      "assemblyName": "Decals",
+      "rawText": "Item 1 | SKU: 82120-YQ2F-0000 | Surron Light Bee X OEM Decal Set (Orange)"
+    },
+    {
+      "id": "lithium-my17-25-decal-set-p1-r4",
+      "sourceId": "lithium-my17-25-decal-set",
+      "page": 1,
+      "figure": "my17-25-decal-set",
+      "callout": "1",
+      "rowIndex": 4,
+      "oemNumber": "82410-Y029A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Decal Set (Green+Silver)",
+      "normalizedName": "(MY25) Decal Set (Green+Silver)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-decal-set-green-silver"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "decals",
+      "assemblyName": "Decals",
+      "rawText": "Item 1 | SKU: 82410-Y029A-0000 | Surron Light Bee X OEM (MY25) Decal Set (Green+Silver)"
+    },
+    {
+      "id": "lithium-my17-25-decal-set-p1-r5",
+      "sourceId": "lithium-my17-25-decal-set",
+      "page": 1,
+      "figure": "my17-25-decal-set",
+      "callout": "2",
+      "rowIndex": 5,
+      "oemNumber": "82421-Y029A-0000",
+      "originalDescription": "Surron Light Bee X OEM Number plate Decal（X）",
+      "normalizedName": "Number plate Decal（X）",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-number-plate-decal"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "decals",
+      "assemblyName": "Decals",
+      "rawText": "Item 2 | SKU: 82421-Y029A-0000 | Surron Light Bee X OEM Number plate Decal（X）"
+    },
+    {
+      "id": "lithium-my17-25-decal-set-p1-r6",
+      "sourceId": "lithium-my17-25-decal-set",
+      "page": 1,
+      "figure": "my17-25-decal-set",
+      "callout": "3",
+      "rowIndex": 6,
+      "oemNumber": "82410-Y029A-0200",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Decal Set (White+Golden）",
+      "normalizedName": "(MY25) Decal Set (White+Golden）",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my25-decal-set-whitegolden"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "decals",
+      "assemblyName": "Decals",
+      "rawText": "Item 3 | SKU: 82410-Y029A-0200 | Surron Light Bee X OEM (MY25) Decal Set (White+Golden）"
+    },
+    {
+      "id": "lithium-my17-25-decal-set-p1-r7",
+      "sourceId": "lithium-my17-25-decal-set",
+      "page": 1,
+      "figure": "my17-25-decal-set",
+      "callout": "4",
+      "rowIndex": 7,
+      "oemNumber": "82420-Y029A-0200",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Front Fork Decal (White+Pink)",
+      "normalizedName": "(MY25) Front Fork Decal (White+Pink)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my25-front-fork-decal-whitepink"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "decals",
+      "assemblyName": "Decals",
+      "rawText": "Item 4 | SKU: 82420-Y029A-0200 | Surron Light Bee X OEM (MY25) Front Fork Decal (White+Pink)"
+    },
+    {
+      "id": "lithium-my17-25-decal-set-p1-r8",
+      "sourceId": "lithium-my17-25-decal-set",
+      "page": 1,
+      "figure": "my17-25-decal-set",
+      "callout": "5",
+      "rowIndex": 8,
+      "oemNumber": "82434-Y029A-0200",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Battery Compartment Cover Decal",
+      "normalizedName": "(MY25) Battery Compartment Cover Decal",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my25-battery-compartment-cover-decal"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "decals",
+      "assemblyName": "Decals",
+      "rawText": "Item 5 | SKU: 82434-Y029A-0200 | Surron Light Bee X OEM (MY25) Battery Compartment Cover Decal"
+    },
+    {
+      "id": "lithium-my17-25-decal-set-p1-r9",
+      "sourceId": "lithium-my17-25-decal-set",
+      "page": 1,
+      "figure": "my17-25-decal-set",
+      "callout": "7",
+      "rowIndex": 9,
+      "oemNumber": "82124-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Battery Cap Metal LOGO",
+      "normalizedName": "Battery Cap Metal LOGO",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-cap-metal-logo"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "decals",
+      "assemblyName": "Decals",
+      "rawText": "Item 7 | SKU: 82124-YQ2A-0100 | Surron Light Bee X OEM Battery Cap Metal LOGO"
+    },
+    {
+      "id": "lithium-my17-25-decal-set-p1-r10",
+      "sourceId": "lithium-my17-25-decal-set",
+      "page": 1,
+      "figure": "my17-25-decal-set",
+      "callout": null,
+      "rowIndex": 10,
+      "oemNumber": null,
+      "originalDescription": "",
+      "normalizedName": "Unidentified source entry",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults."
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "missing-callout"
+      ],
+      "assemblyKey": "decals",
+      "assemblyName": "Decals",
+      "rawText": "Item unstated | SKU: unstated | "
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "my17-25-decal-set"
+      ],
+      "detectedRows": 10,
+      "importedRows": 10,
+      "reviewRowIds": [
+        "lithium-my17-25-decal-set-p1-r1",
+        "lithium-my17-25-decal-set-p1-r2",
+        "lithium-my17-25-decal-set-p1-r3",
+        "lithium-my17-25-decal-set-p1-r4",
+        "lithium-my17-25-decal-set-p1-r5",
+        "lithium-my17-25-decal-set-p1-r6",
+        "lithium-my17-25-decal-set-p1-r7",
+        "lithium-my17-25-decal-set-p1-r8",
+        "lithium-my17-25-decal-set-p1-r9",
+        "lithium-my17-25-decal-set-p1-r10"
+      ],
+      "exceptions": [
+        {
+          "callout": null,
+          "reason": "Advertised 9 parts but parsed 10 cards; do not claim complete coverage.",
+          "evidence": "https://lithiumpowersports.com/collections/surron-light-bee-my17-25-decal-set"
+        }
+      ],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 9."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

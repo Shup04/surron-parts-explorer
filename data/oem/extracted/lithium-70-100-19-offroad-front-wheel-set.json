@@ -1,0 +1,947 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-70-100-19-offroad-front-wheel-set",
+    "title": "Lithium Powersports — Surron Light Bee 70/100-19 OFFROAD FRONT WHEEL SET",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-70-100-19-offroad-front-wheel-set",
+    "sha256": "5fb0204b39b1ab70889a9c9349be1ceea86734c4eef956e68c3c00f3bac786b2",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:01.608279Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r1",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "1",
+      "rowIndex": 1,
+      "oemNumber": "51200-Y029E-Z2",
+      "originalDescription": "Surron Light Bee X OEM MY26 Front Wheel Assy.(incl. Break Disc, Offroad Tire E-Mark)",
+      "normalizedName": "MY26 Front Wheel Assy.(incl. Break Disc, Offroad Tire E-Mark)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-front-wheel-assy-incl-break-disc-offroad-tire-e-mark"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 1 | SKU: 51200-Y029E-Z2 | Surron Light Bee X OEM MY26 Front Wheel Assy.(incl. Break Disc, Offroad Tire E-Mark)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r2",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "1",
+      "rowIndex": 2,
+      "oemNumber": "51200-Y029E-Z1",
+      "originalDescription": "Surron Light Bee X OEM MY26 Front Wheel Assy.(incl. Break Disc, Offroad Tire)",
+      "normalizedName": "MY26 Front Wheel Assy.(incl. Break Disc, Offroad Tire)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-front-wheel-assy-incl-break-disc-offroad-tire"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 1 | SKU: 51200-Y029E-Z1 | Surron Light Bee X OEM MY26 Front Wheel Assy.(incl. Break Disc, Offroad Tire)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r3",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "1",
+      "rowIndex": 3,
+      "oemNumber": "51200-YQ2A-Z2",
+      "originalDescription": "Surron Light Bee X OEM Front Wheel Assy.(incl. Break Disc, Offroad Tire E-Mark)",
+      "normalizedName": "Front Wheel Assy.(incl. Break Disc, Offroad Tire E-Mark)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-wheel-assy-incl-break-disc-offroad-tire-e-mark"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 1 | SKU: 51200-YQ2A-Z2 | Surron Light Bee X OEM Front Wheel Assy.(incl. Break Disc, Offroad Tire E-Mark)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r4",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "1",
+      "rowIndex": 4,
+      "oemNumber": "51200-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM MY25 Front Wheel Assy.(incl. Break Disc, Offroad Tire)",
+      "normalizedName": "MY25 Front Wheel Assy.(incl. Break Disc, Offroad Tire)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-wheel-assy-incl-break-disc-offroad-tire"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 1 | SKU: 51200-YQ2A-Z1 | Surron Light Bee X OEM MY25 Front Wheel Assy.(incl. Break Disc, Offroad Tire)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r5",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "2",
+      "rowIndex": 5,
+      "oemNumber": "51270-Y029E-Z2",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Assembly + Off Road Tire E-Mark",
+      "normalizedName": "(MY26) Assembly + Off Road Tire E-Mark",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-assembly-off-road-tire-e-mark"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 2 | SKU: 51270-Y029E-Z2 | Surron Light Bee X OEM (MY26) Assembly + Off Road Tire E-Mark"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r6",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "2",
+      "rowIndex": 6,
+      "oemNumber": "51270-Y029E-Z1",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Assembly + Off Road Tire",
+      "normalizedName": "(MY26) Assembly + Off Road Tire",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-assembly-off-road-tire"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 2 | SKU: 51270-Y029E-Z1 | Surron Light Bee X OEM (MY26) Assembly + Off Road Tire"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r7",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "2",
+      "rowIndex": 7,
+      "oemNumber": "51270-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM MY25 Front Wheel Assy. + Offroad Tire E-Mark",
+      "normalizedName": "MY25 Front Wheel Assy. + Offroad Tire E-Mark",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-wheel-assy-offroad-tire"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 2 | SKU: 51270-YQ2A-Z1 | Surron Light Bee X OEM MY25 Front Wheel Assy. + Offroad Tire E-Mark"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r8",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "3",
+      "rowIndex": 8,
+      "oemNumber": "51231-YQ2A-Z2",
+      "originalDescription": "Surron Light Bee X OEM All Terrain Tire E4 + Inner Tube",
+      "normalizedName": "All Terrain Tire E4 + Inner Tube",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-all-terrain-tire-e4-inner-tube"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 3 | SKU: 51231-YQ2A-Z2 | Surron Light Bee X OEM All Terrain Tire E4 + Inner Tube"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r9",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "3",
+      "rowIndex": 9,
+      "oemNumber": "51231-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM All Terrain Tire + Inner Tube",
+      "normalizedName": "All Terrain Tire + Inner Tube",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-all-terrain-tire-inner-tube"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 3 | SKU: 51231-YQ2A-Z1 | Surron Light Bee X OEM All Terrain Tire + Inner Tube"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r10",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "4",
+      "rowIndex": 10,
+      "oemNumber": "51231-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Rear Offroad Tire (19\")",
+      "normalizedName": "Rear Offroad Tire (19\")",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-offroad-tire-19"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 4 | SKU: 51231-YQ2A-0000 | Surron Light Bee X OEM Rear Offroad Tire (19\")"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r11",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "4",
+      "rowIndex": 11,
+      "oemNumber": "51231-YQ2A-0010",
+      "originalDescription": "Surron Light Bee X OEM Rear Offroad Tire (19\") (E-Mark-70/100-19-CM708)",
+      "normalizedName": "Rear Offroad Tire (19\") (E-Mark-70/100-19-CM708)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-offroad-tire-19-e-mark-70-100-19-cm708"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 4 | SKU: 51231-YQ2A-0010 | Surron Light Bee X OEM Rear Offroad Tire (19\") (E-Mark-70/100-19-CM708)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r12",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "5",
+      "rowIndex": 12,
+      "oemNumber": "51232-YQ2A-0010",
+      "originalDescription": "Surron Light Bee X OEM Inner Tube(E4-2.25/2.5-19)",
+      "normalizedName": "Inner Tube(E4-2.25/2.5-19)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-inner-tubee4-22525-19"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 5 | SKU: 51232-YQ2A-0010 | Surron Light Bee X OEM Inner Tube(E4-2.25/2.5-19)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r13",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "5",
+      "rowIndex": 13,
+      "oemNumber": "51232-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Inner Tube(2.00/2.25-19)",
+      "normalizedName": "Inner Tube(2.00/2.25-19)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-inner-tube-2-00-2-25-19"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 5 | SKU: 51232-YQ2A-0000 | Surron Light Bee X OEM Inner Tube(2.00/2.25-19)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r14",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "6",
+      "rowIndex": 14,
+      "oemNumber": "51266-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM 19in Rim Band 20",
+      "normalizedName": "19in Rim Band 20",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rim-band19-20mm"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 6 | SKU: 51266-YQ2A-0000 | Surron Light Bee X OEM 19in Rim Band 20"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r15",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "7",
+      "rowIndex": 15,
+      "oemNumber": "51270-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Front Rim Assy.",
+      "normalizedName": "(MY26) Front Rim Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-front-rim-assy"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 7 | SKU: 51270-Y029E-0000 | Surron Light Bee X OEM (MY26) Front Rim Assy."
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r16",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "7",
+      "rowIndex": 16,
+      "oemNumber": "51270-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Front Rim Assy.",
+      "normalizedName": "(MY25) Front Rim Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-rim-assy"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 7 | SKU: 51270-YQ2A-0000 | Surron Light Bee X OEM (MY25) Front Rim Assy."
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r17",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "8",
+      "rowIndex": 17,
+      "oemNumber": "51271-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Front Rim (19*1.4-36-6.5mm)",
+      "normalizedName": "Front Rim (19*1.4-36-6.5mm)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-rim-19-1-4-36-6-5mm"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 8 | SKU: 51271-YQ2A-0100 | Surron Light Bee X OEM Front Rim (19*1.4-36-6.5mm)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r18",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "9",
+      "rowIndex": 18,
+      "oemNumber": "51290-YQ2A-0300",
+      "originalDescription": "Surron Light Bee X OEM Front Wheel Outside Spokes(216×8.2)",
+      "normalizedName": "Front Wheel Outside Spokes(216×8.2)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-wheel-outside-spokes-216-8-2"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 9 | SKU: 51290-YQ2A-0300 | Surron Light Bee X OEM Front Wheel Outside Spokes(216×8.2)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r19",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "9",
+      "rowIndex": 19,
+      "oemNumber": "51290-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Front Wheel Inside Spokes(216×8)",
+      "normalizedName": "Front Wheel Inside Spokes(216×8)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-wheel-inside-spokes-216-8"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 9 | SKU: 51290-YQ2A-0100 | Surron Light Bee X OEM Front Wheel Inside Spokes(216×8)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r20",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "10",
+      "rowIndex": 20,
+      "oemNumber": "51261-Y026A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Front Wheel Bush",
+      "normalizedName": "(MY26) Front Wheel Bush",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-front-wheel-bush"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 10 | SKU: 51261-Y026A-0000 | Surron Light Bee X OEM (MY26) Front Wheel Bush"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r21",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "10",
+      "rowIndex": 21,
+      "oemNumber": "51261-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Front Wheel Bush",
+      "normalizedName": "(MY25) Front Wheel Bush",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-wheel-bush"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 10 | SKU: 51261-YQ2A-0000 | Surron Light Bee X OEM (MY25) Front Wheel Bush"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r22",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "11",
+      "rowIndex": 22,
+      "oemNumber": "Z-6804-32-20-07",
+      "originalDescription": "Surron Light Bee X OEM Front Wheel Bearing 20*32*7",
+      "normalizedName": "Front Wheel Bearing 20*32*7",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-wheel-bearing-20-32-7"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 11 | SKU: Z-6804-32-20-07 | Surron Light Bee X OEM Front Wheel Bearing 20*32*7"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r23",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "12",
+      "rowIndex": 23,
+      "oemNumber": "52171-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM Front Brake Disc Assy. (52171-YQ2A-Z1)",
+      "normalizedName": "Front Brake Disc Assy. (52171-YQ2A-Z1)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-brake-disc-assy-52171-yq2a-z1"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 12 | SKU: 52171-YQ2A-Z1 | Surron Light Bee X OEM Front Brake Disc Assy. (52171-YQ2A-Z1)"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r24",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "13",
+      "rowIndex": 24,
+      "oemNumber": "52171-YQ2A-0001",
+      "originalDescription": "Surron Light Bee X OEM Front Brake Disc",
+      "normalizedName": "Front Brake Disc",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-brake-disc"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 13 | SKU: 52171-YQ2A-0001 | Surron Light Bee X OEM Front Brake Disc"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r25",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "13",
+      "rowIndex": 25,
+      "oemNumber": "52171-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM MY26 Front Brake Disc",
+      "normalizedName": "MY26 Front Brake Disc",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-front-brake-disc"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 13 | SKU: 52171-Y029E-0000 | Surron Light Bee X OEM MY26 Front Brake Disc"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r26",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": "14",
+      "rowIndex": 26,
+      "oemNumber": "FB03-006-05-010-F3",
+      "originalDescription": "Surron Light Bee X OEM Screw FB03006 M5*10",
+      "normalizedName": "Screw FB03006 M5*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-fb03006-m5-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item 14 | SKU: FB03-006-05-010-F3 | Surron Light Bee X OEM Screw FB03006 M5*10"
+    },
+    {
+      "id": "lithium-70-100-19-offroad-front-wheel-set-p1-r27",
+      "sourceId": "lithium-70-100-19-offroad-front-wheel-set",
+      "page": 1,
+      "figure": "70-100-19-offroad-front-wheel-set",
+      "callout": null,
+      "rowIndex": 27,
+      "oemNumber": null,
+      "originalDescription": "Surron Light Bee X OEM MY25 Front Wheel Assy. + Offroad Tire",
+      "normalizedName": "MY25 Front Wheel Assy. + Offroad Tire",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my25-front-wheel-assy-offroad-tire"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "assembly",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "missing-callout"
+      ],
+      "assemblyKey": "front-wheel",
+      "assemblyName": "Front wheel",
+      "rawText": "Item unstated | SKU: unstated | Surron Light Bee X OEM MY25 Front Wheel Assy. + Offroad Tire"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "70-100-19-offroad-front-wheel-set"
+      ],
+      "detectedRows": 27,
+      "importedRows": 27,
+      "reviewRowIds": [
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r1",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r2",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r3",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r4",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r5",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r6",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r7",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r8",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r9",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r10",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r11",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r12",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r13",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r14",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r15",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r16",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r17",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r18",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r19",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r20",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r21",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r22",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r23",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r24",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r25",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r26",
+        "lithium-70-100-19-offroad-front-wheel-set-p1-r27"
+      ],
+      "exceptions": [],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 27."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

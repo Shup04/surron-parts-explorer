@@ -1,0 +1,812 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-frame-metal-accessories",
+    "title": "Lithium Powersports — Surron Light Bee FRAME METAL ACCESSORIES",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-frame-metal-accessories",
+    "sha256": "6a30c063b8a98e9df8d429c8776f5096a94da6ae18449c304ac2e367f1495b09",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:04.121699Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-frame-metal-accessories-p1-r1",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "1",
+      "rowIndex": 1,
+      "oemNumber": "32354-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery Rear Support Plate",
+      "normalizedName": "Battery Rear Support Plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-rear-support-plate"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 1 | SKU: 32354-YQ2A-0000 | Surron Light Bee X OEM Battery Rear Support Plate"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r2",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "2",
+      "rowIndex": 2,
+      "oemNumber": "41690-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery Bottom Support Plate",
+      "normalizedName": "Battery Bottom Support Plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-bottom-support-plate"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 2 | SKU: 41690-YQ2A-0000 | Surron Light Bee X OEM Battery Bottom Support Plate"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r3",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "3",
+      "rowIndex": 3,
+      "oemNumber": "FB03-001-06-016-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw FB03001 M6*16",
+      "normalizedName": "Screw FB03001 M6*16",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-fb03001-m6-16"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 3 | SKU: FB03-001-06-016-F0 | Surron Light Bee X OEM Screw FB03001 M6*16"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r4",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "4",
+      "rowIndex": 4,
+      "oemNumber": "B3-001-06-010-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M6*10",
+      "normalizedName": "Screw B3001 M6*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m6-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 4 | SKU: B3-001-06-010-F0 | Surron Light Bee X OEM Screw B3001 M6*10"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r5",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "04",
+      "rowIndex": 5,
+      "oemNumber": "B4-009-06-014-F4",
+      "originalDescription": "Surron Light Bee OEM MY26 Motor Position Adjuster Limitation Pin (M6*14)",
+      "normalizedName": "MY26 Motor Position Adjuster Limitation Pin (M6*14)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-oem-motor-position-adjuster-limitation-pin-m6-14"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 04 | SKU: B4-009-06-014-F4 | Surron Light Bee OEM MY26 Motor Position Adjuster Limitation Pin (M6*14)"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r6",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "5",
+      "rowIndex": 6,
+      "oemNumber": "B4-009-06-014-F0",
+      "originalDescription": "Surron Light Bee X OEM MY25 Motor Position Adjuster Limitation Pin (M6*14)",
+      "normalizedName": "MY25 Motor Position Adjuster Limitation Pin (M6*14)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-position-adjuster-limitation-pin-m6-14"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 5 | SKU: B4-009-06-014-F0 | Surron Light Bee X OEM MY25 Motor Position Adjuster Limitation Pin (M6*14)"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r7",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "6",
+      "rowIndex": 7,
+      "oemNumber": "41750-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM Skid plate Assy.",
+      "normalizedName": "Skid plate Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-skid-plate-assy"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 6 | SKU: 41750-YQ2A-Z1 | Surron Light Bee X OEM Skid plate Assy."
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r8",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "7",
+      "rowIndex": 8,
+      "oemNumber": "B1-009-08-020-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B1009 M8*20",
+      "normalizedName": "Screw B1009 M8*20",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b1009-m8-20"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 7 | SKU: B1-009-08-020-F0 | Surron Light Bee X OEM Screw B1009 M8*20"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r9",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "8",
+      "rowIndex": 9,
+      "oemNumber": "FB02-003-08-F2",
+      "originalDescription": "Surron Light Bee X OEM Nut Clip M8",
+      "normalizedName": "Nut Clip M8",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-nut-clip-m8"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 8 | SKU: FB02-003-08-F2 | Surron Light Bee X OEM Nut Clip M8"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r10",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "9",
+      "rowIndex": 10,
+      "oemNumber": "41750-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Skid plate",
+      "normalizedName": "Skid plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-skid-plate"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 9 | SKU: 41750-YQ2A-0000 | Surron Light Bee X OEM Skid plate"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r11",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "10",
+      "rowIndex": 11,
+      "oemNumber": "41755-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Motor Protection Block",
+      "normalizedName": "Motor Protection Block",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-motor-protection-block"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 10 | SKU: 41755-YQ2A-0000 | Surron Light Bee X OEM Motor Protection Block"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r12",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "11",
+      "rowIndex": 12,
+      "oemNumber": "41740-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Controller Lower Right Bracket",
+      "normalizedName": "Controller Lower Right Bracket",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-controller-lower-bracket-right"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 11 | SKU: 41740-YQ2A-0000 | Surron Light Bee X OEM Controller Lower Right Bracket"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r13",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "12",
+      "rowIndex": 13,
+      "oemNumber": "41730-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Controller Lower Left Bracket",
+      "normalizedName": "Controller Lower Left Bracket",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-controller-lower-bracket-left"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 12 | SKU: 41730-YQ2A-0000 | Surron Light Bee X OEM Controller Lower Left Bracket"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r14",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "13",
+      "rowIndex": 14,
+      "oemNumber": "B4-002-06-F2",
+      "originalDescription": "Surron Light Bee X OEM Washer B4002 d6",
+      "normalizedName": "Washer B4002 d6",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-spring-washer-6"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 13 | SKU: B4-002-06-F2 | Surron Light Bee X OEM Washer B4002 d6"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r15",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "14",
+      "rowIndex": 15,
+      "oemNumber": "B3-002-06-010-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3002 M6*10",
+      "normalizedName": "Screw B3002 M6*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3002-m6-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 14 | SKU: B3-002-06-010-F0 | Surron Light Bee X OEM Screw B3002 M6*10"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r16",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": null,
+      "rowIndex": 16,
+      "oemNumber": null,
+      "originalDescription": "",
+      "normalizedName": "Unidentified source entry",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults."
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item unstated | SKU: unstated | "
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r17",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "16",
+      "rowIndex": 17,
+      "oemNumber": "B3-001-06-012-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M6*12",
+      "normalizedName": "Screw B3001 M6*12",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m6-12"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 16 | SKU: B3-001-06-012-F0 | Surron Light Bee X OEM Screw B3001 M6*12"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r18",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "17",
+      "rowIndex": 18,
+      "oemNumber": "41670-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Battery Front Plate",
+      "normalizedName": "(MY26) Battery Front Plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-battery-front-plate"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 17 | SKU: 41670-Y029E-0000 | Surron Light Bee X OEM (MY26) Battery Front Plate"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r19",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "17",
+      "rowIndex": 19,
+      "oemNumber": "41670-YQ2A-0001",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Battery Front Plate",
+      "normalizedName": "(MY25) Battery Front Plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-front-plate"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 17 | SKU: 41670-YQ2A-0001 | Surron Light Bee X OEM (MY25) Battery Front Plate"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r20",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "18",
+      "rowIndex": 20,
+      "oemNumber": "41710-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Controller Upper Bracket",
+      "normalizedName": "Controller Upper Bracket",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-controller-upper-bracket"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 18 | SKU: 41710-YQ2A-0000 | Surron Light Bee X OEM Controller Upper Bracket"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r21",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "19",
+      "rowIndex": 21,
+      "oemNumber": "B3-002-06-012-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3002 M6*12",
+      "normalizedName": "Screw B3002 M6*12",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3002-m6-12"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 19 | SKU: B3-002-06-012-F0 | Surron Light Bee X OEM Screw B3002 M6*12"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r22",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "20",
+      "rowIndex": 22,
+      "oemNumber": "FB02-001-06-F2",
+      "originalDescription": "Surron Light Bee X OEM Clipmutter FB02001 M6",
+      "normalizedName": "Clipmutter FB02001 M6",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-clip-nut-m6"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 20 | SKU: FB02-001-06-F2 | Surron Light Bee X OEM Clipmutter FB02001 M6"
+    },
+    {
+      "id": "lithium-frame-metal-accessories-p1-r23",
+      "sourceId": "lithium-frame-metal-accessories",
+      "page": 1,
+      "figure": "frame-metal-accessories",
+      "callout": "21",
+      "rowIndex": 23,
+      "oemNumber": "B3-001-06-016-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M6*16",
+      "normalizedName": "Screw B3001 M6*16",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m6-16"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-mounts",
+      "assemblyName": "Frame metal accessories",
+      "rawText": "Item 21 | SKU: B3-001-06-016-F0 | Surron Light Bee X OEM Screw B3001 M6*16"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "frame-metal-accessories"
+      ],
+      "detectedRows": 23,
+      "importedRows": 23,
+      "reviewRowIds": [
+        "lithium-frame-metal-accessories-p1-r1",
+        "lithium-frame-metal-accessories-p1-r2",
+        "lithium-frame-metal-accessories-p1-r3",
+        "lithium-frame-metal-accessories-p1-r4",
+        "lithium-frame-metal-accessories-p1-r5",
+        "lithium-frame-metal-accessories-p1-r6",
+        "lithium-frame-metal-accessories-p1-r7",
+        "lithium-frame-metal-accessories-p1-r8",
+        "lithium-frame-metal-accessories-p1-r9",
+        "lithium-frame-metal-accessories-p1-r10",
+        "lithium-frame-metal-accessories-p1-r11",
+        "lithium-frame-metal-accessories-p1-r12",
+        "lithium-frame-metal-accessories-p1-r13",
+        "lithium-frame-metal-accessories-p1-r14",
+        "lithium-frame-metal-accessories-p1-r15",
+        "lithium-frame-metal-accessories-p1-r16",
+        "lithium-frame-metal-accessories-p1-r17",
+        "lithium-frame-metal-accessories-p1-r18",
+        "lithium-frame-metal-accessories-p1-r19",
+        "lithium-frame-metal-accessories-p1-r20",
+        "lithium-frame-metal-accessories-p1-r21",
+        "lithium-frame-metal-accessories-p1-r22",
+        "lithium-frame-metal-accessories-p1-r23"
+      ],
+      "exceptions": [
+        {
+          "callout": null,
+          "reason": "Advertised 22 parts but parsed 23 cards; do not claim complete coverage.",
+          "evidence": "https://lithiumpowersports.com/collections/surron-light-bee-frame-metal-accessories"
+        }
+      ],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 22."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

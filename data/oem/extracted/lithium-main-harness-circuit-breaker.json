@@ -1,0 +1,1437 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-main-harness-circuit-breaker",
+    "title": "Lithium Powersports — Surron Light Bee MAIN HARNESS & CIRCUIT BREAKER",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-main-harness-circuit-breaker",
+    "sha256": "5913b2aa79bf93c6577940311999c93d9e275ff00b20bb7b2dcb05440a91ec45",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:05.454646Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r1",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "1",
+      "rowIndex": 1,
+      "oemNumber": "24100-Y029E-0100",
+      "originalDescription": "Surron Light Bee X OEM (MY26) LBX Main Cable Harness",
+      "normalizedName": "(MY26) LBX Main Cable Harness",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-lbx-main-cable-harness"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 1 | SKU: 24100-Y029E-0100 | Surron Light Bee X OEM (MY26) LBX Main Cable Harness"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r2",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "1",
+      "rowIndex": 2,
+      "oemNumber": "24100-Y029A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) LBX Main Cable Harness (1210mm)",
+      "normalizedName": "(MY25) LBX Main Cable Harness (1210mm)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-lbx-main-cable-harness-1210mm"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 1 | SKU: 24100-Y029A-0000 | Surron Light Bee X OEM (MY25) LBX Main Cable Harness (1210mm)"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r3",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "01",
+      "rowIndex": 3,
+      "oemNumber": "24100-YQ2A-0200",
+      "originalDescription": "Surron Light Bee X OEM (MY17-24) LBX Main Cable Harness (1210mm)",
+      "normalizedName": "(MY17-24) LBX Main Cable Harness (1210mm)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-oem-wiring-harness-main-cable-harness-double-connector"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 01 | SKU: 24100-YQ2A-0200 | Surron Light Bee X OEM (MY17-24) LBX Main Cable Harness (1210mm)"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r4",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "01",
+      "rowIndex": 4,
+      "oemNumber": "24100-YQ2A-0300",
+      "originalDescription": "Surron Light Bee X OEM (MY17-24) LBX Main Cable Harness (485port) (1210mm)",
+      "normalizedName": "(MY17-24) LBX Main Cable Harness (485port) (1210mm)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-oem-wiring-harness-main-cable-harness"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 01 | SKU: 24100-YQ2A-0300 | Surron Light Bee X OEM (MY17-24) LBX Main Cable Harness (485port) (1210mm)"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r5",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "2",
+      "rowIndex": 5,
+      "oemNumber": "B2-008-03-F2",
+      "originalDescription": "Surron Light Bee X OEM Nut B2008 M3",
+      "normalizedName": "Nut B2008 M3",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-nut-b2008-m3"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 2 | SKU: B2-008-03-F2 | Surron Light Bee X OEM Nut B2008 M3"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r6",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "3",
+      "rowIndex": 6,
+      "oemNumber": "B4-001-04-F2",
+      "originalDescription": "Surron Light Bee X OEM Washer B4001 d4",
+      "normalizedName": "Washer B4001 d4",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-washer-b4001-d4"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 3 | SKU: B4-001-04-F2 | Surron Light Bee X OEM Washer B4001 d4"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r7",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "4",
+      "rowIndex": 7,
+      "oemNumber": "81125-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Nylon Washer （Φ7*Φ3.2*5）",
+      "normalizedName": "Nylon Washer （Φ7*Φ3.2*5）",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-nylon-washer-7-3-2-5"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 4 | SKU: 81125-YQ2A-0100 | Surron Light Bee X OEM Nylon Washer （Φ7*Φ3.2*5）"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r8",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "5",
+      "rowIndex": 8,
+      "oemNumber": "B3-001-03-035-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M3*35",
+      "normalizedName": "Screw B3001 M3*35",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m3-35"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 5 | SKU: B3-001-03-035-F0 | Surron Light Bee X OEM Screw B3001 M3*35"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r9",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "06",
+      "rowIndex": 9,
+      "oemNumber": "23500-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY17-24) Circuit Breaker",
+      "normalizedName": "(MY17-24) Circuit Breaker",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-s-x-oem-replacement-circuit-breaker"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 06 | SKU: 23500-YQ2A-0000 | Surron Light Bee X OEM (MY17-24) Circuit Breaker"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r10",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "6",
+      "rowIndex": 10,
+      "oemNumber": "23515-Y029A-0000",
+      "originalDescription": "Surron Light Bee X OEM Waterproof rubber pad",
+      "normalizedName": "Waterproof rubber pad",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-waterproof-rubber-pad"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 6 | SKU: 23515-Y029A-0000 | Surron Light Bee X OEM Waterproof rubber pad"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r11",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "06",
+      "rowIndex": 11,
+      "oemNumber": "24110-Y028A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY24) Battery Power Cable(1200)",
+      "normalizedName": "(MY24) Battery Power Cable(1200)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-oem-single-connector-battery-cables"
+      ],
+      "applicability": "Explicit retailer year label: 2024",
+      "modelYears": [
+        2024
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 06 | SKU: 24110-Y028A-0000 | Surron Light Bee X OEM (MY24) Battery Power Cable(1200)"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r12",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "7",
+      "rowIndex": 12,
+      "oemNumber": "23500-Y029A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Circuit Breaker",
+      "normalizedName": "(MY25) Circuit Breaker",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-2025-replacement-circuit-breaker"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 7 | SKU: 23500-Y029A-0000 | Surron Light Bee X OEM (MY25) Circuit Breaker"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r13",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "8",
+      "rowIndex": 13,
+      "oemNumber": "21250-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Tilt Switch",
+      "normalizedName": "Tilt Switch",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-tilt-switch"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 8 | SKU: 21250-YQ2A-0000 | Surron Light Bee X OEM Tilt Switch"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r14",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "9",
+      "rowIndex": 14,
+      "oemNumber": "24110-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY17-23) Battery Power Cable",
+      "normalizedName": "(MY17-23) Battery Power Cable",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-power-cable-for-dual-connector-battery"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 9 | SKU: 24110-YQ2A-0000 | Surron Light Bee X OEM (MY17-23) Battery Power Cable"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r15",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "09",
+      "rowIndex": 15,
+      "oemNumber": "26000-YQ2A-1200",
+      "originalDescription": "Surron Light Bee X OEM (MY24) 60V40Ah Lithium Battery Pack (Integrated Socket)",
+      "normalizedName": "(MY24) 60V40Ah Lithium Battery Pack (Integrated Socket)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-single-connector-60v-34ah-lithium-battery-pack"
+      ],
+      "applicability": "Explicit retailer year label: 2024",
+      "modelYears": [
+        2024
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 09 | SKU: 26000-YQ2A-1200 | Surron Light Bee X OEM (MY24) 60V40Ah Lithium Battery Pack (Integrated Socket)"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r16",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "9",
+      "rowIndex": 16,
+      "oemNumber": "24110-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Battery Power Cable",
+      "normalizedName": "(MY26) Battery Power Cable",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-battery-power-cable"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 9 | SKU: 24110-Y029E-0000 | Surron Light Bee X OEM (MY26) Battery Power Cable"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r17",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "9",
+      "rowIndex": 17,
+      "oemNumber": "24110-Y029A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Battery Power Cable",
+      "normalizedName": "(MY25) Battery Power Cable",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-power-cable-lbx-model-year-2025-only"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 9 | SKU: 24110-Y029A-0000 | Surron Light Bee X OEM (MY25) Battery Power Cable"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r18",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "10",
+      "rowIndex": 18,
+      "oemNumber": "24710-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM (MY24-25) Diagnostic Cable",
+      "normalizedName": "(MY24-25) Diagnostic Cable",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-diagnostic-cable-for-single-connector-lbx"
+      ],
+      "applicability": "Explicit retailer year label: 2024, 2025",
+      "modelYears": [
+        2024,
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 10 | SKU: 24710-YQ2A-0100 | Surron Light Bee X OEM (MY24-25) Diagnostic Cable"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r19",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "10",
+      "rowIndex": 19,
+      "oemNumber": "24710-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY17-23) Diagnostic Cable",
+      "normalizedName": "(MY17-23) Diagnostic Cable",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-diagnostic-cable-for-dual-connector-lbx"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 10 | SKU: 24710-YQ2A-0000 | Surron Light Bee X OEM (MY17-23) Diagnostic Cable"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r20",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "11",
+      "rowIndex": 20,
+      "oemNumber": "B3-002-05-008-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3002 M5*8",
+      "normalizedName": "Screw B3002 M5*8",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3002-m5-8"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 11 | SKU: B3-002-05-008-F0 | Surron Light Bee X OEM Screw B3002 M5*8"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r21",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "12",
+      "rowIndex": 21,
+      "oemNumber": "24110-Y028A-0100",
+      "originalDescription": "Surron Light Bee X OEM (MY24) Battery Power Cable Transfer Cable（Dual Interface to Single",
+      "normalizedName": "(MY24) Battery Power Cable Transfer Cable（Dual Interface to Single",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-power-cable-transfer-cable"
+      ],
+      "applicability": "Explicit retailer year label: 2024",
+      "modelYears": [
+        2024
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 12 | SKU: 24110-Y028A-0100 | Surron Light Bee X OEM (MY24) Battery Power Cable Transfer Cable（Dual Interface to Single"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r22",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "12",
+      "rowIndex": 22,
+      "oemNumber": "81138-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Nylon clip81138",
+      "normalizedName": "Nylon clip81138",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-oem-nylon-clamp"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 12 | SKU: 81138-YQ2A-0000 | Surron Light Bee X OEM Nylon clip81138"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r23",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "12",
+      "rowIndex": 23,
+      "oemNumber": "81153-NM1A-0000",
+      "originalDescription": "Surron Light Bee X OEM Plastic P Clip (Black) (for dual-connector battery)",
+      "normalizedName": "Plastic P Clip (Black) (for dual-connector battery)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-plastic-p-clip-white-for-dual-connector-battery"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 12 | SKU: 81153-NM1A-0000 | Surron Light Bee X OEM Plastic P Clip (Black) (for dual-connector battery)"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r24",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": "12",
+      "rowIndex": 24,
+      "oemNumber": "24110-Y029A-0100",
+      "originalDescription": "Surron Light Bee X OEM Battery Power Cable Transfer Cable（Dual Interface to Single",
+      "normalizedName": "Battery Power Cable Transfer Cable（Dual Interface to Single",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-power-cable-transfer-cabledual-interface-to-single"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item 12 | SKU: 24110-Y029A-0100 | Surron Light Bee X OEM Battery Power Cable Transfer Cable（Dual Interface to Single"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r25",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 25,
+      "oemNumber": null,
+      "originalDescription": "",
+      "normalizedName": "Unidentified source entry",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults."
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "low",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-oem-number",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: unstated | "
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r26",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 26,
+      "oemNumber": "26000-Y029A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) 60V40Ah Lithium Battery Pack (GW)",
+      "normalizedName": "(MY25) 60V40Ah Lithium Battery Pack (GW)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-60v40ah-lithium-battery-pack-gw"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 26000-Y029A-0000 | Surron Light Bee X OEM (MY25) 60V40Ah Lithium Battery Pack (GW)"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r27",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 27,
+      "oemNumber": "81135-NM1A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Rubber Cable Strip Tie",
+      "normalizedName": "(MY25) Rubber Cable Strip Tie",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rubber-cable-strip-tie"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 81135-NM1A-0000 | Surron Light Bee X OEM (MY25) Rubber Cable Strip Tie"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r28",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 28,
+      "oemNumber": "26000-YQ2A-1000",
+      "originalDescription": "Surron Light Bee X OEM 60V40Ah Lithium Battery Pack Dual Connector",
+      "normalizedName": "60V40Ah Lithium Battery Pack Dual Connector",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-60v40ah-lithium-battery-pack-dual-connector"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 26000-YQ2A-1000 | Surron Light Bee X OEM 60V40Ah Lithium Battery Pack Dual Connector"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r29",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 29,
+      "oemNumber": "B3-001-06-012-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3001 M6*12",
+      "normalizedName": "Screw B3001 M6*12",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3001-m6-12"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: B3-001-06-012-F0 | Surron Light Bee X OEM Screw B3001 M6*12"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r30",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 30,
+      "oemNumber": "52176-Y028A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Front Brake Hose Holder",
+      "normalizedName": "(MY25) Front Brake Hose Holder",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-front-brake-hose-holder"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 52176-Y028A-0000 | Surron Light Bee X OEM (MY25) Front Brake Hose Holder"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r31",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 31,
+      "oemNumber": "B4-001-06-F2",
+      "originalDescription": "Surron Light Bee X OEM Washer B4001 d6",
+      "normalizedName": "Washer B4001 d6",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-washer-b4001-d6"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: B4-001-06-F2 | Surron Light Bee X OEM Washer B4001 d6"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r32",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 32,
+      "oemNumber": "41763-YQ2B-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY17-24) Wire clamp",
+      "normalizedName": "(MY17-24) Wire clamp",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-wire-clamp"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 41763-YQ2B-0000 | Surron Light Bee X OEM (MY17-24) Wire clamp"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r33",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 33,
+      "oemNumber": "81147-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY17-25) Cable Tie(3.6mm*150mm)",
+      "normalizedName": "(MY17-25) Cable Tie(3.6mm*150mm)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-cable-tie-4mm-150mm"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 81147-YQ2A-0000 | Surron Light Bee X OEM (MY17-25) Cable Tie(3.6mm*150mm)"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r34",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 34,
+      "oemNumber": "81141-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY17-25) Cable Tie(8mm*200mm)",
+      "normalizedName": "(MY17-25) Cable Tie(8mm*200mm)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-cable-tie8mm-200mm"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 81141-YQ2A-0000 | Surron Light Bee X OEM (MY17-25) Cable Tie(8mm*200mm)"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r35",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 35,
+      "oemNumber": "81181-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM (MY17-24) Rear LOGO plate",
+      "normalizedName": "(MY17-24) Rear LOGO plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-logo-plate-81181-yq2a-0100"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 81181-YQ2A-0100 | Surron Light Bee X OEM (MY17-24) Rear LOGO plate"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r36",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 36,
+      "oemNumber": "81181-Y029A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Rear LOGO plate",
+      "normalizedName": "(MY25) Rear LOGO plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-rear-logo-plate-my-2025"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 81181-Y029A-0000 | Surron Light Bee X OEM (MY25) Rear LOGO plate"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r37",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 37,
+      "oemNumber": "31151-Y029A-Z1",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Front Number Plate Assy.",
+      "normalizedName": "(MY25) Front Number Plate Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my25-front-number-plate-assy"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 31151-Y029A-Z1 | Surron Light Bee X OEM (MY25) Front Number Plate Assy."
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r38",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 38,
+      "oemNumber": "81182-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X Front Number Plate Assembly",
+      "normalizedName": "Front Number Plate Assembly",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-front-number-plate-assembly"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 81182-YQ2A-Z1 | Surron Light Bee X Front Number Plate Assembly"
+    },
+    {
+      "id": "lithium-main-harness-circuit-breaker-p1-r39",
+      "sourceId": "lithium-main-harness-circuit-breaker",
+      "page": 1,
+      "figure": "main-harness-circuit-breaker",
+      "callout": null,
+      "rowIndex": 39,
+      "oemNumber": "81182-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X Front Number Plate",
+      "normalizedName": "Front Number Plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-front-number-plate"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "wiring",
+      "assemblyName": "Main harness and circuit breaker",
+      "rawText": "Item unstated | SKU: 81182-YQ2A-0000 | Surron Light Bee X Front Number Plate"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "main-harness-circuit-breaker"
+      ],
+      "detectedRows": 39,
+      "importedRows": 39,
+      "reviewRowIds": [
+        "lithium-main-harness-circuit-breaker-p1-r1",
+        "lithium-main-harness-circuit-breaker-p1-r2",
+        "lithium-main-harness-circuit-breaker-p1-r3",
+        "lithium-main-harness-circuit-breaker-p1-r4",
+        "lithium-main-harness-circuit-breaker-p1-r5",
+        "lithium-main-harness-circuit-breaker-p1-r6",
+        "lithium-main-harness-circuit-breaker-p1-r7",
+        "lithium-main-harness-circuit-breaker-p1-r8",
+        "lithium-main-harness-circuit-breaker-p1-r9",
+        "lithium-main-harness-circuit-breaker-p1-r10",
+        "lithium-main-harness-circuit-breaker-p1-r11",
+        "lithium-main-harness-circuit-breaker-p1-r12",
+        "lithium-main-harness-circuit-breaker-p1-r13",
+        "lithium-main-harness-circuit-breaker-p1-r14",
+        "lithium-main-harness-circuit-breaker-p1-r15",
+        "lithium-main-harness-circuit-breaker-p1-r16",
+        "lithium-main-harness-circuit-breaker-p1-r17",
+        "lithium-main-harness-circuit-breaker-p1-r18",
+        "lithium-main-harness-circuit-breaker-p1-r19",
+        "lithium-main-harness-circuit-breaker-p1-r20",
+        "lithium-main-harness-circuit-breaker-p1-r21",
+        "lithium-main-harness-circuit-breaker-p1-r22",
+        "lithium-main-harness-circuit-breaker-p1-r23",
+        "lithium-main-harness-circuit-breaker-p1-r24",
+        "lithium-main-harness-circuit-breaker-p1-r25",
+        "lithium-main-harness-circuit-breaker-p1-r26",
+        "lithium-main-harness-circuit-breaker-p1-r27",
+        "lithium-main-harness-circuit-breaker-p1-r28",
+        "lithium-main-harness-circuit-breaker-p1-r29",
+        "lithium-main-harness-circuit-breaker-p1-r30",
+        "lithium-main-harness-circuit-breaker-p1-r31",
+        "lithium-main-harness-circuit-breaker-p1-r32",
+        "lithium-main-harness-circuit-breaker-p1-r33",
+        "lithium-main-harness-circuit-breaker-p1-r34",
+        "lithium-main-harness-circuit-breaker-p1-r35",
+        "lithium-main-harness-circuit-breaker-p1-r36",
+        "lithium-main-harness-circuit-breaker-p1-r37",
+        "lithium-main-harness-circuit-breaker-p1-r38",
+        "lithium-main-harness-circuit-breaker-p1-r39"
+      ],
+      "exceptions": [
+        {
+          "callout": null,
+          "reason": "Advertised 38 parts but parsed 39 cards; do not claim complete coverage.",
+          "evidence": "https://lithiumpowersports.com/collections/surron-light-bee-main-harness-circuit-breaker"
+        }
+      ],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 38."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

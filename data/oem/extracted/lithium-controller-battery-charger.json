@@ -1,0 +1,880 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-controller-battery-charger",
+    "title": "Lithium Powersports — Surron Light Bee CONTROLLER & BATTERY & CHARGER",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-controller-battery-charger",
+    "sha256": "9ecf0a2062ce29b9dc13521d7106bb015178b2e630485d48754dd1c0e043ebe0",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:03.023589Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-controller-battery-charger-p1-r1",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "1",
+      "rowIndex": 1,
+      "oemNumber": "21100-Y029A-Z1",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Controller(FOC) Unlimited speed-130A/60V",
+      "normalizedName": "(MY25) Controller(FOC) Unlimited speed-130A/60V",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-sine-wave-controller-my-2025"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 1 | SKU: 21100-Y029A-Z1 | Surron Light Bee X OEM (MY25) Controller(FOC) Unlimited speed-130A/60V"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r2",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "1",
+      "rowIndex": 2,
+      "oemNumber": "21100-Y029E-Z1",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Controller",
+      "normalizedName": "(MY26) Controller",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-controller"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 1 | SKU: 21100-Y029E-Z1 | Surron Light Bee X OEM (MY26) Controller"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r3",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "2",
+      "rowIndex": 3,
+      "oemNumber": "21100-Y029A-0100",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Controller(FOC) Unlimited speed-130A/60V",
+      "normalizedName": "(MY25) Controller(FOC) Unlimited speed-130A/60V",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my25-controllerfoc-unlimited-speed-130a-60v"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 2 | SKU: 21100-Y029A-0100 | Surron Light Bee X OEM (MY25) Controller(FOC) Unlimited speed-130A/60V"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r4",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "2",
+      "rowIndex": 4,
+      "oemNumber": "21100-Y029E-00B0",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Controller",
+      "normalizedName": "(MY26) Controller",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-controller-1"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 2 | SKU: 21100-Y029E-00B0 | Surron Light Bee X OEM (MY26) Controller"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r5",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "2",
+      "rowIndex": 5,
+      "oemNumber": "21100-YQ2A-0700",
+      "originalDescription": "Surron Light Bee X OEM Sine Wave Controller",
+      "normalizedName": "Sine Wave Controller",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-sine-wave-controller"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 2 | SKU: 21100-YQ2A-0700 | Surron Light Bee X OEM Sine Wave Controller"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r6",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "3",
+      "rowIndex": 6,
+      "oemNumber": "B8-001-06-016-F2",
+      "originalDescription": "Surron Light Bee X OEM Screw B8001 M6*16",
+      "normalizedName": "Screw B8001 M6*16",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b8001-m6-16"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 3 | SKU: B8-001-06-016-F2 | Surron Light Bee X OEM Screw B8001 M6*16"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r7",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "4",
+      "rowIndex": 7,
+      "oemNumber": "B3-002-06-012-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3002 M6*12",
+      "normalizedName": "Screw B3002 M6*12",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3002-m6-12"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 4 | SKU: B3-002-06-012-F0 | Surron Light Bee X OEM Screw B3002 M6*12"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r8",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "5",
+      "rowIndex": 8,
+      "oemNumber": "21103-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Controller upper mud plate",
+      "normalizedName": "Controller upper mud plate",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-controller-upper-mud-plate"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 5 | SKU: 21103-YQ2A-0000 | Surron Light Bee X OEM Controller upper mud plate"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r9",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "6",
+      "rowIndex": 9,
+      "oemNumber": "B3-002-05-010-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3002 M5*10",
+      "normalizedName": "Screw B3002 M5*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3002-m5-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 6 | SKU: B3-002-05-010-F0 | Surron Light Bee X OEM Screw B3002 M5*10"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r10",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "7",
+      "rowIndex": 10,
+      "oemNumber": "81153-NM1A-0000",
+      "originalDescription": "Surron Light Bee X OEM Plastic P Clip (Black) (for dual-connector battery)",
+      "normalizedName": "Plastic P Clip (Black) (for dual-connector battery)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-plastic-p-clip-white-for-dual-connector-battery"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 7 | SKU: 81153-NM1A-0000 | Surron Light Bee X OEM Plastic P Clip (Black) (for dual-connector battery)"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r11",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "7",
+      "rowIndex": 11,
+      "oemNumber": "81154-NM1A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Nylon clip81154",
+      "normalizedName": "(MY26) Nylon clip81154",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-nylon-clip81154"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 7 | SKU: 81154-NM1A-0000 | Surron Light Bee X OEM (MY26) Nylon clip81154"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r12",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "7",
+      "rowIndex": 12,
+      "oemNumber": "81137-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Nylon Clamp",
+      "normalizedName": "Nylon Clamp",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-nylon-clamp"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 7 | SKU: 81137-YQ2A-0000 | Surron Light Bee X OEM Nylon Clamp"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r13",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "8",
+      "rowIndex": 13,
+      "oemNumber": "26351-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Charging Port Cap (for dual-connector battery)",
+      "normalizedName": "Charging Port Cap (for dual-connector battery)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-charging-port-cap-for-dual-connector-battery"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 8 | SKU: 26351-YQ2A-0000 | Surron Light Bee X OEM Charging Port Cap (for dual-connector battery)"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r14",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "8",
+      "rowIndex": 14,
+      "oemNumber": "26351-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Charging Port Cap (for single-connector battery)",
+      "normalizedName": "Charging Port Cap (for single-connector battery)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-charging-port-cap-for-single-connector-battery"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 8 | SKU: 26351-YQ2A-0100 | Surron Light Bee X OEM Charging Port Cap (for single-connector battery)"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r15",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "9",
+      "rowIndex": 15,
+      "oemNumber": "26000-Y029A-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY25) 60V40Ah Lithium Battery Pack (GW)",
+      "normalizedName": "(MY25) 60V40Ah Lithium Battery Pack (GW)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-60v40ah-lithium-battery-pack-gw"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 9 | SKU: 26000-Y029A-0000 | Surron Light Bee X OEM (MY25) 60V40Ah Lithium Battery Pack (GW)"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r16",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "9",
+      "rowIndex": 16,
+      "oemNumber": "26000-Y029E-0100",
+      "originalDescription": "Surron Light Bee X OEM (MY26) 72V/35Ah Lithium Battery Pack (GW)",
+      "normalizedName": "(MY26) 72V/35Ah Lithium Battery Pack (GW)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-72v35ah-lithium-battery-pack-gw"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 9 | SKU: 26000-Y029E-0100 | Surron Light Bee X OEM (MY26) 72V/35Ah Lithium Battery Pack (GW)"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r17",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "9",
+      "rowIndex": 17,
+      "oemNumber": "26000-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM (MY26) 72V/35Ah Lithium Battery Pack (FMT)",
+      "normalizedName": "(MY26) 72V/35Ah Lithium Battery Pack (FMT)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-72v35ah-lithium-battery-pack-fmt"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 9 | SKU: 26000-Y029E-0000 | Surron Light Bee X OEM (MY26) 72V/35Ah Lithium Battery Pack (FMT)"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r18",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "9",
+      "rowIndex": 18,
+      "oemNumber": "26000-Y029A-0100",
+      "originalDescription": "Surron Light Bee X OEM (MY25) 60V40Ah Lithium Battery Pack (FMT)",
+      "normalizedName": "(MY25) 60V40Ah Lithium Battery Pack (FMT)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my25-60v40ah-lithium-battery-pack-fmt"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 9 | SKU: 26000-Y029A-0100 | Surron Light Bee X OEM (MY25) 60V40Ah Lithium Battery Pack (FMT)"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r19",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "09",
+      "rowIndex": 19,
+      "oemNumber": "26000-YQ2A-1200",
+      "originalDescription": "Surron Light Bee X OEM (MY24) 60V40Ah Lithium Battery Pack (Integrated Socket)",
+      "normalizedName": "(MY24) 60V40Ah Lithium Battery Pack (Integrated Socket)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-single-connector-60v-34ah-lithium-battery-pack"
+      ],
+      "applicability": "Explicit retailer year label: 2024",
+      "modelYears": [
+        2024
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 09 | SKU: 26000-YQ2A-1200 | Surron Light Bee X OEM (MY24) 60V40Ah Lithium Battery Pack (Integrated Socket)"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r20",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "10",
+      "rowIndex": 20,
+      "oemNumber": "26220-YQ2A-0100",
+      "originalDescription": "Surron Light Bee X OEM Battery BMS board (60V40Ah Battery)",
+      "normalizedName": "Battery BMS board (60V40Ah Battery)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-bms-board-60v40ah-battery-26220-yq2a-0100"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 10 | SKU: 26220-YQ2A-0100 | Surron Light Bee X OEM Battery BMS board (60V40Ah Battery)"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r21",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "11",
+      "rowIndex": 21,
+      "oemNumber": "26360-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery LCD Screen",
+      "normalizedName": "Battery LCD Screen",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-lcd-screen"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 11 | SKU: 26360-YQ2A-0000 | Surron Light Bee X OEM Battery LCD Screen"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r22",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "12",
+      "rowIndex": 22,
+      "oemNumber": "21700-YQ2A-1000",
+      "originalDescription": "Surron Light Bee X OEM 60v Charger US Plug",
+      "normalizedName": "60v Charger US Plug",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-60v-charger-us-plug"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 12 | SKU: 21700-YQ2A-1000 | Surron Light Bee X OEM 60v Charger US Plug"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r23",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "12",
+      "rowIndex": 23,
+      "oemNumber": "21700-Y029E-0200",
+      "originalDescription": "Surron Light Bee X OEM (MY26) Charger (TL-84V/10A-840W-220V-NA）",
+      "normalizedName": "(MY26) Charger (TL-84V/10A-840W-220V-NA）",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-my26-charger-tl-84v10a-840w-220v-na"
+      ],
+      "applicability": "Explicit retailer year label: 2026",
+      "modelYears": [
+        2026
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 12 | SKU: 21700-Y029E-0200 | Surron Light Bee X OEM (MY26) Charger (TL-84V/10A-840W-220V-NA）"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r24",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": "12",
+      "rowIndex": 24,
+      "oemNumber": "21700-Y028A-0200",
+      "originalDescription": "Surron Light Bee X OEM (MY25) Charger (67.2V-12A 110V, 10A) (US Plug)",
+      "normalizedName": "(MY25) Charger (67.2V-12A 110V, 10A) (US Plug)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-charger-67-2v-12a-110v-10a-us-plug"
+      ],
+      "applicability": "Explicit retailer year label: 2025",
+      "modelYears": [
+        2025
+      ],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item 12 | SKU: 21700-Y028A-0200 | Surron Light Bee X OEM (MY25) Charger (67.2V-12A 110V, 10A) (US Plug)"
+    },
+    {
+      "id": "lithium-controller-battery-charger-p1-r25",
+      "sourceId": "lithium-controller-battery-charger",
+      "page": 1,
+      "figure": "controller-battery-charger",
+      "callout": null,
+      "rowIndex": 25,
+      "oemNumber": "26000-YQ2A-1000",
+      "originalDescription": "Surron Light Bee X OEM 60V40Ah Lithium Battery Pack Dual Connector",
+      "normalizedName": "60V40Ah Lithium Battery Pack Dual Connector",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-60v40ah-lithium-battery-pack-dual-connector"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown",
+        "missing-callout"
+      ],
+      "assemblyKey": "battery",
+      "assemblyName": "Controller, battery and charger",
+      "rawText": "Item unstated | SKU: 26000-YQ2A-1000 | Surron Light Bee X OEM 60V40Ah Lithium Battery Pack Dual Connector"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "controller-battery-charger"
+      ],
+      "detectedRows": 25,
+      "importedRows": 25,
+      "reviewRowIds": [
+        "lithium-controller-battery-charger-p1-r1",
+        "lithium-controller-battery-charger-p1-r2",
+        "lithium-controller-battery-charger-p1-r3",
+        "lithium-controller-battery-charger-p1-r4",
+        "lithium-controller-battery-charger-p1-r5",
+        "lithium-controller-battery-charger-p1-r6",
+        "lithium-controller-battery-charger-p1-r7",
+        "lithium-controller-battery-charger-p1-r8",
+        "lithium-controller-battery-charger-p1-r9",
+        "lithium-controller-battery-charger-p1-r10",
+        "lithium-controller-battery-charger-p1-r11",
+        "lithium-controller-battery-charger-p1-r12",
+        "lithium-controller-battery-charger-p1-r13",
+        "lithium-controller-battery-charger-p1-r14",
+        "lithium-controller-battery-charger-p1-r15",
+        "lithium-controller-battery-charger-p1-r16",
+        "lithium-controller-battery-charger-p1-r17",
+        "lithium-controller-battery-charger-p1-r18",
+        "lithium-controller-battery-charger-p1-r19",
+        "lithium-controller-battery-charger-p1-r20",
+        "lithium-controller-battery-charger-p1-r21",
+        "lithium-controller-battery-charger-p1-r22",
+        "lithium-controller-battery-charger-p1-r23",
+        "lithium-controller-battery-charger-p1-r24",
+        "lithium-controller-battery-charger-p1-r25"
+      ],
+      "exceptions": [],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 25."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

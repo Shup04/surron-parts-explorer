@@ -1,0 +1,306 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-battery-lock-cover",
+    "title": "Lithium Powersports — Surron Light Bee BATTERY LOCK COVER",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-battery-lock-cover",
+    "sha256": "a2a1d70ac00fd23b5a05dcccc11e79f4db1affc7172f1845df2b6823bce6dfc6",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:02.331786Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-battery-lock-cover-p1-r1",
+      "sourceId": "lithium-battery-lock-cover",
+      "page": 1,
+      "figure": "battery-lock-cover",
+      "callout": "1",
+      "rowIndex": 1,
+      "oemNumber": "32351-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM L Battery Lock Cover",
+      "normalizedName": "L Battery Lock Cover",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-l-battery-lock-cover"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-lock",
+      "assemblyName": "Battery lock cover",
+      "rawText": "Item 1 | SKU: 32351-YQ2A-0000 | Surron Light Bee X OEM L Battery Lock Cover"
+    },
+    {
+      "id": "lithium-battery-lock-cover-p1-r2",
+      "sourceId": "lithium-battery-lock-cover",
+      "page": 1,
+      "figure": "battery-lock-cover",
+      "callout": "2",
+      "rowIndex": 2,
+      "oemNumber": "32352-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM R Battery Lock Cover",
+      "normalizedName": "R Battery Lock Cover",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-r-battery-lock-cover"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-lock",
+      "assemblyName": "Battery lock cover",
+      "rawText": "Item 2 | SKU: 32352-YQ2A-0000 | Surron Light Bee X OEM R Battery Lock Cover"
+    },
+    {
+      "id": "lithium-battery-lock-cover-p1-r3",
+      "sourceId": "lithium-battery-lock-cover",
+      "page": 1,
+      "figure": "battery-lock-cover",
+      "callout": "3",
+      "rowIndex": 3,
+      "oemNumber": "B3-006-003-F3",
+      "originalDescription": "Surron Light Bee X OEM Screw（ST4.2*13）",
+      "normalizedName": "Screw（ST4.2*13）",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-st4-2-13"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-lock",
+      "assemblyName": "Battery lock cover",
+      "rawText": "Item 3 | SKU: B3-006-003-F3 | Surron Light Bee X OEM Screw（ST4.2*13）"
+    },
+    {
+      "id": "lithium-battery-lock-cover-p1-r4",
+      "sourceId": "lithium-battery-lock-cover",
+      "page": 1,
+      "figure": "battery-lock-cover",
+      "callout": "4",
+      "rowIndex": 4,
+      "oemNumber": "FB04-001-04-F2",
+      "originalDescription": "Surron Light Bee X OEM Clip Nut (M4)",
+      "normalizedName": "Clip Nut (M4)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-clip-nut-m4"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-lock",
+      "assemblyName": "Battery lock cover",
+      "rawText": "Item 4 | SKU: FB04-001-04-F2 | Surron Light Bee X OEM Clip Nut (M4)"
+    },
+    {
+      "id": "lithium-battery-lock-cover-p1-r5",
+      "sourceId": "lithium-battery-lock-cover",
+      "page": 1,
+      "figure": "battery-lock-cover",
+      "callout": "5",
+      "rowIndex": 5,
+      "oemNumber": "B3-002-06-010-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3002 M6*10",
+      "normalizedName": "Screw B3002 M6*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3002-m6-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-lock",
+      "assemblyName": "Battery lock cover",
+      "rawText": "Item 5 | SKU: B3-002-06-010-F0 | Surron Light Bee X OEM Screw B3002 M6*10"
+    },
+    {
+      "id": "lithium-battery-lock-cover-p1-r6",
+      "sourceId": "lithium-battery-lock-cover",
+      "page": 1,
+      "figure": "battery-lock-cover",
+      "callout": "6",
+      "rowIndex": 6,
+      "oemNumber": "41843-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Fixed clip",
+      "normalizedName": "Fixed clip",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-fixed-clip"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-lock",
+      "assemblyName": "Battery lock cover",
+      "rawText": "Item 6 | SKU: 41843-YQ2A-0000 | Surron Light Bee X OEM Fixed clip"
+    },
+    {
+      "id": "lithium-battery-lock-cover-p1-r7",
+      "sourceId": "lithium-battery-lock-cover",
+      "page": 1,
+      "figure": "battery-lock-cover",
+      "callout": "7",
+      "rowIndex": 7,
+      "oemNumber": "27516-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Battery Lock Cover Ring",
+      "normalizedName": "Battery Lock Cover Ring",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-battery-lock-cover-ring"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-lock",
+      "assemblyName": "Battery lock cover",
+      "rawText": "Item 7 | SKU: 27516-YQ2A-0000 | Surron Light Bee X OEM Battery Lock Cover Ring"
+    },
+    {
+      "id": "lithium-battery-lock-cover-p1-r8",
+      "sourceId": "lithium-battery-lock-cover",
+      "page": 1,
+      "figure": "battery-lock-cover",
+      "callout": "8",
+      "rowIndex": 8,
+      "oemNumber": "FB03-001-06-012-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw FB03001 M6*12",
+      "normalizedName": "Screw FB03001 M6*12",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-fb03001-m6-12"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "battery-lock",
+      "assemblyName": "Battery lock cover",
+      "rawText": "Item 8 | SKU: FB03-001-06-012-F0 | Surron Light Bee X OEM Screw FB03001 M6*12"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "battery-lock-cover"
+      ],
+      "detectedRows": 8,
+      "importedRows": 8,
+      "reviewRowIds": [
+        "lithium-battery-lock-cover-p1-r1",
+        "lithium-battery-lock-cover-p1-r2",
+        "lithium-battery-lock-cover-p1-r3",
+        "lithium-battery-lock-cover-p1-r4",
+        "lithium-battery-lock-cover-p1-r5",
+        "lithium-battery-lock-cover-p1-r6",
+        "lithium-battery-lock-cover-p1-r7",
+        "lithium-battery-lock-cover-p1-r8"
+      ],
+      "exceptions": [],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 8."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "sourceId": "motorino",
+  "sha256": "015cbfa45681e9e72afed2afa5781aae427917b260dd6c1238d573ef3b3049e5",
+  "inspectedAt": "2026-10-14T00:54:39Z",
+  "method": "Poppler pdftotext -layout and -bbox-layout, all 31 tables and all 22 diagrams rendered with pdftoppm and visually inspected. Physical printed rows include variants, empty cells and duplicate callouts.",
+  "tableRowCounts": [
+    8, 9, 11, 14, 5, 14, 16, 14, 6, 14, 7, 14, 12, 6, 7, 14, 3, 14, 5, 14, 26, 12, 13, 5, 9, 11, 10,
+    15, 6, 5, 7
+  ],
+  "pageNotes": {
+    "3": "The diagram contains callout 6, but the table omits 3_06. Four regional charger alternatives repeat 3_07; retain all without summing them into one motorcycle.",
+    "5": "Figure 4 continuation. Row 4_16 literally prints B3-001-08-025-F0 and Bolt (M8*20); neither claim is silently corrected.",
+    "7": "Figure 5 continuation; X Version decoration label has a blank callout cell.",
+    "9": "Figure 6 continuation.",
+    "11": "Figure 7 continuation.",
+    "12": "Figure 8 diagram labels 8, 10, 12, 13 and 24 lack table rows on either page 12 or 13.",
+    "13": "Figure 8 continuation. Duplicate OEM washer rows 8_30 and 8_31 remain separate occurrences.",
+    "17": "Figure 11 continuation; same OEM nut appears separately at callouts 11_13 and 11_14.",
+    "19": "Figure 12 continuation.",
+    "20": "Figure 13 has RST/FAST/DNM rows with blank repeated callout cells. Washer 51195-YQ2A-0000 has quantities 2/2/1 for the respective fork descriptions; preserve source occurrence claims.",
+    "21": "Figure 13 continuation begins with a blank-callout DNM lock screw row. One FAST mounting-screw row has BOTH callout and OEM cells blank. Printed front axle number 5250-YQ2A-0300 is preserved exactly.",
+    "22": "Figure 14 repeats complete 14_07 and 14_06 pump rows around X Version brake-clip rows. These may be alternative groups; do not sum duplicates or silently assign the preceding pump callout to the blank-callout brake-clip rows.",
+    "23": "Figure 15 bearing row 15_08 quantity is explicitly 1. Diagram callout 8 appears at three bearing positions. The 2021 catalog has a different quantity; table quantity 1 is retained for review.",
+    "24": "Figure 15 continuation, including blank-callout primary-chain and sprocket alternatives.",
+    "26": "Figure 17 front-wheel bearing has no OEM number. This is not the same claim as emotobykes Figure 17 callout 17_09, which says Front Wheel Axle.",
+    "27": "The English Version rear billboard variant has a genuinely blank QTY cell. It remains null; the adjacent variant quantities must not be copied."
+  },
+  "exceptions": [
+    {
+      "page": 3,
+      "callout": "3_06",
+      "reason": "Diagram callout has no source table row",
+      "evidence": "Illustration-03 labels a charger as 6; table runs from 3_05 to regional 3_07 rows and 3_08. No OEM/quantity inferred."
+    },
+    {
+      "page": 12,
+      "callout": "8_08",
+      "reason": "Diagram callout has no source table row",
+      "evidence": "Illustration-8 labels 8; neither p12 nor p13 table contains 8_08."
+    },
+    {
+      "page": 12,
+      "callout": "8_10",
+      "reason": "Diagram callout has no source table row",
+      "evidence": "Illustration-8 labels 10 at two positions; neither p12 nor p13 table contains 8_10."
+    },
+    {
+      "page": 12,
+      "callout": "8_12",
+      "reason": "Diagram callout has no source table row",
+      "evidence": "Illustration-8 labels 12; neither p12 nor p13 table contains 8_12."
+    },
+    {
+      "page": 12,
+      "callout": "8_13",
+      "reason": "Diagram callout has no source table row",
+      "evidence": "Illustration-8 labels 13; neither p12 nor p13 table contains 8_13."
+    },
+    {
+      "page": 12,
+      "callout": "8_24",
+      "reason": "Diagram callout has no source table row",
+      "evidence": "Illustration-8 labels 24; neither p12 nor p13 table contains 8_24."
+    }
+  ],
+  "rowIssues": [
+    {
+      "page": 5,
+      "callout": "4_16",
+      "flags": ["source-specification-needs-review"],
+      "note": "Source prints OEM B3-001-08-025-F0 beside Bolt (M8*20). Both are verbatim; verify the apparent length discrepancy against factory information."
+    },
+    {
+      "page": 20,
+      "oemNumber": "51195-YQ2A-0000",
+      "flags": ["variant-quantity-needs-review"],
+      "note": "The source uses this exact OEM for RST and FAST quantity 2, and DNM quantity 1. Preserve the fork-specific claims rather than treating them as a universal count."
+    },
+    {
+      "page": 21,
+      "oemNumber": "5250-YQ2A-0300",
+      "flags": ["source-number-needs-review"],
+      "note": "Printed OEM is exactly 5250-YQ2A-0300. A similar DNM axle in emotobykes is 51250-YQ2A-0300; the missing digit is not automatically corrected and identities are not merged."
+    },
+    {
+      "page": 22,
+      "callout": "14_07",
+      "flags": ["duplicate-source-row", "variant-group-needs-review"],
+      "note": "This complete source row is printed twice around an X Version brake-clip row. Preserve both records; do not sum their quantities into a stock bill of materials."
+    },
+    {
+      "page": 22,
+      "callout": "14_06",
+      "flags": ["duplicate-source-row", "variant-group-needs-review"],
+      "note": "This complete source row is printed twice around an X Version brake-clip row. Preserve both records; do not sum their quantities into a stock bill of materials."
+    },
+    {
+      "page": 23,
+      "callout": "15_08",
+      "flags": ["diagram-quantity-disagreement", "source-quantity-needs-review"],
+      "note": "Table quantity is 1 while diagram callout 8 appears at three bearing positions. The 2021 illustrated catalog Figure 17 callout 17_07 states quantity 3 for the exact same OEM. No quantity is chosen as universally correct."
+    },
+    {
+      "page": 26,
+      "callout": "17_09",
+      "flags": ["source-description-needs-review"],
+      "note": "This source describes Front Wheel Bearing (Φ20*Φ32*7), without an OEM. Emotobykes Figure 17 callout 17_09 instead says Front Wheel Axle. These missing-OEM claims are not silently merged."
+    }
+  ],
+  "notes": [
+    "326 legible physical table rows were reconciled, including 38 rows with blank callout cells. This is complete transcription of the visible tables, not proof of a complete stock motorcycle bill of materials.",
+    "Six diagram-only callout exceptions need source clarification. Mechanical meaning, year fitment, source typos and variant groupings remain subject to review.",
+    "PDF and rendered diagram artwork remain local reference assets and are not redistributed with the public catalog."
+  ]
+}

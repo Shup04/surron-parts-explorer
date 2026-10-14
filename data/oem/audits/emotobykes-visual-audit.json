@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "sourceId": "emotobykes",
+  "sha256": "1263004bb167fefd0fb67854ed57354c33b9ee40367c8785898b0d82ede57eb5",
+  "inspectedAt": "2026-10-14T00:54:39Z",
+  "method": "Poppler pdftotext -layout and -bbox-layout, all 28 tables and 21 figure regions rendered with pdftoppm and visually inspected. Page 3 blank diagram cross-checked with pdftocairo. Several diagram regions cannot be audited because rendering is blank or clipped; all tables remain legible.",
+  "tableRowCounts": [
+    8, 9, 7, 12, 9, 26, 9, 11, 9, 9, 10, 9, 6, 6, 12, 9, 10, 9, 16, 6, 10, 8, 10, 9, 10, 11, 11, 11
+  ],
+  "pageNotes": {
+    "4": "Figure 4 includes a blank-callout primary sprocket alternative. Diagram region is clipped, so full illustration reconciliation remains unverified.",
+    "5": "Figure 4 continuation plus start of Figure 5; retain the prior figure until its new heading. Source row 4_16 prints B3-001-08-025-F0 with Bolt (M8*20).",
+    "12": "Figure 8 continuation plus start of Figure 9.",
+    "13": "Figure 9 continuation plus start of Figure 10.",
+    "14": "Figure 10 continuation plus start of Figure 11. Figure 11 image is clipped at top.",
+    "20": "Figure 14 diagram labels 6 and 7, but its table omits 14_06 and 14_07. Do not copy rows from the other PDF without independent evidence.",
+    "21": "Figure 15 midshaft bearing Z-6000-2Z-26-10-08 is explicitly quantity 1 in the table; 2021 Figure 17 records quantity 3. Figure 15 diagram rendering is blank.",
+    "22": "Figure 15 continuation plus start of Figure 16. Literal sub-callout 16_01-01 is retained; its format alone does not establish a mechanical parent relationship.",
+    "23": "Figure 16 continuation plus start of Figure 17.",
+    "24": "Figure 17 continuation plus Figure 18. Row 17_09 has no OEM and says Front Wheel Axle; row 18_06 has OEM 41591-YQ2B-0000 and quantity 1 but a blank description cell.",
+    "26": "Figure 19 continuation; 19_14 has a genuinely blank OEM cell.",
+    "27": "Figure 20 uses literal callouts 20_1 through 20_9, not zero-padded alternatives. Callout 20_2 has no OEM.",
+    "28": "Figure 20 continuation plus Figure 21. Literal callout 21_1 is preserved. Steering-lock screw 20_14 prints OEM B3-003-05-016-F0 with description M5*12."
+  },
+  "exceptions": [
+    {
+      "page": 2,
+      "callout": null,
+      "reason": "Figure 2 diagram cannot be fully audited",
+      "evidence": "Figure 2 image region renders blank in Poppler; all nine table rows are legible and imported."
+    },
+    {
+      "page": 3,
+      "callout": null,
+      "reason": "Figure 3 diagram cannot be fully audited",
+      "evidence": "Figure 3 image region renders blank with both pdftoppm and pdftocairo; all seven table rows are legible and imported."
+    },
+    {
+      "page": 4,
+      "callout": null,
+      "reason": "Figure 4 diagram cannot be fully audited",
+      "evidence": "Only a small horizontal part of the Figure 4 illustration renders; table rows on pages 4 and 5 are legible and imported."
+    },
+    {
+      "page": 5,
+      "callout": null,
+      "reason": "Figure 5 diagram cannot be fully audited",
+      "evidence": "Figure 5 image region renders blank; tables on pages 5 and 6 are legible and imported."
+    },
+    {
+      "page": 7,
+      "callout": null,
+      "reason": "Figure 6 diagram cannot be fully audited",
+      "evidence": "Figure 6 image region renders blank; tables on pages 7 and 8 are legible and imported."
+    },
+    {
+      "page": 9,
+      "callout": null,
+      "reason": "Figure 7 diagram cannot be fully audited",
+      "evidence": "Figure 7 image region renders blank; tables on pages 9 and 10 are legible and imported."
+    },
+    {
+      "page": 11,
+      "callout": null,
+      "reason": "Figure 8 diagram cannot be fully audited",
+      "evidence": "Figure 8 image region renders blank; tables on pages 11 and 12 are legible and imported."
+    },
+    {
+      "page": 13,
+      "callout": null,
+      "reason": "Figure 10 diagram cannot be fully audited",
+      "evidence": "Figure 10 image region renders blank; tables on pages 13 and 14 are legible and imported."
+    },
+    {
+      "page": 14,
+      "callout": null,
+      "reason": "Figure 11 diagram cannot be fully audited",
+      "evidence": "Figure 11 illustration is clipped at its top; tables on pages 14 and 15 are legible and imported."
+    },
+    {
+      "page": 20,
+      "callout": "14_06",
+      "reason": "Diagram callout has no source table row",
+      "evidence": "Figure 14 visibly labels component 6; the table only contains 14_01 through 14_05 and 14_08."
+    },
+    {
+      "page": 20,
+      "callout": "14_07",
+      "reason": "Diagram callout has no source table row",
+      "evidence": "Figure 14 visibly labels component 7; the table only contains 14_01 through 14_05 and 14_08."
+    },
+    {
+      "page": 21,
+      "callout": null,
+      "reason": "Figure 15 diagram cannot be fully audited",
+      "evidence": "Figure 15 image region renders blank; tables on pages 21 and 22 are legible and imported."
+    },
+    {
+      "page": 22,
+      "callout": null,
+      "reason": "Figure 16 diagram cannot be fully audited",
+      "evidence": "Figure 16 image region renders blank; tables on pages 22 and 23 are legible and imported."
+    },
+    {
+      "page": 25,
+      "callout": null,
+      "reason": "Figure 19 diagram cannot be fully audited",
+      "evidence": "Figure 19 image region renders blank; tables on pages 25 and 26 are legible and imported."
+    },
+    {
+      "page": 27,
+      "callout": null,
+      "reason": "Figure 20 diagram cannot be fully audited",
+      "evidence": "Only a small horizontal part of the Figure 20 illustration renders; tables on pages 27 and 28 are legible and imported."
+    }
+  ],
+  "rowIssues": [
+    {
+      "page": 5,
+      "callout": "4_16",
+      "flags": ["source-specification-needs-review"],
+      "note": "Source prints OEM B3-001-08-025-F0 beside Bolt (M8*20). Both are verbatim; verify the apparent length discrepancy against factory information."
+    },
+    {
+      "page": 21,
+      "callout": "15_08",
+      "flags": ["source-quantity-needs-review"],
+      "note": "This table records quantity 1 for Z-6000-2Z-26-10-08; 2021 Figure 17 callout 17_07 records quantity 3 for the exact same OEM. No universal quantity or interchangeability claim is inferred."
+    },
+    {
+      "page": 24,
+      "callout": "17_09",
+      "flags": ["source-description-needs-review"],
+      "note": "The source literally says Front Wheel Axle, OEM blank, quantity 2. Motorino Figure 17 callout 17_09 instead says Front Wheel Bearing (Φ20*Φ32*7). Neither description is silently substituted."
+    },
+    {
+      "page": 28,
+      "callout": "20_14",
+      "flags": ["source-specification-needs-review"],
+      "note": "Source prints B3-003-05-016-F0 beside Steering Lock Mounting Screw (M5*12). Both are retained exactly for review."
+    }
+  ],
+  "notes": [
+    "282 legible physical table rows were reconciled, including one blank-callout alternate sprocket row. Five rows have blank OEM fields and one has a blank description; all are retained.",
+    "This source has 28 pages and 21 figures, ending with a one-row sticker table, not a separate bolt-summary list.",
+    "Two visible diagram-only callouts lack table rows; 13 figure image regions remain blank or clipped in the local Poppler rendering. Completeness is limited to legible source tables and does not assert exhaustive illustration or stock-BOM completeness.",
+    "PDF and rendered diagram artwork remain local reference assets and are not redistributed with the public catalog."
+  ]
+}

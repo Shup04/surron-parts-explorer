@@ -1,0 +1,142 @@
+[
+  {
+    "slug": "3-00-18-offroad-rear-wheel-set",
+    "rows": 49,
+    "advertised": 49,
+    "exceptions": 0
+  },
+  {
+    "slug": "70-100-19-offroad-front-wheel-set",
+    "rows": 27,
+    "advertised": 27,
+    "exceptions": 0
+  },
+  {
+    "slug": "70-90-17-90-80-17-supermoto-wheels-set",
+    "rows": 23,
+    "advertised": 22,
+    "exceptions": 1
+  },
+  {
+    "slug": "battery-lock-cover",
+    "rows": 8,
+    "advertised": 8,
+    "exceptions": 0
+  },
+  {
+    "slug": "controller-battery-charger",
+    "rows": 25,
+    "advertised": 25,
+    "exceptions": 0
+  },
+  {
+    "slug": "drive-system",
+    "rows": 30,
+    "advertised": 30,
+    "exceptions": 0
+  },
+  {
+    "slug": "fender-kit",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "slug": "frame-coverings",
+    "rows": 35,
+    "advertised": 29,
+    "exceptions": 1
+  },
+  {
+    "slug": "frame-metal-accessories",
+    "rows": 23,
+    "advertised": 22,
+    "exceptions": 1
+  },
+  {
+    "slug": "frame-subframe-swingarm",
+    "rows": 17,
+    "advertised": 17,
+    "exceptions": 0
+  },
+  {
+    "slug": "front-rear-brake-disc-kit",
+    "rows": 3,
+    "advertised": 3,
+    "exceptions": 0
+  },
+  {
+    "slug": "main-harness-circuit-breaker",
+    "rows": 39,
+    "advertised": 38,
+    "exceptions": 1
+  },
+  {
+    "slug": "motor-system",
+    "rows": 26,
+    "advertised": 26,
+    "exceptions": 0
+  },
+  {
+    "slug": "my17-25-brake-system",
+    "rows": 19,
+    "advertised": 19,
+    "exceptions": 0
+  },
+  {
+    "slug": "my17-25-decal-set",
+    "rows": 10,
+    "advertised": 9,
+    "exceptions": 1
+  },
+  {
+    "slug": "my17-25-locks-lights-horn-dc-converter",
+    "rows": 51,
+    "advertised": 35,
+    "exceptions": 1
+  },
+  {
+    "slug": "my26-decal-set",
+    "rows": 11,
+    "advertised": 11,
+    "exceptions": 0
+  },
+  {
+    "slug": "my26-front-brake-system",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "slug": "my26-locks-lights-horn-dc-converter",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "slug": "my26-rear-brake-system",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "slug": "rear-rubber-fender-kit",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "slug": "rear-shock-system",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "slug": "seat",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "slug": "secondary-belt-driver-kit",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "slug": "side-stand-foot-pegs",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "slug": "steering-system-front-fork",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "slug": "swingarm-assembly",
+    "error": "HTTP Error 429: Too Many Requests"
+  }
+]

@@ -1,0 +1,611 @@
+{
+  "version": 1,
+  "source": {
+    "id": "lithium-frame-subframe-swingarm",
+    "title": "Lithium Powersports — Surron Light Bee FRAME & SUBFRAME & SWINGARM",
+    "filename": null,
+    "localPath": null,
+    "url": "https://lithiumpowersports.com/collections/surron-light-bee-frame-subframe-swingarm",
+    "sha256": "3f378c01ed6ad3383d4f1f32949a150af781ed0d416c57057e1a8d70b90e5a68",
+    "pageCount": 1,
+    "edition": "Web snapshot 2026-10-14 UTC",
+    "modelYears": [],
+    "applicabilityNotes": "Retailer claims, not mechanically verified. Years are copied only from explicit product or section labels. No compatibility equivalence is inferred.",
+    "redistribution": "reference-only",
+    "retrievedAt": "2026-10-14T00:51:04.330846Z",
+    "kind": "web"
+  },
+  "rows": [
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r1",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "1",
+      "rowIndex": 1,
+      "oemNumber": "41100-YQ2B-0000-Y19",
+      "originalDescription": "Surron Light Bee X OEM Frame",
+      "normalizedName": "Frame",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-frame"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 1 | SKU: 41100-YQ2B-0000-Y19 | Surron Light Bee X OEM Frame"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r2",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "2",
+      "rowIndex": 2,
+      "oemNumber": "41520-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM Subframe Assy. (41520-YQ2A-Z1)",
+      "normalizedName": "Subframe Assy. (41520-YQ2A-Z1)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-subframe-assy-41520-yq2a-z1"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 2 | SKU: 41520-YQ2A-Z1 | Surron Light Bee X OEM Subframe Assy. (41520-YQ2A-Z1)"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r3",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "3",
+      "rowIndex": 3,
+      "oemNumber": "41520-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Subframe Assy.",
+      "normalizedName": "Subframe Assy.",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-subframe-assy"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 3 | SKU: 41520-YQ2A-0000 | Surron Light Bee X OEM Subframe Assy."
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r4",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "4",
+      "rowIndex": 4,
+      "oemNumber": "B1-009-08-020-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B1009 M8*20",
+      "normalizedName": "Screw B1009 M8*20",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b1009-m8-20"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 4 | SKU: B1-009-08-020-F0 | Surron Light Bee X OEM Screw B1009 M8*20"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r5",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "5",
+      "rowIndex": 5,
+      "oemNumber": "61260-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Swingarm Pivot Shaft 40Cr-10*198-M10*1.0",
+      "normalizedName": "Swingarm Pivot Shaft 40Cr-10*198-M10*1.0",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-swingarm-pivot-shaft-40cr-10-198-m10-1-0"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 5 | SKU: 61260-YQ2A-0000 | Surron Light Bee X OEM Swingarm Pivot Shaft 40Cr-10*198-M10*1.0"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r6",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "5",
+      "rowIndex": 6,
+      "oemNumber": "61260-Y029E-0000",
+      "originalDescription": "Surron Light Bee X OEM Swingarm Pivot Shaft",
+      "normalizedName": "Swingarm Pivot Shaft",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-swingarm-pivot-shaft"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 5 | SKU: 61260-Y029E-0000 | Surron Light Bee X OEM Swingarm Pivot Shaft"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r7",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "06",
+      "rowIndex": 7,
+      "oemNumber": "41151-YQ2A-0000",
+      "originalDescription": "Surron Light Bee OEM Frame and Swingarm Bushing (1 pc)",
+      "normalizedName": "Frame and Swingarm Bushing (1 pc)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-frame-and-swingarm-bushing-1-pc"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 06 | SKU: 41151-YQ2A-0000 | Surron Light Bee OEM Frame and Swingarm Bushing (1 pc)"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r8",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "7",
+      "rowIndex": 8,
+      "oemNumber": "FB05-009-F0",
+      "originalDescription": "Surron Light Bee X OEM Washer FB5009 Φ12.5*Φ24*0.5",
+      "normalizedName": "Washer FB5009 Φ12.5*Φ24*0.5",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-washer-fb5009-%CF%8612-5-%CF%8624-0-5"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 7 | SKU: FB05-009-F0 | Surron Light Bee X OEM Washer FB5009 Φ12.5*Φ24*0.5"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r9",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "7",
+      "rowIndex": 9,
+      "oemNumber": "B4-001-10-F2",
+      "originalDescription": "Surron Light Bee X OEM Washer B4001 d10",
+      "normalizedName": "Washer B4001 d10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-washer-b4001-d10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 7 | SKU: B4-001-10-F2 | Surron Light Bee X OEM Washer B4001 d10"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r10",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "8",
+      "rowIndex": 10,
+      "oemNumber": "B2-013-10-F0",
+      "originalDescription": "Surron Light Bee X OEM Nut B2013 (M10*1.0)",
+      "normalizedName": "Nut B2013 (M10*1.0)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-nut-b2013-m10-1-0"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 8 | SKU: B2-013-10-F0 | Surron Light Bee X OEM Nut B2013 (M10*1.0)"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r11",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "8",
+      "rowIndex": 11,
+      "oemNumber": "FB02-010-12-F2",
+      "originalDescription": "Surron Light Bee X OEM Nut B02010 M12x1.25",
+      "normalizedName": "Nut B02010 M12x1.25",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-nut-b02010-m12x1-25"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 8 | SKU: FB02-010-12-F2 | Surron Light Bee X OEM Nut B02010 M12x1.25"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r12",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "09",
+      "rowIndex": 12,
+      "oemNumber": "41151-Y029E-0000",
+      "originalDescription": "Surron Light Bee OEM Frame and Swingarm Bushing (1 pc)",
+      "normalizedName": "Frame and Swingarm Bushing (1 pc)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-oem-frame-and-swingarm-bushing-1-pc"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 09 | SKU: 41151-Y029E-0000 | Surron Light Bee OEM Frame and Swingarm Bushing (1 pc)"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r13",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "9",
+      "rowIndex": 13,
+      "oemNumber": "81137-YQ2A-0000",
+      "originalDescription": "Surron Light Bee X OEM Nylon Clamp",
+      "normalizedName": "Nylon Clamp",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-nylon-clamp"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 9 | SKU: 81137-YQ2A-0000 | Surron Light Bee X OEM Nylon Clamp"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r14",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "9",
+      "rowIndex": 14,
+      "oemNumber": "81153-NM1A-0000",
+      "originalDescription": "Surron Light Bee X OEM Plastic P Clip (Black) (for dual-connector battery)",
+      "normalizedName": "Plastic P Clip (Black) (for dual-connector battery)",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-plastic-p-clip-white-for-dual-connector-battery"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 9 | SKU: 81153-NM1A-0000 | Surron Light Bee X OEM Plastic P Clip (Black) (for dual-connector battery)"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r15",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "10",
+      "rowIndex": 15,
+      "oemNumber": "B3-002-05-010-F0",
+      "originalDescription": "Surron Light Bee X OEM Screw B3002 M5*10",
+      "normalizedName": "Screw B3002 M5*10",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-screw-b3002-m5-10"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 10 | SKU: B3-002-05-010-F0 | Surron Light Bee X OEM Screw B3002 M5*10"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r16",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "11",
+      "rowIndex": 16,
+      "oemNumber": "41115-YQ2A-Z1",
+      "originalDescription": "Surron Light Bee X OEM (MY17-24) Light Bee Reinforced Riser Clamp Assy",
+      "normalizedName": "(MY17-24) Light Bee Reinforced Riser Clamp Assy",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-x-oem-light-bee-reinforced-riser-clamp-assy"
+      ],
+      "applicability": "Explicit retailer year label: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024",
+      "modelYears": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "itemType": "assembly",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 11 | SKU: 41115-YQ2A-Z1 | Surron Light Bee X OEM (MY17-24) Light Bee Reinforced Riser Clamp Assy"
+    },
+    {
+      "id": "lithium-frame-subframe-swingarm-p1-r17",
+      "sourceId": "lithium-frame-subframe-swingarm",
+      "page": 1,
+      "figure": "frame-subframe-swingarm",
+      "callout": "13",
+      "rowIndex": 17,
+      "oemNumber": "FB03-014-07-030-F9",
+      "originalDescription": "Surron Light Bee OEM Screw B30014 M7*30",
+      "normalizedName": "Screw B30014 M7*30",
+      "quantity": null,
+      "quantityText": null,
+      "dimensionsText": null,
+      "weightText": null,
+      "material": null,
+      "notes": [
+        "Retailer diagram card; source association and explicit year label are claims requiring review. Quantity is not inferred from purchasable units or cart defaults.",
+        "Product reference: https://lithiumpowersports.com/products/surron-light-bee-oem-screw-b30014-m7-30"
+      ],
+      "applicability": null,
+      "modelYears": [],
+      "itemType": "component",
+      "confidence": "high",
+      "reviewFlags": [
+        "retailer-reference-not-factory-confirmed",
+        "quantity-not-stated",
+        "model-year-unknown"
+      ],
+      "assemblyKey": "frame",
+      "assemblyName": "Frame, subframe and swingarm",
+      "rawText": "Item 13 | SKU: FB03-014-07-030-F9 | Surron Light Bee OEM Screw B30014 M7*30"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "figures": [
+        "frame-subframe-swingarm"
+      ],
+      "detectedRows": 17,
+      "importedRows": 17,
+      "reviewRowIds": [
+        "lithium-frame-subframe-swingarm-p1-r1",
+        "lithium-frame-subframe-swingarm-p1-r2",
+        "lithium-frame-subframe-swingarm-p1-r3",
+        "lithium-frame-subframe-swingarm-p1-r4",
+        "lithium-frame-subframe-swingarm-p1-r5",
+        "lithium-frame-subframe-swingarm-p1-r6",
+        "lithium-frame-subframe-swingarm-p1-r7",
+        "lithium-frame-subframe-swingarm-p1-r8",
+        "lithium-frame-subframe-swingarm-p1-r9",
+        "lithium-frame-subframe-swingarm-p1-r10",
+        "lithium-frame-subframe-swingarm-p1-r11",
+        "lithium-frame-subframe-swingarm-p1-r12",
+        "lithium-frame-subframe-swingarm-p1-r13",
+        "lithium-frame-subframe-swingarm-p1-r14",
+        "lithium-frame-subframe-swingarm-p1-r15",
+        "lithium-frame-subframe-swingarm-p1-r16",
+        "lithium-frame-subframe-swingarm-p1-r17"
+      ],
+      "exceptions": [],
+      "visualStatus": "not-inspected",
+      "notes": [
+        "Factual title/SKU/callout cards parsed from saved HTML. Diagram artwork not copied, read or used to infer quantities.",
+        "Advertised card count: 17."
+      ]
+    }
+  ],
+  "notes": [
+    "Supplemental model-year cross-check; not a factory PDF or complete motorcycle bill of materials.",
+    "Retailer overview contains contradictory cross-generation compatibility summaries; no blanket compatibility assertions were imported."
+  ]
+}

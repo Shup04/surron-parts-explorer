@@ -2,18 +2,19 @@
 
 ## Boundaries
 
-| Layer                    | Files                                    | Responsibility                                                                                          |
-| ------------------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Catalog contract         | `src/core/types.ts`                      | Stable part identities, mechanical facts, provenance, verification and asset/mapping contracts          |
-| Domain operations        | `src/core/`                              | Runtime validation, indexed hierarchy/search, URL state, mapping identities and pure explosion math     |
-| OEM domain and ingestion | `src/oem/`, `scripts/oem/`, `data/oem/`  | Immutable source rows, shared OEM identities, occurrences, year claims, review overlays and coverage    |
-| Initial data             | `src/data/oem.ts`, `src/data/catalog.ts` | Source-backed default catalog and separate synthetic fixture                                            |
-| Catalog review           | `src/catalog-review/`                    | Browser-local review, provenance inspection and complete JSON export                                    |
-| Asset registration       | `src/config/assets.ts`                   | Versioned whole-bike and dedicated assembly model URLs plus external mappings                           |
-| Explorer UI              | `src/components/Explorer.tsx`            | Search, tree, selected catalog state, URL/history, detail panel and viewport commands                   |
-| Renderer                 | `src/viewer/`                            | Geometry loading, camera, picking, non-mutating material swaps, explosion interpolation and diagnostics |
-| Local editor             | `src/editor/`                            | Model inspection/mapping, local project edits, JSON exchange and browser storage                        |
-| Offline tooling          | `scripts/`                               | Catalog conversion, GLB/glTF metadata/dependency inspection and Blender export helper                   |
+| Layer                    | Files                                    | Responsibility                                                                                           |
+| ------------------------ | ---------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Catalog contract         | `src/core/types.ts`                      | Stable part identities, mechanical facts, provenance, verification and asset/mapping contracts           |
+| Domain operations        | `src/core/`                              | Runtime validation, indexed hierarchy/search, URL state, mapping identities and pure explosion math      |
+| OEM domain and ingestion | `src/oem/`, `scripts/oem/`, `data/oem/`  | Immutable source rows, shared OEM identities, occurrences, year claims, review overlays and coverage     |
+| Initial data             | `src/data/oem.ts`, `src/data/catalog.ts` | Source-backed default catalog and separate synthetic fixture                                             |
+| Catalog review           | `src/catalog-review/`                    | Browser-local review, provenance inspection and complete JSON export                                     |
+| Curated navigation       | `src/navigation/`                        | Explicit physical inspection roles, separate reference candidates and evidenced installed configurations |
+| Asset registration       | `src/config/assets.ts`                   | Versioned whole-bike and dedicated assembly model URLs plus external mappings                            |
+| Explorer UI              | `src/components/Explorer.tsx`            | Search, tree, selected catalog state, URL/history, detail panel and viewport commands                    |
+| Renderer                 | `src/viewer/`                            | Geometry loading, camera, picking, non-mutating material swaps, explosion interpolation and diagnostics  |
+| Local editor             | `src/editor/`                            | Model inspection/mapping, local project edits, JSON exchange and browser storage                         |
+| Offline tooling          | `scripts/`                               | Catalog conversion, GLB/glTF metadata/dependency inspection and Blender export helper                    |
 
 The renderer receives catalog IDs and emits IDs. It does not own browser navigation or product metadata. A part ID never depends on its display name or on a mesh name. A mapping can associate many scene objects with one part; group mappings are inherited unless a child is mapped more specifically. Preferred persistent scene identity is glTF extras `objectId`; indexed name/path references remain a fallback and must be reviewed when a model hierarchy changes.
 
@@ -26,6 +27,8 @@ A left and right occurrence of the same bearing may share a verified generic des
 The current in-memory search index is built once per catalog change; repeated typing does not rebuild ancestry. Search includes related assembly names. UI search results are bounded and the editor tree progressively displays 250 rows. Very large catalogs can replace the data source and list implementation without changing `Part`, the mapping contract or viewer events. The full explorer tree currently renders expanded branches rather than using virtualization.
 
 ## Navigation and lifecycle
+
+The [curated public tree](navigation.md) is independent of the catalog hierarchy. Its 14 systems group physical inspection roles and collapsed service sections, without reparenting occurrences or changing mesh IDs. An optional `nav` parameter restores presentation groups; existing `part` links retain precedence. Source variants remain reference candidates until an explicit evidenced installed configuration identifies a part. The full catalog remains searchable and available in assembly reference details.
 
 The URL expresses motorcycle, active assembly and selected part. Public `year` and `source` filters preserve source claims, including explicitly unknown years. `demo=1` selects the separate synthetic fixture; a real record without assigned geometry opens its information panel and an explicit empty viewport. Validation repairs impossible combinations. Selecting a component opens its parent assembly; selecting an assembly makes it the viewer context. Native history entries and `popstate` restore this state. Explosion amount, orbit and hidden/isolation state are temporary interaction state, not part of a share link.
 

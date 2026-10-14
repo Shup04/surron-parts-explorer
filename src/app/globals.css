@@ -674,7 +674,8 @@ kbd {
   padding: 0 30px 18px;
   pointer-events: none;
 }
-.stage-bottom > div {
+.stage-bottom > div,
+.stage-bottom > button {
   pointer-events: auto;
 }
 .explore-hint {

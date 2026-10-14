@@ -1,7 +1,9 @@
 [PLANS]
-- 2026-10-14T01:05:29Z [USER] Integrate every usable local OEM source row into existing explorer/editor; preserve originals, discrepancies, year claims and stable identities. No application rebuild or public PDF redistribution.
+- 2026-10-14T01:48:47Z [USER] Refine existing public parts navigation only. Preserve all catalog records, source PDFs, model mappings and 3D engine; no reimport or redesign.
 
 [DECISIONS]
+- 2026-10-14T01:48:47Z [CODE] src/navigation adds an independent 14-system presentation tree with explicit scoped identity selectors, collapsed service sections and reference candidates. The nav query addresses UI groups; part/assembly retain original IDs and renderer ancestry.
+- 2026-10-14T01:48:47Z [CODE] No installed configuration is evidenced in supplied data. Generic physical inspection roles do not choose an OEM variant. VerifiedConfiguration registry ships empty; only explicit evidence, matching motorcycle/year and unambiguous occurrence assignments add installed children.
 - 2026-10-14T01:05:29Z [CODE] Separate exact OEM CatalogPart identity from source-row PartOccurrence; missing OEMs retain individual identities. Source figure groups stay flat under motorcycle unless reviewed relationships establish more. No inferred BOM totals or interchangeability.
 - 2026-10-14T01:05:29Z [CODE] Default / and /editor use OEM catalog; original demo retained at ?demo=1. Real OEM records remain selectable without geometry. /catalog local review overlays preserve original claims; PDFs attach locally with SHA256 validation, no upload endpoints.
 
@@ -11,6 +13,8 @@
 - 2026-10-14T01:05:29Z [TOOL] Browser/build need normalprocess permissions; /opt/google/chrome/chrome available. Concurrent Playwright runs delete shared artifacts; final run must be sequential across agents and workers.
 
 [PROGRESS]
+- 2026-10-14T01:48:47Z [CODE] Navigation refinement implemented with full catalog search, grouped source claims, filtered evidence, legacy links and local OEM editor integration preserved. No data/core/viewer/editor/OEM domain files changed. Parent button and history edge cases fixed.
+- 2026-10-14T01:48:47Z [TOOL] 130 unit/integration tests, 23 serial Chromium browser flows, TypeScript, format checks and production build pass. Browser final run used isolated production preview on port31387 after reused dev server reload loop and dependency interruption; unchanged lockfile restored offline. Desktop/mobile navigation screenshots checked, no mobile horizontal overflow.
 - 2026-10-14T01:05:29Z [CODE] Source ingestion committed3f4f327. Domain builds1396occurrences,683identities,30groups,270discrepancycandidates;0mappedOEMparts. New public/review/editorintegration anddocs implemented; public/review/editorintegration complete. Domain milestone1a50638 committed.
 - 2026-10-14T01:05:29Z [TOOL] Final117unit/integration checks,16serial Chromiumbrowserflows,typecheck,formatcheck andproductionbuild passed. Productiondesktop/mobile screenshots visuallychecked; mobile390px hasnohorizontaloverflow. Temporary productionpreview stopped.
 

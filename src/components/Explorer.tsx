@@ -33,6 +33,15 @@ import { applyReviewPatches } from '@/oem/review';
 import { availableModelYears } from '@/oem/queries';
 import { loadReviewPatches } from '@/catalog-review/storage';
 import { OemDetails } from './OemDetails';
+import { CuratedPartsTree, CuratedAssemblyDetails } from './CuratedParts';
+import {
+  buildCuratedNavigation,
+  navigationAncestors,
+  navigationForOccurrence,
+  type NavigationNode,
+} from '@/navigation/model';
+import { resolveNavigationLocation } from '@/navigation/location';
+import { verifiedConfigurations } from '@/navigation/configurations';
 import type { CatalogFilters } from '@/oem/types';
 
 function sourceFilters(search: string): CatalogFilters {
@@ -52,7 +61,7 @@ import {
   getDescendants,
   searchParts,
 } from '@/core/catalog';
-import { createExplorerUrl, parseExplorerUrl } from '@/core/navigation';
+import { createExplorerUrl } from '@/core/navigation';
 import type {
   AssetDefinition,
   Catalog,
@@ -77,6 +86,8 @@ export default function Explorer() {
   const [demoMode, setDemoMode] = useState(false);
   const [database, setDatabase] = useState(oemDatabase);
   const [filters, setFilters] = useState<CatalogFilters>({});
+  const [navId, setNavId] = useState<string | null>(null);
+  const [configurationId, setConfigurationId] = useState('');
   const [localAsset, setLocalAsset] = useState<AssetDefinition>();
   const [localWorkspace, setLocalWorkspace] = useState(false);
   const [mapping, setMapping] = useState<MappingConfig>();
@@ -103,9 +114,36 @@ export default function Explorer() {
   const search = useRef<HTMLInputElement>(null);
   const autoExplosion = useRef<ReturnType<typeof setTimeout> | null>(null);
   const index = useMemo(() => buildCatalogIndex(catalog), [catalog]);
+  const curatedEnabled =
+    !demoMode &&
+    (!localWorkspace || catalog.parts.some((part) => part.specifications['Catalog identity']));
+  const navigation = useMemo(
+    () =>
+      curatedEnabled
+        ? buildCuratedNavigation(database, catalog, {
+            modelYear: filters.modelYear,
+            configurationId,
+            configurations: verifiedConfigurations,
+          })
+        : null,
+    [curatedEnabled, database, catalog, filters.modelYear, configurationId],
+  );
   const assembly = index.byId.get(assemblyId) ?? index.byId.get(catalog.motorcycleId)!;
   const selection = selectedId ? index.byId.get(selectedId) : undefined;
   const detail = selection ?? assembly;
+  const activeNode =
+    selection?.kind === 'component' ? undefined : navigation?.byId.get(navId ?? assemblyId);
+  const selectionNode =
+    selectedId && navigation ? navigationForOccurrence(navigation, selectedId) : undefined;
+  const presentationNode = activeNode ?? selectionNode;
+  const navigationPath =
+    activeNode && navigation
+      ? [
+          ...navigationAncestors(navigation, activeNode.id).map((id) => navigation.byId.get(id)!),
+          activeNode,
+        ]
+      : [];
+  const overview = assemblyId === catalog.motorcycleId && !activeNode;
   const isFull = assemblyId === catalog.motorcycleId;
   const results = useMemo(
     () => (query.trim() ? searchParts(index, query, 101) : []),
@@ -130,6 +168,8 @@ export default function Explorer() {
       const params = new URLSearchParams(window.location.search);
       const demo = params.get('demo') === '1';
       setDemoMode(demo);
+      setNavId(params.get('nav'));
+      setConfigurationId(params.get('configuration') ?? '');
       let reviewed = oemDatabase;
       try {
         reviewed = applyReviewPatches(oemDatabase, loadReviewPatches());
@@ -183,12 +223,27 @@ export default function Explorer() {
         }
       }
       if (disposed) return;
-      const state = parseExplorerUrl(window.location.search, activeCatalog);
+      const activeNavigation =
+        !demo &&
+        (!params.has('workspace') ||
+          activeCatalog.parts.some((part) => part.specifications['Catalog identity']))
+          ? buildCuratedNavigation(reviewed, activeCatalog, {
+              modelYear: initialFilters.modelYear,
+              configurationId: params.get('configuration') ?? '',
+              configurations: verifiedConfigurations,
+            })
+          : null;
+      const state = resolveNavigationLocation(
+        window.location.search,
+        activeCatalog,
+        activeNavigation,
+      );
       setAssemblyId(state.assemblyId);
       setSelectedId(state.partId);
       setDetailOpen(
-        !!state.partId &&
-          activeCatalog.parts.find((part) => part.id === state.partId)?.kind === 'component',
+        !!params.get('nav') ||
+          (!!state.partId &&
+            activeCatalog.parts.find((part) => part.id === state.partId)?.kind === 'component'),
       );
       setExpanded(
         new Set([
@@ -209,16 +264,29 @@ export default function Explorer() {
 
   useEffect(() => {
     const onPop = () => {
+      const params = new URLSearchParams(window.location.search);
+      setNavId(params.get('nav'));
+      setConfigurationId(params.get('configuration') ?? '');
       const nextFilters = sourceFilters(window.location.search);
       setFilters(nextFilters);
       const active =
         demoMode || localWorkspace ? catalog : toExplorerCatalog(database, nextFilters);
       if (!demoMode && !localWorkspace) setCatalog(active);
-      const state = parseExplorerUrl(window.location.search, active);
+      const activeNavigation = curatedEnabled
+        ? buildCuratedNavigation(database, active, {
+            modelYear: nextFilters.modelYear,
+            configurationId: params.get('configuration') ?? '',
+            configurations: verifiedConfigurations,
+          })
+        : null;
+      const state = resolveNavigationLocation(window.location.search, active, activeNavigation);
       setAssemblyId(state.assemblyId);
       setSelectedId(state.partId);
       const activeIndex = buildCatalogIndex(active);
-      setDetailOpen(!!state.partId && activeIndex.byId.get(state.partId)?.kind === 'component');
+      setDetailOpen(
+        !!params.get('nav') ||
+          (!!state.partId && activeIndex.byId.get(state.partId)?.kind === 'component'),
+      );
       setExpanded(
         new Set([
           active.motorcycleId,
@@ -234,12 +302,13 @@ export default function Explorer() {
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
-  }, [catalog, database, demoMode, localWorkspace]);
+  }, [catalog, database, demoMode, localWorkspace, curatedEnabled]);
 
   const navigate = useCallback(
-    (partId: string) => {
+    (partId: string, presentationId?: string) => {
       const part = index.byId.get(partId);
       if (!part) return;
+      setNavId(presentationId ?? null);
       const nextAssembly =
         part.kind === 'component' ? (part.parentId ?? catalog.motorcycleId) : part.id;
       const nextPart = part.kind === 'motorcycle' ? null : part.id;
@@ -252,6 +321,8 @@ export default function Explorer() {
       if (demoMode) target.searchParams.set('demo', '1');
       if (filters.modelYear) target.searchParams.set('year', String(filters.modelYear));
       if (filters.sourceId) target.searchParams.set('source', filters.sourceId);
+      if (configurationId) target.searchParams.set('configuration', configurationId);
+      if (presentationId) target.searchParams.set('nav', presentationId);
       if (
         `${window.location.pathname}${window.location.search}` !==
         `${target.pathname}${target.search}`
@@ -267,10 +338,10 @@ export default function Explorer() {
       setHoveredId(null);
       if (nextAssembly !== assemblyId) setExplosion(0);
       setNavOpen(false);
-      setDetailOpen(part.kind === 'component');
+      setDetailOpen(!!presentationId || part.kind === 'component');
       setNotice(`${part.name} selected`);
     },
-    [assemblyId, catalog.motorcycleId, index, localWorkspace, demoMode, filters],
+    [assemblyId, catalog.motorcycleId, index, localWorkspace, demoMode, filters, configurationId],
   );
 
   useEffect(() => {
@@ -348,7 +419,15 @@ export default function Explorer() {
       if (value) url.searchParams.set(key, String(value));
       else url.searchParams.delete(key);
     }
-    const state = parseExplorerUrl(url.search, active);
+    const state = resolveNavigationLocation(
+      url.search,
+      active,
+      buildCuratedNavigation(database, active, {
+        modelYear: next.modelYear,
+        configurationId,
+        configurations: verifiedConfigurations,
+      }),
+    );
     setAssemblyId(state.assemblyId);
     setSelectedId(state.partId);
     if (!state.partId) url.searchParams.delete('part');
@@ -364,7 +443,7 @@ export default function Explorer() {
   const geometryIds = [detail.id, ...getDescendants(index, detail.id).map((part) => part.id)];
   const hasGeometry =
     demoMode || (hasImportedGeometry && geometryIds.some((id) => mappedIds.has(id)));
-  const showDemonstration = !hasImportedGeometry && !demoMode && isFull && !selection;
+  const showDemonstration = !hasImportedGeometry && !demoMode && overview && !selection;
   const showViewer = hasGeometry || showDemonstration;
   const sceneCatalog = showDemonstration ? demoCatalog : catalog;
   const selectGeometry = (id: string) => {
@@ -384,6 +463,8 @@ export default function Explorer() {
     const part = active.parts.find((item) => item.id === id);
     if (!part) return;
     setFilters({});
+    setNavId(null);
+    setConfigurationId('');
     setCatalog(active);
     setAssemblyId(part.parentId ?? 'lbx');
     setSelectedId(id);
@@ -399,6 +480,41 @@ export default function Explorer() {
       createExplorerUrl({ assemblyId: part.parentId ?? 'lbx', partId: id }),
     );
   };
+  const navigateNode = (node: NavigationNode) => {
+    if (node.occurrenceId) {
+      navigateOccurrence(node.occurrenceId);
+      return;
+    }
+    // The renderer keeps its existing scope and original catalog parent relationships.
+    navigate(node.scopeId, node.id);
+    setExpanded(
+      (previous) => new Set([...previous, ...navigationAncestors(navigation!, node.id), node.id]),
+    );
+  };
+  const navigateParent = () => {
+    const parent = activeNode?.parentId && navigation?.byId.get(activeNode.parentId);
+    if (parent) navigateNode(parent);
+    else navigate(assembly.parentId ?? catalog.motorcycleId);
+  };
+  useEffect(() => {
+    if (!navigation) return;
+    const node =
+      navigation.byId.get(navId ?? '') ??
+      (selectedId ? navigationForOccurrence(navigation, selectedId) : undefined);
+    if (node)
+      setExpanded(
+        (previous) => new Set([...previous, ...navigationAncestors(navigation, node.id)]),
+      );
+  }, [navigation, navId, selectedId]);
+  function changeConfiguration(id: string) {
+    const config = verifiedConfigurations.find((item) => item.id === id);
+    setConfigurationId(config?.id ?? '');
+    if (config) changeSourceFilter({ modelYear: config.modelYear });
+    const url = new URL(window.location.href);
+    if (config) url.searchParams.set('configuration', config.id);
+    else url.searchParams.delete('configuration');
+    window.history.replaceState(null, '', url.pathname + url.search);
+  }
   const renderTree = (parentId: string, depth = 0): React.ReactNode =>
     getChildren(index, parentId).map((part) => {
       const children = getChildren(index, part.id);
@@ -487,7 +603,9 @@ export default function Explorer() {
             >
               <X size={18} />
             </button>
-            <span className="count-tag">{catalog.parts.length - 1}</span>
+            <span className="count-tag">
+              {navigation ? `${navigation.roots.length} systems` : catalog.parts.length - 1}
+            </span>
           </div>
           <div className="search-box">
             <Search size={16} />
@@ -544,7 +662,24 @@ export default function Explorer() {
                   </option>
                 ))}
               </select>
-              <small>Year labels follow source claims, not confirmed fitment.</small>
+              {verifiedConfigurations.length > 0 && (
+                <select
+                  aria-label="Verified motorcycle configuration"
+                  value={configurationId}
+                  onChange={(event) => changeConfiguration(event.target.value)}
+                >
+                  <option value="">Installed configuration unconfirmed</option>
+                  {verifiedConfigurations.map((config) => (
+                    <option key={config.id} value={config.id}>
+                      {config.name} · MY{config.modelYear}
+                    </option>
+                  ))}
+                </select>
+              )}
+              <small>
+                Source-year filter · installed configuration{' '}
+                {configurationId && !navigation?.warnings.length ? 'selected' : 'unconfirmed'}.
+              </small>
             </div>
           )}
           <button
@@ -560,7 +695,9 @@ export default function Explorer() {
           <div className="catalog-scroll">
             {query.trim() ? (
               <div className="search-results">
-                <p className="eyebrow">{results.length} MATCHING PARTS</p>
+                <p className="eyebrow">
+                  {results.length} {navigation ? 'REFERENCE MATCHES' : 'MATCHING PARTS'}
+                </p>
                 {results.length ? (
                   results.slice(0, 100).map((part) => (
                     <button
@@ -604,18 +741,36 @@ export default function Explorer() {
                 )}
               </div>
             ) : (
-              <ul className="parts-tree">{renderTree(catalog.motorcycleId)}</ul>
+              <ul className="parts-tree">
+                {navigation ? (
+                  <CuratedPartsTree
+                    nodes={navigation.roots}
+                    expanded={expanded}
+                    activeId={presentationNode?.id ?? null}
+                    selectedId={selectedId}
+                    onToggle={toggleExpanded}
+                    onNavigate={navigateNode}
+                  />
+                ) : (
+                  renderTree(catalog.motorcycleId)
+                )}
+              </ul>
             )}
           </div>
           <div className="catalog-footer">
             <span className="verification-dot" />
             <div>
-              <strong>{demoMode ? 'Geometry demonstration' : 'Source-backed catalog'}</strong>
+              <strong>{demoMode ? 'Geometry demonstration' : 'Motorcycle systems'}</strong>
               <p>
                 {demoMode
                   ? 'Synthetic geometry and sample metadata.'
-                  : `${database.parts.length} part identities · accurate geometry awaits mapping.`}
+                  : 'Full OEM references remain available through search and assembly details.'}
               </p>
+              {navigation && (
+                <Link className="inline-link" href="/catalog">
+                  Complete OEM catalog
+                </Link>
+              )}
             </div>
           </div>
         </aside>
@@ -623,21 +778,37 @@ export default function Explorer() {
         <section className="viewer-panel" aria-label="Interactive motorcycle viewer" ref={stage}>
           <div className="viewer-title">
             <nav className="breadcrumbs" aria-label="Assembly breadcrumb">
-              {breadcrumbs.map((part, i) => (
-                <span key={part.id}>
-                  {i > 0 && <ChevronRight size={12} />}
-                  <button onClick={() => navigate(part.id)}>
-                    {part.kind === 'motorcycle' ? 'Light Bee X' : part.name}
-                  </button>
-                </span>
-              ))}
+              {navigationPath.length ? (
+                <>
+                  <span>
+                    <button onClick={() => navigate(catalog.motorcycleId)}>Light Bee X</button>
+                  </span>
+                  {navigationPath.map((node) => (
+                    <span key={node.id}>
+                      <ChevronRight size={12} />
+                      <button onClick={() => navigateNode(node)}>{node.name}</button>
+                    </span>
+                  ))}
+                </>
+              ) : (
+                breadcrumbs.map((part, i) => (
+                  <span key={part.id}>
+                    {i > 0 && <ChevronRight size={12} />}
+                    <button onClick={() => navigate(part.id)}>
+                      {part.kind === 'motorcycle' ? 'Light Bee X' : part.name}
+                    </button>
+                  </span>
+                ))
+              )}
             </nav>
             <div className="viewer-heading">
               <div>
                 <div className="eyebrow">
-                  {isFull ? 'EXPLORE EVERY CONNECTION' : 'ASSEMBLY WORKBENCH'}
+                  {overview ? 'EXPLORE EVERY CONNECTION' : 'ASSEMBLY WORKBENCH'}
                 </div>
-                <h1>{isFull ? 'The machine, piece by piece.' : assembly.name}</h1>
+                <h1>
+                  {overview ? 'The machine, piece by piece.' : (activeNode?.name ?? assembly.name)}
+                </h1>
               </div>
               <span className="demo-pill">
                 {hasImportedGeometry
@@ -670,8 +841,8 @@ export default function Explorer() {
                 <Box size={36} strokeWidth={1} />
                 <h2>No 3D representation assigned</h2>
                 <p>
-                  {detail.name} is available in the source catalog. Map an imported model to this
-                  record to inspect its geometry.
+                  {activeNode?.name ?? detail.name} is available for reference browsing. Map an
+                  imported model to this record to inspect its geometry.
                 </p>
                 <Link href="/editor">
                   Open model mapping editor <ArrowUpRight size={15} />
@@ -783,7 +954,7 @@ export default function Explorer() {
             </button>
           )}
           <div className="stage-bottom">
-            {isFull ? (
+            {overview ? (
               <div className="explore-hint">
                 <MousePointer2 size={19} />
                 <span>
@@ -791,9 +962,19 @@ export default function Explorer() {
                   <small>Rotate, inspect, and explore from the inside out.</small>
                 </span>
                 <>
-                  {featuredAssembly && (
-                    <button className="text-button" onClick={() => navigate(featuredAssembly.id)}>
-                      Explore {featuredAssembly.name.replace(/ assembly$/i, '').toLowerCase()}{' '}
+                  {(navigation || featuredAssembly) && (
+                    <button
+                      className="text-button"
+                      onClick={() =>
+                        navigation
+                          ? navigateNode(navigation.byId.get('jackshaft')!)
+                          : navigate(featuredAssembly!.id)
+                      }
+                    >
+                      Explore{' '}
+                      {navigation
+                        ? 'jackshaft'
+                        : featuredAssembly!.name.replace(/ assembly$/i, '').toLowerCase()}{' '}
                       <ArrowUpRight size={16} />
                     </button>
                   )}
@@ -833,7 +1014,7 @@ export default function Explorer() {
                   <button onClick={() => adjustExplosion(1)}>Exploded</button>
                 </div>
                 <div className="explosion-footer">
-                  <button onClick={() => navigate(assembly.parentId ?? catalog.motorcycleId)}>
+                  <button onClick={navigateParent}>
                     <ArrowLeft size={14} />
                     Parent assembly
                   </button>
@@ -851,10 +1032,7 @@ export default function Explorer() {
                 </div>
               </div>
             ) : (
-              <button
-                className="text-button"
-                onClick={() => navigate(assembly.parentId ?? catalog.motorcycleId)}
-              >
+              <button className="text-button" onClick={navigateParent}>
                 <ArrowLeft size={14} />
                 Parent assembly
               </button>
@@ -862,9 +1040,15 @@ export default function Explorer() {
             <div className="viewer-footnote">
               <span>
                 <span className="status-dot" />
-                {isFull
-                  ? 'MOTORCYCLE OVERVIEW'
-                  : `${getDescendants(index, assemblyId).length} CATALOG COMPONENTS`}
+                {navigation
+                  ? overview
+                    ? 'MOTORCYCLE OVERVIEW'
+                    : activeNode?.children.length
+                      ? `${activeNode.children.length} INSPECTION GROUPS`
+                      : 'COMPONENT REFERENCE'
+                  : isFull
+                    ? 'MOTORCYCLE OVERVIEW'
+                    : `${getDescendants(index, assemblyId).length} CATALOG COMPONENTS`}
               </span>
               <span>
                 Y UP <span className="muted">/</span> METRES
@@ -931,6 +1115,15 @@ export default function Explorer() {
                 hasGeometry={hasGeometry}
                 onNavigate={navigateOccurrence}
                 onIsolate={() => setIsolatedId(isolatedId === detail.id ? null : detail.id)}
+              />
+            ) : navigation && (activeNode || isFull) ? (
+              <CuratedAssemblyDetails
+                key={activeNode?.id ?? 'overview'}
+                node={activeNode ?? null}
+                roots={navigation.roots}
+                database={database}
+                onNavigate={navigateNode}
+                onSelectOccurrence={navigateOccurrence}
               />
             ) : !demoMode && !localWorkspace ? (
               <>

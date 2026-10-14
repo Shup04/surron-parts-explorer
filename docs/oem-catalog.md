@@ -48,6 +48,8 @@ The exact collection slugs, acquisition failures, parsed-card counts and adverti
 
 ## Identity, occurrences and provenance
 
+The public explorer uses a separate [curated navigation layer](navigation.md). Its physical systems, service groups and reference candidates do not alter this source database, its occurrence hierarchy or 3D mapping identities. Source-year filters are not installed-configuration selectors.
+
 The existing 3D engine still consumes its original recursive `Catalog` protocol. The new `src/oem/` domain is separate; `toExplorerCatalog()` adapts source-backed occurrences to selectable explorer nodes.
 
 | Concept            | What it represents                                                                                                                                                                       |

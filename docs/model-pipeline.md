@@ -12,6 +12,8 @@ Choose a forward axis consistently for your assets and document it with the sour
 
 ## Blender preparation
 
+For a concise preparation and re-export workflow, use the [Blender export checklist](blender-export-checklist.md).
+
 1. Work on a backed-up `.blend`. Identify the source length convention and set Blender Scene Units to Metric with a deliberate Unit Scale. Changing display units alone is not proof that geometry is scaled correctly.
 2. Check at least one known physical dimension against its source. Verify it again after glTF export. Avoid global automatic scale corrections when exact assembly alignment is important.
 3. Keep each selectable component as a separate object. Use empty parent objects for assemblies, including nested assemblies. Name objects meaningfully (`jackshaft`, `bearing-left`, `spacer-right`) to improve suggestions, but treat names as labels.

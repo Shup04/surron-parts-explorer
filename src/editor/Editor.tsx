@@ -37,6 +37,8 @@ import { validateCatalog } from '@/core/catalog';
 import { classifyObjects, getObjectKey, validateMapping } from '@/core/mapping';
 import type { Explosion, MappingConfig, Part, Vec3 } from '@/core/types';
 import { EditorCanvas, type CameraCommand } from './EditorCanvas';
+import { ImportPreflightReport } from './ImportPreflightReport';
+import { preflightImportedModel, type ImportPreflight } from './preflight';
 import {
   assignMappings,
   disposeScene,
@@ -112,6 +114,7 @@ export function Editor() {
       new URLSearchParams(window.location.search).get('demo') === '1',
   );
   const [scene, setScene] = useState(() => createDemoScene());
+  const [preflight, setPreflight] = useState<ImportPreflight | null>(null);
   const [project, setProject] = useState<EditorProject>(() => ({
     version: 1,
     catalog: demoMode ? demoCatalog : oemCatalog,
@@ -222,7 +225,10 @@ export function Editor() {
       unmapped.has(proposal.objectKey),
     );
   }, [objects, project.catalog, project.mapping, classified, mappingEnabled]);
-  const warnings = useMemo(() => [...new Set(sceneWarnings(scene))], [scene]);
+  const warnings = useMemo(
+    () => preflight?.warnings ?? [...new Set(sceneWarnings(scene))],
+    [scene, preflight],
+  );
   const mappingValidation = useMemo(
     () => validateMapping(project.mapping, project.catalog, objects),
     [project.mapping, project.catalog, objects],
@@ -325,6 +331,7 @@ export function Editor() {
         }
         if (asset) {
           const imported = await loadModel(asset.url);
+          const report = await preflightImportedModel(imported, asset.url);
           if (cancelled) {
             disposeScene(imported);
             asset.dispose();
@@ -332,6 +339,7 @@ export function Editor() {
           }
           localAsset.current?.dispose();
           localAsset.current = asset;
+          setPreflight(report);
           setScene(imported);
         }
         setProject(saved);
@@ -410,6 +418,7 @@ export function Editor() {
     try {
       asset = await materializeFiles(files, filename);
       const imported = await loadModel(asset.url);
+      const report = await preflightImportedModel(imported, asset.url);
       if (sequence !== importSequence.current) {
         asset.dispose();
         disposeScene(imported);
@@ -427,6 +436,7 @@ export function Editor() {
           ? { ...project.mapping, assetId: filename }
           : { version: 1, assetId: filename, units: 'm', upAxis: 'Y', mappings: [] },
       });
+      setPreflight(report);
       setScene(imported);
       setSelected([]);
       setHidden([]);
@@ -931,33 +941,46 @@ export function Editor() {
           <details className="editor-validation" open={!mappingValidation.success}>
             <summary>
               {mappingValidation.success ? <Check size={15} /> : <X size={15} />}
-              {mappingValidation.success
-                ? 'Mapping is structurally valid'
-                : `${mappingValidation.issues.length} mapping issues`}
-              <span>Geometry checks</span>
+              {preflight
+                ? `Import preflight · ${warnings.length} review items`
+                : mappingValidation.success
+                  ? 'Mapping is structurally valid'
+                  : `${mappingValidation.issues.length} mapping issues`}
+              <span>
+                {preflight
+                  ? mappingValidation.success
+                    ? 'Mapping is structurally valid'
+                    : `${mappingValidation.issues.length} mapping issues`
+                  : 'Geometry checks'}
+              </span>
             </summary>
-            <ul>
-              {!mappingValidation.success &&
-                mappingValidation.issues.map((issue, i) => (
-                  <li key={`issue-${i}`}>{issue.message}</li>
+            <div className={preflight ? 'editor-preflight-content' : undefined}>
+              {preflight && <ImportPreflightReport report={preflight} />}
+              <ul>
+                {!mappingValidation.success &&
+                  mappingValidation.issues.map((issue, i) => (
+                    <li key={`issue-${i}`}>{issue.message}</li>
+                  ))}
+                {warnings.map((warning, i) => (
+                  <li key={i}>{warning}</li>
                 ))}
-              {warnings.map((warning, i) => (
-                <li key={i}>{warning}</li>
-              ))}
-            </ul>
-            {!mappingValidation.success && (
-              <button
-                onClick={() => {
-                  const keys = new Set(objects.map((object) => object.key));
-                  updateMapping({
-                    ...project.mapping,
-                    mappings: project.mapping.mappings.filter((entry) => keys.has(entry.objectKey)),
-                  });
-                }}
-              >
-                Remove mappings for missing objects
-              </button>
-            )}
+              </ul>
+              {!mappingValidation.success && (
+                <button
+                  onClick={() => {
+                    const keys = new Set(objects.map((object) => object.key));
+                    updateMapping({
+                      ...project.mapping,
+                      mappings: project.mapping.mappings.filter((entry) =>
+                        keys.has(entry.objectKey),
+                      ),
+                    });
+                  }}
+                >
+                  Remove mappings for missing objects
+                </button>
+              )}
+            </div>
           </details>
         </main>
         <aside className="editor-inspector" aria-label="Mapping and catalog inspector">

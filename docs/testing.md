@@ -1,5 +1,13 @@
 # Verification record
 
+## Import preflight addition
+
+Verified on 2026-10-13: 25 focused unit tests (`preflight`, `editor`, `model`) pass, including nine new preflight checks. They cover original names, shared/instanced triangles, hierarchy, mapping-key ambiguity, metre bounds, inherited/matrix scales, conservative origin checks, unchanged geometry/transforms, and unavailable source metadata. The production build and TypeScript checks pass.
+
+Eight focused Chromium flows pass on the isolated production preview at `127.0.0.1:31391`: seven existing import/mapping/studio regressions and one new binary-GLB flow. The new flow checks duplicate names before loader renaming, snapshot stability during explosion, individual mapping, saved-model restoration, failed-import retention, and phone overflow. Test selector/text-snapshot corrections were followed by a passing targeted rerun on the same build. Desktop and phone captures in `test-results/preflight-final/` were inspected. The complete application suite below was not rerun for this focused addition. Actual Blender export and real motorcycle models remain untested; readiness warnings are advisory, not mechanical verification.
+
+## Earlier full application review
+
 Verified on 2026-10-13 with Node.js 24.18.0 and the committed npm lockfile.
 
 | Check                                | Result                                                                                                          |

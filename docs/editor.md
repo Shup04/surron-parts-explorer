@@ -13,6 +13,8 @@ For glTF companions, exact relative paths are preferred; unique file basenames a
 
 ## Map objects to catalog entries
 
+After GLB/glTF import, open **Import preflight** below the preview for counts, original-name checks, hierarchy depth, metre bounds and actionable transform/origin warnings. It is a snapshot of the imported scene, so exploding or hiding parts does not change the report. It also refreshes when a saved model is restored. The report does not repair the asset or verify physical accuracy. Use the [Blender export checklist](blender-export-checklist.md) before your first import.
+
 The object list preserves source hierarchy. Search object names, keys, catalog IDs, and part names. Filter by mapped, unmapped, or ambiguous state. Long trees load in batches of 250 rows. Expand or collapse groups, and select via the list or directly in the viewport. Checkboxes and Shift-click support multiple selection.
 
 Search catalog targets by OEM number, occurrence ID, name, assembly or source. Results are paginated; each target identifies its source and shared physical identity. Select the correct source occurrence and choose **Map selected**. Several meshes may map to one stable catalog ID. Mapping a group also maps its descendants unless a child has an explicit mapping. The `↳` indicator identifies inherited mappings. Mapping operations replace selected object assignments; **Unmap** removes only explicit assignments, so a parent assignment can still apply. For an inherited-only selection, **Unmap** is disabled; select the mapped parent to remove that assignment.

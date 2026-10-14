@@ -13,7 +13,10 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "catalog": "node --import tsx scripts/catalog.ts",
-    "model:check": "node --import tsx scripts/check-model.ts"
+    "model:check": "node --import tsx scripts/check-model.ts",
+    "oem:build": "node --import tsx scripts/oem/build-catalog.ts",
+    "oem:extract:pdf": "python3 scripts/oem/extract-legacy.py && python3 scripts/oem/extract-2021.py",
+    "oem:extract:web": "python3 scripts/oem/extract-current.py"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",

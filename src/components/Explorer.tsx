@@ -52,6 +52,11 @@ function sourceFilters(search: string): CatalogFilters {
   };
 }
 
+function closeMenu(menu: HTMLDetailsElement) {
+  menu.open = false;
+  menu.querySelector<HTMLElement>(':scope > summary')?.focus();
+}
+
 import {
   buildCatalogIndex,
   getAncestors,
@@ -408,20 +413,54 @@ export default function Explorer() {
     setExplosion(amount);
   };
 
+  const closeViewerPopover = useCallback(() => {
+    setHelpOpen(false);
+    setStatsOpen(false);
+    workspace.current?.querySelector<HTMLElement>('.viewer-options > summary')?.focus();
+  }, []);
+
+  useEffect(() => {
+    if (helpOpen || statsOpen)
+      workspace.current?.querySelector<HTMLButtonElement>('.viewer-popover .icon-button')?.focus();
+  }, [helpOpen, statsOpen]);
+
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        document
-          .querySelectorAll(
+        // Dismiss the active layer without changing the model state underneath it.
+        const menus = [
+          ...document.querySelectorAll<HTMLDetailsElement>(
             '.explorer-ux .viewer-options[open], .explorer-ux .workspace-tools[open]',
-          )
-          .forEach((menu) => menu.removeAttribute('open'));
-        setNavOpen((previous) => (compact ? false : previous));
-        setDetailOpen(false);
-        setHelpOpen(false);
-        setStatsOpen(false);
+          ),
+        ];
+        const focusedMenu = menus.find((item) => item.contains(document.activeElement));
+        if (focusedMenu) {
+          closeMenu(focusedMenu);
+          return;
+        }
+        if (compact && navOpen) {
+          setNavOpen(false);
+          return;
+        }
+        if (compact && detailsVisible) {
+          setDetailOpen(false);
+          return;
+        }
+        const menu = menus.at(-1);
+        if (menu) {
+          closeMenu(menu);
+          return;
+        }
+        if (helpOpen || statsOpen) {
+          closeViewerPopover();
+          return;
+        }
+        if (detailsVisible) {
+          setDetailOpen(false);
+          detailsButton.current?.focus();
+          return;
+        }
         setIsolatedId(null);
-        if (compact) partsButton.current?.focus();
         return;
       }
       if (
@@ -440,7 +479,7 @@ export default function Explorer() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [compact]);
+  }, [compact, navOpen, detailsVisible, helpOpen, statsOpen, closeViewerPopover]);
 
   const toggleHidden = (id: string) =>
     setHiddenIds((prev) =>
@@ -457,6 +496,7 @@ export default function Explorer() {
     try {
       await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
+      setNotice('Share link copied.');
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
       setNotice('Copy the page address from your browser to share this selection.');
@@ -767,7 +807,13 @@ export default function Explorer() {
               onChange={(event) => setQuery(event.target.value)}
             />
             {query ? (
-              <button aria-label="Clear search" onClick={() => setQuery('')}>
+              <button
+                aria-label="Clear search"
+                onClick={() => {
+                  setQuery('');
+                  search.current?.focus();
+                }}
+              >
                 <X size={15} />
               </button>
             ) : (
@@ -856,7 +902,7 @@ export default function Explorer() {
           <div className="catalog-scroll">
             {query.trim() ? (
               <div className="search-results">
-                <p className="eyebrow">
+                <p className="eyebrow" role="status" aria-live="polite" aria-atomic="true">
                   {results.length > 100 ? '100+' : results.length}{' '}
                   {navigation ? 'Reference matches' : 'Matching parts'}
                 </p>
@@ -1031,15 +1077,17 @@ export default function Explorer() {
                 <Box size={30} strokeWidth={1} />
                 <h2>No 3D representation assigned</h2>
                 <p>{activeNode?.name ?? detail.name} is available in the parts catalog.</p>
-                <button
-                  className="text-button"
-                  onClick={() => {
-                    setDetailOpen(true);
-                    if (compact) setNavOpen(false);
-                  }}
-                >
-                  View part information <ChevronRight size={15} />
-                </button>
+                {!detailsVisible && (
+                  <button
+                    className="text-button"
+                    onClick={() => {
+                      setDetailOpen(true);
+                      if (compact) setNavOpen(false);
+                    }}
+                  >
+                    View part information <ChevronRight size={15} />
+                  </button>
+                )}
                 <details>
                   <summary>Model options</summary>
                   <Link href="/editor">Open model mapping editor</Link>
@@ -1062,7 +1110,10 @@ export default function Explorer() {
               <summary>Viewer options</summary>
               <div
                 className="tools-menu"
-                onClick={(event) => event.currentTarget.closest('details')?.removeAttribute('open')}
+                onClick={(event) => {
+                  const menu = event.currentTarget.closest('details');
+                  if (menu) closeMenu(menu);
+                }}
               >
                 <button
                   onClick={() => {
@@ -1102,7 +1153,7 @@ export default function Explorer() {
               <button
                 className="icon-button"
                 aria-label="Close viewer help"
-                onClick={() => setHelpOpen(false)}
+                onClick={closeViewerPopover}
               >
                 <X size={16} />
               </button>
@@ -1120,7 +1171,7 @@ export default function Explorer() {
               <button
                 className="icon-button"
                 aria-label="Close performance diagnostics"
-                onClick={() => setStatsOpen(false)}
+                onClick={closeViewerPopover}
               >
                 <X size={16} />
               </button>
@@ -1216,7 +1267,11 @@ export default function Explorer() {
         >
           <div className="panel-heading">
             <span className="eyebrow">
-              {detail.kind === 'component' ? 'Part details' : 'Assembly details'}
+              {detail.kind === 'component' ||
+              activeNode?.kind === 'component' ||
+              activeNode?.kind === 'installed'
+                ? 'Part details'
+                : 'Assembly details'}
             </span>
             <button
               className="icon-button share-button"

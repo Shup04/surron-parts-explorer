@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { Button, IconButton } from '@/components/ui/Button';
 import {
   Component,
@@ -165,6 +164,11 @@ export function Editor() {
   const jsonInput = useRef<HTMLInputElement>(null);
 
   const objects = useMemo(() => inspectScene(scene), [scene]);
+  const originalVisibility = useMemo(() => {
+    const visibility = new Map<string, boolean>();
+    scene.traverse((object) => visibility.set(getObjectKey(object, scene), object.visible));
+    return visibility;
+  }, [scene]);
   const objectByKey = useMemo(
     () => new Map(objects.map((object) => [object.key, object])),
     [objects],
@@ -225,6 +229,38 @@ export function Editor() {
   );
   const currentPart = partsById.get(targetPart);
   const selectedSet = useMemo(() => new Set(selected), [selected]);
+  const hasDirectMapping = project.mapping.mappings.some((entry) =>
+    selectedSet.has(entry.objectKey),
+  );
+  const hasInheritedMapping = classified.some(
+    (entry) => selectedSet.has(entry.object.key) && entry.inherited,
+  );
+  const objectVisibility = useMemo(() => {
+    const hiddenSet = new Set(hidden);
+    const ancestors = (key: string) => {
+      const keys: string[] = [];
+      let current: string | null = key;
+      while (current) {
+        keys.push(current);
+        current = objectByKey.get(current)?.parentKey ?? null;
+      }
+      return keys;
+    };
+    const isolationAncestors = new Set(isolated?.flatMap(ancestors));
+    return new Map(
+      objects.map((object) => {
+        const path = ancestors(object.key);
+        const hidden = path.some(
+          (key) => hiddenSet.has(key) || originalVisibility.get(key) === false,
+        );
+        const outsideIsolation =
+          isolated?.length &&
+          !isolationAncestors.has(object.key) &&
+          !path.some((key) => isolated.includes(key));
+        return [object.key, hidden ? 'Hidden' : outsideIsolation ? 'Outside isolation' : null];
+      }),
+    );
+  }, [objects, objectByKey, originalVisibility, hidden, isolated]);
   const meshStats = useMemo(
     () =>
       classified
@@ -592,9 +628,9 @@ export function Editor() {
   return (
     <div className="editor-shell">
       <header className="editor-header">
-        <Link href={demoMode ? '/?demo=1' : '/'} className="editor-back">
+        <a href={demoMode ? '/?demo=1' : '/'} className="editor-back">
           <ArrowLeft size={17} /> Explorer
-        </Link>
+        </a>
         <div className="editor-title">
           <span className="editor-eyebrow">Local workspace</span>
           <h1>Model mapping studio</h1>
@@ -715,7 +751,7 @@ export function Editor() {
               return (
                 <div
                   key={entry.object.key}
-                  className={`editor-object ${selectedSet.has(entry.object.key) ? 'selected' : ''}`}
+                  className={`editor-object ${selectedSet.has(entry.object.key) ? 'selected' : ''} ${objectVisibility.get(entry.object.key) ? 'not-visible' : ''}`}
                   style={{ paddingLeft: `${8 + Math.min(depth, 8) * 11}px` }}
                 >
                   <input
@@ -735,6 +771,7 @@ export function Editor() {
                         )
                       }
                       aria-label={`${collapsed.includes(entry.object.key) ? 'Expand' : 'Collapse'} ${entry.object.name}`}
+                      aria-expanded={!collapsed.includes(entry.object.key)}
                     >
                       {collapsed.includes(entry.object.key) ? (
                         <ChevronRight size={13} />
@@ -747,6 +784,7 @@ export function Editor() {
                   )}
                   <button
                     className="editor-object-name"
+                    aria-pressed={selectedSet.has(entry.object.key)}
                     onClick={(event) =>
                       selectObject(
                         entry.object.key,
@@ -763,6 +801,11 @@ export function Editor() {
                           ? 'unmapped mesh'
                           : 'group'}
                     </small>
+                    {objectVisibility.get(entry.object.key) && (
+                      <small className="editor-object-visibility">
+                        {objectVisibility.get(entry.object.key)}
+                      </small>
+                    )}
                   </button>
                   <i
                     className={`editor-dot ${entry.status}`}
@@ -862,7 +905,8 @@ export function Editor() {
           </div>
           <div className="editor-selection-tools">
             <button
-              disabled={!selected.length}
+              disabled={!selected.length && !isolated}
+              aria-pressed={!!isolated}
               onClick={() => setIsolated(isolated ? null : [...selected])}
             >
               {isolated ? 'Show all objects' : 'Isolate selection'}
@@ -984,7 +1028,8 @@ export function Editor() {
                 Map {selected.length || ''} selected
               </Button>
               <button
-                disabled={!selected.length}
+                disabled={!hasDirectMapping}
+                aria-describedby={hasInheritedMapping ? 'inherited-mapping-note' : undefined}
                 onClick={() =>
                   updateMapping({
                     ...project.mapping,
@@ -997,6 +1042,11 @@ export function Editor() {
                 Unmap
               </button>
             </div>
+            {hasInheritedMapping && (
+              <p id="inherited-mapping-note" className="editor-inherited-note">
+                Mapping inherited from a parent object. Select that parent to remove it.
+              </p>
+            )}
             {selected.length === 1 && <code className="editor-key">{selected[0]}</code>}
           </section>
           <section>
@@ -1105,7 +1155,7 @@ export function Editor() {
             <h3>Catalog organization</h3>
             <p>
               Workspace changes preserve source records.{' '}
-              <Link href="/catalog">Review factual catalog data</Link> to save shared review edits.
+              <a href="/catalog">Review factual catalog data</a> to save shared review edits.
             </p>
             <label>
               Human-readable name

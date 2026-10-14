@@ -1533,3 +1533,36 @@ dd {
     padding: 8px;
   }
 }
+
+/* Short windows need a continuous scrolling navigation region, not a clipped tree. */
+@media (max-height: 600px) {
+  .explorer-ux .catalog-panel {
+    overflow-y: auto;
+  }
+  .explorer-ux .catalog-panel > * {
+    flex-shrink: 0;
+  }
+  .explorer-ux .catalog-panel > .panel-heading {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--panel);
+  }
+  .explorer-ux .catalog-scroll {
+    flex: 0 0 auto;
+    overflow: visible;
+  }
+  .explorer-ux .geometry-empty {
+    overflow-y: auto;
+    justify-content: flex-start;
+    padding-block: var(--space-4);
+  }
+  .explorer-ux .geometry-empty > * {
+    flex-shrink: 0;
+  }
+}
+@media (max-height: 600px) and (max-width: 600px) {
+  .explorer-ux .geometry-empty {
+    padding-top: calc(var(--touch-target) + var(--space-6));
+  }
+}

@@ -75,7 +75,7 @@ function ModelScene(props: Props) {
           helper.raycast = () => {};
           helper.material.depthTest = false;
           helper.renderOrder = 10;
-          return helper;
+          return { helper, object: entry.object };
         }),
     [entries, selected, hovered],
   );
@@ -149,7 +149,7 @@ function ModelScene(props: Props) {
 
   useEffect(
     () => () => {
-      for (const helper of selectionBoxes) {
+      for (const { helper } of selectionBoxes) {
         helper.geometry.dispose();
         helper.material.dispose();
       }
@@ -209,7 +209,18 @@ function ModelScene(props: Props) {
       else active = true;
     }
     scene.updateMatrixWorld(true);
-    selectionBoxes.forEach((helper) => helper.update());
+    selectionBoxes.forEach(({ helper, object: selectedObject }) => {
+      let object: THREE.Object3D | null = selectedObject;
+      helper.visible = true;
+      while (object) {
+        if (!object.visible) {
+          helper.visible = false;
+          break;
+        }
+        object = object.parent;
+      }
+      if (helper.visible) helper.update();
+    });
     if (active) invalidate();
   });
 
@@ -238,7 +249,7 @@ function ModelScene(props: Props) {
         }}
         onPointerOut={() => onHover(null)}
       />
-      {selectionBoxes.map((helper) => (
+      {selectionBoxes.map(({ helper }) => (
         <primitive key={helper.uuid} object={helper} />
       ))}
       <OrbitControls

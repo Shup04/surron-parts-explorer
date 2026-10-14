@@ -334,6 +334,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.editor-object.not-visible .editor-object-name > span {
+  color: var(--muted);
+}
+.editor-object-name .editor-object-visibility {
+  font-family: var(--sans);
+}
+.editor-inspector .editor-inherited-note {
+  margin: var(--space-3) 0 0;
+}
 .editor-tree-footer {
   padding: var(--space-3) 17px;
   color: var(--muted);

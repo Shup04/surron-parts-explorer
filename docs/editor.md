@@ -15,7 +15,7 @@ For glTF companions, exact relative paths are preferred; unique file basenames a
 
 The object list preserves source hierarchy. Search object names, keys, catalog IDs, and part names. Filter by mapped, unmapped, or ambiguous state. Long trees load in batches of 250 rows. Expand or collapse groups, and select via the list or directly in the viewport. Checkboxes and Shift-click support multiple selection.
 
-Search catalog targets by OEM number, occurrence ID, name, assembly or source. Results are paginated; each target identifies its source and shared physical identity. Select the correct source occurrence and choose **Map selected**. Several meshes may map to one stable catalog ID. Mapping a group also maps its descendants unless a child has an explicit mapping. The `↳` indicator identifies inherited mappings. Mapping operations replace selected object assignments; **Unmap** removes only explicit assignments, so a parent assignment can still apply.
+Search catalog targets by OEM number, occurrence ID, name, assembly or source. Results are paginated; each target identifies its source and shared physical identity. Select the correct source occurrence and choose **Map selected**. Several meshes may map to one stable catalog ID. Mapping a group also maps its descendants unless a child has an explicit mapping. The `↳` indicator identifies inherited mappings. Mapping operations replace selected object assignments; **Unmap** removes only explicit assignments, so a parent assignment can still apply. For an inherited-only selection, **Unmap** is disabled; select the mapped parent to remove that assignment.
 
 Exact object-name matches (`part-id` or `part__part-id`) are proposals until you press **Apply exact ID matches**. Case/punctuation/name matches require an individual **Confirm** action. No uncertain proposal is silently accepted.
 
@@ -37,11 +37,13 @@ New catalog entries have unknown mechanical data. Use the catalog JSON or CSV wo
 
 Editor preview applies configured transforms throughout the imported object hierarchy. Parent and child transforms compound as they do in Three.js. Avoid configuring the same physical movement on both a parent group and its children. The explorer applies hierarchy-aware isolation and explosion at the active catalog assembly level. Use **Preview in explorer** to review that navigation behavior.
 
-**Isolate selection**, **Hide selected**, and **Restore visibility** affect only the preview. They do not delete objects or persist an unintentionally hidden model. Rotation, pan, and zoom use mouse or touch controls. **Frame selected** frames multiple selected objects together; **Frame model** restores an overall view. **Save camera** stores the current camera position and target in the mapping configuration, and **Recall camera** restores it.
+**Isolate selection**, **Hide selected**, and **Restore visibility** affect only the preview. They do not delete objects or persist an unintentionally hidden model. The tree identifies hidden objects and objects outside isolation; hidden objects do not retain selection outlines. Rotation, pan, and zoom use mouse or touch controls. **Frame selected** frames multiple selected objects together; **Frame model** restores an overall view. **Save camera** stores the current camera position and target in the mapping configuration, and **Recall camera** restores it.
 
 ## Save, export, and test in the explorer
 
 **Save locally** stores validated project metadata in `localStorage` under `surron-editor-project`. Imported model files are stored as browser-local blobs in IndexedDB (`surron-model-workspace`). **Preview in explorer** saves the workspace and opens `/?workspace=local`, where the same catalog, mappings, and imported geometry power search, selection, assembly navigation, and explosion.
+
+Leaving through **Explorer** or **Review factual catalog data** uses the same unsaved-change confirmation as closing the tab. Choose **Save locally** first to retain edits.
 
 Storage belongs to this browser and origin. Browser data clearing, private mode limits, quota exhaustion, or eviction can remove it. Keep durable backups:
 

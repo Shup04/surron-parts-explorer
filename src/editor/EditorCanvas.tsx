@@ -5,6 +5,7 @@ import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from 'three';
+import { scene as sceneColors } from '@/ui/tokens.json';
 import type { MappingConfig, Vec3 } from '@/core/types';
 import { getObjectKey } from '@/core/mapping';
 import { easeProgress, explosionOffset } from '@/core/explosion';
@@ -69,7 +70,7 @@ function ModelScene(props: Props) {
         .map((entry) => {
           const helper = new THREE.BoxHelper(
             entry.object,
-            selected.includes(entry.key) ? '#c9f29a' : '#91a6b2',
+            selected.includes(entry.key) ? sceneColors.selection : sceneColors.hover,
           );
           helper.raycast = () => {};
           helper.material.depthTest = false;
@@ -224,9 +225,9 @@ function ModelScene(props: Props) {
   return (
     <>
       <ambientLight intensity={1.15} />
-      <hemisphereLight args={['#dbe9ff', '#263127', 1.7]} />
-      <directionalLight position={[4, 6, 5]} intensity={3} />
-      <directionalLight position={[-3, 2, -4]} intensity={2} color="#b8c9df" />
+      <hemisphereLight args={[sceneColors.hemisphereSky, sceneColors.hemisphereGround, 1.7]} />
+      <directionalLight position={[4, 6, 5]} intensity={3} color={sceneColors.key} />
+      <directionalLight position={[-3, 2, -4]} intensity={2} color={sceneColors.fill} />
       <primitive
         object={scene}
         dispose={null}
@@ -268,7 +269,7 @@ export function EditorCanvas(props: Props) {
       }}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
     >
-      <color attach="background" args={['#101519']} />
+      <color attach="background" args={[sceneColors.background]} />
       <Suspense fallback={null}>
         <ModelScene {...props} />
       </Suspense>

@@ -30,6 +30,7 @@ import { availableModelYears } from '@/oem/queries';
 import { loadReviewPatches } from '@/catalog-review/storage';
 import { OemDetails } from './OemDetails';
 import { PartDetails } from './PartDetails';
+import { Button, IconButton } from './ui/Button';
 import { CuratedPartsTree, CuratedAssemblyDetails } from './CuratedParts';
 import {
   buildCuratedNavigation,
@@ -659,7 +660,7 @@ export default function Explorer() {
 
   const detailActions = detail.kind === 'component' && hasGeometry && (
     <div className="detail-actions">
-      <button
+      <Button
         aria-pressed={isolatedId === detail.id}
         onClick={() => {
           setIsolatedId(isolatedId === detail.id ? null : detail.id);
@@ -668,8 +669,8 @@ export default function Explorer() {
       >
         <Focus size={16} />
         {isolatedId === detail.id ? 'Show assembly' : 'Isolate'}
-      </button>
-      <button
+      </Button>
+      <Button
         aria-pressed={hiddenIds.includes(detail.id)}
         onClick={() => {
           setIsolatedId(null);
@@ -678,7 +679,7 @@ export default function Explorer() {
       >
         {hiddenIds.includes(detail.id) ? <Eye size={16} /> : <EyeOff size={16} />}
         {hiddenIds.includes(detail.id) ? 'Show part' : 'Hide part'}
-      </button>
+      </Button>
     </div>
   );
 
@@ -698,10 +699,10 @@ export default function Explorer() {
             <Box size={24} strokeWidth={1.5} />
           </span>
           <span>
-            SUR-RON<span className="brand-sub">PARTS EXPLORER</span>
+            SUR-RON<span className="brand-sub">Parts explorer</span>
           </span>
         </Link>
-        <div className="header-model">LIGHT BEE X</div>
+        <div className="header-model">Light Bee X</div>
         <details className="workspace-tools">
           <summary>
             Tools <Settings2 size={16} />
@@ -741,20 +742,20 @@ export default function Explorer() {
           inert={compact && detailsVisible}
         >
           <div className="panel-heading">
-            <span className="eyebrow">PARTS</span>
+            <span className="eyebrow">Parts</span>
             <span className="count-tag">
               {navigation ? `${navigation.roots.length} systems` : catalog.parts.length - 1}
             </span>
-            <button
+            <IconButton
               className="icon-button"
-              aria-label="Close parts navigation"
+              label="Close parts navigation"
               onClick={() => {
                 setNavOpen(false);
                 partsButton.current?.focus();
               }}
             >
               <X size={18} />
-            </button>
+            </IconButton>
           </div>
           <div className="search-box">
             <Search size={16} />
@@ -857,7 +858,7 @@ export default function Explorer() {
               <div className="search-results">
                 <p className="eyebrow">
                   {results.length > 100 ? '100+' : results.length}{' '}
-                  {navigation ? 'REFERENCE MATCHES' : 'MATCHING PARTS'}
+                  {navigation ? 'Reference matches' : 'Matching parts'}
                 </p>
                 {results.length ? (
                   results.slice(0, 100).map((part) => (
@@ -869,9 +870,11 @@ export default function Explorer() {
                       <span>
                         {part.name}
                         <small>
-                          {part.oemNumber ??
-                            part.genericDesignation ??
-                            index.byId.get(part.parentId ?? '')?.name}
+                          {part.oemNumber || part.genericDesignation ? (
+                            <code>{part.oemNumber ?? part.genericDesignation}</code>
+                          ) : (
+                            index.byId.get(part.parentId ?? '')?.name
+                          )}
                           {!demoMode && part.sources[0] && (
                             <>
                               {' '}
@@ -932,7 +935,8 @@ export default function Explorer() {
           inert={compact && (navOpen || detailsVisible)}
         >
           <div className="viewer-bar">
-            <button
+            <Button
+              variant="ghost"
               ref={partsButton}
               className="toolbar-button"
               aria-expanded={navOpen}
@@ -944,16 +948,16 @@ export default function Explorer() {
             >
               <Menu size={18} />
               Parts
-            </button>
+            </Button>
             {!overview && (
-              <button
+              <IconButton
                 className="icon-button"
-                aria-label="Parent assembly"
+                label="Parent assembly"
                 title="Back to parent assembly"
                 onClick={navigateParent}
               >
                 <ArrowLeft size={18} />
-              </button>
+              </IconButton>
             )}
             <nav className="breadcrumbs" aria-label="Assembly breadcrumb">
               {navigationPath.length ? (
@@ -987,7 +991,8 @@ export default function Explorer() {
                 ))
               )}
             </nav>
-            <button
+            <Button
+              variant="ghost"
               ref={detailsButton}
               className="toolbar-button"
               disabled={overview}
@@ -999,7 +1004,7 @@ export default function Explorer() {
               }}
             >
               Details
-            </button>
+            </Button>
           </div>
           <h1 className="sr-only">
             {overview ? 'Sur-Ron Light Bee X' : (activeNode?.name ?? assembly.name)}
@@ -1044,15 +1049,15 @@ export default function Explorer() {
             )}
           </div>
           <div className="viewer-tools">
-            <button
+            <IconButton
               className="icon-button"
-              aria-label="Reset camera"
+              label="Reset camera"
               title="Reset camera (R)"
               disabled={!showViewer}
               onClick={() => setResetToken((value) => value + 1)}
             >
               <RotateCcw size={18} />
-            </button>
+            </IconButton>
             <details className="viewer-options">
               <summary>Viewer options</summary>
               <div
@@ -1211,7 +1216,7 @@ export default function Explorer() {
         >
           <div className="panel-heading">
             <span className="eyebrow">
-              {detail.kind === 'component' ? 'PART DETAILS' : 'ASSEMBLY DETAILS'}
+              {detail.kind === 'component' ? 'Part details' : 'Assembly details'}
             </span>
             <button
               className="icon-button share-button"
@@ -1220,16 +1225,16 @@ export default function Explorer() {
             >
               {copied ? <Check size={17} /> : <Link2 size={17} />}
             </button>
-            <button
+            <IconButton
               className="icon-button"
-              aria-label="Close component details"
+              label="Close component details"
               onClick={() => {
                 setDetailOpen(false);
                 detailsButton.current?.focus();
               }}
             >
               <X size={18} />
-            </button>
+            </IconButton>
           </div>
           <div className="detail-scroll">
             <nav className="detail-breadcrumbs" aria-label="Part hierarchy">

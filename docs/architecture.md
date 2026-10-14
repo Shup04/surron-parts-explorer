@@ -12,11 +12,14 @@
 | Curated navigation       | `src/navigation/`                        | Explicit physical inspection roles, separate reference candidates and evidenced installed configurations |
 | Asset registration       | `src/config/assets.ts`                   | Versioned whole-bike and dedicated assembly model URLs plus external mappings                            |
 | Explorer UI              | `src/components/Explorer.tsx`            | Search, tree, selected catalog state, URL/history, detail panel and viewport commands                    |
+| Visual system            | `src/ui/`, `src/components/ui/`          | Shared palette, type/spacing tokens, native controls and viewer presentation                             |
 | Renderer                 | `src/viewer/`                            | Geometry loading, camera, picking, non-mutating material swaps, explosion interpolation and diagnostics  |
 | Local editor             | `src/editor/`                            | Model inspection/mapping, local project edits, JSON exchange and browser storage                         |
 | Offline tooling          | `scripts/`                               | Catalog conversion, GLB/glTF metadata/dependency inspection and Blender export helper                    |
 
 The renderer receives catalog IDs and emits IDs. It does not own browser navigation or product metadata. A part ID never depends on its display name or on a mesh name. A mapping can associate many scene objects with one part; group mappings are inherited unless a child is mapped more specifically. Preferred persistent scene identity is glTF extras `objectId`; indexed name/path references remain a fallback and must be reviewed when a model hierarchy changes.
+
+The [visual system](design-system.md) shares JSON tokens between server-rendered CSS variables and Three.js scene colors. Locally hosted Geist fonts and native Button/IconButton primitives keep typography and control states consistent across the explorer, studio and source review. Component styles retain their own layout; presentation tokens contain no catalog or mechanical information.
 
 ## Catalog hierarchy and occurrence identity
 

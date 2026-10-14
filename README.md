@@ -57,7 +57,7 @@ npm run catalog -- convert public/templates/catalog.json /tmp/catalog-review.csv
 npm run model:check -- public/models/lbx.glb --mapping model-mapping.json --catalog catalog.json
 ```
 
-The editor's catalog JSON is the viewer projection; `/catalog` exports the complete OEM identity/occurrence/provenance database. See [OEM ingestion and review](docs/oem-catalog.md), [viewer catalog schema](docs/data-model.md), [editor workflow](docs/editor.md), [renderer behavior](docs/viewer.md), [architecture and extension points](docs/architecture.md), and [manual handoff](docs/manual-handoff.md).
+The editor's catalog JSON is the viewer projection; `/catalog` exports the complete OEM identity/occurrence/provenance database. See [OEM ingestion and review](docs/oem-catalog.md), [viewer catalog schema](docs/data-model.md), [editor workflow](docs/editor.md), [renderer behavior](docs/viewer.md), [architecture and extension points](docs/architecture.md), [shared visual system](docs/design-system.md), and [manual handoff](docs/manual-handoff.md).
 
 ## Rebuild the OEM catalog
 

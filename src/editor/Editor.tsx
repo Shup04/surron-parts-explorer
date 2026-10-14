@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Button, IconButton } from '@/components/ui/Button';
 import {
   Component,
   useEffect,
@@ -153,8 +154,8 @@ export function Editor() {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState(
     demoMode
-      ? 'Demonstration workspace loaded. Import your own geometry to begin mapping.'
-      : 'OEM catalog loaded. Synthetic geometry is an unmapped interaction sample; import your model to map real parts.',
+      ? 'Demo model loaded. Import your geometry to start mapping.'
+      : 'OEM catalog loaded. Import your model to map parts; the demo geometry is unmapped.',
   );
   const [error, setError] = useState<string | null>(null);
   const [dirty, setDirty] = useState(false);
@@ -595,21 +596,26 @@ export function Editor() {
           <ArrowLeft size={17} /> Explorer
         </Link>
         <div className="editor-title">
-          <span className="editor-eyebrow">LOCAL WORKSPACE</span>
+          <span className="editor-eyebrow">Local workspace</span>
           <h1>Model mapping studio</h1>
         </div>
         <span className={`editor-save-state ${dirty ? 'dirty' : ''}`}>
           {dirty ? 'Unsaved changes' : 'Local only'}
         </span>
-        <button onClick={() => modelInput.current?.click()} disabled={busy}>
+        <Button onClick={() => modelInput.current?.click()} disabled={busy}>
           <Upload size={15} /> Import model
-        </button>
-        <button onClick={() => void save()} disabled={busy}>
+        </Button>
+        <Button onClick={() => void save()} disabled={busy}>
           <Save size={15} /> Save locally
-        </button>
-        <button className="editor-primary" onClick={() => void save(true)} disabled={busy}>
+        </Button>
+        <Button
+          variant="primary"
+          className="editor-primary"
+          onClick={() => void save(true)}
+          disabled={busy}
+        >
           Preview in explorer <ChevronRight size={15} />
-        </button>
+        </Button>
         <input
           ref={modelInput}
           type="file"
@@ -643,9 +649,9 @@ export function Editor() {
       {error && (
         <div className="editor-error" role="alert" aria-label="Editor error">
           <span>{error}</span>
-          <button onClick={() => setError(null)} aria-label="Dismiss error">
+          <IconButton onClick={() => setError(null)} label="Dismiss error">
             <X size={15} />
-          </button>
+          </IconButton>
         </div>
       )}
       <div className="editor-workspace">
@@ -663,7 +669,7 @@ export function Editor() {
               <i className="editor-dot mapped" /> {meshStats.mapped} mapped
             </span>
             <span>
-              <i className="editor-dot unmapped" /> {meshStats.unmapped} free
+              <i className="editor-dot unmapped" /> {meshStats.unmapped} unmapped
             </span>
             <span>
               <i className="editor-dot ambiguous" /> {meshStats.ambiguous} conflicts
@@ -779,7 +785,7 @@ export function Editor() {
         <main className="editor-preview">
           <div className="editor-preview-top">
             <span className="editor-badge">
-              {project.assetFileName ? 'USER GEOMETRY · UNVERIFIED' : 'SYNTHETIC DEMONSTRATION'}
+              {project.assetFileName ? 'Imported model · unverified' : 'Synthetic demonstration'}
             </span>
             <span>{selected.length} selected · metres · Y up</span>
           </div>
@@ -838,7 +844,7 @@ export function Editor() {
           <div className="editor-preview-controls">
             <div>
               <strong>Explosion preview</strong>
-              <span>Configured object directions · exact original transforms retained</span>
+              <span>Original positions are preserved</span>
             </div>
             <button onClick={() => setAmount(amount > 0.5 ? 0 : 1)}>
               {amount > 0.5 ? 'Reassemble' : 'Explode'}
@@ -916,10 +922,7 @@ export function Editor() {
               <Box size={17} />
               <h2>Map to catalog</h2>
             </div>
-            <p>
-              Select an object, then assign its stable catalog identity. Multiple meshes can share
-              one part.
-            </p>
+            <p>Select objects, then choose the catalog part they belong to.</p>
             <label>
               Search catalog targets
               <input
@@ -945,8 +948,7 @@ export function Editor() {
             </label>
             <p className="editor-target-count" aria-live="polite">
               {matchingTargets.length} matching catalog entries
-              {matchingTargets.length > targetLimit ? ` · showing first ${targetLimit}` : ''}. The
-              selected entry stays available when filters change.
+              {matchingTargets.length > targetLimit ? ` · showing first ${targetLimit}` : ''}.
             </p>
             {matchingTargets.length > targetLimit && (
               <button onClick={() => setTargetLimit((value) => value + 150)}>
@@ -974,13 +976,13 @@ export function Editor() {
               </p>
             )}
             <div className="editor-button-row">
-              <button
-                className="editor-primary"
+              <Button
+                variant="primary"
                 disabled={!selected.length || !mappingEnabled}
                 onClick={() => assign()}
               >
                 Map {selected.length || ''} selected
-              </button>
+              </Button>
               <button
                 disabled={!selected.length}
                 onClick={() =>

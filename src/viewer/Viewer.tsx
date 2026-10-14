@@ -4,6 +4,7 @@ import React, { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState 
 import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
 import { CameraControls, GizmoHelper, GizmoViewport, Grid } from '@react-three/drei';
 import * as THREE from 'three';
+import { scene as sceneColors } from '@/ui/tokens.json';
 import { loadModel } from './load-model';
 import { savedCameraForScope, validateViewerAsset } from './asset-validation';
 import { buildCatalogIndex } from '@/core/catalog';
@@ -35,7 +36,7 @@ class ViewerErrorBoundary extends React.Component<
   render() {
     if (this.state.message)
       return (
-        <div className="viewer-error" role="alert" style={overlayStyle}>
+        <div className="viewer-warning" role="alert">
           <strong>3D rendering is unavailable</strong>
           <p>{this.state.message}</p>
           <p>
@@ -47,18 +48,6 @@ class ViewerErrorBoundary extends React.Component<
     return this.props.children;
   }
 }
-
-const overlayStyle: React.CSSProperties = {
-  position: 'absolute',
-  inset: '35% 12% auto',
-  padding: 20,
-  border: '1px solid #3d4848',
-  background: '#151b1d',
-  borderRadius: 12,
-  color: '#e5ebe8',
-  zIndex: 10,
-  fontSize: 13,
-};
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -110,30 +99,41 @@ function Scene({
   } | null>(null);
   const materials = useMemo(() => {
     const original = new Map<THREE.Mesh, THREE.Material | THREE.Material[]>();
-    const highlights = new Map<THREE.Material, THREE.Material>();
+    const selected = new Map<THREE.Material, THREE.Material>();
+    const hovered = new Map<THREE.Material, THREE.Material>();
     object.traverse((node) => {
       if (!(node instanceof THREE.Mesh)) return;
       original.set(node, node.material);
       for (const material of Array.isArray(node.material) ? node.material : [node.material]) {
-        if (highlights.has(material)) continue;
-        const highlighted = material.clone();
-        if (highlighted instanceof THREE.MeshStandardMaterial) {
-          highlighted.emissive.set('#9ede8c');
-          highlighted.emissiveIntensity = 0.48;
-          highlighted.color.lerp(new THREE.Color('#c9f3af'), 0.34);
-        } else if ('color' in highlighted && highlighted.color instanceof THREE.Color)
-          highlighted.color.set('#c9f3af');
-        highlights.set(material, highlighted);
+        if (selected.has(material)) continue;
+        for (const [destination, color, strength] of [
+          [selected, sceneColors.selection, 0.13],
+          [hovered, sceneColors.hover, 0.07],
+        ] as const) {
+          const highlighted = material.clone();
+          const tint = new THREE.Color(color);
+          if (highlighted instanceof THREE.MeshStandardMaterial) {
+            // Keep the source finish and emission; add a restrained interaction tint.
+            highlighted.emissive
+              .multiplyScalar(highlighted.emissiveIntensity)
+              .add(tint.clone().multiplyScalar(strength));
+            highlighted.emissiveIntensity = 1;
+          }
+          if ('color' in highlighted && highlighted.color instanceof THREE.Color)
+            highlighted.color.lerp(tint, strength);
+          destination.set(material, highlighted);
+        }
       }
     });
-    return { original, highlights };
+    return { original, selected, hovered };
   }, [object]);
   useEffect(
     () => () => {
       materials.original.forEach((material, mesh) => {
         mesh.material = material;
       });
-      materials.highlights.forEach((material) => material.dispose());
+      materials.selected.forEach((material) => material.dispose());
+      materials.hovered.forEach((material) => material.dispose());
     },
     [materials],
   );
@@ -170,11 +170,16 @@ function Scene({
     const hover = hovered ? partSet(index, hovered) : new Set<string>();
     materials.original.forEach((original, mesh) => {
       const id = mappedPartId(mesh);
-      const highlighted = !!id && (selected.has(id) || hover.has(id));
-      mesh.material = highlighted
+      const highlights =
+        id && selected.has(id)
+          ? materials.selected
+          : id && hover.has(id)
+            ? materials.hovered
+            : null;
+      mesh.material = highlights
         ? Array.isArray(original)
-          ? original.map((material) => materials.highlights.get(material)!)
-          : materials.highlights.get(original)!
+          ? original.map((material) => highlights.get(material)!)
+          : highlights.get(original)!
         : original;
     });
     invalidate();
@@ -344,26 +349,26 @@ function Scene({
       />
       <GizmoHelper alignment="bottom-right" margin={[48, 72]}>
         <GizmoViewport
-          axisColors={['#bd7270', '#a5c891', '#83a9c0']}
-          labelColor="#101719"
+          axisColors={[sceneColors.axisX, sceneColors.axisY, sceneColors.axisZ]}
+          labelColor={sceneColors.background}
           hideNegativeAxes
         />
       </GizmoHelper>
       <ambientLight intensity={0.9} />
-      <hemisphereLight args={['#dfeaf2', '#35403d', 2]} />
-      <directionalLight position={[3, 5, 4]} intensity={4} color="#fff4df" />
-      <directionalLight position={[-3, 3, -4]} intensity={3} color="#8dacc8" />
-      <directionalLight position={[-2, 0.6, 3]} intensity={1} color="#d9efdc" />
+      <hemisphereLight args={[sceneColors.hemisphereSky, sceneColors.hemisphereGround, 2]} />
+      <directionalLight position={[3, 5, 4]} intensity={4} color={sceneColors.key} />
+      <directionalLight position={[-3, 3, -4]} intensity={3} color={sceneColors.fill} />
+      <directionalLight position={[-2, 0.6, 3]} intensity={1} color={sceneColors.rim} />
       {props.assemblyId === index.root.id && (
         <Grid
           position={[0, -0.018, 0]}
           args={[200, 200]}
           cellSize={0.25}
           cellThickness={0.4}
-          cellColor="#2f3939"
+          cellColor={sceneColors.grid}
           sectionSize={1}
           sectionThickness={0.8}
-          sectionColor="#414c4a"
+          sectionColor={sceneColors.gridSection}
           fadeDistance={7}
           fadeStrength={2}
           infiniteGrid
@@ -441,13 +446,6 @@ export default function Viewer(props: ViewerProps) {
       data-scene-ready={!!object && !loading && !displayError}
       data-visible-meshes={visibleCount}
       aria-label="Interactive 3D motorcycle viewer"
-      style={{
-        width: '100%',
-        height: '100%',
-        position: 'relative',
-        minHeight: 300,
-        touchAction: 'none',
-      }}
       onPointerMove={(event) => {
         const box = event.currentTarget.getBoundingClientRect();
         pointer.current = {
@@ -486,38 +484,32 @@ export default function Viewer(props: ViewerProps) {
         </Canvas>
       </ViewerErrorBoundary>
       {loading && !displayError && (
-        <div role="status" style={{ ...overlayStyle, textAlign: 'center' }}>
+        <div className="viewer-warning viewer-loader" role="status">
           Loading 3D geometry…
         </div>
       )}
       {displayError && (
-        <div role="alert" style={overlayStyle}>
+        <div className="viewer-warning" role="alert">
           <strong>Asset unavailable</strong>
           <p>{displayError}</p>
-          <button
-            type="button"
-            onClick={() => setFallback(true)}
-            style={{ padding: '9px 12px', cursor: 'pointer' }}
-          >
+          <button type="button" onClick={() => setFallback(true)}>
             Use demonstration geometry
           </button>
         </div>
       )}
       {object && !loading && !displayError && visibleCount === 0 && (
-        <div role="status" style={overlayStyle}>
+        <div className="viewer-warning" role="status">
           No visible geometry for this selection. Show hidden components or add the missing catalog
           mappings in the model editor.
         </div>
       )}
       {contextLost && (
-        <div role="alert" style={overlayStyle}>
+        <div className="viewer-warning" role="alert">
           The graphics context was interrupted. Reload the page to restore the viewer.
         </div>
       )}
       {fallback && (
-        <div style={{ position: 'absolute', top: 70, left: 22, color: '#dfc798', fontSize: 11 }}>
-          DEMONSTRATION GEOMETRY · ASSET FALLBACK
-        </div>
+        <div className="viewer-fallback">Demonstration geometry · Asset unavailable</div>
       )}
       {label && (
         <div
@@ -525,36 +517,16 @@ export default function Viewer(props: ViewerProps) {
           className="viewer-tooltip"
           role="tooltip"
           style={{
-            pointerEvents: 'none',
-            position: 'absolute',
             left: pointer.current.x,
             top: pointer.current.y,
-            padding: '8px 12px',
-            background: '#e1efd4',
-            color: '#172218',
-            borderRadius: 5,
-            fontSize: 12,
-            fontWeight: 600,
-            boxShadow: '0 4px 20px #0004',
-            zIndex: 4,
           }}
         >
           {label}
         </div>
       )}
       {approximate && props.explosion > 0 && (
-        <div
-          role="status"
-          style={{
-            position: 'absolute',
-            bottom: 58,
-            left: 20,
-            fontSize: 10,
-            color: '#bbc5bd',
-            pointerEvents: 'none',
-          }}
-        >
-          APPROXIMATE LAYOUT · NOT MECHANICALLY VERIFIED
+        <div className="viewer-layout-note" role="status">
+          Approximate layout · Not mechanically verified
         </div>
       )}
     </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowLeft, Download, Search, Upload, ExternalLink, Save } from 'lucide-react';
 import { oemDatabase } from '@/data/oem';
@@ -171,27 +172,28 @@ export default function CatalogReview() {
           Explorer
         </Link>
         <div>
-          <span className="eyebrow">LOCAL CATALOG WORKSPACE</span>
+          <span className="eyebrow">Local catalog workspace</span>
           <h1>OEM source review</h1>
         </div>
         <Link href="/editor">
           Model mapping <ExternalLink size={14} />
         </Link>
-        <button onClick={() => jsonInput.current?.click()}>
+        <Button onClick={() => jsonInput.current?.click()}>
           <Upload size={15} />
           Import review
-        </button>
-        <button onClick={() => downloadCatalog(patches, 'oem-review-patches.json')}>
+        </Button>
+        <Button onClick={() => downloadCatalog(patches, 'oem-review-patches.json')}>
           <Download size={15} />
           Export edits
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="primary"
           className="review-primary"
           onClick={() => downloadCatalog(database, 'surron-oem-catalog.json')}
         >
           <Download size={15} />
           Export complete catalog
-        </button>
+        </Button>
         <input
           type="file"
           accept=".json"
@@ -502,10 +504,10 @@ export default function CatalogReview() {
                     placeholder="Required when overriding source OEM number or quantity"
                   />
                 </label>
-                <button className="review-primary" onClick={saveSelected}>
+                <Button variant="primary" onClick={saveSelected}>
                   <Save size={15} />
                   Save reviewed occurrence
-                </button>
+                </Button>
               </section>
               <section>
                 <h3>Original source claim</h3>

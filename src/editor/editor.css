@@ -1,61 +1,50 @@
 .editor-shell {
-  --ed-bg: #101519;
-  --ed-panel: #171d21;
-  --ed-border: #2a3338;
-  --ed-text: #e2e9e8;
-  --ed-muted: #929fa6;
-  --ed-accent: #cbef9d;
   min-height: 100dvh;
-  background: var(--ed-bg);
-  color: var(--ed-text);
-  font:
-    13px/1.5 var(--font-geist-sans),
-    Arial,
-    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font: var(--text-sm) / 1.5 var(--sans);
 }
 .editor-shell * {
   box-sizing: border-box;
 }
-.editor-shell button,
+.editor-shell button:where(:not(.ui-button)),
 .editor-shell input,
 .editor-shell select {
   font: inherit;
 }
-.editor-shell button,
+.editor-shell input[type='number'] {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.editor-shell button:where(:not(.ui-button)),
 .editor-shell select,
 .editor-shell input:not([type='checkbox']):not([type='range']) {
-  border: 1px solid var(--ed-border);
-  border-radius: 5px;
-  background: #20282d;
-  color: var(--ed-text);
-  min-height: 35px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--raised);
+  color: var(--text);
+  min-height: var(--control-height);
 }
-.editor-shell button {
+.editor-shell button:where(:not(.ui-button)) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
   padding: 7px 11px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: var(--text-sm);
   white-space: nowrap;
 }
-.editor-shell button:hover {
-  background: #2c363b;
-  border-color: #52605e;
+.editor-shell button:where(:not(.ui-button)):hover:not(:disabled) {
+  background: var(--accent-dim);
+  border-color: var(--accent);
 }
-.editor-shell button:disabled {
+.editor-shell button:where(:not(.ui-button)):disabled {
   opacity: 0.42;
   cursor: default;
 }
-.editor-shell button.editor-primary {
-  background: var(--ed-accent);
-  border-color: var(--ed-accent);
-  color: #18200f;
-  font-weight: 650;
-}
 .editor-shell :is(button, input, select, a, summary):focus-visible {
-  outline: 2px solid var(--ed-accent);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 .editor-shell input,
@@ -67,11 +56,11 @@
   width: 14px;
   height: 14px;
   flex: none;
-  accent-color: var(--ed-accent);
+  accent-color: var(--accent);
   margin: 0;
 }
 .editor-shell input[type='range'] {
-  accent-color: var(--ed-accent);
+  accent-color: var(--accent);
   padding: 0;
   cursor: pointer;
 }
@@ -82,33 +71,33 @@
   margin: 0;
 }
 .editor-shell h2 {
-  font-size: 14px;
+  font-size: var(--text-base);
   font-weight: 600;
 }
 .editor-shell h3 {
-  font-size: 13px;
-  font-weight: 650;
-  margin-bottom: 12px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
 }
 .editor-target-details {
   display: grid;
   gap: 5px;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid var(--ed-border);
-  border-radius: 5px;
+  background: var(--bg);
+  border-radius: var(--radius-md);
   overflow-wrap: anywhere;
 }
 .editor-target-details code,
 .editor-target-details small {
-  color: var(--ed-muted);
-  font-size: 11px;
+  color: var(--muted);
+  font-size: var(--text-xs);
 }
 .editor-shell .editor-synthetic-note {
-  color: var(--ed-accent);
+  color: var(--accent);
 }
 .editor-merge-report {
-  margin-bottom: 12px;
+  margin-bottom: var(--space-3);
 }
 .editor-merge-report ul {
   max-height: 180px;
@@ -119,8 +108,8 @@
   text-decoration: underline;
 }
 .editor-shell p {
-  color: var(--ed-muted);
-  font-size: 12px;
+  color: var(--muted);
+  font-size: var(--text-sm);
   margin: 0 0 13px;
 }
 .editor-shell a {
@@ -130,46 +119,46 @@
 .editor-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 18px 22px;
-  border-bottom: 1px solid var(--ed-border);
-  min-height: 88px;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--border);
+  min-height: 84px;
 }
 .editor-back {
   display: flex;
   gap: 7px;
   align-items: center;
-  padding: 8px 15px 8px 0;
-  border-right: 1px solid var(--ed-border);
-  font-size: 12px;
+  padding: 8px 15px var(--space-2) 0;
+  border-right: 1px solid var(--border);
+  font-size: var(--text-xs);
 }
 .editor-title {
   flex: 1;
 }
 .editor-title h1 {
-  font-size: 19px;
+  font-size: var(--text-title);
   letter-spacing: -0.4px;
-  font-weight: 550;
+  font-weight: 600;
 }
 .editor-eyebrow {
-  font: 10px monospace;
-  letter-spacing: 1.6px;
-  color: var(--ed-muted);
+  font: var(--text-xs) / 1.5 var(--sans);
+  letter-spacing: normal;
+  color: var(--muted);
 }
 .editor-save-state {
-  color: var(--ed-muted);
-  font: 11px monospace;
+  color: var(--muted);
+  font: var(--text-xs) / 1.5 var(--sans);
   white-space: nowrap;
 }
 .editor-save-state.dirty {
-  color: #e9c98d;
+  color: var(--warning);
 }
 .editor-message {
-  padding: 9px 22px;
-  background: #19221d;
-  border-bottom: 1px solid #28382c;
-  color: #c0ceb9;
-  font-size: 12px;
+  padding: var(--space-3) var(--space-6);
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: var(--text-xs);
   min-height: 37px;
 }
 .editor-error {
@@ -177,11 +166,11 @@
   align-items: center;
   gap: 14px;
   justify-content: space-between;
-  padding: 10px 22px;
-  background: #3f2826;
-  color: #ffc9bd;
-  border-bottom: 1px solid #70473f;
-  font-size: 12px;
+  padding: var(--space-3) var(--space-6);
+  background: var(--danger-surface);
+  color: var(--danger);
+  border-bottom: 1px solid var(--danger);
+  font-size: var(--text-xs);
   overflow-wrap: anywhere;
 }
 .editor-workspace {
@@ -191,13 +180,13 @@
 }
 .editor-tree-panel,
 .editor-inspector {
-  background: var(--ed-panel);
+  background: var(--panel);
   min-width: 0;
 }
 .editor-tree-panel {
   display: flex;
   flex-direction: column;
-  border-right: 1px solid var(--ed-border);
+  border-right: 1px solid var(--border);
   height: calc(100dvh - 125px);
   min-height: 580px;
   position: sticky;
@@ -210,20 +199,20 @@
   margin-bottom: 13px;
 }
 .editor-panel-heading > svg {
-  color: var(--ed-muted);
+  color: var(--muted);
 }
 .editor-panel-heading > span {
   margin-left: auto;
-  color: var(--ed-muted);
-  font: 11px monospace;
+  color: var(--muted);
+  font: var(--text-xs) / 1.5 var(--sans);
 }
 .editor-tree-panel > .editor-panel-heading {
-  padding: 20px 17px 0;
+  padding: var(--space-5) 17px 0;
 }
 .editor-model-name {
-  font: 11px monospace;
+  font: var(--text-xs) / 1.5 var(--mono);
   padding: 0 17px;
-  color: var(--ed-muted);
+  color: var(--muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -231,15 +220,15 @@
 .editor-stats {
   padding: 14px 17px;
   display: flex;
-  gap: 12px;
+  gap: var(--space-3);
   flex-wrap: wrap;
-  font-size: 10px;
-  color: var(--ed-muted);
+  font-size: var(--text-xs);
+  color: var(--muted);
 }
 .editor-stats > span {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--space-1);
 }
 .editor-dot {
   display: inline-block;
@@ -249,72 +238,75 @@
   flex: none;
 }
 .editor-dot.mapped {
-  background: #bae38e;
+  background: var(--success);
 }
 .editor-dot.unmapped {
-  background: #71818c;
+  background: var(--subtle);
 }
 .editor-dot.ambiguous {
-  background: #e3a06e;
+  background: var(--warning);
 }
 .editor-search {
-  margin: 0 12px;
+  margin: 0 var(--space-3);
   position: relative;
 }
 .editor-search > svg {
   position: absolute;
   top: 10px;
   left: 9px;
-  color: var(--ed-muted);
+  color: var(--muted);
 }
-.editor-search > input {
-  padding-left: 31px !important;
-  font-size: 11px !important;
+.editor-shell .editor-search > input {
+  padding-left: 31px;
+  font-size: var(--text-sm);
 }
 .editor-tree-options {
   display: flex;
   gap: 5px;
-  padding: 9px 12px 13px;
+  padding: 9px var(--space-3) 13px;
 }
 .editor-tree-options select {
   min-width: 0;
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 .editor-tree-options button {
-  font-size: 10px;
-  padding: 5px 8px;
+  font-size: var(--text-xs);
+  padding: 5px var(--space-2);
 }
 .editor-object-list {
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
   flex: 1;
   overflow: auto;
-  border-top: 1px solid var(--ed-border);
-  border-bottom: 1px solid var(--ed-border);
-  padding: 8px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-2) 0;
 }
 .editor-object {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding-right: 12px;
+  gap: var(--space-1);
+  padding-right: var(--space-3);
   min-height: 43px;
   border-left: 2px solid transparent;
 }
 .editor-object:hover {
-  background: #212c31;
+  background: var(--raised);
 }
 .editor-object.selected {
-  background: #2a382a;
-  border-left-color: var(--ed-accent);
+  background: var(--accent-dim);
+  border-left-color: var(--accent);
 }
 .editor-shell .editor-collapse {
   border: 0;
   background: transparent;
-  width: 18px;
+  width: 28px;
+  flex: none;
   padding: 0;
-  min-height: 28px;
+  min-height: var(--control-height);
 }
 .editor-collapse-placeholder {
-  width: 18px;
+  width: 28px;
   flex: none;
 }
 .editor-shell .editor-object-name {
@@ -331,27 +323,27 @@
   min-height: 40px;
 }
 .editor-object-name > span {
-  font-size: 11px;
+  font-size: var(--text-sm);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .editor-object-name small {
-  font: 10px/1.5 monospace;
-  color: var(--ed-muted);
+  font: var(--text-xs) / 1.5 var(--mono);
+  color: var(--muted);
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .editor-tree-footer {
-  padding: 12px 17px;
-  color: var(--ed-muted);
-  font-size: 11px;
+  padding: var(--space-3) 17px;
+  color: var(--muted);
+  font-size: var(--text-xs);
 }
 .editor-empty {
   padding: 15px;
 }
 .editor-load-more {
-  margin: 12px;
+  margin: var(--space-3);
 }
 .editor-preview {
   min-width: 0;
@@ -361,19 +353,16 @@
 .editor-preview-top {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--space-3);
   align-items: center;
-  padding: 20px 20px 0;
-  font: 10px monospace;
-  color: var(--ed-muted);
+  padding: 20px var(--space-5) 0;
+  font: var(--text-xs) / 1.5 var(--sans);
+  color: var(--muted);
 }
 .editor-badge {
-  color: #bed1ad;
-  padding: 5px 8px;
-  border: 1px solid #384732;
-  border-radius: 4px;
-  font-size: 9px;
-  letter-spacing: 0.5px;
+  color: var(--muted);
+  font-size: var(--text-xs);
+  letter-spacing: normal;
 }
 .editor-canvas {
   height: min(65vh, 700px);
@@ -389,7 +378,7 @@
   display: grid;
   place-items: center;
   padding: 30px;
-  color: #c1c6c6;
+  color: var(--muted);
 }
 .editor-viewport-controls {
   position: absolute;
@@ -403,82 +392,81 @@
 }
 .editor-viewport-controls button {
   pointer-events: auto;
-  background: #20282dcc;
-  font-size: 10px;
-  padding: 5px 8px;
-  min-height: 29px;
+  background: var(--panel);
+  font-size: var(--text-xs);
+  padding: 5px var(--space-2);
+  min-height: var(--control-height);
 }
 .editor-hover {
   position: absolute;
   bottom: 16px;
   left: 20px;
-  padding: 9px 12px;
-  border: 1px solid var(--ed-border);
-  background: #20282de8;
+  padding: 9px var(--space-3);
+  border: 1px solid var(--border);
+  background: var(--panel);
   pointer-events: none;
-  border-radius: 5px;
-  box-shadow: 0 3px 12px #0002;
+  border-radius: var(--radius-md);
 }
 .editor-hover small {
   display: block;
-  color: var(--ed-muted);
-  font-size: 10px;
+  color: var(--muted);
+  font-size: var(--text-xs);
 }
 .editor-preview-controls {
   display: flex;
   gap: 15px;
   align-items: center;
-  padding: 20px;
-  border-top: 1px solid var(--ed-border);
-  background: #141b1e;
+  padding: var(--space-5);
+  border-top: 1px solid var(--border);
+  background: var(--panel);
 }
 .editor-preview-controls > div {
   flex: 1;
   min-width: 150px;
 }
 .editor-preview-controls strong {
-  font-size: 13px;
-  font-weight: 550;
+  font-size: var(--text-sm);
+  font-weight: 600;
   display: block;
 }
 .editor-preview-controls > div > span {
   display: block;
-  font-size: 10px;
-  color: var(--ed-muted);
-  margin-top: 4px;
+  font-size: var(--text-xs);
+  color: var(--muted);
+  margin-top: var(--space-1);
 }
 .editor-preview-controls input {
   max-width: 170px;
   min-width: 60px;
 }
 .editor-preview-controls output {
-  font: 11px monospace;
-  color: var(--ed-accent);
+  font: var(--text-xs) / 1.5 var(--mono);
+  color: var(--accent);
   min-width: 33px;
 }
 .editor-selection-tools {
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
-  padding: 12px 20px;
-  border-top: 1px solid var(--ed-border);
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--border);
 }
 .editor-selection-tools > span {
   width: 100%;
-  color: var(--ed-muted);
-  font-size: 10px;
+  color: var(--muted);
+  font-size: var(--text-xs);
   margin-top: 6px;
 }
 .editor-selection-tools button {
-  font-size: 10px;
-  min-height: 30px;
+  font-size: var(--text-xs);
+  min-height: var(--control-height);
   padding: 5px 9px;
 }
 .editor-validation {
-  border-top: 1px solid var(--ed-border);
-  padding: 14px 20px;
-  font-size: 11px;
-  color: var(--ed-muted);
+  border-top: 1px solid var(--border);
+  padding: 14px var(--space-5);
+  font-size: var(--text-xs);
+  color: var(--muted);
 }
 .editor-validation summary {
   display: flex;
@@ -486,12 +474,12 @@
   gap: 7px;
   cursor: pointer;
   list-style: none;
-  color: #c5d3c0;
+  color: var(--text);
 }
 .editor-validation summary > span {
   margin-left: auto;
-  color: var(--ed-muted);
-  font-size: 10px;
+  color: var(--muted);
+  font-size: var(--text-xs);
 }
 .editor-validation ul {
   padding-left: 18px;
@@ -503,27 +491,29 @@
   overflow-wrap: anywhere;
 }
 .editor-inspector {
-  border-left: 1px solid var(--ed-border);
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+  border-left: 1px solid var(--border);
   max-height: calc(100dvh - 125px);
   overflow: auto;
   position: sticky;
   top: 0;
 }
 .editor-inspector section {
-  padding: 20px 18px;
-  border-bottom: 1px solid var(--ed-border);
+  padding: var(--space-5) 18px;
+  border-bottom: 1px solid var(--border);
 }
 .editor-inspector label {
   display: block;
-  margin: 10px 0;
-  font-size: 10px;
-  color: var(--ed-muted);
+  margin: var(--space-3) 0;
+  font-size: var(--text-sm);
+  color: var(--muted);
 }
 .editor-inspector label > input,
 .editor-inspector label > select {
   display: block;
-  margin-top: 5px;
-  font-size: 12px;
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
 }
 .editor-inspector select {
   max-width: 100%;
@@ -532,15 +522,15 @@
 .editor-button-row {
   display: flex;
   gap: 6px;
-  margin-top: 12px;
+  margin-top: var(--space-3);
 }
 .editor-key {
   display: block;
-  margin-top: 12px;
-  padding: 8px;
-  background: #10171b;
-  color: #a4b3b7;
-  font-size: 10px;
+  margin-top: var(--space-3);
+  padding: var(--space-2);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: var(--text-xs);
   overflow-wrap: anywhere;
 }
 .editor-vector {
@@ -561,7 +551,7 @@
 }
 .editor-new-part {
   margin-top: 17px;
-  border-top: 1px solid var(--ed-border);
+  border-top: 1px solid var(--border);
   padding-top: 13px;
 }
 .editor-new-part summary {
@@ -569,44 +559,44 @@
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 .editor-new-part p {
-  font-size: 10px;
+  font-size: var(--text-xs);
 }
 .editor-proposals > div {
   display: flex;
-  gap: 8px;
+  gap: var(--space-2);
   align-items: center;
-  border-bottom: 1px solid var(--ed-border);
+  border-bottom: 1px solid var(--border);
   padding: 10px 0;
 }
 .editor-proposals > div > span {
   flex: 1;
-  font-size: 11px;
+  font-size: var(--text-xs);
   overflow-wrap: anywhere;
   min-width: 0;
 }
 .editor-proposals small {
   display: block;
-  color: var(--ed-muted);
-  font-size: 9px;
+  color: var(--muted);
+  font-size: var(--text-xs);
 }
 .editor-proposals button {
-  font-size: 10px;
-  padding: 4px 7px;
-  min-height: 28px;
+  font-size: var(--text-xs);
+  padding: var(--space-1) 7px;
+  min-height: var(--control-height);
 }
 .editor-proposals > p {
-  margin-top: 12px;
+  margin-top: var(--space-3);
 }
 .editor-file-actions > button {
   width: 100%;
   justify-content: flex-start;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
 }
 .editor-file-actions > p {
-  font-size: 10px;
+  font-size: var(--text-xs);
   margin: 6px 0 0;
 }
 .editor-shell ::-webkit-scrollbar {
@@ -614,8 +604,8 @@
   height: 6px;
 }
 .editor-shell ::-webkit-scrollbar-thumb {
-  background: #364047;
-  border-radius: 4px;
+  background: var(--border);
+  border-radius: var(--radius-sm);
 }
 @media (min-width: 1650px) {
   .editor-workspace {
@@ -625,8 +615,8 @@
 @media (max-width: 1200px) {
   .editor-header {
     flex-wrap: wrap;
-    gap: 8px;
-    padding: 14px 16px;
+    gap: var(--space-2);
+    padding: 14px var(--space-4);
   }
   .editor-title {
     min-width: 200px;
@@ -640,7 +630,7 @@
   .editor-preview-controls {
     flex-wrap: wrap;
     gap: 10px;
-    padding: 16px;
+    padding: var(--space-4);
   }
   .editor-preview-controls > div {
     width: 100%;
@@ -673,10 +663,10 @@
     max-height: none;
     position: static;
     border-left: 0;
-    border-top: 1px solid var(--ed-border);
+    border-top: 1px solid var(--border);
   }
   .editor-inspector section {
-    border-right: 1px solid var(--ed-border);
+    border-right: 1px solid var(--border);
   }
   .editor-tree-panel {
     position: static;
@@ -690,10 +680,10 @@
     margin-left: auto;
   }
   .editor-preview-controls {
-    padding: 12px 16px;
+    padding: var(--space-3) var(--space-4);
   }
   .editor-validation {
-    padding: 12px 16px;
+    padding: var(--space-3) var(--space-4);
   }
   .editor-preview {
     max-height: 680px;
@@ -701,34 +691,34 @@
 }
 @media (max-width: 620px) {
   .editor-header {
-    padding: 12px;
+    padding: var(--space-3);
     gap: 7px;
   }
   .editor-title {
     min-width: 160px;
   }
   .editor-title h1 {
-    font-size: 16px;
+    font-size: var(--text-lg);
   }
   .editor-eyebrow {
-    font-size: 9px;
+    font-size: var(--text-xs);
   }
   .editor-back {
     padding-right: 10px;
-    font-size: 11px;
+    font-size: var(--text-xs);
   }
   .editor-header > button {
-    font-size: 10px;
-    padding: 6px 8px;
-    min-height: 34px;
+    font-size: var(--text-xs);
+    padding: 6px var(--space-2);
+    min-height: var(--touch-target);
   }
   .editor-header .editor-primary {
     margin-left: 0;
   }
   .editor-message,
   .editor-error {
-    padding: 9px 12px;
-    font-size: 11px;
+    padding: 9px var(--space-3);
+    font-size: var(--text-xs);
   }
   .editor-workspace {
     display: flex;
@@ -739,13 +729,13 @@
     max-height: none;
   }
   .editor-preview-top {
-    padding: 14px 12px 0;
+    padding: 14px var(--space-3) 0;
     flex-direction: row;
     align-items: center;
-    font-size: 9px;
+    font-size: var(--text-xs);
   }
   .editor-badge {
-    font-size: 8px;
+    font-size: var(--text-xs);
   }
   .editor-canvas {
     height: 48vh;
@@ -755,17 +745,17 @@
   .editor-viewport-controls {
     left: 12px;
     right: 12px;
-    gap: 4px;
+    gap: var(--space-1);
   }
   .editor-viewport-controls button {
-    min-height: 34px;
-    font-size: 9px;
+    min-height: var(--touch-target);
+    font-size: var(--text-xs);
   }
   .editor-tree-panel {
     order: 1;
     height: 410px;
     border-right: 0;
-    border-top: 1px solid var(--ed-border);
+    border-top: 1px solid var(--border);
   }
   .editor-inspector {
     order: 2;
@@ -775,7 +765,7 @@
     padding: 18px;
   }
   .editor-inspector button {
-    min-height: 40px;
+    min-height: var(--touch-target);
   }
   .editor-object {
     min-height: 46px;
@@ -785,22 +775,22 @@
     height: 18px;
   }
   .editor-selection-tools {
-    padding: 12px;
+    padding: var(--space-3);
   }
   .editor-selection-tools button {
-    min-height: 36px;
+    min-height: var(--touch-target);
   }
   .editor-preview-controls {
-    padding: 15px 12px;
+    padding: 15px var(--space-3);
   }
   .editor-validation summary > span {
     display: none;
   }
   .editor-object-name > span {
-    font-size: 12px;
+    font-size: var(--text-sm);
   }
   .editor-object-name small {
-    font-size: 11px;
+    font-size: var(--text-xs);
   }
   .editor-object-list {
     min-height: 150px;

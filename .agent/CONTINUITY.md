@@ -1,7 +1,8 @@
 [PLANS]
-- 2026-10-14T02:26:21Z [USER] Pass 1 UX overhaul: improve exploration, navigation, details and responsive interaction. Preserve curated hierarchy, catalog, geometry, engine and studio. No visual styling redesign.
+- 2026-10-14T02:43:48Z [USER] Pass 2 visual overhaul: neutral dark palette, readable sans-serif typography, consistent shared controls and matching studio. Preserve Pass 1 UX, catalog, geometry and all workflows; no new features.
 
 [DECISIONS]
+- 2026-10-14T02:43:48Z [CODE] src/ui/tokens.json provides server-rendered CSS variables and Three.js scene colors. Locally hosted Geist/Geist Mono assets include OFL license. Shared Button/IconButton preserve native props and refs. Neutral graphite surfaces, steel-blue interaction accent, restrained material-preserving highlights and sentence-case labels replace green/terminal styling. Obsolete explorer visual rules removed.
 - 2026-10-14T02:26:21Z [CODE] Overview has no details column; desktop panels are optional, tablet/phone panels are modal drawers with focus containment/restoration. Explicit explosion controls replace automatic explosion. Child lists live in navigation; source/verification metadata is disclosed on demand. Existing palette and typography retained.
 - 2026-10-14T02:26:21Z [CODE] Presentation breadcrumbs and parent navigation follow curated physical roles even when exact OEM occurrence provenance belongs to another source assembly. Renderer ancestry and all catalog identities remain unchanged. Workspace fullscreen keeps Parts and Details available.
 - 2026-10-14T01:48:47Z [CODE] src/navigation adds an independent 14-system presentation tree with explicit scoped identity selectors, collapsed service sections and reference candidates. The nav query addresses UI groups; part/assembly retain original IDs and renderer ancestry.
@@ -15,6 +16,7 @@
 - 2026-10-14T01:05:29Z [TOOL] Browser/build need normalprocess permissions; /opt/google/chrome/chrome available. Concurrent Playwright runs delete shared artifacts; final run must be sequential across agents and workers.
 
 [PROGRESS]
+- 2026-10-14T02:43:48Z [TOOL] Visual pass: production build/typecheck,130 unit/integration tests,33 Chromium workflows and formatting pass. Final phone catalog-header CSS adjustment rebuilt successfully;4 visual tests then passed again with36 screenshots covering9 states at4 sizes. Shared text contrast checks pass>=7 primary and>=4.5 secondary. Explorer/studio/review screenshots visually inspected. Isolated port31389 preview stopped; existing servers untouched.
 - 2026-10-14T02:26:21Z [CODE] UX implementation includes separate expansion/selection, selection reveal, hidden-state indication, essential part details, consolidated inspection controls, compact viewer/header disclosures, assembled-by-default navigation and mobile keyboard behavior. No data/core/viewer/editor/navigation-domain files changed.
 - 2026-10-14T02:26:21Z [TOOL] UX production build, TypeScript and 130 unit/integration tests pass. Final serial Chromium run passes all 29 flows in 1.1 minutes on isolated port31388, including real bearing raycast/tree identity, camera orbit/pan/zoom/reset, full mapping/OEM regressions, phone/tablet drawers and fullscreen. Desktop/laptop/tablet/phone screenshots inspected. Own preview stopped; existing servers untouched.
 - 2026-10-14T01:48:47Z [CODE] Navigation refinement implemented with full catalog search, grouped source claims, filtered evidence, legacy links and local OEM editor integration preserved. No data/core/viewer/editor/OEM domain files changed. Parent button and history edge cases fixed.
@@ -23,6 +25,7 @@
 - 2026-10-14T01:05:29Z [TOOL] Final117unit/integration checks,16serial Chromiumbrowserflows,typecheck,formatcheck andproductionbuild passed. Productiondesktop/mobile screenshots visuallychecked; mobile390px hasnohorizontaloverflow. Temporary productionpreview stopped.
 
 [OUTCOMES]
+- 2026-10-14T02:43:48Z [CODE] Visual pass complete. Pass 1 behavior, source data, curated navigation, geometry, camera/explosion/mapping logic preserved; only viewer colors/highlight presentation changed. Studio workflow retained. Physical-device gestures and Safari/Firefox remain unverified. No deployment performed.
 - 2026-10-14T02:26:21Z [CODE] UX overhaul complete with preserved 14-system navigation, 1396 OEM occurrences and 683 identities. Accurate stock geometry remains unavailable; physical-device gestures and Safari/Firefox are unverified. No deployment or visual styling redesign performed.
 - 2026-10-14T01:05:29Z [CODE] No accurate GLB assets or mechanically confirmed cross-year compatibility supplied. AllOEMgeometryawaitsmapping. No deployment performed.
 

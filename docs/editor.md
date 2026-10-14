@@ -1,6 +1,6 @@
 # Model mapping studio
 
-Open `/editor` from the explorer. This is a browser-local developer workspace, with no server write endpoint. The starting motorcycle is synthetic demonstration geometry. Its dimensions, materials, and decomposition are visual examples, not mechanical evidence.
+Open `/editor` from the explorer. This is a browser-local developer workspace, with no server write endpoint. The default catalog uses the reviewed OEM records; the starting motorcycle is unmapped synthetic geometry. Import actual geometry before assigning it to sourced occurrences. Use `/editor?demo=1` for the original demonstration mapping workflow. Its dimensions, materials, and decomposition are visual examples, not mechanical evidence.
 
 ## Import a model
 
@@ -15,7 +15,7 @@ For glTF companions, exact relative paths are preferred; unique file basenames a
 
 The object list preserves source hierarchy. Search object names, keys, catalog IDs, and part names. Filter by mapped, unmapped, or ambiguous state. Long trees load in batches of 250 rows. Expand or collapse groups, and select via the list or directly in the viewport. Checkboxes and Shift-click support multiple selection.
 
-Select a catalog entry and choose **Map selected**. Several meshes may map to one stable catalog ID. Mapping a group also maps its descendants unless a child has an explicit mapping. The `↳` indicator identifies inherited mappings. Mapping operations replace selected object assignments; **Unmap** removes only explicit assignments, so a parent assignment can still apply.
+Search catalog targets by OEM number, occurrence ID, name, assembly or source. Results are paginated; each target identifies its source and shared physical identity. Select the correct source occurrence and choose **Map selected**. Several meshes may map to one stable catalog ID. Mapping a group also maps its descendants unless a child has an explicit mapping. The `↳` indicator identifies inherited mappings. Mapping operations replace selected object assignments; **Unmap** removes only explicit assignments, so a parent assignment can still apply.
 
 Exact object-name matches (`part-id` or `part__part-id`) are proposals until you press **Apply exact ID matches**. Case/punctuation/name matches require an individual **Confirm** action. No uncertain proposal is silently accepted.
 
@@ -57,3 +57,7 @@ Saving is blocked while mappings reference missing geometry or are otherwise inv
 ## Remaining manual review
 
 The tool cannot verify mechanical alignment, disassembly order, tolerances, OEM part numbers, fitment, material, or dimensional accuracy. You must confirm these against source drawings and the physical assembly, preserve source references in the catalog, review the explosion hierarchy, and mark records verified only when evidence supports them. `userData.objectId` / glTF `extras.objectId` provides a stable geometry identifier across object renames; indexed hierarchy paths are fallback keys that must be reviewed after source reorderings.
+
+## Updating an older workspace
+
+Saved projects restore intact. **Merge current OEM catalog** adds missing stable records without replacing existing IDs, custom edits or mappings, and reports retained differences. Review source corrections in `/catalog`; export those patches separately from model-project JSON. Existing saved projects retain their own record snapshots until explicitly reconciled.

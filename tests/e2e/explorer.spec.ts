@@ -5,7 +5,7 @@ test('renders real geometry, selects by raycast, navigates and restores browser 
 }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.goto('/');
+  await page.goto('/?demo=1');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
   await expect
@@ -35,7 +35,7 @@ test('renders real geometry, selects by raycast, navigates and restores browser 
 test('search, exploded assembly controls, visibility, isolation and deep links work together', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/?demo=1');
   await page.getByRole('textbox', { name: 'Search parts' }).fill('left jackshaft bearing');
   await page.locator('.search-result').filter({ hasText: 'Left jackshaft bearing' }).click();
   await expect(page).toHaveURL(/part=bearing-left/);
@@ -69,7 +69,7 @@ test('mobile parts navigation and detail sheet remain usable without horizontal 
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/');
+  await page.goto('/?demo=1');
   await page.getByRole('button', { name: 'Parts', exact: true }).click();
   await page.getByRole('textbox', { name: 'Search parts' }).fill('sprocket');
   await page.locator('.search-result').filter({ hasText: 'Jackshaft sprocket' }).click();
@@ -86,7 +86,7 @@ test('mobile parts navigation and detail sheet remain usable without horizontal 
 test('unknown deep links recover to the motorcycle and keyboard navigation works', async ({
   page,
 }) => {
-  await page.goto('/?motorcycle=unknown&assembly=not-present&part=missing');
+  await page.goto('/?demo=1&motorcycle=unknown&assembly=not-present&part=missing');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('The machine, piece by piece.');
   await page.keyboard.press('/');
   await expect(page.getByRole('textbox', { name: 'Search parts' })).toBeFocused();

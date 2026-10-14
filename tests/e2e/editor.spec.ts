@@ -40,7 +40,7 @@ test('local model mapping, explosion metadata, export and explorer handoff stay 
 }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.goto('/editor');
+  await page.goto('/editor?demo=1');
   await expect(page.getByRole('heading', { name: 'Model mapping studio' })).toBeVisible();
   await page.getByLabel('Import model and companion files').setInputFiles({
     name: 'mechanical-fixture.gltf',
@@ -100,7 +100,7 @@ test('local model mapping, explosion metadata, export and explorer handoff stay 
 });
 
 test('model and project import errors leave the working workspace intact', async ({ page }) => {
-  await page.goto('/editor');
+  await page.goto('/editor?demo=1');
   await page.getByLabel('Import model and companion files').setInputFiles({
     name: 'broken.glb',
     mimeType: 'model/gltf-binary',
@@ -133,7 +133,7 @@ test('model and project import errors leave the working workspace intact', async
 });
 
 test('catalog assembly creation and reparenting are validated and exportable', async ({ page }) => {
-  await page.goto('/editor');
+  await page.goto('/editor?demo=1');
   await page
     .getByRole('combobox', { name: 'Catalog part', exact: true })
     .selectOption('drivetrain');

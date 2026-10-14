@@ -1,6 +1,8 @@
 # Catalog, provenance and interchange
 
-`src/core/types.ts` defines the public contract. `src/data/catalog.ts` supplies 22 explicitly labelled demonstration records. No factory drawings or actual motorcycle models were present at implementation time. Names in the demonstration catalog describe the interface and synthetic geometry; OEM numbers, dimensions, materials, quantities and compatibility remain unknown.
+`src/oem/types.ts` defines the source-backed identity, occurrence, assembly, variant, relationship and review database. `data/oem/catalog.json` contains the audited release; see [OEM schema and provenance](oem-catalog.md). `src/oem/adapter.ts` projects that database into the existing viewer contract in `src/core/types.ts` without inventing geometry or flattening source evidence.
+
+This document describes that **viewer projection** and its CSV/JSON interchange, not the complete OEM database export. `src/data/catalog.ts` remains the separate 22-record synthetic fixture used only by demonstration workflows. Original measurements retain raw source text and printed unit headings in the OEM layer; mechanically unverified values are not silently converted to numerical viewer measurements.
 
 ## Identity and hierarchy
 
@@ -24,6 +26,8 @@ Record every supporting drawing in `sources`, preserving the document title, pag
 OEM numbers and generic designations are strings so leading zeroes survive. Dimensions are structured values with units (`mm`, `cm`, `m`, `deg`). Manufacturer or supplier claims belong in a cited source; nothing in the software establishes interchangeability. `alternatives[].relation` distinguishes `confirmed-interchangeable`, `similar-specification` and `unverified`. An alternative ID may identify a future product record outside the stock catalog; it does not establish fitment.
 
 ## Importing source drawings
+
+Use the [OEM ingestion workflow](oem-catalog.md) for production source records. The steps below describe small viewer-catalog templates; they do not preserve the complete source-row/physical-identity distinction on their own.
 
 1. Keep the original PDF/image and record its edition and applicable motorcycle/year.
 2. Transcribe one drawing's records into a copy of `public/templates/catalog.json` or `.csv`.

@@ -27,6 +27,10 @@ import {
   X,
 } from 'lucide-react';
 import { demoCatalog } from '@/data/catalog';
+import { oemCatalog, oemDatabase } from '@/data/oem';
+import { loadReviewPatches } from '@/catalog-review/storage';
+import { applyReviewPatches } from '@/oem/review';
+import { toExplorerCatalog } from '@/oem/adapter';
 import { createDemoScene } from '@/viewer/demo-scene';
 import { loadModel } from '@/viewer/load-model';
 import { validateCatalog } from '@/core/catalog';
@@ -51,6 +55,11 @@ import {
   type LocalAsset,
 } from './storage';
 import './editor.css';
+import {
+  indexCatalogTargets,
+  mergeCatalogIntoProject,
+  searchCatalogTargets,
+} from './catalog-tools';
 
 function demoMapping(scene: THREE.Group): MappingConfig {
   const mapping: MappingConfig = {
@@ -97,11 +106,24 @@ const blankExplosion: Explosion = {
 };
 
 export function Editor() {
+  const [demoMode] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      new URLSearchParams(window.location.search).get('demo') === '1',
+  );
   const [scene, setScene] = useState(() => createDemoScene());
   const [project, setProject] = useState<EditorProject>(() => ({
     version: 1,
-    catalog: demoCatalog,
-    mapping: demoMapping(scene),
+    catalog: demoMode ? demoCatalog : oemCatalog,
+    mapping: demoMode
+      ? demoMapping(scene)
+      : {
+          version: 1,
+          assetId: 'demonstration',
+          units: 'm',
+          upAxis: 'Y',
+          mappings: [],
+        },
     assetFileName: null,
   }));
   const [selected, setSelected] = useState<string[]>([]);
@@ -113,6 +135,9 @@ export function Editor() {
   const [filter, setFilter] = useState('all');
   const [limit, setLimit] = useState(250);
   const [targetPart, setTargetPart] = useState('jackshaft');
+  const [partSearch, setPartSearch] = useState('');
+  const [targetLimit, setTargetLimit] = useState(150);
+  const [mergeRetained, setMergeRetained] = useState<string[]>([]);
   const [partName, setPartName] = useState('');
   const [partParent, setPartParent] = useState('');
   const [newId, setNewId] = useState('');
@@ -127,7 +152,9 @@ export function Editor() {
   const importSequence = useRef(0);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState(
-    'Demonstration model loaded. Import your own geometry to begin mapping.',
+    demoMode
+      ? 'Demonstration workspace loaded. Import your own geometry to begin mapping.'
+      : 'OEM catalog loaded. Synthetic geometry is an unmapped interaction sample; import your model to map real parts.',
   );
   const [error, setError] = useState<string | null>(null);
   const [dirty, setDirty] = useState(false);
@@ -149,6 +176,19 @@ export function Editor() {
     () => new Map(project.catalog.parts.map((part) => [part.id, part])),
     [project.catalog],
   );
+  const targetSearchIndex = useMemo(() => indexCatalogTargets(project.catalog), [project.catalog]);
+  const matchingTargets = useMemo(
+    () => searchCatalogTargets(targetSearchIndex, partSearch),
+    [targetSearchIndex, partSearch],
+  );
+  const targetOptions = useMemo(() => {
+    const options = matchingTargets.slice(0, targetLimit);
+    const selectedPart = partsById.get(targetPart);
+    return selectedPart && !options.some((part) => part.id === targetPart)
+      ? [selectedPart, ...options]
+      : options;
+  }, [matchingTargets, targetLimit, partsById, targetPart]);
+  const mappingEnabled = project.assetFileName !== null || demoMode;
   const directClassification = useMemo(
     () => classifyObjects(objects, project.mapping, project.catalog),
     [objects, project.mapping, project.catalog],
@@ -169,13 +209,14 @@ export function Editor() {
     });
   }, [directClassification]);
   const proposals = useMemo(() => {
+    if (!mappingEnabled) return [];
     const unmapped = new Set(
       classified.filter((entry) => entry.status === 'unmapped').map((entry) => entry.object.key),
     );
     return proposeMappings(objects, project.catalog, project.mapping).filter((proposal) =>
       unmapped.has(proposal.objectKey),
     );
-  }, [objects, project.catalog, project.mapping, classified]);
+  }, [objects, project.catalog, project.mapping, classified, mappingEnabled]);
   const warnings = useMemo(() => [...new Set(sceneWarnings(scene))], [scene]);
   const mappingValidation = useMemo(
     () => validateMapping(project.mapping, project.catalog, objects),
@@ -230,7 +271,15 @@ export function Editor() {
     async function restore() {
       try {
         const saved = loadEditorProject();
-        if (!saved) return;
+        if (!saved) {
+          if (!demoMode) {
+            const reviewed = toExplorerCatalog(
+              applyReviewPatches(oemDatabase, loadReviewPatches()),
+            );
+            setProject((current) => ({ ...current, catalog: reviewed }));
+          }
+          return;
+        }
         setBusy(true);
         const asset = await loadSavedEditorAsset();
         if (cancelled) {
@@ -250,7 +299,9 @@ export function Editor() {
         }
         setProject(saved);
         setTargetPart(saved.catalog.motorcycleId);
-        setMessage('Saved local workspace restored. Nothing is uploaded.');
+        setMessage(
+          'Saved local workspace restored intact. Use Merge current OEM catalog to add missing sourced records. Nothing is uploaded.',
+        );
         setCameraCommand((command) => ({
           id: command.id + 1,
           kind: saved.mapping.camera ? 'saved' : 'all',
@@ -266,7 +317,7 @@ export function Editor() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [demoMode]);
 
   useEffect(() => () => disposeScene(scene), [scene]);
   useEffect(() => () => localAsset.current?.dispose(), []);
@@ -404,18 +455,40 @@ export function Editor() {
   }
 
   function assign(partId = targetPart, keys = selected) {
-    if (!partsById.has(partId) || !keys.length) return;
+    if (!mappingEnabled || !partsById.has(partId) || !keys.length) return;
+    if (!project.assetFileName && partsById.get(partId)?.sources.length) {
+      setError('Import real geometry before assigning a source-backed OEM catalog entry.');
+      return;
+    }
     updateMapping(assignMappings(project.mapping, keys, partId));
     setMessage(
       `${keys.length} object${keys.length === 1 ? '' : 's'} mapped to ${partsById.get(partId)!.name}.`,
     );
   }
   function applyExact() {
+    if (!mappingEnabled) return;
     let mapping = project.mapping;
-    for (const proposal of proposals.filter((proposal) => proposal.confidence === 'exact'))
+    for (const proposal of proposals.filter(
+      (proposal) =>
+        proposal.confidence === 'exact' &&
+        (project.assetFileName || !partsById.get(proposal.partId)?.sources.length),
+    ))
       mapping = assignMappings(mapping, [proposal.objectKey], proposal.partId);
     updateMapping(mapping);
     setMessage('Exact ID proposals applied. Review the mapping in the viewport.');
+  }
+  function mergeCurrentOemCatalog() {
+    try {
+      const reviewed = toExplorerCatalog(applyReviewPatches(oemDatabase, loadReviewPatches()));
+      const result = mergeCatalogIntoProject(project, reviewed);
+      updateProject(result.project);
+      setMergeRetained(result.retainedDifferences);
+      setMessage(
+        `Added ${result.addedCount} missing OEM catalog entries. Existing IDs, custom edits, geometry and mappings are preserved. ${result.retainedDifferences.length} existing entries differ from the current OEM catalog and were retained.`,
+      );
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : 'Catalog merge failed.');
+    }
   }
   function savePart() {
     if (!currentPart) return;
@@ -506,7 +579,8 @@ export function Editor() {
       setMessage(
         'Workspace saved in this browser. Export JSON and keep your original model files as a backup.',
       );
-      if (preview) window.location.assign('/?workspace=local');
+      if (preview)
+        window.location.assign(demoMode ? '/?workspace=local&demo=1' : '/?workspace=local');
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'Saving failed.');
     } finally {
@@ -517,7 +591,7 @@ export function Editor() {
   return (
     <div className="editor-shell">
       <header className="editor-header">
-        <Link href="/" className="editor-back">
+        <Link href={demoMode ? '/?demo=1' : '/'} className="editor-back">
           <ArrowLeft size={17} /> Explorer
         </Link>
         <div className="editor-title">
@@ -847,19 +921,62 @@ export function Editor() {
               one part.
             </p>
             <label>
+              Search catalog targets
+              <input
+                type="search"
+                value={partSearch}
+                onChange={(event) => {
+                  setPartSearch(event.target.value);
+                  setTargetLimit(150);
+                }}
+                placeholder="OEM number, name, source or stable ID"
+              />
+            </label>
+            <label>
               Catalog part
               <select value={targetPart} onChange={(event) => setTargetPart(event.target.value)}>
-                {project.catalog.parts.map((part) => (
+                {targetOptions.map((part) => (
                   <option key={part.id} value={part.id}>
-                    {part.name} · {part.id}
+                    {part.name}
+                    {part.oemNumber ? ` · ${part.oemNumber}` : ''} · {part.id}
                   </option>
                 ))}
               </select>
             </label>
+            <p className="editor-target-count" aria-live="polite">
+              {matchingTargets.length} matching catalog entries
+              {matchingTargets.length > targetLimit ? ` · showing first ${targetLimit}` : ''}. The
+              selected entry stays available when filters change.
+            </p>
+            {matchingTargets.length > targetLimit && (
+              <button onClick={() => setTargetLimit((value) => value + 150)}>
+                Show 150 more catalog targets
+              </button>
+            )}
+            {currentPart && (
+              <div className="editor-target-details">
+                <strong>{currentPart.oemNumber ?? currentPart.name}</strong>
+                <code>{currentPart.id}</code>
+                {currentPart.specifications['Catalog identity'] && (
+                  <small>Physical part: {currentPart.specifications['Catalog identity']}</small>
+                )}
+                {currentPart.sources.slice(0, 1).map((source) => (
+                  <small key={`${source.document}:${source.page}:${source.item}`}>
+                    {source.document} · page {source.page ?? '—'} · figure {source.diagram ?? '—'}
+                    {source.item ? ` · ${source.item}` : ''}
+                  </small>
+                ))}
+              </div>
+            )}
+            {!mappingEnabled && (
+              <p className="editor-synthetic-note">
+                Import your GLB/glTF to assign OEM parts. The synthetic sample has no OEM mapping.
+              </p>
+            )}
             <div className="editor-button-row">
               <button
                 className="editor-primary"
-                disabled={!selected.length}
+                disabled={!selected.length || !mappingEnabled}
                 onClick={() => assign()}
               >
                 Map {selected.length || ''} selected
@@ -984,6 +1101,10 @@ export function Editor() {
           </section>
           <section>
             <h3>Catalog organization</h3>
+            <p>
+              Workspace changes preserve source records.{' '}
+              <Link href="/catalog">Review factual catalog data</Link> to save shared review edits.
+            </p>
             <label>
               Human-readable name
               <input value={partName} onChange={(event) => setPartName(event.target.value)} />
@@ -1075,6 +1196,29 @@ export function Editor() {
           </section>
           <section className="editor-file-actions">
             <h3>Portable workspace</h3>
+            <button onClick={mergeCurrentOemCatalog} disabled={busy}>
+              Merge current OEM catalog
+            </button>
+            <p>
+              Adds missing entries with saved review edits. Existing catalog records and mappings
+              are retained on ID collisions.
+            </p>
+            {mergeRetained.length > 0 && (
+              <details className="editor-merge-report">
+                <summary>{mergeRetained.length} existing entries retained</summary>
+                <p>
+                  These local records differ from current OEM metadata. Export this project before
+                  reviewing changes individually.
+                </p>
+                <ul>
+                  {mergeRetained.map((id) => (
+                    <li key={id}>
+                      <code>{id}</code>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
             <button disabled={busy} onClick={() => directoryInput.current?.click()}>
               <Upload size={14} /> Import model folder
             </button>

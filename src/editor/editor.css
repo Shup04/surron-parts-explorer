@@ -90,6 +90,34 @@
   font-weight: 650;
   margin-bottom: 12px;
 }
+.editor-target-details {
+  display: grid;
+  gap: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--ed-border);
+  border-radius: 5px;
+  overflow-wrap: anywhere;
+}
+.editor-target-details code,
+.editor-target-details small {
+  color: var(--ed-muted);
+  font-size: 11px;
+}
+.editor-shell .editor-synthetic-note {
+  color: var(--ed-accent);
+}
+.editor-merge-report {
+  margin-bottom: 12px;
+}
+.editor-merge-report ul {
+  max-height: 180px;
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+.editor-inspector p a {
+  text-decoration: underline;
+}
 .editor-shell p {
   color: var(--ed-muted);
   font-size: 12px;

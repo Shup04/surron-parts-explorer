@@ -4,8 +4,8 @@
 
 1. Full stock Light Bee X GLB/glTF, its original Blender/CAD project, and separate high-detail assemblies where useful.
 2. All external buffers and textures when using `.gltf`; original textures and material references for review.
-3. Factory parts drawings/PDFs, including edition, page/diagram/item references and model-year coverage.
-4. Reviewed catalog CSV/JSON transcriptions or enough source information to confirm OEM numbers, descriptions, quantities and generic designations.
+3. Authoritative MY25/MY26 factory parts documents and a clearer copy of the clipped Emotobykes diagrams, if available. The three historical PDFs are already extracted; exact remaining gaps are in [the coverage report](../data/oem/report.md).
+4. Review corrections exported from `/catalog`, with evidence for disputed OEM numbers, quantities, dimensions and generic designations. Do not repeat the completed table transcription.
 5. Evidence for model-year compatibility, physical dimensions and any interchangeable bearing/fastener claims.
 
 ## Geometry preparation you retain
@@ -21,7 +21,7 @@
 
 ## Catalog preparation you retain
 
-- Transcribe original OEM text exactly, retaining punctuation/leading zeroes. Record document, page, diagram and item references.
+- Review flagged source records and diagram-only exceptions. Preserve original claims; apply documented corrections through the review tool. New editions require their own source ID and page audit.
 - Distinguish an occurrence from a shared part designation. Confirm quantities within the correct assembly/model year.
 - Keep all unconfirmed values null/unknown. Similar nominal specifications are not proof of interchangeability.
 - Mark source-confirmed values separately from mechanically verified measurements/fitment. Do not remove demonstration labels until the relevant geometry and records have been replaced and reviewed.
@@ -29,7 +29,7 @@
 ## Recommended public MVP sequence
 
 1. Supply and verify one complete stock model and one accurate detailed assembly, preferably the jackshaft, against a specific model year.
-2. Register those assets and source-backed catalog records. Exercise the same automated flows with a sanitized representative production fixture.
+2. Map those assets to the existing source-backed occurrence IDs and register the exported mappings. Exercise the same automated flows with a sanitized representative production fixture.
 3. Check mechanical alignment and labeling with the drawings, then review touch interaction on actual phones and Safari/Firefox. Establish geometry/texture budgets from measured performance.
 4. Self-host any required compression decoders, verify source/asset redistribution permissions, choose a production host, and test HTTPS deep links and cache/version behavior.
 5. Publish the stock explorer with clear provenance and supported model-year scope. Add aftermarket variants only after compatibility evidence and product records have a reviewed schema.

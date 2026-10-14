@@ -1,5 +1,6 @@
 # Sur-Ron Interactive 3D Parts Explorer
 <img width="1978" height="1271" alt="image" src="https://github.com/user-attachments/assets/12a92cb4-dbf3-401e-9115-7e323b2de34e" />
+**Early development screenshot**
 
 A working, browser-based motorcycle parts explorer and local model-mapping studio. Built with Next.js, TypeScript, React Three Fiber, Three.js and Drei. There are no accounts, purchase flows, backend databases, or upload/write endpoints.
 

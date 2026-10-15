@@ -1,6 +1,22 @@
 # Model mapping studio
 
-Open `/editor` from the explorer. This is a browser-local developer workspace, with no server write endpoint. The default catalog uses the reviewed OEM records; the starting motorcycle is unmapped synthetic geometry. Import actual geometry before assigning it to sourced occurrences. Use `/editor?demo=1` for the original demonstration mapping workflow. Its dimensions, materials, and decomposition are visual examples, not mechanical evidence.
+Open `/editor` from the explorer. The default **Add bike parts** screen is for building a bike from separate GLBs. Models and assignments are saved in this browser.
+
+## Add separate part GLBs
+
+1. Choose the physical part, such as **Seat**, in **Choose the bike part**.
+2. Click **Import Seat GLB** and select its file. All meshes in that file are assigned to Seat automatically. **Your parts** shows the filename and assignment.
+3. Click **Save & preview**. Open **Seat and bodywork → Seat** in the explorer, or click its geometry.
+
+Repeat for the frame, wheels and other parts. Adding a part keeps the models already added. Choosing an existing part and importing another GLB replaces only that part. Export every GLB in metres, Y-up, using the same assembled coordinate system; original positions, rotations and scales are preserved. The app does not guess their placement.
+
+For a model imported with the previous editor, choose its physical part and click **Use this model for Seat**. This reuses the stored file and assigns the whole file without requiring mesh selection or another upload.
+
+You can choose a physical role without selecting an OEM variant. Local model assignments are kept separate from sourced OEM references and do not establish installed equipment or fitment.
+
+## Advanced mapping tools
+
+Choose **Advanced tools** for whole-bike GLB/glTF import, individual mesh-to-OEM mapping, catalog editing and explosion authoring. `/editor?advanced=1` opens those tools directly. `/editor?demo=1` opens the original demonstration mapping workflow. The following sections describe these advanced tools.
 
 ## Import a model
 
@@ -44,6 +60,8 @@ Editor preview applies configured transforms throughout the imported object hier
 ## Save, export, and test in the explorer
 
 **Save locally** stores validated project metadata in `localStorage` under `surron-editor-project`. Imported model files are stored as browser-local blobs in IndexedDB (`surron-model-workspace`). **Preview in explorer** saves the workspace and opens `/?workspace=local`, where the same catalog, mappings, and imported geometry power search, selection, assembly navigation, and explosion.
+
+After saving, returning through **Explorer** or opening the normal explorer in the same browser restores the models and marks the URL with `workspace=local`. Curated views such as **Seat** show their local model assignments and geometry mapped to source references, including references filed under different source assemblies. Separate part uploads compose your own bike; the explicit `?demo=1` route shows the demonstration.
 
 Leaving through **Explorer** or **Review factual catalog data** uses the same unsaved-change confirmation as closing the tab. Choose **Save locally** first to retain edits.
 

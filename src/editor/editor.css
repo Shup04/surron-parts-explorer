@@ -4,6 +4,119 @@
   color: var(--text);
   font: var(--text-sm) / 1.5 var(--sans);
 }
+.editor-simple .editor-workspace {
+  grid-template-columns: 320px minmax(0, 1fr);
+}
+.editor-simple
+  :is(
+    .editor-tree-panel,
+    .editor-inspector,
+    .editor-advanced-import,
+    .editor-preview-top,
+    .editor-preview-controls,
+    .editor-selection-tools,
+    .editor-validation
+  ) {
+  display: none;
+}
+.editor-simple .editor-viewport-controls button:not(:first-child) {
+  display: none;
+}
+.editor-part-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  min-width: 0;
+}
+.editor-part-panel p {
+  color: var(--muted);
+  margin-top: var(--space-2);
+}
+.editor-part-panel label {
+  display: grid;
+  gap: var(--space-2);
+  font-weight: 600;
+}
+.editor-simple .editor-part-panel :is(select, button) {
+  min-height: 44px;
+}
+.editor-part-panel .ui-button {
+  width: 100%;
+  white-space: normal;
+}
+.editor-part-panel .editor-part-hint {
+  font-size: var(--text-xs);
+}
+.editor-existing-import {
+  overflow-wrap: anywhere;
+}
+.editor-existing-import .ui-button {
+  margin-top: var(--space-3);
+}
+.editor-added-parts {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-6);
+}
+.editor-added-parts h2 span {
+  color: var(--muted);
+  font-weight: 400;
+}
+.editor-added-parts ul {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+}
+.editor-added-parts li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.editor-added-parts li > svg {
+  flex: none;
+  color: var(--accent);
+}
+.editor-added-parts li > span {
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+.editor-shell .editor-added-parts li > button {
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: transparent;
+  border-color: transparent;
+  padding: var(--space-2);
+}
+.editor-added-parts small {
+  color: var(--muted);
+}
+.editor-part-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  text-align: center;
+  padding: var(--space-6);
+  color: var(--muted);
+}
+@media (max-width: 800px) {
+  .editor-simple .editor-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .editor-part-panel {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}
 .editor-shell * {
   box-sizing: border-box;
 }

@@ -7,13 +7,25 @@ export interface EditorProject {
   catalog: Catalog;
   mapping: MappingConfig;
   assetFileName: string | null;
+  partModels?: PartModel[];
+}
+
+export interface PartModel {
+  id: string;
+  fileName: string;
+  originalName: string;
+  partId: string;
 }
 
 export const PROJECT_STORAGE_KEY = 'surron-editor-project';
 const DATABASE = 'surron-model-workspace';
 const FILES = 'model-files';
 type StoredFile = { name: string; path: string; blob: Blob };
-export type LocalAsset = { url: string; dispose: () => void };
+export type LocalAsset = {
+  url: string;
+  models?: { id: string; url: string }[];
+  dispose: () => void;
+};
 
 export function parseEditorProject(value: unknown): EditorProject {
   if (!value || typeof value !== 'object') throw new Error('Expected a project JSON object.');
@@ -31,11 +43,36 @@ export function parseEditorProject(value: unknown): EditorProject {
     );
   if (project.assetFileName !== null && typeof project.assetFileName !== 'string')
     throw new Error('assetFileName must be a filename or null.');
+  let partModels: PartModel[] | undefined;
+  if (project.partModels !== undefined) {
+    if (!project.assetFileName) throw new Error('Part models need an asset filename.');
+    if (!Array.isArray(project.partModels) || !project.partModels.length)
+      throw new Error('partModels must contain at least one part model.');
+    const ids = new Set<string>();
+    partModels = project.partModels.map((value: unknown) => {
+      if (!value || typeof value !== 'object') throw new Error('Invalid part model.');
+      const model = value as Record<string, unknown>;
+      for (const key of ['id', 'fileName', 'originalName', 'partId'])
+        if (typeof model[key] !== 'string' || !model[key].trim())
+          throw new Error(`Part model ${key} must be a nonempty string.`);
+      if (ids.has(model.id as string)) throw new Error('Duplicate part model assignment.');
+      ids.add(model.id as string);
+      if (!catalog.data.parts.some((part) => part.id === model.partId))
+        throw new Error('Part model references an unknown catalog part.');
+      return {
+        id: model.id as string,
+        fileName: model.fileName as string,
+        originalName: model.originalName as string,
+        partId: model.partId as string,
+      };
+    });
+  }
   return {
     version: 1,
     catalog: catalog.data,
     mapping: mapping.data,
     assetFileName: project.assetFileName,
+    ...(partModels ? { partModels } : {}),
   };
 }
 
@@ -172,9 +209,28 @@ export function materializeFiles(files: File[], primaryName: string): Promise<Lo
   );
 }
 
-export async function loadSavedEditorAsset(): Promise<LocalAsset | null> {
-  const project = loadEditorProject();
-  if (!project?.assetFileName) return null;
+export async function materializeProjectFiles(
+  files: File[],
+  project: EditorProject,
+): Promise<LocalAsset> {
+  if (!project.partModels) return materializeFiles(files, project.assetFileName!);
+  const results = await Promise.allSettled(
+    project.partModels.map((model) => materializeFiles(files, model.fileName)),
+  );
+  const assets = results.flatMap((result) => (result.status === 'fulfilled' ? [result.value] : []));
+  const failure = results.find((result) => result.status === 'rejected');
+  if (failure?.status === 'rejected') {
+    assets.forEach((asset) => asset.dispose());
+    throw failure.reason;
+  }
+  return {
+    url: assets[0].url,
+    models: project.partModels.map((model, i) => ({ id: model.id, url: assets[i].url })),
+    dispose: () => assets.forEach((asset) => asset.dispose()),
+  };
+}
+
+export async function loadSavedEditorFiles(): Promise<File[]> {
   const db = await database();
   try {
     const files = await new Promise<StoredFile[]>((resolve, reject) => {
@@ -182,10 +238,20 @@ export async function loadSavedEditorAsset(): Promise<LocalAsset | null> {
       request.onsuccess = () => resolve(request.result ?? []);
       request.onerror = () => reject(request.error ?? new Error('Cannot read saved model files.'));
     });
-    return await materializeModel(files, project.assetFileName);
+    return files.map((stored) => {
+      const file = new File([stored.blob], stored.name, { type: stored.blob.type });
+      Object.defineProperty(file, 'webkitRelativePath', { value: stored.path });
+      return file;
+    });
   } finally {
     db.close();
   }
+}
+
+export async function loadSavedEditorAsset(): Promise<LocalAsset | null> {
+  const project = loadEditorProject();
+  if (!project?.assetFileName) return null;
+  return materializeProjectFiles(await loadSavedEditorFiles(), project);
 }
 
 export function downloadJSON(value: unknown, filename: string): void {

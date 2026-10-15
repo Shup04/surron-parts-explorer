@@ -94,8 +94,12 @@ export function updateVisibility(
   assemblyId: string,
   hiddenIds: string[],
   isolatedId: string | null,
+  scopePartIds?: string[],
 ): number {
-  const allowed = partSet(index, isolatedId ?? assemblyId);
+  const allowed = scopePartIds
+    ? new Set(scopePartIds.flatMap((id) => [...partSet(index, id)]))
+    : partSet(index, isolatedId ?? assemblyId);
+  const isolated = isolatedId ? partSet(index, isolatedId) : null;
   const hidden = new Set(hiddenIds.flatMap((id) => [...partSet(index, id)]));
   let count = 0;
   root.traverse((object) => {
@@ -110,8 +114,8 @@ export function updateVisibility(
     const id = mappedPartId(object);
     if (!originalLayers.has(object)) originalLayers.set(object, object.layers.mask);
     const geometryVisible = id
-      ? allowed.has(id) && !hidden.has(id)
-      : assemblyId === index.root.id && !isolatedId;
+      ? allowed.has(id) && !hidden.has(id) && (!isolated || isolated.has(id))
+      : !scopePartIds && assemblyId === index.root.id && !isolatedId;
     // A mesh can also be a parent node. Its geometry must disappear without hiding its children.
     object.visible = geometryVisible || object.children.length > 0;
     object.layers.mask = geometryVisible ? originalLayers.get(object)! : 0;
@@ -126,10 +130,13 @@ export function explosionTargets(
   index: CatalogIndex,
   assemblyId: string,
   amount: number,
+  scopePartIds?: string[],
 ): Map<THREE.Object3D, THREE.Vector3> {
   const targets = new Map<THREE.Object3D, THREE.Vector3>();
   const recordObjects = new Set(records.map((record) => record.object));
-  const allowed = partSet(index, assemblyId);
+  const allowed = scopePartIds
+    ? new Set(scopePartIds.flatMap((id) => [...partSet(index, id)]))
+    : partSet(index, assemblyId);
   const scoped = records.map((record) => {
     const active = allowed.has(record.partId) && record.partId !== assemblyId;
     let mappedParent = record.object.parent;
@@ -143,7 +150,7 @@ export function explosionTargets(
     }
     return {
       record,
-      scopeId: selectionAtLevel(index, record.partId, assemblyId),
+      scopeId: scopePartIds ? record.partId : selectionAtLevel(index, record.partId, assemblyId),
       active: active && !movesWithAncestor,
     };
   });
@@ -244,4 +251,26 @@ export function frameBounds(
         );
       }
   return { position: target.clone().addScaledVector(forward, distance), target };
+}
+
+/** Keep framed geometry inside the clipping planes throughout the allowed zoom range. */
+export function cameraRangeForBounds(
+  bounds: THREE.Box3,
+  position: THREE.Vector3,
+  target: THREE.Vector3,
+  focusBounds = bounds,
+): { near: number; far: number; minDistance: number; maxDistance: number } {
+  const radius = Math.max(focusBounds.getSize(new THREE.Vector3()).length() / 2, 0.00001);
+  const sceneRadius = bounds.getSize(new THREE.Vector3()).length() / 2;
+  const maxDistance = Math.max(position.distanceTo(target) * 20, sceneRadius * 40, 20);
+  return {
+    near: Math.max(radius / 1000, 0.000001),
+    far:
+      Math.max(
+        maxDistance + target.distanceTo(bounds.getCenter(new THREE.Vector3())) + sceneRadius,
+        100,
+      ) * 2,
+    minDistance: Math.max(radius / 100, 0.00001),
+    maxDistance,
+  };
 }

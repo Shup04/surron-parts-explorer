@@ -33,12 +33,16 @@ import { applyReviewPatches } from '@/oem/review';
 import { toExplorerCatalog } from '@/oem/adapter';
 import { createDemoScene } from '@/viewer/demo-scene';
 import { loadModel } from '@/viewer/load-model';
+import { loadAssetModel } from '@/viewer/part-models';
+import { buildCuratedNavigation, navigationForOccurrence } from '@/navigation/model';
 import { validateCatalog } from '@/core/catalog';
 import { classifyObjects, getObjectKey, validateMapping } from '@/core/mapping';
 import type { Explosion, MappingConfig, Part, Vec3 } from '@/core/types';
 import { EditorCanvas, type CameraCommand } from './EditorCanvas';
 import { ImportPreflightReport } from './ImportPreflightReport';
-import { preflightImportedModel, type ImportPreflight } from './preflight';
+import { inspectImport, preflightImportedModel, type ImportPreflight } from './preflight';
+import { PartModelPanel } from './PartModelPanel';
+import { assignPartModel } from './part-project';
 import {
   assignMappings,
   disposeScene,
@@ -50,7 +54,9 @@ import {
   downloadJSON,
   loadEditorProject,
   loadSavedEditorAsset,
+  loadSavedEditorFiles,
   materializeFiles,
+  materializeProjectFiles,
   parseEditorProject,
   saveEditorProject,
   type EditorProject,
@@ -113,6 +119,17 @@ export function Editor() {
       typeof window !== 'undefined' &&
       new URLSearchParams(window.location.search).get('demo') === '1',
   );
+  const [advanced, setAdvanced] = useState(
+    () =>
+      demoMode ||
+      (typeof window !== 'undefined' &&
+        new URLSearchParams(window.location.search).get('advanced') === '1'),
+  );
+  const [partRole, setPartRole] = useState(() =>
+    typeof window !== 'undefined'
+      ? (new URLSearchParams(window.location.search).get('part') ?? '')
+      : '',
+  );
   const [scene, setScene] = useState(() => createDemoScene());
   const [preflight, setPreflight] = useState<ImportPreflight | null>(null);
   const [project, setProject] = useState<EditorProject>(() => ({
@@ -153,20 +170,25 @@ export function Editor() {
   const pendingFiles = useRef<File[] | undefined>(undefined);
   const localAsset = useRef<LocalAsset | null>(null);
   const importSequence = useRef(0);
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState(true);
   const [message, setMessage] = useState(
     demoMode
       ? 'Demo model loaded. Import your geometry to start mapping.'
-      : 'OEM catalog loaded. Import your model to map parts; the demo geometry is unmapped.',
+      : 'Choose a bike part and add its GLB. Each model is assigned automatically.',
   );
   const [error, setError] = useState<string | null>(null);
   const [dirty, setDirty] = useState(false);
   const dirtyRef = useRef(false);
   const modelInput = useRef<HTMLInputElement>(null);
+  const partModelInput = useRef<HTMLInputElement>(null);
   const directoryInput = useRef<HTMLInputElement>(null);
   const jsonInput = useRef<HTMLInputElement>(null);
 
   const objects = useMemo(() => inspectScene(scene), [scene]);
+  const partNavigation = useMemo(
+    () => buildCuratedNavigation(oemDatabase, project.catalog),
+    [project.catalog],
+  );
   const originalVisibility = useMemo(() => {
     const visibility = new Map<string, boolean>();
     scene.traverse((object) => visibility.set(getObjectKey(object, scene), object.visible));
@@ -330,8 +352,10 @@ export function Editor() {
           return;
         }
         if (asset) {
-          const imported = await loadModel(asset.url);
-          const report = await preflightImportedModel(imported, asset.url);
+          const imported = await loadAssetModel(asset);
+          const report = asset.models
+            ? inspectImport(imported)
+            : await preflightImportedModel(imported, asset.url);
           if (cancelled) {
             disposeScene(imported);
             asset.dispose();
@@ -343,9 +367,26 @@ export function Editor() {
           setScene(imported);
         }
         setProject(saved);
+        if (!new URLSearchParams(window.location.search).has('part')) {
+          const navigation = buildCuratedNavigation(oemDatabase, saved.catalog);
+          const mappedRole = saved.mapping.mappings
+            .map((entry) => navigationForOccurrence(navigation, entry.partId))
+            .find(Boolean);
+          setPartRole(
+            saved.partModels?.at(-1)?.id ??
+              mappedRole?.id ??
+              (/seat/i.test(saved.assetFileName ?? '') ? 'nav.body.seat' : ''),
+          );
+        }
         setTargetPart(saved.catalog.motorcycleId);
         setMessage(
-          'Saved local workspace restored intact. Use Merge current OEM catalog to add missing sourced records. Nothing is uploaded.',
+          saved.partModels
+            ? `${saved.partModels.length} saved part models restored. Add another part or replace its GLB.`
+            : advanced
+              ? 'Saved local workspace restored intact. Use Merge current OEM catalog to add missing sourced records.'
+              : saved.assetFileName
+                ? 'Your saved model is restored. Choose its bike part to finish adding it.'
+                : 'Your workspace is restored. Choose a bike part and import its GLB.',
         );
         setCameraCommand((command) => ({
           id: command.id + 1,
@@ -431,6 +472,7 @@ export function Editor() {
         project.assetFileName !== null || project.mapping.assetId !== 'demonstration';
       updateProject({
         ...project,
+        partModels: undefined,
         assetFileName: filename,
         mapping: preserve
           ? { ...project.mapping, assetId: filename }
@@ -450,6 +492,71 @@ export function Editor() {
     } catch (cause) {
       asset?.dispose();
       setError(cause instanceof Error ? cause.message : 'Model import failed.');
+    } finally {
+      if (sequence === importSequence.current) setBusy(false);
+    }
+  }
+
+  async function addPart(file?: File) {
+    const node = partNavigation.byId.get(partRole);
+    if (!node) {
+      setError('Choose a bike part first.');
+      return;
+    }
+    if (file && !/\.glb$/i.test(file.name)) {
+      setError('Choose a GLB file for this part.');
+      return;
+    }
+    const sequence = ++importSequence.current;
+    setBusy(true);
+    setError(null);
+    let asset: LocalAsset | undefined;
+    let imported: THREE.Group | undefined;
+    try {
+      let files =
+        pendingFiles.current ?? (project.assetFileName ? await loadSavedEditorFiles() : []);
+      const fileName = file ? `part-${node.id}.glb` : project.assetFileName;
+      if (!fileName) throw new Error('Import a GLB for this part first.');
+      if (file) {
+        const previousFile = project.partModels?.find((model) => model.id === node.id)?.fileName;
+        files = [
+          ...files.filter((entry) => {
+            const path = entry.webkitRelativePath || entry.name;
+            return (
+              path !== fileName &&
+              (!previousFile || !/\.glb$/i.test(previousFile) || path !== previousFile)
+            );
+          }),
+          new File([file], fileName, { type: file.type }),
+        ];
+      }
+      const next = assignPartModel(project, node, fileName, file?.name ?? project.assetFileName!);
+      asset = await materializeProjectFiles(files, next);
+      imported = await loadAssetModel(asset);
+      const validated = validateMapping(next.mapping, next.catalog, inspectScene(imported));
+      if (!validated.success)
+        throw new Error(validated.issues.map((issue) => issue.message).join('; '));
+      if (sequence !== importSequence.current) {
+        asset.dispose();
+        disposeScene(imported);
+        return;
+      }
+      localAsset.current?.dispose();
+      localAsset.current = asset;
+      pendingFiles.current = files;
+      updateProject(next);
+      setPreflight(inspectImport(imported));
+      setScene(imported);
+      setSelected([]);
+      setHidden([]);
+      setIsolated(null);
+      setAmount(0);
+      frame('all');
+      setMessage(`${node.name} added and assigned. Save & preview to see it in the explorer.`);
+    } catch (cause) {
+      asset?.dispose();
+      if (imported) disposeScene(imported);
+      setError(cause instanceof Error ? cause.message : 'Could not add this part model.');
     } finally {
       if (sequence === importSequence.current) setBusy(false);
     }
@@ -636,19 +743,30 @@ export function Editor() {
   }
 
   return (
-    <div className="editor-shell">
+    <div className={`editor-shell ${advanced ? '' : 'editor-simple'}`}>
       <header className="editor-header">
         <a href={demoMode ? '/?demo=1' : '/'} className="editor-back">
           <ArrowLeft size={17} /> Explorer
         </a>
         <div className="editor-title">
           <span className="editor-eyebrow">Local workspace</span>
-          <h1>Model mapping studio</h1>
+          <h1>{advanced ? 'Model mapping studio' : 'Add bike parts'}</h1>
         </div>
         <span className={`editor-save-state ${dirty ? 'dirty' : ''}`}>
           {dirty ? 'Unsaved changes' : 'Local only'}
         </span>
-        <Button onClick={() => modelInput.current?.click()} disabled={busy}>
+        <Button
+          onClick={() => setAdvanced((value) => !value)}
+          aria-pressed={advanced}
+          disabled={busy}
+        >
+          {advanced ? 'Simple part uploads' : 'Advanced tools'}
+        </Button>
+        <Button
+          className="editor-advanced-import"
+          onClick={() => modelInput.current?.click()}
+          disabled={busy}
+        >
           <Upload size={15} /> Import model
         </Button>
         <Button onClick={() => void save()} disabled={busy}>
@@ -660,8 +778,20 @@ export function Editor() {
           onClick={() => void save(true)}
           disabled={busy}
         >
-          Preview in explorer <ChevronRight size={15} />
+          {advanced ? 'Preview in explorer' : 'Save & preview'} <ChevronRight size={15} />
         </Button>
+        <input
+          ref={partModelInput}
+          type="file"
+          accept=".glb"
+          hidden
+          aria-label="Import part GLB"
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            event.target.value = '';
+            if (file) void addPart(file);
+          }}
+        />
         <input
           ref={modelInput}
           type="file"
@@ -701,6 +831,17 @@ export function Editor() {
         </div>
       )}
       <div className="editor-workspace">
+        {!advanced && (
+          <PartModelPanel
+            project={project}
+            navigation={partNavigation}
+            roleId={partRole}
+            onRoleChange={setPartRole}
+            onUpload={() => partModelInput.current?.click()}
+            onAssignExisting={() => void addPart()}
+            busy={busy}
+          />
+        )}
         <aside className="editor-tree-panel" aria-label="Model object hierarchy">
           <div className="editor-panel-heading">
             <Layers size={17} />
@@ -843,21 +984,29 @@ export function Editor() {
             <span>{selected.length} selected · metres · Y up</span>
           </div>
           <div className="editor-canvas">
-            <CanvasBoundary key={scene.uuid}>
-              <EditorCanvas
-                scene={scene}
-                mapping={project.mapping}
-                selected={selected}
-                hovered={hovered}
-                hidden={hidden}
-                isolated={isolated}
-                amount={amount}
-                cameraCommand={cameraCommand}
-                cameraSnapshot={cameraSnapshot}
-                onSelect={selectObject}
-                onHover={setHovered}
-              />
-            </CanvasBoundary>
+            {!advanced && !project.assetFileName ? (
+              <div className="editor-part-empty">
+                <Box size={32} />
+                <h2>Your bike starts here</h2>
+                <p>Choose a part and import its GLB to start.</p>
+              </div>
+            ) : (
+              <CanvasBoundary key={scene.uuid}>
+                <EditorCanvas
+                  scene={scene}
+                  mapping={project.mapping}
+                  selected={selected}
+                  hovered={hovered}
+                  hidden={hidden}
+                  isolated={isolated}
+                  amount={amount}
+                  cameraCommand={cameraCommand}
+                  cameraSnapshot={cameraSnapshot}
+                  onSelect={selectObject}
+                  onHover={setHovered}
+                />
+              </CanvasBoundary>
+            )}
             {hovered && (
               <div className="editor-hover">
                 {objectByKey.get(hovered)?.name}

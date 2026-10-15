@@ -1,12 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import * as THREE from 'three';
 import { demoCatalog } from '../src/data/catalog';
+import { oemCatalog } from '../src/data/oem';
 import { buildCatalogIndex } from '../src/core/catalog';
 import { getObjectKey } from '../src/core/mapping';
 import { createDemoScene } from '../src/viewer/demo-scene';
 import { savedCameraForScope, validateViewerAsset } from '../src/viewer/asset-validation';
 import {
   disposeScene,
+  cameraRangeForBounds,
   explosionTargets,
   frameBounds,
   mappedPartId,
@@ -20,6 +22,52 @@ import type { AssetDefinition, MappingConfig } from '../src/core/types';
 const index = buildCatalogIndex(demoCatalog);
 
 describe('real Three.js scene integration', () => {
+  it('keeps large imported geometry inside the camera range after framing and zooming', () => {
+    const bounds = new THREE.Box3(
+      new THREE.Vector3(-250, -35, -90),
+      new THREE.Vector3(250, 35, 90),
+    );
+    const framing = frameBounds(bounds, 1.5, 38, new THREE.Vector3(0.75, 0.37, 1));
+    const range = cameraRangeForBounds(bounds, framing.position, framing.target);
+    const distance = framing.position.distanceTo(framing.target);
+    const radius = bounds.getSize(new THREE.Vector3()).length() / 2;
+    expect(distance).toBeGreaterThan(100);
+    expect(range.far).toBeGreaterThan(distance + radius);
+    expect(range.far).toBeGreaterThan(range.maxDistance + radius);
+    expect(range.maxDistance).toBeGreaterThan(distance);
+    expect(range.near).toBeLessThan(range.minDistance);
+    const focus = new THREE.Box3(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0.01, 0.01, 0.01));
+    expect(cameraRangeForBounds(bounds, framing.position, framing.target, focus).near).toBeLessThan(
+      0.0001,
+    );
+  });
+
+  it('shows and explodes curated seats across source assemblies while excluding unrelated geometry', () => {
+    const catalog = buildCatalogIndex(oemCatalog);
+    const scene = new THREE.Group();
+    const ids = ['occ-emotobykes-p12-r7', 'occ-lbx2021-p10-r4', 'body', null];
+    const meshes = ids.map((id) => {
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1));
+      if (id) mesh.userData.partId = id;
+      scene.add(mesh);
+      return mesh;
+    });
+    const records = prepareScene(scene);
+    const scope = ids.slice(0, 2) as string[];
+    expect(updateVisibility(scene, catalog, 'body', [], null, scope)).toBe(2);
+    expect(meshes.map((mesh) => mesh.layers.mask !== 0)).toEqual([true, true, false, false]);
+    expect(mappedPartId(meshes[1])).toBe('occ-lbx2021-p10-r4');
+    const exploded = explosionTargets(records, catalog, 'body', 1, scope);
+    expect(exploded.get(meshes[1])!.length()).toBeGreaterThan(0);
+    expect(exploded.get(meshes[2])!.length()).toBe(0);
+    const assembled = explosionTargets(records, catalog, 'body', 0, scope);
+    expect(assembled.get(meshes[1])!.toArray()).toEqual([0, 0, 0]);
+    expect(updateVisibility(scene, catalog, 'body', [scope[0]], null, scope)).toBe(1);
+    expect(updateVisibility(scene, catalog, 'body', [], scope[1], scope)).toBe(1);
+    expect(meshes[1].layers.mask).not.toBe(0);
+    disposeScene(scene);
+  });
+
   it('keeps flat imported meshes of one component together in approximate mode', () => {
     const scene = new THREE.Group();
     const meshes = [new THREE.Mesh(), new THREE.Mesh(), new THREE.Mesh()];

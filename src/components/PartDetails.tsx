@@ -16,7 +16,9 @@ export function PartDetails({
   onNavigate: (id: string) => void;
   actions?: ReactNode;
 }) {
-  const specifications = Object.entries(part.specifications).filter(([, value]) => value.trim());
+  const specifications = Object.entries(part.specifications).filter(
+    ([key, value]) => key !== 'Model role' && value.trim(),
+  );
   const images = part.images.filter((image) => /^(https?:\/\/|\/(?!\/))/.test(image.url));
   const hasSpecifications =
     specifications.length > 0 || part.dimensions.length > 0 || part.material;

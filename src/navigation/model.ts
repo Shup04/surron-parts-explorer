@@ -41,6 +41,7 @@ export interface NavigationNode {
   references: ReferenceGroup[];
   installedOccurrenceIds: string[];
   occurrenceId?: string;
+  modelPartIds?: string[];
 }
 
 export interface NavigationModel {
@@ -202,6 +203,16 @@ export function buildCuratedNavigation(
     ]);
     return node;
   });
+  function includeModels(node: NavigationNode): string[] {
+    node.modelPartIds = [
+      ...catalog.parts
+        .filter((part) => part.specifications['Model role'] === node.id)
+        .map((part) => part.id),
+      ...node.children.flatMap(includeModels),
+    ];
+    return node.modelPartIds;
+  }
+  roots.forEach(includeModels);
   return { roots, byId, warnings };
 }
 
@@ -221,8 +232,15 @@ export function navigationForOccurrence(
   id: string,
 ): NavigationNode | undefined {
   const nodes = [...model.byId.values()];
+  const modelRole = nodes.find(
+    (node) =>
+      node.modelPartIds?.includes(id) &&
+      !node.children.some((child) => child.modelPartIds?.includes(id)),
+  );
+  if (modelRole) return modelRole;
   const contains = (node: NavigationNode) =>
-    node.references.some((group) => group.occurrenceIds.includes(id));
+    node.references.some((group) => group.occurrenceIds.includes(id)) ||
+    !!node.modelPartIds?.includes(id);
   return (
     nodes.find((node) => node.kind === 'component' && contains(node)) ??
     nodes.find((node) => node.kind === 'group' && !node.children.length && contains(node))

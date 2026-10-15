@@ -60,6 +60,7 @@ export interface AssetDefinition {
   unit: 'm';
   upAxis: 'Y';
   label: string;
+  models?: { id: string; url: string }[];
 }
 export interface MappingConfig {
   version: 1;
@@ -86,6 +87,8 @@ export interface ViewerDiagnostics {
 export interface ViewerProps {
   catalog: Catalog;
   assemblyId: string;
+  /** Explicit catalog IDs represented by a curated view, across source assemblies. */
+  scopePartIds?: string[];
   selectedId: string | null;
   hoveredId?: string | null;
   explosion: number;

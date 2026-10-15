@@ -10,3 +10,6 @@ next-env.d.ts
 .DS_Store
 reference/**/*.pdf
 .agent/catalog-ingestion/
+reference/models/
+.agent/blender-optimization/
+.agent/blender-materials/

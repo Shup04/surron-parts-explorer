@@ -52,6 +52,16 @@ const configured = (config = configuration, year: number | 'unknown' = 2021) =>
   });
 
 describe('curated motorcycle presentation', () => {
+  it('includes the 2021 seat alongside the earlier seat without asserting interchangeability', () => {
+    const seat = model.byId.get('nav.body.seat')!;
+    expect(seat.references.map((reference) => reference.oemNumber)).toEqual(
+      expect.arrayContaining(['32300-YQ2A-0000', '32300-YQ2A-0001']),
+    );
+    expect(candidateIds(seat.id)).toContain('occ-lbx2021-p10-r4');
+    expect(navigationForOccurrence(model, 'occ-lbx2021-p10-r4')?.id).toBe(seat.id);
+    expect(seat.installedOccurrenceIds).toEqual([]);
+  });
+
   it('retains fourteen physical systems without pruning or reparenting the full catalog', () => {
     const before = JSON.stringify({ database: oemDatabase, catalog: oemCatalog });
     const navigation = buildCuratedNavigation(oemDatabase, oemCatalog);

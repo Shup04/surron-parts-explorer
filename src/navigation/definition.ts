@@ -104,6 +104,9 @@ export const CURATED_SYSTEMS: SystemDefinition[] = [
         oemNumbers: ['41520-YQ2A-0000', '41520-YQ2A-Z1'],
         sourceAssemblyIds: ['frame'],
       },
+      { id: 'nav.frame.seat-bracket', name: 'Seat mounting bracket', kind: 'component' },
+      { id: 'nav.frame.wire-cover-left', name: 'Left frame wire cover', kind: 'component' },
+      { id: 'nav.frame.wire-mount-right', name: 'Right frame wire mount', kind: 'component' },
       {
         id: 'nav.frame.bushings',
         name: 'Frame and swingarm bushings',
@@ -170,13 +173,17 @@ export const CURATED_SYSTEMS: SystemDefinition[] = [
       {
         id: 'nav.swingarm.tensioner',
         name: 'Chain tensioner',
-        kind: 'component',
+        kind: 'group',
         oemNumbers: ['61210-YQ2A-0000'],
         sourceAssemblyIds: ['swingarm'],
+        children: [
+          { id: 'nav.swingarm.tensioner.left', name: 'Left rear axle block', kind: 'component' },
+          { id: 'nav.swingarm.tensioner.right', name: 'Right rear axle block', kind: 'component' },
+        ],
       },
       {
         id: 'nav.swingarm.guard',
-        name: 'Midshaft guard',
+        name: 'Jackshaft cover',
         kind: 'component',
         oemNumbers: ['32120-YQ2A-0000'],
         sourceAssemblyIds: ['swingarm'],
@@ -814,6 +821,7 @@ export const CURATED_SYSTEMS: SystemDefinition[] = [
         kind: 'group',
         sourceAssemblyIds: ['motor'],
         children: [
+          { id: 'nav.motor.guard.accent', name: 'Pulley cover accent', kind: 'component' },
           {
             id: 'nav.motor.guard.cover',
             name: 'Pulley guard cover',
@@ -1295,6 +1303,7 @@ export const CURATED_SYSTEMS: SystemDefinition[] = [
         oemNumbers: ['22200-YQ2A-0000', '22200-YQ2A-Z1', '22200-YQ2B-0000'],
         sourceAssemblyIds: ['electrical', 'rear-lighting'],
       },
+      { id: 'nav.electrical.tail-light-bracket', name: 'Tail light bracket', kind: 'component' },
       {
         id: 'nav.electrical.dashboard',
         name: 'Dashboard',
@@ -1772,9 +1781,10 @@ export const CURATED_SYSTEMS: SystemDefinition[] = [
         id: 'nav.body.seat',
         name: 'Seat',
         kind: 'component',
-        oemNumbers: ['32300-YQ2A-0000'],
+        oemNumbers: ['32300-YQ2A-0000', '32300-YQ2A-0001'],
         sourceAssemblyIds: ['body', 'seat-body'],
       },
+      { id: 'nav.body.seat-base-cover', name: 'Seat base cover', kind: 'component' },
       {
         id: 'nav.body.front-fender',
         name: 'Front fender',

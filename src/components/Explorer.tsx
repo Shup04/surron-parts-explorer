@@ -67,6 +67,7 @@ import {
 import { createExplorerUrl } from '@/core/navigation';
 import type { AssetDefinition, Catalog, MappingConfig, ViewerDiagnostics } from '@/core/types';
 import { assetRegistry } from '@/config/assets';
+import { withProjectParts } from '@/config/project-parts';
 
 const Viewer = dynamic(() => import('@/viewer/Viewer'), {
   ssr: false,
@@ -79,7 +80,7 @@ const Viewer = dynamic(() => import('@/viewer/Viewer'), {
 });
 
 export default function Explorer() {
-  const [catalog, setCatalog] = useState<Catalog>(oemCatalog);
+  const [catalog, setCatalog] = useState<Catalog>(() => withProjectParts(oemCatalog));
   const [demoMode, setDemoMode] = useState(false);
   const [database, setDatabase] = useState(oemDatabase);
   const [filters, setFilters] = useState<CatalogFilters>({});
@@ -119,7 +120,10 @@ export default function Explorer() {
   const index = useMemo(() => buildCatalogIndex(catalog), [catalog]);
   const curatedEnabled =
     !demoMode &&
-    (!localWorkspace || catalog.parts.some((part) => part.specifications['Catalog identity']));
+    (!localWorkspace ||
+      catalog.parts.some(
+        (part) => part.specifications['Catalog identity'] || part.specifications['Model role'],
+      ));
   const navigation = useMemo(
     () =>
       curatedEnabled
@@ -162,8 +166,10 @@ export default function Explorer() {
   const childParts = getChildren(index, detail.id);
   const detailBreadcrumbs = [...getAncestors(index, detail.id), detail];
   const assetEntry =
-    assetRegistry.find((entry) => entry.asset.assemblyId === assemblyId) ??
-    assetRegistry.find((entry) => entry.asset.assemblyId === catalog.motorcycleId);
+    !demoMode && !localWorkspace
+      ? (assetRegistry.find((entry) => entry.asset.assemblyId === assemblyId) ??
+        assetRegistry.find((entry) => entry.asset.assemblyId === catalog.motorcycleId))
+      : undefined;
 
   useEffect(() => {
     const media = window.matchMedia('(max-width: 1100px)');
@@ -232,42 +238,53 @@ export default function Explorer() {
       setDatabase(reviewed);
       const initialFilters = sourceFilters(window.location.search);
       setFilters(initialFilters);
-      let activeCatalog = demo ? demoCatalog : toExplorerCatalog(reviewed, initialFilters);
+      let activeCatalog = demo
+        ? demoCatalog
+        : withProjectParts(toExplorerCatalog(reviewed, initialFilters));
+      let usingLocalWorkspace = false;
       setCatalog(activeCatalog);
-      if (new URLSearchParams(window.location.search).get('workspace') === 'local') {
+      const requestedLocal = params.get('workspace') === 'local';
+      if (requestedLocal || (!demo && !params.has('workspace'))) {
         try {
           const { loadEditorProject, loadSavedEditorAsset } = await import('@/editor/storage');
           const project = loadEditorProject();
-          if (!project)
+          if (!project && requestedLocal)
             throw new Error(
               'No saved local project. Import and save a model in the mapping editor first.',
             );
-          const loaded = await loadSavedEditorAsset();
-          if (!loaded && project.assetFileName)
-            throw new Error('The saved model is unavailable. Reimport it in the mapping editor.');
-          release = loaded?.dispose;
-          if (disposed) {
-            release?.();
-            return;
+          if (project && (requestedLocal || project.assetFileName)) {
+            const loaded = await loadSavedEditorAsset();
+            if (!loaded && project.assetFileName)
+              throw new Error('The saved model is unavailable. Reimport it in the mapping editor.');
+            release = loaded?.dispose;
+            if (disposed) {
+              release?.();
+              return;
+            }
+            activeCatalog = project.catalog;
+            usingLocalWorkspace = true;
+            setCatalog(activeCatalog);
+            setMapping(project.mapping);
+            setLocalWorkspace(true);
+            const url = new URL(window.location.href);
+            url.searchParams.set('workspace', 'local');
+            window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+            if (loaded)
+              setLocalAsset({
+                id: project.mapping.assetId,
+                url: loaded.url,
+                models: loaded.models,
+                assemblyId: activeCatalog.motorcycleId,
+                label: project.assetFileName ?? 'Local model',
+                unit: 'm',
+                upAxis: 'Y',
+              });
+            setAssetMessage(
+              loaded
+                ? 'Local model · verification follows catalog metadata'
+                : 'Local mapping workspace · synthetic demonstration geometry',
+            );
           }
-          activeCatalog = project.catalog;
-          setCatalog(activeCatalog);
-          setMapping(project.mapping);
-          setLocalWorkspace(true);
-          if (loaded)
-            setLocalAsset({
-              id: project.mapping.assetId,
-              url: loaded.url,
-              assemblyId: activeCatalog.motorcycleId,
-              label: project.assetFileName ?? 'Local model',
-              unit: 'm',
-              upAxis: 'Y',
-            });
-          setAssetMessage(
-            loaded
-              ? 'Local model · verification follows catalog metadata'
-              : 'Local mapping workspace · synthetic demonstration geometry',
-          );
         } catch (error) {
           if (!disposed)
             setAssetMessage(
@@ -278,8 +295,10 @@ export default function Explorer() {
       if (disposed) return;
       const activeNavigation =
         !demo &&
-        (!params.has('workspace') ||
-          activeCatalog.parts.some((part) => part.specifications['Catalog identity']))
+        (!usingLocalWorkspace ||
+          activeCatalog.parts.some(
+            (part) => part.specifications['Catalog identity'] || part.specifications['Model role'],
+          ))
           ? buildCuratedNavigation(reviewed, activeCatalog, {
               modelYear: initialFilters.modelYear,
               configurationId: params.get('configuration') ?? '',
@@ -323,7 +342,9 @@ export default function Explorer() {
       const nextFilters = sourceFilters(window.location.search);
       setFilters(nextFilters);
       const active =
-        demoMode || localWorkspace ? catalog : toExplorerCatalog(database, nextFilters);
+        demoMode || localWorkspace
+          ? catalog
+          : withProjectParts(toExplorerCatalog(database, nextFilters));
       if (!demoMode && !localWorkspace) setCatalog(active);
       const activeNavigation = curatedEnabled
         ? buildCuratedNavigation(database, active, {
@@ -504,7 +525,7 @@ export default function Explorer() {
   };
   function changeSourceFilter(patch: Partial<CatalogFilters>) {
     const next = { ...filters, ...patch };
-    const active = toExplorerCatalog(database, next);
+    const active = withProjectParts(toExplorerCatalog(database, next));
     setFilters(next);
     setCatalog(active);
     const url = new URL(window.location.href);
@@ -535,12 +556,30 @@ export default function Explorer() {
   }
   const activeMapping = mapping ?? assetEntry?.mapping;
   const hasImportedGeometry = !!(localAsset ?? assetEntry?.asset);
+  const scopePartIds = useMemo(
+    () =>
+      hasImportedGeometry && activeNode
+        ? [
+            ...new Set([
+              ...(activeNode.kind === 'system' && activeNode.scopeId !== catalog.motorcycleId
+                ? [activeNode.scopeId]
+                : []),
+              ...activeNode.references.flatMap((reference) => reference.occurrenceIds),
+              ...(activeNode.modelPartIds ?? []),
+            ]),
+          ]
+        : undefined,
+    [hasImportedGeometry, activeNode, catalog.motorcycleId],
+  );
   const mappedIds = new Set(activeMapping?.mappings.map((entry) => entry.partId) ?? []);
-  const geometryIds = [detail.id, ...getDescendants(index, detail.id).map((part) => part.id)];
+  const geometryIds = (scopePartIds ?? [detail.id]).flatMap((id) => [
+    id,
+    ...getDescendants(index, id).map((part) => part.id),
+  ]);
   const hasGeometry =
     demoMode || (hasImportedGeometry && geometryIds.some((id) => mappedIds.has(id)));
   const showDemonstration = !hasImportedGeometry && !demoMode && overview && !selection;
-  const showViewer = hasGeometry || showDemonstration;
+  const showViewer = hasGeometry || showDemonstration || (overview && hasImportedGeometry);
   const sceneCatalog = showDemonstration ? demoCatalog : catalog;
   const selectGeometry = (id: string) => {
     if (index.byId.has(id)) navigate(id);
@@ -555,7 +594,7 @@ export default function Explorer() {
       navigate(id);
       return;
     }
-    const active = toExplorerCatalog(database);
+    const active = withProjectParts(toExplorerCatalog(database));
     const part = active.parts.find((item) => item.id === id);
     if (!part) return;
     setFilters({});
@@ -750,6 +789,8 @@ export default function Explorer() {
           <div className="tools-menu">
             <Link href="/catalog">Catalog review</Link>
             <Link href={demoMode ? '/editor?demo=1' : '/editor'}>Model editor</Link>
+            <a href="/?workspace=project">Project parts</a>
+            {!demoMode && <a href="/?workspace=local">Saved local parts</a>}
             {!demoMode && <Link href="/?demo=1">Geometry demonstration</Link>}
             {demoMode && <Link href="/">OEM motorcycle explorer</Link>}
           </div>
@@ -1060,6 +1101,7 @@ export default function Explorer() {
               <Viewer
                 catalog={sceneCatalog}
                 assemblyId={assemblyId}
+                scopePartIds={scopePartIds}
                 selectedId={selectedId}
                 hoveredId={hoveredId}
                 explosion={explosion}
@@ -1077,6 +1119,14 @@ export default function Explorer() {
                 <Box size={30} strokeWidth={1} />
                 <h2>No 3D representation assigned</h2>
                 <p>{activeNode?.name ?? detail.name} is available in the parts catalog.</p>
+                <Link
+                  className="text-button"
+                  href={
+                    activeNode ? `/editor?part=${encodeURIComponent(activeNode.id)}` : '/editor'
+                  }
+                >
+                  Add {activeNode?.name ?? 'a part'} model
+                </Link>
                 {!detailsVisible && (
                   <button
                     className="text-button"
@@ -1090,7 +1140,6 @@ export default function Explorer() {
                 )}
                 <details>
                   <summary>Model options</summary>
-                  <Link href="/editor">Open model mapping editor</Link>
                   <Link href="/?demo=1">Explore the geometry demonstration</Link>
                 </details>
               </div>

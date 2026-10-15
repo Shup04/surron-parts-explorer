@@ -53,7 +53,7 @@ test.describe('short viewport layouts', () => {
     await expect(page.getByRole('button', { name: 'Close component details' })).toBeInViewport();
     await page.getByRole('button', { name: 'Close component details' }).click();
     await empty.getByText('Model options', { exact: true }).click();
-    const editor = empty.getByRole('link', { name: 'Open model mapping editor' });
+    const editor = empty.getByRole('link', { name: 'Add Jackshaft bearings model' });
     await editor.scrollIntoViewIfNeeded();
     await expect(editor).toBeInViewport();
     await page.screenshot({ path: testInfo.outputPath('landscape-missing-geometry.png') });
@@ -77,9 +77,9 @@ test.describe('short viewport layouts', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Jackshaft bearings' })).toBeVisible();
     await page.getByRole('button', { name: 'Close component details' }).click();
     await empty.getByText('Model options', { exact: true }).click();
-    const editor = empty.getByRole('link', { name: 'Open model mapping editor' });
+    const editor = empty.getByRole('link', { name: 'Add Jackshaft bearings model' });
     await editor.scrollIntoViewIfNeeded();
     await expect(editor).toBeInViewport();
-    await expect(editor).toHaveAttribute('href', '/editor');
+    await expect(editor).toHaveAttribute('href', '/editor?part=nav.jackshaft.bearings');
   });
 });

@@ -4,8 +4,9 @@ import React, { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState 
 import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
 import { CameraControls, GizmoHelper, GizmoViewport, Grid } from '@react-three/drei';
 import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { scene as sceneColors } from '@/ui/tokens.json';
-import { loadModel } from './load-model';
+import { loadAssetModel } from './part-models';
 import { savedCameraForScope, validateViewerAsset } from './asset-validation';
 import { buildCatalogIndex } from '@/core/catalog';
 import { easeProgress } from '@/core/explosion';
@@ -13,6 +14,7 @@ import type { ViewerProps, ViewerDiagnostics } from '@/core/types';
 import { createDemoScene } from './demo-scene';
 import {
   disposeScene,
+  cameraRangeForBounds,
   explosionTargets,
   frameBounds,
   mappedPartId,
@@ -61,6 +63,28 @@ function useReducedMotion() {
   return reduced;
 }
 
+function MaterialEnvironment() {
+  const { gl, scene, invalidate } = useThree();
+  useEffect(() => {
+    const previous = scene.environment;
+    const previousIntensity = scene.environmentIntensity;
+    const generator = new THREE.PMREMGenerator(gl);
+    const room = new RoomEnvironment();
+    const environment = generator.fromScene(room, 0.04);
+    room.dispose();
+    generator.dispose();
+    scene.environment = environment.texture;
+    scene.environmentIntensity = 0.7;
+    invalidate();
+    return () => {
+      scene.environment = previous;
+      scene.environmentIntensity = previousIntensity;
+      environment.dispose();
+    };
+  }, [gl, scene, invalidate]);
+  return null;
+}
+
 function Scene({
   object,
   props,
@@ -84,8 +108,8 @@ function Scene({
   const hovered = props.hoveredId ?? localHover;
   const hiddenKey = props.hiddenIds.join('|');
   const targetPositions = useMemo(
-    () => explosionTargets(records, index, props.assemblyId, props.explosion),
-    [records, index, props.assemblyId, props.explosion],
+    () => explosionTargets(records, index, props.assemblyId, props.explosion, props.scopePartIds),
+    [records, index, props.assemblyId, props.explosion, props.scopePartIds],
   );
   const animation = useRef<{
     elapsed: number;
@@ -140,7 +164,14 @@ function Scene({
 
   useLayoutEffect(() => {
     onVisibleCount(
-      updateVisibility(object, index, props.assemblyId, props.hiddenIds, props.isolatedId),
+      updateVisibility(
+        object,
+        index,
+        props.assemblyId,
+        props.hiddenIds,
+        props.isolatedId,
+        props.scopePartIds,
+      ),
     );
     setLocalHover(null);
     onTip(null);
@@ -154,7 +185,8 @@ function Scene({
       moving.some(
         (record) =>
           record.automatic ||
-          selectionAtLevel(index, record.partId, props.assemblyId) !== record.partId,
+          (!props.scopePartIds &&
+            selectionAtLevel(index, record.partId, props.assemblyId) !== record.partId),
       ),
     );
     invalidate();
@@ -206,12 +238,13 @@ function Scene({
     // Frame the final exploded transforms without losing the current animation transforms.
     const positions = records.map((record) => record.object.position.clone());
     records.forEach((record) => record.object.position.copy(targetPositions.get(record.object)!));
+    const allBounds = visibleBounds(object);
     let bounds = visibleBounds(
       object,
       props.selectedId !== props.assemblyId ? props.selectedId : null,
       index,
     );
-    if (bounds.isEmpty()) bounds = visibleBounds(object);
+    if (bounds.isEmpty()) bounds = allBounds.clone();
     records.forEach((record, i) => record.object.position.copy(positions[i]));
     object.updateMatrixWorld(true);
     if (bounds.isEmpty()) return;
@@ -226,21 +259,35 @@ function Scene({
       props.assemblyId,
       index.root.id,
     );
-    if (savedCamera && reset) {
-      const c = savedCamera;
-      void control.setLookAt(...c.position, ...c.target, !reduced);
-    } else {
-      const direction = reset
-        ? new THREE.Vector3(0.75, 0.37, 1)
-        : control.getPosition(new THREE.Vector3()).sub(control.getTarget(new THREE.Vector3()));
-      const framing = frameBounds(
-        bounds,
-        size.width / Math.max(size.height, 1),
-        camera instanceof THREE.PerspectiveCamera ? camera.fov : 38,
-        direction,
+    const direction = reset
+      ? new THREE.Vector3(0.75, 0.37, 1)
+      : control.getPosition(new THREE.Vector3()).sub(control.getTarget(new THREE.Vector3()));
+    const framing =
+      savedCamera && reset && !props.scopePartIds
+        ? {
+            position: new THREE.Vector3(...savedCamera.position),
+            target: new THREE.Vector3(...savedCamera.target),
+          }
+        : frameBounds(
+            bounds,
+            size.width / Math.max(size.height, 1),
+            camera instanceof THREE.PerspectiveCamera ? camera.fov : 38,
+            direction,
+          );
+    const range = cameraRangeForBounds(allBounds, framing.position, framing.target, bounds);
+    control.minDistance = range.minDistance;
+    control.maxDistance = range.maxDistance;
+    if (camera instanceof THREE.PerspectiveCamera) {
+      camera.near = range.near;
+      // The starting camera can be far from a model exported away from the origin.
+      camera.far = Math.max(
+        range.far,
+        camera.position.distanceTo(allBounds.getCenter(new THREE.Vector3())) +
+          allBounds.getSize(new THREE.Vector3()).length(),
       );
-      void control.setLookAt(...framing.position.toArray(), ...framing.target.toArray(), !reduced);
+      camera.updateProjectionMatrix();
     }
+    void control.setLookAt(...framing.position.toArray(), ...framing.target.toArray(), !reduced);
     previousFrame.current = { reset: props.resetToken, object };
     invalidate();
   }, [
@@ -306,7 +353,9 @@ function Scene({
   function identify(event: ThreeEvent<PointerEvent | MouseEvent>) {
     const mapped = mappedPartId(event.object);
     return mapped && index.byId.has(mapped)
-      ? selectionAtLevel(index, mapped, props.assemblyId)
+      ? props.scopePartIds || props.asset?.models
+        ? mapped
+        : selectionAtLevel(index, mapped, props.assemblyId)
       : null;
   }
   return (
@@ -337,8 +386,6 @@ function Scene({
       <CameraControls
         ref={controls}
         makeDefault
-        minDistance={0.025}
-        maxDistance={20}
         minPolarAngle={0.05}
         maxPolarAngle={Math.PI * 0.85}
         smoothTime={reduced ? 0 : 0.2}
@@ -413,7 +460,7 @@ export default function Viewer(props: ViewerProps) {
       setObject(loaded);
       setLoading(false);
     } else {
-      void loadModel(props.asset.url)
+      void loadAssetModel(props.asset)
         .then((scene) => {
           if (cancelled) {
             disposeScene(scene);
@@ -438,7 +485,7 @@ export default function Viewer(props: ViewerProps) {
       cancelled = true;
       if (loaded) disposeScene(loaded);
     };
-  }, [props.asset?.url, fallback]);
+  }, [props.asset?.url, props.asset?.models, fallback]);
   return (
     <div
       className="viewer-canvas"
@@ -470,6 +517,7 @@ export default function Viewer(props: ViewerProps) {
             gl.domElement.addEventListener('webglcontextrestored', () => setContextLost(false));
           }}
         >
+          <MaterialEnvironment />
           <Suspense fallback={null}>
             {object && !displayError && (
               <Scene

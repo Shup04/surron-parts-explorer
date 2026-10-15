@@ -2,7 +2,7 @@
 
 A working, browser-based motorcycle parts explorer and local model-mapping studio. Built with Next.js, TypeScript, React Three Fiber, Three.js and Drei. There are no accounts, purchase flows, backend databases, or upload/write endpoints.
 
-**The catalog is source-backed; the supplied geometry remains a demonstration.** The default explorer contains 1,396 source occurrences representing 683 exact catalog identities, extracted from three local PDFs and 16 accessible supplemental retailer collections. Every imported part is searchable without a 3D model. Original descriptions, quantities, source locations, missing values and conflicting claims are preserved. The motorcycle silhouette and axial jackshaft fixture are not accurate Sur-Ron geometry or mechanical references.
+**The explorer includes the supplied Blender parts and a separate source-backed OEM catalog.** The project assembly contains 39 individually selectable GLBs in `public/parts/`, with their authored positions and materials. The catalog contains 1,396 source occurrences representing 683 exact catalog identities, extracted from three local PDFs and 16 accessible supplemental retailer collections. Original descriptions, quantities, source locations, missing values and conflicting claims are preserved. Supplied model roles do not claim an installed OEM variant. The synthetic motorcycle silhouette and jackshaft fixture remain available through `?demo=1`.
 
 Start with [the OEM integration and review workflow](docs/oem-catalog.md) and [the generated source coverage report](data/oem/report.md). Source coverage is not a claim of complete stock equipment or verified model-year compatibility; eleven newer reference collections were unavailable during ingestion.
 
@@ -16,6 +16,8 @@ npm run dev
 ```
 
 Open **http://127.0.0.1:3000** for the OEM explorer, **http://127.0.0.1:3000/catalog** for local source review, and **http://127.0.0.1:3000/editor** for OEM model mapping. The original interactive demonstration is available at `/?demo=1` and `/editor?demo=1`.
+
+Choose **Tools → Project parts**, or open `/?workspace=project`, to view the checked-in 39-part assembly even when this browser has a saved local workspace. The main frame was reduced from 889,358 to 60,000 triangles; the whole assembly has 1,283,637 triangles. Purple metallic material belongs to the main frame and swingarm. Textures are embedded in the GLBs. Blender working files and source backups remain local under `reference/models/`; the browser-ready exports and their manifest are versioned in Git.
 
 ```sh
 npm run build
@@ -40,12 +42,16 @@ For a purely static host, set `output: 'export'` in `next.config.ts`, build, and
 - Catalog CSV/JSON import/export, validation, GLB/glTF inspection tools, sample templates and a conservative Blender export helper.
 - Demand rendering, material/geometry reuse, instanced demonstration tread, lazy assembly asset replacement, Meshopt/Draco support and live renderer diagnostics.
 
-Drag to orbit, scroll to zoom, right-drag to pan. On touch devices use one finger to orbit and two to pan/pinch. **Parts** toggles the navigation panel; **Details** opens information for the selection. `R` resets the camera; `/` focuses search; `Esc` dismisses the active menu or panel before exiting isolation. Expand a branch with its arrow, or select it by name. The parts list supports Tab and Enter. Assemblies open assembled; use **Exploded**, **Assembled** or the slider to inspect them. Use `/?demo=1`, expand **Motor & drivetrain**, and select **Jackshaft assembly** to exercise the original fixture while the real catalog awaits geometry. Catalog filters, source evidence and viewer diagnostics are available through disclosures; the header **Tools** menu opens the review and mapping workspaces.
+Drag to orbit, scroll to zoom, right-drag to pan. On touch devices use one finger to orbit and two to pan/pinch. **Parts** toggles the navigation panel; **Details** opens information for the selection. `R` resets the camera; `/` focuses search; `Esc` dismisses the active menu or panel before exiting isolation. Expand a branch with its arrow, or select it by name. The parts list supports Tab and Enter. Assemblies open assembled; use **Exploded**, **Assembled** or the slider to inspect them. Use `/?demo=1`, expand **Motor & drivetrain**, and select **Jackshaft assembly** to exercise the original synthetic fixture. Catalog filters, source evidence and viewer diagnostics are available through disclosures; the header **Tools** menu opens the review and mapping workspaces.
 
 ## Bring in your models
 
+For separate part GLBs, open `/editor`, choose a bike part, import its GLB, then click **Save & preview**. Repeat for each part; existing models are kept. A previously imported seat can be assigned with **Use this model for Seat**. Export the parts in a shared assembled coordinate system so their original positions line up. No manual mesh mapping or OEM selection is required for this workflow.
+
+For whole-bike models and detailed OEM mapping, open **Advanced tools**:
+
 1. Read [the model pipeline](docs/model-pipeline.md). Export glTF 2.0 in metres, Y-up, with separate selectable objects and stable `objectId` custom properties. Preserve assembled origins, hierarchy and transforms.
-2. Import GLB, or select a glTF file and all its buffer/texture companions together, in `/editor`.
+2. Import GLB, or select a glTF file and all its buffer/texture companions together, in `/editor?advanced=1`.
 3. Map scene objects to existing OEM occurrence IDs; confirm suggestions; inspect unmapped/conflicting objects. Check assembly/source context when the same OEM number appears more than once. Keep source review corrections in `/catalog` and preserve stable IDs.
 4. Author explosion directions in each object's parent coordinate system, with distances in metres. Review assembled/exploded endpoints and save useful camera framing.
 5. Export full project JSON and mapping JSON; keep the original model files separately. Save locally and preview in the explorer to verify integration.

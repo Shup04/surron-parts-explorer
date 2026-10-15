@@ -1,0 +1,597 @@
+{
+  "version": 1,
+  "id": "project-parts-v1",
+  "createdUtc": "2026-10-15T00:19:17.223595+00:00",
+  "sourceUnitScalePreserved": true,
+  "frameOriginalTriangles": 889358,
+  "frameOptimizedTriangles": 60000,
+  "totalTriangles": 1283637,
+  "totalBytes": 42663220,
+  "parts": [
+    {
+      "id": "main-frame",
+      "name": "Main Frame",
+      "file": "Main Frame.glb",
+      "role": "nav.frame.frame",
+      "sourceObject": "03",
+      "triangles": 60000,
+      "bytes": 3320380,
+      "sha256": "84c522c0032bef42a4f820c678ff76f45f0631c9ac70f8314268f058335431a2",
+      "materials": ["Deep Purple Metallic"],
+      "sourceWorldBounds": [
+        [-99.9051742553711, -590.21630859375, -85.3314208984375],
+        [103.12251281738281, -30.38850975036621, 569.9346313476562]
+      ]
+    },
+    {
+      "id": "skid-plate",
+      "name": "Skid Plate",
+      "file": "Skid Plate.glb",
+      "role": "nav.motor.skid-plate.plate",
+      "sourceObject": "Bash_Plate_001",
+      "triangles": 14000,
+      "bytes": 337448,
+      "sha256": "6482b54c78287dc4f7c87b817364a7a0afe30478184039afd858ad0d48260f1d",
+      "materials": ["Black Metal"],
+      "sourceWorldBounds": [
+        [-71.68086242675781, -367.0594482421875, -94.74353790283203],
+        [77.22303771972656, -134.87513732910156, 63.084415435791016]
+      ]
+    },
+    {
+      "id": "battery-lid",
+      "name": "Battery Lid",
+      "file": "Battery Lid.glb",
+      "role": "nav.battery.cover",
+      "sourceObject": "Battery_Lid_001",
+      "triangles": 22399,
+      "bytes": 654328,
+      "sha256": "4acd05db1adc1564888f2152e73d7b372e7525307201cca5087fe046c3789c64",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [-76.90325927734375, -416.0063171386719, 406.7341613769531],
+        [74.78524017333984, -168.71324157714844, 496.6806640625]
+      ]
+    },
+    {
+      "id": "battery-lock-cover-left",
+      "name": "Battery Lock Cover Left",
+      "file": "Battery Lock Cover Left.glb",
+      "role": "nav.body.lock-cover.left",
+      "sourceObject": "Battery_Lid_Lock_Cover_Left_001",
+      "triangles": 12000,
+      "bytes": 307476,
+      "sha256": "a2956e0045e3d5851efff07f8c36de8ff0e8720082938b4aad20f3251cab7d3c",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [-4.847682476043701, -260.0821228027344, 354.7514953613281],
+        [87.26702117919922, -94.59188842773438, 431.53814697265625]
+      ]
+    },
+    {
+      "id": "battery-lock-cover-right",
+      "name": "Battery Lock Cover Right",
+      "file": "Battery Lock Cover Right.glb",
+      "role": "nav.body.lock-cover.right",
+      "sourceObject": "Battery_Lid_Lock_Cover_Right_001",
+      "triangles": 12000,
+      "bytes": 326584,
+      "sha256": "d1558e614bdd46ee556abf1043864d31d215a4d7989bbe337c14b14350e6c761",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [-84.60289764404297, -258.2023620605469, 355.3078918457031],
+        [14.693202018737793, -94.61934661865234, 432.10772705078125]
+      ]
+    },
+    {
+      "id": "battery-latch-hook",
+      "name": "Battery Latch Hook",
+      "file": "Battery Latch Hook.glb",
+      "role": "nav.battery.lock.latch",
+      "sourceObject": "Battery_Lid_Lock_Hook_001",
+      "triangles": 15358,
+      "bytes": 368076,
+      "sha256": "6ab7d00badea0e6d7d2b9d3a00f8b7998672c5d7e4c6b3047f56614cb3e21723",
+      "materials": ["Raw aluminum"],
+      "sourceWorldBounds": [
+        [-23.831871032714844, -214.14723205566406, 405.4319763183594],
+        [29.99147605895996, -191.5589599609375, 443.9136962890625]
+      ]
+    },
+    {
+      "id": "battery-lock-mechanism",
+      "name": "Battery Lock Mechanism",
+      "file": "Battery Lock Mechanism.glb",
+      "role": "nav.battery.lock.lock",
+      "sourceObject": "Battery_Lif_Locking_Mechanism_001",
+      "triangles": 25600,
+      "bytes": 738920,
+      "sha256": "398e8164ddf96b0c8c51f71fde94db71597a6c1d9a79abde7ef53d58610b63d4",
+      "materials": ["Raw aluminum"],
+      "sourceWorldBounds": [
+        [-80.947021484375, -203.4659881591797, 375.3050537109375],
+        [36.94057083129883, -155.5470428466797, 428.2035827636719]
+      ]
+    },
+    {
+      "id": "battery-backplate",
+      "name": "Battery Backplate",
+      "file": "Battery Backplate.glb",
+      "role": "nav.body.battery-panels.rear",
+      "sourceObject": "Battery_Slot_Backplate_001",
+      "triangles": 10000,
+      "bytes": 290380,
+      "sha256": "0e2ea1a2c4292c7d35df0596ce681d1d03129df5ce437ec1e2b2106cf63da4dd",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [-79.20790100097656, -188.431884765625, 115.32347869873047],
+        [82.94890594482422, -133.99600219726562, 295.3341064453125]
+      ]
+    },
+    {
+      "id": "belt-guard",
+      "name": "Belt Guard",
+      "file": "Belt Guard.glb",
+      "role": "nav.body.chain-guide.guard",
+      "sourceObject": "Belt_Guard_001",
+      "triangles": 12800,
+      "bytes": 297716,
+      "sha256": "1c59490471a39dfe867ff8446579d35827a1bf3b40a2b1b3425c6756eb87c089",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [14.541115760803223, -153.2461395263672, 83.21326446533203],
+        [87.5794906616211, -104.38935852050781, 165.2292938232422]
+      ]
+    },
+    {
+      "id": "jackshaft-pulley",
+      "name": "Jackshaft Pulley",
+      "file": "Jackshaft Pulley.glb",
+      "role": "nav.jackshaft.pulley",
+      "sourceObject": "Belt_Pulley_Large_001",
+      "triangles": 35200,
+      "bytes": 1668652,
+      "sha256": "fa4fe6485ffefb982a72a4e1c941f2d98066f519d74706c3d1bc14285197f8e8",
+      "materials": ["Raw aluminum"],
+      "sourceWorldBounds": [
+        [988.116943359375, -433.04296875, -49.39397048950195],
+        [1013.1702270507812, -297.0281982421875, 86.50501251220703]
+      ]
+    },
+    {
+      "id": "motor-pulley",
+      "name": "Motor Pulley",
+      "file": "Motor Pulley.glb",
+      "role": "nav.motor.pulley",
+      "sourceObject": "Belt_Pulley_Small_001",
+      "triangles": 90112,
+      "bytes": 2117108,
+      "sha256": "060753810b225078b30929b897750d0ba60d45a0aea3dcc5389fef8063ca0ad8",
+      "materials": ["Raw aluminum"],
+      "sourceWorldBounds": [
+        [944.8566284179688, -324.88677978515625, -113.33831024169922],
+        [966.5606689453125, -259.6564636230469, -48.080379486083984]
+      ]
+    },
+    {
+      "id": "chain-damper",
+      "name": "Chain Damper",
+      "file": "Chain Damper.glb",
+      "role": "nav.body.chain-guide.guide",
+      "sourceObject": "Chain_Damper_001",
+      "triangles": 28670,
+      "bytes": 651800,
+      "sha256": "f6cbe1fa9fc8358c1669aa7b04f98aea6986bb655718faaa84de852debf26583",
+      "materials": ["Chain Damper Rubber"],
+      "sourceWorldBounds": [
+        [-69.57454681396484, 72.7450180053711, 81.54438781738281],
+        [-32.395843505859375, 107.66918182373047, 118.83472442626953]
+      ]
+    },
+    {
+      "id": "controller-lower-cover",
+      "name": "Controller Lower Cover",
+      "file": "Controller Lower Cover.glb",
+      "role": "nav.body.controller-cover.lower",
+      "sourceObject": "Controller_Base_Cover_001",
+      "triangles": 32000,
+      "bytes": 1016308,
+      "sha256": "29f907142a83092c8764af7a719954a48de4b10311540c6039be203f7b49768f",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [-80.27779388427734, -380.3689270019531, 34.122005462646484],
+        [88.65040588378906, -292.3824157714844, 146.68426513671875]
+      ]
+    },
+    {
+      "id": "footpeg-right",
+      "name": "Footpeg Right",
+      "file": "Footpeg Right.glb",
+      "role": "nav.footpegs-stand.right-peg",
+      "sourceObject": "Footpeg_001",
+      "triangles": 25600,
+      "bytes": 612512,
+      "sha256": "c0aea5fbf064854ec2caa0a2861f29df248c4021f35fee6f78e0a4a183c2ba06",
+      "materials": ["Raw aluminum"],
+      "sourceWorldBounds": [
+        [-216.08543395996094, -70.16120910644531, -67.13603210449219],
+        [-100.09793090820312, -26.535024642944336, -21.487506866455078]
+      ]
+    },
+    {
+      "id": "footpeg-left",
+      "name": "Footpeg Left",
+      "file": "Footpeg Left.glb",
+      "role": "nav.footpegs-stand.left-peg",
+      "sourceObject": "Footpeg_002",
+      "triangles": 25600,
+      "bytes": 612348,
+      "sha256": "b46098d450d755bdd012825de6e6db3ee03b1c15d45f03a16d1bb495e1e063b8",
+      "materials": ["Raw aluminum"],
+      "sourceWorldBounds": [
+        [106.62985229492188, -70.16109466552734, -67.1360092163086],
+        [222.61734008789062, -26.534852981567383, -21.487524032592773]
+      ]
+    },
+    {
+      "id": "frame-wire-cover-left",
+      "name": "Frame Wire Cover Left",
+      "file": "Frame Wire Cover Left.glb",
+      "role": "nav.frame.wire-cover-left",
+      "sourceObject": "Inner_Frame_Wire_Cover___Left_001",
+      "triangles": 10000,
+      "bytes": 249240,
+      "sha256": "75ca311e868747f7af08554c76307b5d05eecaf6c69ce768d9c8c16617dce6e9",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [71.96798706054688, -320.48333740234375, 278.2311096191406],
+        [89.26625061035156, -201.70155334472656, 395.3832092285156]
+      ]
+    },
+    {
+      "id": "frame-wire-mount-right",
+      "name": "Frame Wire Mount Right",
+      "file": "Frame Wire Mount Right.glb",
+      "role": "nav.frame.wire-mount-right",
+      "sourceObject": "Inner_Frame_Wire_Mount___Right_001",
+      "triangles": 16000,
+      "bytes": 456804,
+      "sha256": "3384730cc5c3328c8f95ca03e281c6e5890765ec4318c2eef885a52cdbba63b4",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [-83.12220001220703, -319.1380310058594, 279.213134765625],
+        [-67.44032287597656, -200.77647399902344, 396.3563537597656]
+      ]
+    },
+    {
+      "id": "jackshaft-cover",
+      "name": "Jackshaft Cover",
+      "file": "Jackshaft Cover.glb",
+      "role": "nav.swingarm.guard",
+      "sourceObject": "Jackshaft_Cover_001",
+      "triangles": 12000,
+      "bytes": 294748,
+      "sha256": "71f35e6300f1f84b1ecb834e04b2adc96b5d31241f5144bf62018d879b3b6726",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [-68.29673767089844, -89.1971664428711, 57.46992492675781],
+        [80.50636291503906, 32.75605773925781, 142.164306640625]
+      ]
+    },
+    {
+      "id": "m6-hardware-right",
+      "name": "M6 Hardware Right",
+      "file": "M6 Hardware Right.glb",
+      "role": "nav.frame.fasteners",
+      "sourceObject": "M6_Nut_for_Boolean_002",
+      "triangles": 108,
+      "bytes": 4632,
+      "sha256": "d1c1ecd11bf9530c91082fc996fc3b0d3c41c5f795f2d1343d652932b843049e",
+      "materials": ["Raw aluminum"],
+      "sourceWorldBounds": [
+        [-60.83750534057617, -406.3013610839844, 477.05401611328125],
+        [-27.337505340576172, -400.30133056640625, 483.0540466308594]
+      ]
+    },
+    {
+      "id": "m6-hardware-left",
+      "name": "M6 Hardware Left",
+      "file": "M6 Hardware Left.glb",
+      "role": "nav.frame.fasteners",
+      "sourceObject": "M6_Nut_for_Boolean_01",
+      "triangles": 108,
+      "bytes": 4628,
+      "sha256": "a759360351b80d0331ca982c75570171049662675a4319ec21a38c42599eb171",
+      "materials": ["Raw aluminum"],
+      "sourceWorldBounds": [
+        [25.374340057373047, -406.3013610839844, 477.05401611328125],
+        [58.87434005737305, -400.30133056640625, 483.0540466308594]
+      ]
+    },
+    {
+      "id": "motor-pulley-cover",
+      "name": "Motor Pulley Cover",
+      "file": "Motor Pulley Cover.glb",
+      "role": "nav.motor.guard.cover",
+      "sourceObject": "Motor_Gear_Cover_001",
+      "triangles": 22400,
+      "bytes": 520096,
+      "sha256": "25c0e17f2ee043871a126ec3f00cbd969cc690fc99e6b00933d5d05a1b7fcd0e",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [47.3455696105957, -225.87249755859375, -42.849185943603516],
+        [89.34276580810547, -109.22266387939453, 75.63575744628906]
+      ]
+    },
+    {
+      "id": "motor-pulley-cover-accent",
+      "name": "Motor Pulley Cover Accent",
+      "file": "Motor Pulley Cover Accent.glb",
+      "role": "nav.motor.guard.accent",
+      "sourceObject": "Motor_Gear_Cover_Cap_001",
+      "triangles": 16640,
+      "bytes": 372980,
+      "sha256": "4feac0643fe0da8a1e3c3b32b1002c0a49c82ecc5ba880654c1a2774f327b5cc",
+      "materials": ["Belt cover accent"],
+      "sourceWorldBounds": [
+        [75.90831756591797, -213.37518310546875, -12.57550048828125],
+        [83.21965026855469, -140.52735900878906, 47.71907424926758]
+      ]
+    },
+    {
+      "id": "footpeg-bracket-left",
+      "name": "Footpeg Bracket Left",
+      "file": "Footpeg Bracket Left.glb",
+      "role": "nav.footpegs-stand.brackets.left",
+      "sourceObject": "Peg_Mount___Left_001",
+      "triangles": 150000,
+      "bytes": 4327520,
+      "sha256": "9d904a7f03e641860921194c6560f532d02be389ece43a1a22424fbaa278aa41",
+      "materials": ["Black Metal"],
+      "sourceWorldBounds": [
+        [76.56591796875, -87.33074951171875, -82.63477325439453],
+        [106.49488830566406, 35.31184005737305, 39.230892181396484]
+      ]
+    },
+    {
+      "id": "footpeg-bracket-right",
+      "name": "Footpeg Bracket Right",
+      "file": "Footpeg Bracket Right.glb",
+      "role": "nav.footpegs-stand.brackets.right",
+      "sourceObject": "Peg_Mount___Right_001",
+      "triangles": 30718,
+      "bytes": 875892,
+      "sha256": "9dc9e59a9adc78d7fee2a5efe0c42f994f146198c0d4d10140cdce54360013c4",
+      "materials": ["Black Metal"],
+      "sourceWorldBounds": [
+        [-99.99776458740234, -85.25833129882812, -64.1131362915039],
+        [-83.30018615722656, -4.167191505432129, 39.02811050415039]
+      ]
+    },
+    {
+      "id": "suspension-link",
+      "name": "Suspension Link",
+      "file": "Suspension Link.glb",
+      "role": "nav.rear-suspension.link",
+      "sourceObject": "Progression_Link___Stock_001",
+      "triangles": 30720,
+      "bytes": 707124,
+      "sha256": "aef49a3b0ed8057501982f715a01e616ffa954f1c106d01e8497f81fddfffc3c",
+      "materials": ["Black Metal"],
+      "sourceWorldBounds": [
+        [-14.577713966369629, 14.391034126281738, 88.44269561767578],
+        [21.617876052856445, 55.069541931152344, 209.62940979003906]
+      ]
+    },
+    {
+      "id": "rear-axle-block-left",
+      "name": "Rear Axle Block Left",
+      "file": "Rear Axle Block Left.glb",
+      "role": "nav.swingarm.tensioner.left",
+      "sourceObject": "Rear_Axle_Bracket_001",
+      "triangles": 16640,
+      "bytes": 302336,
+      "sha256": "486e6f7fcff350490702bb46f909174cbb2da14782c29359825c56e2be43e881",
+      "materials": ["Raw aluminum"],
+      "sourceWorldBounds": [
+        [81.14398956298828, 376.147705078125, -74.3091812133789],
+        [93.83402252197266, 411.336669921875, -41.8961296081543]
+      ]
+    },
+    {
+      "id": "rear-axle-block-right",
+      "name": "Rear Axle Block Right",
+      "file": "Rear Axle Block Right.glb",
+      "role": "nav.swingarm.tensioner.right",
+      "sourceObject": "Rear_Axle_Bracket_002",
+      "triangles": 16640,
+      "bytes": 302408,
+      "sha256": "b28e61384cd17b479eb64dc93fadbe338b049a684b8e498a14ee375391a9e8f0",
+      "materials": ["Raw aluminum"],
+      "sourceWorldBounds": [
+        [-88.93524932861328, 376.1476135253906, -74.30907440185547],
+        [-76.24522399902344, 411.3365783691406, -41.89601516723633]
+      ]
+    },
+    {
+      "id": "rear-brake-bracket",
+      "name": "Rear Brake Bracket",
+      "file": "Rear Brake Bracket.glb",
+      "role": "nav.brakes.rear.bracket",
+      "sourceObject": "Rear_Brake_Mount_001",
+      "triangles": 12000,
+      "bytes": 289108,
+      "sha256": "4ca89094acb9518006efb09326193faf9a1cbd9db95d20b86406ff9a413a4e4d",
+      "materials": ["Black Metal"],
+      "sourceWorldBounds": [
+        [62.21598434448242, 318.3876953125, -74.31471252441406],
+        [73.71939086914062, 411.82208251953125, 40.23493957519531]
+      ]
+    },
+    {
+      "id": "rear-hub",
+      "name": "Rear Hub",
+      "file": "Rear Hub.glb",
+      "role": "nav.rear-wheel.hub",
+      "sourceObject": "Rear_Hub_001",
+      "triangles": 61440,
+      "bytes": 1528532,
+      "sha256": "309cdf8af4c2cd84f2b7dc9fe434a0556a789dc32497cbdd392afac6188b527c",
+      "materials": ["Black Metal"],
+      "sourceWorldBounds": [
+        [-51.896202087402344, 345.81695556640625, -110.22774505615234],
+        [59.50571823120117, 448.1056823730469, -8.264342308044434]
+      ]
+    },
+    {
+      "id": "rear-mudguard",
+      "name": "Rear Mudguard",
+      "file": "Rear Mudguard.glb",
+      "role": "nav.body.rear-fender.wheel-front",
+      "sourceObject": "Rear_Mud_Guard",
+      "triangles": 10000,
+      "bytes": 229240,
+      "sha256": "83f67f0414ef4f6c4f278211371cbcf9b00383b683cd9836fbf1a00123f255bc",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [-61.076499938964844, 62.972984313964844, 56.05058288574219],
+        [70.11531066894531, 232.22203063964844, 244.86740112304688]
+      ]
+    },
+    {
+      "id": "suspension-rocker",
+      "name": "Suspension Rocker",
+      "file": "Suspension Rocker.glb",
+      "role": "nav.rear-suspension.rocker",
+      "sourceObject": "Rear_Shock_Triangle_001",
+      "triangles": 18000,
+      "bytes": 448648,
+      "sha256": "115f63060d1bb74718dd07a150a187fc2a111d73b4a5c9f4b2a57b2d95c5e236",
+      "materials": ["Black Metal"],
+      "sourceWorldBounds": [
+        [-68.53142547607422, -101.18390655517578, 138.32872009277344],
+        [74.43597412109375, 42.79581069946289, 209.2587432861328]
+      ]
+    },
+    {
+      "id": "seat",
+      "name": "Seat",
+      "file": "Seat.glb",
+      "role": "nav.body.seat",
+      "sourceObject": "Seat_001",
+      "triangles": 51200,
+      "bytes": 1427368,
+      "sha256": "0352d149d1d89206dbc25a8738edefecf0fd8541a6e6f393b4366d5189870114",
+      "materials": ["Seat Vinyl"],
+      "sourceWorldBounds": [
+        [-81.578369140625, -157.16119384765625, 376.83184814453125],
+        [88.5480728149414, 281.26849365234375, 513.2796630859375]
+      ]
+    },
+    {
+      "id": "seat-base-cover",
+      "name": "Seat Base Cover",
+      "file": "Seat Base Cover.glb",
+      "role": "nav.body.seat-base-cover",
+      "sourceObject": "Seat_Base_Cover_001",
+      "triangles": 14000,
+      "bytes": 375108,
+      "sha256": "1973acbee154770c2117f512f2f39b276e7d7fdba6bb2071347198d43cdec331",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [-49.251373291015625, -62.80278015136719, 371.6314392089844],
+        [56.80134201049805, 267.431640625, 486.1083068847656]
+      ]
+    },
+    {
+      "id": "seat-mounting-bracket",
+      "name": "Seat Mounting Bracket",
+      "file": "Seat Mounting Bracket.glb",
+      "role": "nav.frame.seat-bracket",
+      "sourceObject": "Seat_Metal_L_Bracket_001",
+      "triangles": 14400,
+      "bytes": 348708,
+      "sha256": "47c1260238616a659fd3e767575d36276b91d311b280b6ab1536efb81aa3b95e",
+      "materials": ["Black Metal"],
+      "sourceWorldBounds": [
+        [-42.192054748535156, -194.1846923828125, 266.43499755859375],
+        [45.975399017333984, -114.69755554199219, 399.6883850097656]
+      ]
+    },
+    {
+      "id": "subframe",
+      "name": "Subframe",
+      "file": "Subframe.glb",
+      "role": "nav.frame.subframe",
+      "sourceObject": "Seat_Mount_001",
+      "triangles": 18000,
+      "bytes": 863476,
+      "sha256": "341880aafc805c4c1a3d6245900f337cd8beda926f3ab41937a2e0b031246bbc",
+      "materials": ["Black Metal"],
+      "sourceWorldBounds": [
+        [-89.57598114013672, -207.37384033203125, 213.802978515625],
+        [97.40526580810547, 215.26934814453125, 470.2004699707031]
+      ]
+    },
+    {
+      "id": "swingarm",
+      "name": "Swingarm",
+      "file": "Swingarm.glb",
+      "role": "nav.swingarm.arm",
+      "sourceObject": "Swingarm_001",
+      "triangles": 30000,
+      "bytes": 1765384,
+      "sha256": "00bf0790ffd0b722429e19f2b9ada239876d8c76d5c97cabaaeb1e2a295b9ea8",
+      "materials": ["Deep Purple Metallic"],
+      "sourceWorldBounds": [
+        [-91.73725891113281, -80.63097381591797, -83.21774291992188],
+        [98.43757629394531, 436.19189453125, 158.16526794433594]
+      ]
+    },
+    {
+      "id": "tail-light",
+      "name": "Tail Light",
+      "file": "Tail Light.glb",
+      "role": "nav.electrical.tail-light",
+      "sourceObject": "Tail_Light_001",
+      "triangles": 272628,
+      "bytes": 12748924,
+      "sha256": "c2eaba6d8c56ba80e870b959d5a20ad363460e233de2868278162e8508e95124",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [-42.57528305053711, 34.602779388427734, 346.69525146484375],
+        [51.778785705566406, 70.07503509521484, 381.84423828125]
+      ]
+    },
+    {
+      "id": "tail-light-bracket",
+      "name": "Tail Light Bracket",
+      "file": "Tail Light Bracket.glb",
+      "role": "nav.electrical.tail-light-bracket",
+      "sourceObject": "Tail_Light_Bracket_001",
+      "triangles": 14080,
+      "bytes": 313464,
+      "sha256": "81d28bc5c0f25232241967b6b6efac1cd23698a3f305e0566b0838028346a63c",
+      "materials": ["Black Metal"],
+      "sourceWorldBounds": [
+        [-27.0061092376709, 39.218074798583984, 364.4921875],
+        [35.428279876708984, 90.6048355102539, 407.84527587890625]
+      ]
+    },
+    {
+      "id": "tilt-sensor",
+      "name": "Tilt Sensor",
+      "file": "Tilt Sensor.glb",
+      "role": "nav.electrical.sensors.tilt-sensor",
+      "sourceObject": "Tilt_Sensor_001",
+      "triangles": 24576,
+      "bytes": 586816,
+      "sha256": "fd565857c4a4097ac64f0d3fd987656f24f666db43a48f1594405e3dcbc02d9f",
+      "materials": ["Black Plastic"],
+      "sourceWorldBounds": [
+        [997.8350219726562, 67.68101501464844, -26.58695411682129],
+        [1048.4671630859375, 95.23001098632812, 8.671875953674316]
+      ]
+    }
+  ]
+}

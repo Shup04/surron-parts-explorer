@@ -367,9 +367,14 @@ export const CURATED_SYSTEMS: SystemDefinition[] = [
       {
         id: 'nav.rear-suspension.shock',
         name: 'Rear shock',
-        kind: 'component',
+        kind: 'group',
         oemNumbers: ['55110-YQ2A-0300', '55110-YQ2A-0000', '55110-YQ2A-0200', '55110-YQ2A-0100'],
         sourceAssemblyIds: ['rear-suspension'],
+        children: [
+          { id: 'nav.rear-suspension.shock.body', name: 'Main body', kind: 'component' },
+          { id: 'nav.rear-suspension.shock.spring', name: 'Spring', kind: 'component' },
+          { id: 'nav.rear-suspension.shock.preload-nut', name: 'Preload nut', kind: 'component' },
+        ],
       },
       {
         id: 'nav.rear-suspension.link',

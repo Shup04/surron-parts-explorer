@@ -1,10 +1,11 @@
 # Sur-Ron Interactive 3D Parts Explorer
+
 <img width="1978" height="1271" alt="image" src="https://github.com/user-attachments/assets/12a92cb4-dbf3-401e-9115-7e323b2de34e" />
 **Early development screenshot**
 
 A working, browser-based motorcycle parts explorer and local model-mapping studio. Built with Next.js, TypeScript, React Three Fiber, Three.js and Drei. There are no accounts, purchase flows, backend databases, or upload/write endpoints.
 
-**The explorer includes the supplied Blender parts and a separate source-backed OEM catalog.** The project assembly contains 39 individually selectable GLBs in `public/parts/`, with their authored positions and materials. The catalog contains 1,396 source occurrences representing 683 exact catalog identities, extracted from three local PDFs and 16 accessible supplemental retailer collections. Original descriptions, quantities, source locations, missing values and conflicting claims are preserved. Supplied model roles do not claim an installed OEM variant. The synthetic motorcycle silhouette and jackshaft fixture remain available through `?demo=1`.
+**The explorer includes the supplied Blender parts and a separate source-backed OEM catalog.** The project assembly contains 42 individually selectable GLBs in `public/parts/`, with their authored positions and materials. The catalog contains 1,396 source occurrences representing 683 exact catalog identities, extracted from three local PDFs and 16 accessible supplemental retailer collections. Original descriptions, quantities, source locations, missing values and conflicting claims are preserved. Supplied model roles do not claim an installed OEM variant. The synthetic motorcycle silhouette and jackshaft fixture remain available through `?demo=1`.
 
 Start with [the OEM integration and review workflow](docs/oem-catalog.md) and [the generated source coverage report](data/oem/report.md). Source coverage is not a claim of complete stock equipment or verified model-year compatibility; eleven newer reference collections were unavailable during ingestion.
 
@@ -19,7 +20,7 @@ npm run dev
 
 Open **http://127.0.0.1:3000** for the OEM explorer, **http://127.0.0.1:3000/catalog** for local source review, and **http://127.0.0.1:3000/editor** for OEM model mapping. The original interactive demonstration is available at `/?demo=1` and `/editor?demo=1`.
 
-Choose **Tools → Project parts**, or open `/?workspace=project`, to view the checked-in 39-part assembly even when this browser has a saved local workspace. The main frame was reduced from 889,358 to 60,000 triangles; the whole assembly has 1,283,637 triangles. Purple metallic material belongs to the main frame and swingarm. Textures are embedded in the GLBs. Blender working files and source backups remain local under `reference/models/`; the browser-ready exports and their manifest are versioned in Git.
+Choose **Tools → Project parts**, or open `/?workspace=project`, to view the checked-in 42-part assembly even when this browser has a saved local workspace. The main frame was reduced from 889,358 to 60,000 triangles; the whole assembly has 1,599,587 triangles. Purple metallic material belongs to the main frame and swingarm. Textures are embedded in the GLBs. Blender working files and source backups remain local under `reference/models/`; the browser-ready exports and their manifest are versioned in Git.
 
 ```sh
 npm run build

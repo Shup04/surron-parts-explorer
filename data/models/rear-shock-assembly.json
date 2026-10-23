@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "sourceBlend": "reference/models/lbx-rear-shock/lbx-rear-shock-separated.blend",
+  "sourceObject": "Rear Shock Assembly",
+  "sourceUnit": "mm",
+  "placement": {
+    "coordinateCorrection": "Standalone scan coordinates rotated +90 degrees about X into the existing Blender bike coordinates, then rigidly aligned to both mounting bores. No scale change.",
+    "standaloneToBikeMatrix": [
+      [0.9998789341592682, -0.011488078301367487, -0.010494812121591961, 4.396414787101668],
+      [-0.010525457406808983, -0.002610368800818746, -0.9999411986317501, 0.4298872149299484],
+      [0.011460007456512145, 0.9999306026078337, -0.0027309700531723846, -0.24597830573213741],
+      [0.0, 0.0, 0.0, 1.0]
+    ],
+    "mountFitMatrix": [
+      [0.9998789341592682, 0.01049481212159196, -0.011488078301367489, 4.396414787101668],
+      [-0.010525457406808983, 0.9999411986317501, -0.002610368800818968, 0.4298872149299484],
+      [0.011460007456512145, 0.0027309700531726066, 0.9999306026078337, -0.24597830573213741],
+      [0.0, 0.0, 0.0, 1.0]
+    ],
+    "sourceEyeCentersAfterAxisCorrection": [
+      [0.006214141845703125, 24.3157135047, 98.067819405],
+      [2.442516326904297, -155.3637789187, 294.8451971164]
+    ],
+    "targetEyeCenters": [
+      [3.528766632080078, 24.2310586091, 98.1615209416],
+      [1.8233566284179688, -155.4630656757, 293.9024459569]
+    ],
+    "placedEyeCenters": [
+      [3.5312062332923415, 24.488112339581424, 97.88151214786046],
+      [1.8209170272057058, -155.7201194061814, 294.1824547506395]
+    ],
+    "mountCenterResiduals": [0.3801151096443863, 0.3801151096443509],
+    "measurementNotes": "Hole centers measured from ray silhouettes of the source frame and linkage. Y/Z resolution: 0.5 source units for mounts, 0.2 for shock eyes; X centers use 32 opposing annulus rays. Source units are millimetres. Existing portal coordinate conventions are retained.",
+    "sourceEyeSpacing": 266.48075342291156,
+    "targetMountSpacing": 265.7205232036228,
+    "assembledRootMatrix": [
+      [0.9999588131904602, 2.8467533411458135e-5, -0.009076927788555622, 4.303134918212891],
+      [-0.006148743908852339, 0.7377352714538574, -0.6750621199607849, 24.658784866333008],
+      [0.006677152123302221, 0.6750900745391846, 0.7377050518989563, 98.07592010498047],
+      [0.0, 0.0, 0.0, 1.0]
+    ]
+  },
+  "materialNotes": "White powder-coated spring, dark preload ring and cast housings, anodized gold reservoir and body, bronze threaded sleeve and chrome piston. The supplied warning-label photograph and surface shaders are baked into embedded glTF textures.",
+  "geometryNotes": "Approved three-part shock, with repaired hidden coil, damper and preload surfaces. Some original scan boundaries remain around the casting and mounting eyes. This visual model does not establish an installed OEM variant.",
+  "instances": [
+    {
+      "id": "rear-shock-body",
+      "name": "Rear Shock Main Body",
+      "role": "nav.rear-suspension.shock.body",
+      "description": "Main damper assembly with reservoir, mounting eyes, threaded sleeve, piston and lower spring seat.",
+      "localExplosionOffset": [0, 0, 0],
+      "explosionOffset": [0.0, 0.0, -0.0]
+    },
+    {
+      "id": "rear-shock-spring",
+      "name": "Rear Shock Spring",
+      "role": "nav.rear-suspension.shock.spring",
+      "description": "White powder-coated coil with repaired inner surfaces and ground ends fitted to the original scan.",
+      "localExplosionOffset": [0, -115, 0],
+      "explosionOffset": [-0.003273766255006194, -77.63536071777344, 84.83955383300781]
+    },
+    {
+      "id": "rear-shock-preload-nut",
+      "name": "Rear Shock Preload Nut",
+      "role": "nav.rear-suspension.shock.preload-nut",
+      "description": "Black notched preload adjuster with a repaired underside and open bore.",
+      "localExplosionOffset": [0, -115, 40],
+      "explosionOffset": [-0.36635085940361023, -48.127159118652344, 111.842041015625]
+    }
+  ],
+  "sourceBlendSha256": "276e04d871f3647c074bb33ce78a5d9967f18921280a9ffc0e3d4d8d976412af"
+}

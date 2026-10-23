@@ -1,4 +1,5 @@
 import manifest from '../../public/parts/manifest.json';
+import { rearShockExplosion, rearShockPartDetails } from './rear-shock-parts';
 import type { AssetDefinition, Catalog, MappingConfig, Part } from '../core/types';
 import { CURATED_SYSTEMS } from '../navigation/definition';
 import { partModelKey } from '../viewer/part-models';
@@ -37,6 +38,7 @@ export function withProjectParts(catalog: Catalog): Catalog {
     images: [],
     alternatives: [],
     crossReferences: [],
+    ...rearShockPartDetails(model.id),
   }));
   const ids = new Set(parts.map((part) => part.id));
   return { ...catalog, parts: [...catalog.parts.filter((part) => !ids.has(part.id)), ...parts] };
@@ -63,5 +65,6 @@ export const projectPartsMapping: MappingConfig = {
   mappings: projectParts.map((model) => ({
     objectKey: partModelKey(model.id),
     partId: partId(model.id),
+    ...(rearShockExplosion(model.id) ? { explosion: rearShockExplosion(model.id) } : {}),
   })),
 };

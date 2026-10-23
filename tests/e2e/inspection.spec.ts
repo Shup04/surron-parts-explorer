@@ -126,9 +126,10 @@ test('inspection leaves an operable viewport and exit on narrow and short screen
 
 test('retains inspection controls when surrounding geometry arrives later', async ({ page }) => {
   const project = createProjectWorkspace(oemCatalog);
-  const included = new Set(['project-seat', 'project-front-fender']);
+  const included = new Set(['project-seat', 'project-rear-hub']);
   project.partModels = project.partModels!.filter((model) => included.has(model.partId));
   project.mapping.mappings = project.mapping.mappings.filter((entry) => included.has(entry.partId));
+  expect(project.partModels).toHaveLength(2);
   await page.addInitScript(
     (saved) => localStorage.setItem('surron-editor-project', saved),
     JSON.stringify(project),

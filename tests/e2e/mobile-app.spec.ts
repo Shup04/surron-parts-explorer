@@ -344,6 +344,9 @@ test('registered project phone views stay clear and source-filter navigation clo
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
   await expect(viewer).toHaveAttribute('data-visible-meshes', /^[1-9]\d*$/);
+  await expect(viewer).toHaveAttribute('data-load-complete', 'true');
+  const wholeBikeMeshes = (await viewer.getAttribute('data-visible-meshes'))!;
+  expect(Number(wholeBikeMeshes)).toBeGreaterThan(19);
   await expect(page.locator('.asset-notice')).toHaveCount(0);
   await renderedFrame(page);
   await expectFixedViewport(page);
@@ -357,7 +360,7 @@ test('registered project phone views stay clear and source-filter navigation clo
   await expect(tree.getByRole('button', { name: 'Hub', exact: true })).toBeVisible();
   await page.screenshot({ path: testInfo.outputPath('phone-project-parts.png') });
   await tree.getByRole('button', { name: 'Rear wheel assembly', exact: true }).tap();
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '19');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await parts.tap();
   await tree.getByRole('button', { name: 'Disc', exact: true }).tap();
   await page.getByRole('button', { name: 'Details', exact: true }).tap();
@@ -370,7 +373,7 @@ test('registered project phone views stay clear and source-filter navigation clo
   await expectFixedViewport(page);
 
   await page.goto('/?nav=nav.rear-wheel.assembly&year=2021');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '19');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await parts.tap();
   await page.getByRole('combobox', { name: 'Catalog model year', exact: true }).selectOption('');
   await expect(page.locator('#parts-navigation')).toBeHidden();
@@ -379,6 +382,6 @@ test('registered project phone views stay clear and source-filter navigation clo
   await page.goBack();
   await expect(page).toHaveURL(/year=2021/);
   await expect(page.locator('#parts-navigation')).toBeHidden();
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '19');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   expect(errors).toEqual([]);
 });

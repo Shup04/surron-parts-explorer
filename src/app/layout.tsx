@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import type { CSSProperties } from 'react';
 import localFont from 'next/font/local';
 import tokens from '@/ui/tokens.json';
@@ -26,7 +26,14 @@ export const metadata: Metadata = {
   title: 'Sur-Ron · Parts Explorer',
   description:
     'Interactive motorcycle assembly explorer and local model-mapping workbench. Demonstration geometry; mechanical data awaits verification.',
+  // The app is already dark; prevent Dark Reader from changing SVG attributes before hydration.
+  other: { 'darkreader-lock': 'true' },
 };
+
+export const viewport: Viewport = {
+  colorScheme: 'dark',
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable} ${geistMono.variable}`} style={theme}>

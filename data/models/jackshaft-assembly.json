@@ -1,0 +1,602 @@
+{
+  "version": 1,
+  "units": "Raw millimetre coordinates, matching the existing project GLBs",
+  "sourceFiles": {
+    "reference/models/lbx-jackshaft-body/revision-02/lbx-jackshaft-body-r02.blend": "980bb09023b751d93d88fdbd65624bf7827d42e623d40bc64d63b8efc135447b",
+    "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend": "31809cf6bb720e27abf392bf3ef631af599af4d599f550a049ea7e2bcf99979b",
+    "reference/parts-catalogue/Sur-Ron-Spare-Parts.pdf": "015cbfa45681e9e72afed2afa5781aae427917b260dd6c1238d573ef3b3049e5",
+    "reference/parts-catalogue/katalog-zapchastej-surron-light-bee-2021.pdf": "5a7100d973a84b32aaa7ddeacd7423edb5c43b32ab718bcbffec13dc9dc55505"
+  },
+  "axis": {
+    "centerMm": [3.0, -61.86, 62.51],
+    "direction": [1, 0, 0],
+    "left": "positive X",
+    "right": "negative X",
+    "evidence": "Fitted to both 26 mm swingarm pivot openings in the supplied bike. Mean centers approximately Y=-61.86, Z=62.51; lateral opening faces approximately X=-64.4 and +70.3. Frame holes differ by about 1.5 mm vertically; exact alignment is not certified."
+  },
+  "placementNotes": "Order and quantity follow Motorino figure 15 and 2021 figure 17. The bearing/spacer stack uses nominal widths, spanning X=-64 to +70. Body exterior and hardware meshes are preserved. Seat depths, flange hole circles and missing sprocket/pulley mounting faces remain estimates. The body bore is illustrative and can intersect the nominal bearing envelopes; this assembly is a visual reference, not a fit-checked CAD model.",
+  "explosionNotes": "Authored lateral offsets preserve coaxial bearing/spacer/seal order. The internal spacer exits to the right to reveal it. Six bolts on each end translate together along their installation axes. Distances are chosen for diagram legibility, not service travel.",
+  "omitted": [
+    "Motor and jackshaft pulley geometry remains omitted per the previous instruction.",
+    "No output sprocket, belt, chain, pivot axle or pivot nut model was supplied in this batch."
+  ],
+  "specs": {
+    "body": {
+      "oemNumber": null,
+      "designation": "Photo-based shaft body \u00b7 revision 02",
+      "notes": "Exterior follows the user-selected photos 1\u20133. The 114 \u00d7 54 \u00d7 54 envelope was borrowed from 61281-YQ2A-0001; identity, internal seats and hole circles remain unmeasured. The illustrative bore is not a fitted bearing-seat model.",
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "15",
+          "diagram": "17",
+          "item": "17_09"
+        },
+        {
+          "document": "Motorino Light Bee parts catalog",
+          "page": "23\u201324",
+          "diagram": "15",
+          "item": "15_09"
+        }
+      ],
+      "dimensions": [],
+      "referenceOemNumber": "61281-YQ2A-0001 / 61281-YQ2A-0000"
+    },
+    "bearing": {
+      "oemNumber": null,
+      "designation": "6000-2RS \u00b7 10 \u00d7 26 \u00d7 8 mm",
+      "notes": "Three instances follow the 2021 quantity and both diagrams: two at the right/sprocket end, one at the left/pulley end. The existing rubber-sealed 2RS model is retained; the manuals specify 2Z. The legacy table says 1 despite drawing three. This does not establish an installed OEM bearing variant.",
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "15",
+          "diagram": "17",
+          "item": "17_07"
+        },
+        {
+          "document": "Motorino Light Bee parts catalog",
+          "page": "23\u201324",
+          "diagram": "15",
+          "item": "15_08"
+        }
+      ],
+      "dimensions": [
+        {
+          "label": "Bore",
+          "value": 10,
+          "unit": "mm"
+        },
+        {
+          "label": "Outside diameter",
+          "value": 26,
+          "unit": "mm"
+        },
+        {
+          "label": "Width",
+          "value": 8,
+          "unit": "mm"
+        }
+      ],
+      "referenceOemNumber": "Z-6000-2Z-26-10-08"
+    },
+    "inner-spacer": {
+      "oemNumber": "61282-YQ2A-0000",
+      "designation": "Inner spacer \u00b7 15 \u00d7 81 mm",
+      "notes": "Catalog envelope interpreted as a straight cylinder. The 10 mm bore and chamfers are estimates. Located between the inner right bearing and the single left bearing.",
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "15",
+          "diagram": "17",
+          "item": "17_08"
+        },
+        {
+          "document": "Motorino Light Bee parts catalog",
+          "page": "23\u201324",
+          "diagram": "15",
+          "item": "15_01"
+        }
+      ],
+      "dimensions": [
+        {
+          "label": "Outside diameter",
+          "value": 15,
+          "unit": "mm"
+        },
+        {
+          "label": "Length",
+          "value": 81,
+          "unit": "mm"
+        },
+        {
+          "label": "Modeled bore (assumed)",
+          "value": 10,
+          "unit": "mm"
+        }
+      ]
+    },
+    "right-spacer": {
+      "oemNumber": "61234-YQ2A-0000",
+      "designation": "Right spacer \u00b7 15 \u00d7 17 mm",
+      "notes": "Outside the right bearing pair, through the right oil seal, toward the swingarm. Bore and detailed profile remain estimates.",
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "15",
+          "diagram": "17",
+          "item": "17_02"
+        },
+        {
+          "document": "Motorino Light Bee parts catalog",
+          "page": "23\u201324",
+          "diagram": "15",
+          "item": "15_04"
+        }
+      ],
+      "dimensions": [
+        {
+          "label": "Outside diameter",
+          "value": 15,
+          "unit": "mm"
+        },
+        {
+          "label": "Length",
+          "value": 17,
+          "unit": "mm"
+        },
+        {
+          "label": "Modeled bore (assumed)",
+          "value": 10,
+          "unit": "mm"
+        }
+      ]
+    },
+    "left-spacer": {
+      "oemNumber": "61233-YQ2A-0000",
+      "designation": "Left spacer \u00b7 15 \u00d7 12 mm",
+      "notes": "Outside the single left bearing, through the left oil seal, toward the swingarm. Bore and detailed profile remain estimates.",
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "15",
+          "diagram": "17",
+          "item": "17_12"
+        },
+        {
+          "document": "Motorino Light Bee parts catalog",
+          "page": "23\u201324",
+          "diagram": "15",
+          "item": "15_07"
+        }
+      ],
+      "dimensions": [
+        {
+          "label": "Outside diameter",
+          "value": 15,
+          "unit": "mm"
+        },
+        {
+          "label": "Length",
+          "value": 12,
+          "unit": "mm"
+        },
+        {
+          "label": "Modeled bore (assumed)",
+          "value": 10,
+          "unit": "mm"
+        }
+      ]
+    },
+    "right-seal": {
+      "oemNumber": "B7-001-15-24-7",
+      "designation": "Right oil seal \u00b7 15 \u00d7 24 \u00d7 7 mm",
+      "notes": "Right/sprocket end, outside both bearings, around the right spacer. Lip detail and axial seating depth are illustrative.",
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "15",
+          "diagram": "17",
+          "item": "17_04"
+        },
+        {
+          "document": "Motorino Light Bee parts catalog",
+          "page": "23\u201324",
+          "diagram": "15",
+          "item": "15_05"
+        }
+      ],
+      "dimensions": [
+        {
+          "label": "Bore",
+          "value": 15,
+          "unit": "mm"
+        },
+        {
+          "label": "Outside diameter",
+          "value": 24,
+          "unit": "mm"
+        },
+        {
+          "label": "Width",
+          "value": 7,
+          "unit": "mm"
+        }
+      ]
+    },
+    "left-seal": {
+      "oemNumber": "B7-001-15-26-6",
+      "designation": "Left oil seal \u00b7 15 \u00d7 26 \u00d7 6 mm",
+      "notes": "Left/pulley end, outside the single bearing, around the left spacer. Lip detail and axial seating depth are illustrative.",
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "15",
+          "diagram": "17",
+          "item": "17_10"
+        },
+        {
+          "document": "Motorino Light Bee parts catalog",
+          "page": "23\u201324",
+          "diagram": "15",
+          "item": "15_13"
+        }
+      ],
+      "dimensions": [
+        {
+          "label": "Bore",
+          "value": 15,
+          "unit": "mm"
+        },
+        {
+          "label": "Outside diameter",
+          "value": 26,
+          "unit": "mm"
+        },
+        {
+          "label": "Width",
+          "value": 6,
+          "unit": "mm"
+        }
+      ]
+    },
+    "sprocket-bolt": {
+      "oemNumber": "B3-003-06-025-F3",
+      "designation": "M6 \u00d7 25 \u00b7 Allen drive",
+      "notes": "Six bolts on the small right collar. Allen drive is the user correction; the flange and 5 mm socket are provisional. The omitted sprocket envelope supplies an 8.5 mm mounting allowance; its actual mounting face is unmeasured. Threads omitted.",
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "15",
+          "diagram": "17",
+          "item": "17_03"
+        },
+        {
+          "document": "Motorino Light Bee parts catalog",
+          "page": "23\u201324",
+          "diagram": "15",
+          "item": "15_02"
+        }
+      ],
+      "dimensions": [
+        {
+          "label": "Thread diameter",
+          "value": 6,
+          "unit": "mm"
+        },
+        {
+          "label": "Length under head",
+          "value": 25,
+          "unit": "mm"
+        }
+      ],
+      "modeledAllenKeyMm": 5
+    },
+    "pulley-bolt": {
+      "oemNumber": "B3-001-06-016-F0",
+      "designation": "M6 \u00d7 16 \u00b7 socket-cap visual model",
+      "notes": "Six bolts on the large left flange. Head style, 5 mm socket and 6 mm mounting-web allowance are provisional because the pulley is omitted. Threads omitted.",
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "15",
+          "diagram": "17",
+          "item": "17_13"
+        },
+        {
+          "document": "Motorino Light Bee parts catalog",
+          "page": "23\u201324",
+          "diagram": "15",
+          "item": "15_10"
+        }
+      ],
+      "dimensions": [
+        {
+          "label": "Thread diameter",
+          "value": 6,
+          "unit": "mm"
+        },
+        {
+          "label": "Length under head",
+          "value": 16,
+          "unit": "mm"
+        }
+      ],
+      "modeledAllenKeyMm": 5
+    },
+    "pivot-washer": {
+      "oemNumber": "B4-001-10-F1",
+      "designation": "Swingarm pivot washer \u00b7 10 \u00d7 20 \u00d7 2 mm",
+      "referenceOemNumber": null,
+      "notes": "Figure 01 places this washer under the pivot nut outside the frame on the motorcycle right. It is not a jackshaft sleeve part or a washer for the twelve M6 bolts. Nut/axle are not modeled; location is fitted to the frame exterior.",
+      "sources": [
+        {
+          "document": "Motorino Light Bee parts catalog",
+          "page": "1",
+          "diagram": "01",
+          "item": "1_08"
+        }
+      ],
+      "dimensions": [
+        {
+          "label": "Bore",
+          "value": 10,
+          "unit": "mm"
+        },
+        {
+          "label": "Outside diameter",
+          "value": 20,
+          "unit": "mm"
+        },
+        {
+          "label": "Thickness",
+          "value": 2,
+          "unit": "mm"
+        }
+      ]
+    }
+  },
+  "instances": [
+    {
+      "id": "jackshaft-body",
+      "name": "Jackshaft Body",
+      "spec": "body",
+      "sourceObject": "jackshaft_body_61281_visual",
+      "sourceBlend": "reference/models/lbx-jackshaft-body/revision-02/lbx-jackshaft-body-r02.blend",
+      "role": "nav.jackshaft.shaft",
+      "positionMm": [3.0, -61.86, 62.51],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": 0
+    },
+    {
+      "id": "jackshaft-bearing-right-inner",
+      "name": "Jackshaft Bearing Right Inner",
+      "spec": "bearing",
+      "sourceObject": "bearing_6000_2rs",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.bearings",
+      "positionMm": [-35.0, -61.86, 62.51],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": -140
+    },
+    {
+      "id": "jackshaft-bearing-right-outer",
+      "name": "Jackshaft Bearing Right Outer",
+      "spec": "bearing",
+      "sourceObject": "bearing_6000_2rs",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.bearings",
+      "positionMm": [-43.0, -61.86, 62.51],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": -166
+    },
+    {
+      "id": "jackshaft-bearing-left",
+      "name": "Jackshaft Bearing Left",
+      "spec": "bearing",
+      "sourceObject": "bearing_6000_2rs",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.bearings",
+      "positionMm": [54.0, -61.86, 62.51],
+      "axis": [1, 0, 0],
+      "explosionOffsetMm": 48
+    },
+    {
+      "id": "jackshaft-inner-spacer",
+      "name": "Jackshaft Inner Spacer",
+      "spec": "inner-spacer",
+      "sourceObject": "spacer_jackshaft_centre_61282",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.inner-spacer",
+      "positionMm": [9.5, -61.86, 62.51],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": -118
+    },
+    {
+      "id": "jackshaft-right-spacer",
+      "name": "Jackshaft Right Spacer",
+      "spec": "right-spacer",
+      "sourceObject": "spacer_jackshaft_right_61234",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.right-spacer",
+      "positionMm": [-55.5, -61.86, 62.51],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": -290
+    },
+    {
+      "id": "jackshaft-left-spacer",
+      "name": "Jackshaft Left Spacer",
+      "spec": "left-spacer",
+      "sourceObject": "spacer_jackshaft_left_61233",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.left-spacer",
+      "positionMm": [64.0, -61.86, 62.51],
+      "axis": [1, 0, 0],
+      "explosionOffsetMm": 108
+    },
+    {
+      "id": "jackshaft-right-seal",
+      "name": "Jackshaft Right Oil Seal",
+      "spec": "right-seal",
+      "sourceObject": "seal_jackshaft_right_15x24x7",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.right-seal",
+      "positionMm": [-50.5, -61.86, 62.51],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": -200
+    },
+    {
+      "id": "jackshaft-left-seal",
+      "name": "Jackshaft Left Oil Seal",
+      "spec": "left-seal",
+      "sourceObject": "seal_jackshaft_left_15x26x6",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.left-seal",
+      "positionMm": [61.0, -61.86, 62.51],
+      "axis": [1, 0, 0],
+      "explosionOffsetMm": 78
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-01",
+      "name": "Jackshaft Sprocket Bolt 01",
+      "spec": "sprocket-bolt",
+      "sourceObject": "bolt_sprocket_m6x25_01",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "positionMm": [-62.5, -61.86, 80.00999999999999],
+      "axis": [1, 0, 0],
+      "explosionOffsetMm": -250
+    },
+    {
+      "id": "jackshaft-pulley-bolt-01",
+      "name": "Jackshaft Pulley Bolt 01",
+      "spec": "pulley-bolt",
+      "sourceObject": "bolt_pulley_m6x16_01",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.pulley-bolts",
+      "positionMm": [61.0, -61.86, 83.50999999999999],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": 144
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-02",
+      "name": "Jackshaft Sprocket Bolt 02",
+      "spec": "sprocket-bolt",
+      "sourceObject": "bolt_sprocket_m6x25_02",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "positionMm": [-62.5, -46.70455543377233, 71.26],
+      "axis": [1, 0, 0],
+      "explosionOffsetMm": -250
+    },
+    {
+      "id": "jackshaft-pulley-bolt-02",
+      "name": "Jackshaft Pulley Bolt 02",
+      "spec": "pulley-bolt",
+      "sourceObject": "bolt_pulley_m6x16_02",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.pulley-bolts",
+      "positionMm": [61.0, -43.67346652052679, 73.01],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": 144
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-03",
+      "name": "Jackshaft Sprocket Bolt 03",
+      "spec": "sprocket-bolt",
+      "sourceObject": "bolt_sprocket_m6x25_03",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "positionMm": [-62.5, -46.70455543377232, 53.760000000000005],
+      "axis": [1, 0, 0],
+      "explosionOffsetMm": -250
+    },
+    {
+      "id": "jackshaft-pulley-bolt-03",
+      "name": "Jackshaft Pulley Bolt 03",
+      "spec": "pulley-bolt",
+      "sourceObject": "bolt_pulley_m6x16_03",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.pulley-bolts",
+      "positionMm": [61.0, -43.67346652052679, 52.010000000000005],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": 144
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-04",
+      "name": "Jackshaft Sprocket Bolt 04",
+      "spec": "sprocket-bolt",
+      "sourceObject": "bolt_sprocket_m6x25_04",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "positionMm": [-62.5, -61.86, 45.01],
+      "axis": [1, 0, 0],
+      "explosionOffsetMm": -250
+    },
+    {
+      "id": "jackshaft-pulley-bolt-04",
+      "name": "Jackshaft Pulley Bolt 04",
+      "spec": "pulley-bolt",
+      "sourceObject": "bolt_pulley_m6x16_04",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.pulley-bolts",
+      "positionMm": [61.0, -61.86, 41.51],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": 144
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-05",
+      "name": "Jackshaft Sprocket Bolt 05",
+      "spec": "sprocket-bolt",
+      "sourceObject": "bolt_sprocket_m6x25_05",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "positionMm": [-62.5, -77.01544456622767, 53.75999999999999],
+      "axis": [1, 0, 0],
+      "explosionOffsetMm": -250
+    },
+    {
+      "id": "jackshaft-pulley-bolt-05",
+      "name": "Jackshaft Pulley Bolt 05",
+      "spec": "pulley-bolt",
+      "sourceObject": "bolt_pulley_m6x16_05",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.pulley-bolts",
+      "positionMm": [61.0, -80.0465334794732, 52.00999999999999],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": 144
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-06",
+      "name": "Jackshaft Sprocket Bolt 06",
+      "spec": "sprocket-bolt",
+      "sourceObject": "bolt_sprocket_m6x25_06",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "positionMm": [-62.5, -77.01544456622767, 71.26],
+      "axis": [1, 0, 0],
+      "explosionOffsetMm": -250
+    },
+    {
+      "id": "jackshaft-pulley-bolt-06",
+      "name": "Jackshaft Pulley Bolt 06",
+      "spec": "pulley-bolt",
+      "sourceObject": "bolt_pulley_m6x16_06",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.jackshaft.pulley-bolts",
+      "positionMm": [61.0, -80.04653347947321, 73.01],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": 144
+    },
+    {
+      "id": "swingarm-pivot-washer",
+      "name": "Swingarm Pivot Washer",
+      "spec": "pivot-washer",
+      "sourceObject": "washer_pivot_10x20x2",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "role": "nav.swingarm.pivot-washer",
+      "positionMm": [-92.5, -61.86, 62.51],
+      "axis": [-1, 0, 0],
+      "explosionOffsetMm": -38
+    }
+  ]
+}

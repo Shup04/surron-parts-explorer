@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import {
   ArrowLeft,
   Box,
@@ -14,6 +14,7 @@ import {
   Eye,
   EyeOff,
   Focus,
+  Info,
   Layers3,
   Link2,
   Menu,
@@ -31,13 +32,22 @@ import { loadReviewPatches } from '@/catalog-review/storage';
 import { OemDetails } from './OemDetails';
 import { PartDetails } from './PartDetails';
 import { Button, IconButton } from './ui/Button';
+import { AppInstall, ConnectionStatus } from './AppInstall';
+import { useExplorerViewport, usePanelHistory } from './useExplorerViewport';
+import '@/ui/mobile-explorer.css';
 import { CuratedPartsTree, CuratedAssemblyDetails } from './CuratedParts';
 import {
-  buildCuratedNavigation,
   navigationAncestors,
   navigationForOccurrence,
   type NavigationNode,
 } from '@/navigation/model';
+import {
+  assemblyExplosion,
+  buildModeledNavigation,
+  closedAssemblyGroups,
+  geometrySelectionAssembly,
+  modeledScope,
+} from '@/navigation/modeled';
 import { resolveNavigationLocation } from '@/navigation/location';
 import { verifiedConfigurations } from '@/navigation/configurations';
 import type { CatalogFilters } from '@/oem/types';
@@ -69,6 +79,10 @@ import type { AssetDefinition, Catalog, MappingConfig, ViewerDiagnostics } from 
 import { assetRegistry } from '@/config/assets';
 import { withProjectParts } from '@/config/project-parts';
 
+const registeredPartIds = new Set(
+  assetRegistry.flatMap((entry) => entry.mapping.mappings.map((mapping) => mapping.partId)),
+);
+
 const Viewer = dynamic(() => import('@/viewer/Viewer'), {
   ssr: false,
   loading: () => (
@@ -80,6 +94,8 @@ const Viewer = dynamic(() => import('@/viewer/Viewer'), {
 });
 
 export default function Explorer() {
+  useExplorerViewport();
+  const [initialized, setInitialized] = useState(false);
   const [catalog, setCatalog] = useState<Catalog>(() => withProjectParts(oemCatalog));
   const [demoMode, setDemoMode] = useState(false);
   const [database, setDatabase] = useState(oemDatabase);
@@ -88,6 +104,11 @@ export default function Explorer() {
   const [configurationId, setConfigurationId] = useState('');
   const [localAsset, setLocalAsset] = useState<AssetDefinition>();
   const [localWorkspace, setLocalWorkspace] = useState(false);
+  const editorHref = demoMode
+    ? '/editor?demo=1'
+    : localWorkspace
+      ? '/editor?workspace=local'
+      : '/editor';
   const [mapping, setMapping] = useState<MappingConfig>();
   const [assetMessage, setAssetMessage] = useState('');
   const [assemblyId, setAssemblyId] = useState(demoCatalog.motorcycleId);
@@ -109,6 +130,7 @@ export default function Explorer() {
   const [statsOpen, setStatsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [notice, setNotice] = useState('');
+  const [touchHint, setTouchHint] = useState(false);
   const [diagnostics, setDiagnostics] = useState<ViewerDiagnostics>();
   const workspace = useRef<HTMLDivElement>(null);
   const search = useRef<HTMLInputElement>(null);
@@ -118,31 +140,31 @@ export default function Explorer() {
   const detailsButton = useRef<HTMLButtonElement>(null);
   const revealNode = useRef<string | null>(null);
   const index = useMemo(() => buildCatalogIndex(catalog), [catalog]);
-  const curatedEnabled =
-    !demoMode &&
-    (!localWorkspace ||
-      catalog.parts.some(
-        (part) => part.specifications['Catalog identity'] || part.specifications['Model role'],
-      ));
+  const modeledPartIds = useMemo(
+    () =>
+      localWorkspace
+        ? new Set(localAsset ? (mapping?.mappings.map((entry) => entry.partId) ?? []) : [])
+        : registeredPartIds,
+    [localWorkspace, localAsset, mapping],
+  );
   const navigation = useMemo(
     () =>
-      curatedEnabled
-        ? buildCuratedNavigation(database, catalog, {
+      !demoMode
+        ? buildModeledNavigation(database, catalog, modeledPartIds, {
             modelYear: filters.modelYear,
             configurationId,
             configurations: verifiedConfigurations,
           })
         : null,
-    [curatedEnabled, database, catalog, filters.modelYear, configurationId],
+    [demoMode, database, catalog, modeledPartIds, filters.modelYear, configurationId],
   );
   const assembly = index.byId.get(assemblyId) ?? index.byId.get(catalog.motorcycleId)!;
   const selection = selectedId ? index.byId.get(selectedId) : undefined;
   const detail = selection ?? assembly;
-  const activeNode =
-    selection?.kind === 'component' ? undefined : navigation?.byId.get(navId ?? assemblyId);
   const selectionNode =
     selectedId && navigation ? navigationForOccurrence(navigation, selectedId) : undefined;
-  const presentationNode = activeNode ?? selectionNode;
+  const activeNode = modeledScope(navigation, assemblyId, selectedId, navId);
+  const presentationNode = selectionNode ?? activeNode;
   const navigationPath =
     presentationNode && navigation
       ? [
@@ -152,15 +174,32 @@ export default function Explorer() {
           presentationNode,
         ]
       : [];
+  const detailParentNode = navigationPath.at(-2);
   const overview =
     assemblyId === catalog.motorcycleId &&
     !activeNode &&
     (!selection || selection.kind === 'motorcycle');
   const detailsVisible = detailOpen && !overview;
+  const writeNavigation = usePanelHistory(
+    compact && initialized,
+    navOpen ? 'parts' : detailsVisible ? 'details' : null,
+    (panel) => {
+      setNavOpen(panel === 'parts');
+      setDetailOpen(panel === 'details');
+    },
+  );
   const isFull = assemblyId === catalog.motorcycleId;
+  const modeledCount = new Set(navigation?.roots.flatMap((node) => node.modelPartIds ?? [])).size;
   const results = useMemo(
-    () => (query.trim() ? searchParts(index, query, 101) : []),
-    [index, query],
+    () =>
+      query.trim()
+        ? searchParts(index, query, Number.MAX_SAFE_INTEGER)
+            .filter(
+              (part) => !navigation || modeledPartIds.has(part.id) || navigation.byId.has(part.id),
+            )
+            .slice(0, 101)
+        : [],
+    [index, query, navigation, modeledPartIds],
   );
   const breadcrumbs = [...getAncestors(index, assembly.id), assembly];
   const childParts = getChildren(index, detail.id);
@@ -176,11 +215,43 @@ export default function Explorer() {
     const update = () => {
       setCompact(media.matches);
       setNavOpen(!media.matches);
+      if (media.matches) setDetailOpen(false);
     };
     update();
     media.addEventListener('change', update);
     return () => media.removeEventListener('change', update);
   }, []);
+
+  useEffect(() => {
+    try {
+      setTouchHint(sessionStorage.getItem('surron-touch-guide') !== 'seen');
+    } catch {
+      setTouchHint(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    const dismissMenus = (event: PointerEvent) => {
+      if (!(event.target instanceof Node)) return;
+      for (const menu of document.querySelectorAll<HTMLDetailsElement>(
+        '.explorer-ux .workspace-tools[open], .explorer-ux .viewer-options[open]',
+      )) {
+        if (!menu.contains(event.target)) menu.open = false;
+      }
+    };
+    document.addEventListener('pointerdown', dismissMenus, true);
+    return () => document.removeEventListener('pointerdown', dismissMenus, true);
+  }, []);
+
+  const dismissTouchHint = () => {
+    if (!touchHint) return;
+    setTouchHint(false);
+    try {
+      sessionStorage.setItem('surron-touch-guide', 'seen');
+    } catch {
+      /* Storage can be unavailable in private browsing. */
+    }
+  };
 
   useEffect(() => {
     if (!compact || (!navOpen && !detailsVisible)) return;
@@ -193,7 +264,8 @@ export default function Explorer() {
           'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), summary, [tabindex="0"]',
         ),
       ].filter((element) => element.getClientRects().length > 0);
-    (navOpen ? search.current : focusable()[0])?.focus();
+    const useSearch = navOpen && !window.matchMedia('(pointer: coarse)').matches;
+    (useSearch ? search.current : focusable()[0])?.focus({ preventScroll: true });
     const trap = (event: KeyboardEvent) => {
       if (event.key !== 'Tab') return;
       const items = focusable();
@@ -216,7 +288,7 @@ export default function Explorer() {
     document.addEventListener('keydown', trap);
     return () => {
       document.removeEventListener('keydown', trap);
-      trigger?.focus();
+      trigger?.focus({ preventScroll: true });
     };
   }, [compact, navOpen, detailsVisible]);
 
@@ -241,10 +313,10 @@ export default function Explorer() {
       let activeCatalog = demo
         ? demoCatalog
         : withProjectParts(toExplorerCatalog(reviewed, initialFilters));
-      let usingLocalWorkspace = false;
+      let activeModeledIds = registeredPartIds;
       setCatalog(activeCatalog);
       const requestedLocal = params.get('workspace') === 'local';
-      if (requestedLocal || (!demo && !params.has('workspace'))) {
+      if (requestedLocal) {
         try {
           const { loadEditorProject, loadSavedEditorAsset } = await import('@/editor/storage');
           const project = loadEditorProject();
@@ -262,13 +334,19 @@ export default function Explorer() {
               return;
             }
             activeCatalog = project.catalog;
-            usingLocalWorkspace = true;
+            activeModeledIds = new Set(
+              loaded ? project.mapping.mappings.map((entry) => entry.partId) : [],
+            );
             setCatalog(activeCatalog);
             setMapping(project.mapping);
             setLocalWorkspace(true);
             const url = new URL(window.location.href);
             url.searchParams.set('workspace', 'local');
-            window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+            window.history.replaceState(
+              window.history.state,
+              '',
+              url.pathname + url.search + url.hash,
+            );
             if (loaded)
               setLocalAsset({
                 id: project.mapping.assetId,
@@ -293,18 +371,13 @@ export default function Explorer() {
         }
       }
       if (disposed) return;
-      const activeNavigation =
-        !demo &&
-        (!usingLocalWorkspace ||
-          activeCatalog.parts.some(
-            (part) => part.specifications['Catalog identity'] || part.specifications['Model role'],
-          ))
-          ? buildCuratedNavigation(reviewed, activeCatalog, {
-              modelYear: initialFilters.modelYear,
-              configurationId: params.get('configuration') ?? '',
-              configurations: verifiedConfigurations,
-            })
-          : null;
+      const activeNavigation = !demo
+        ? buildModeledNavigation(reviewed, activeCatalog, activeModeledIds, {
+            modelYear: initialFilters.modelYear,
+            configurationId: params.get('configuration') ?? '',
+            configurations: verifiedConfigurations,
+          })
+        : null;
       const state = resolveNavigationLocation(
         window.location.search,
         activeCatalog,
@@ -312,10 +385,16 @@ export default function Explorer() {
       );
       setAssemblyId(state.assemblyId);
       setSelectedId(state.partId);
+      setExplosion(
+        assemblyExplosion(
+          modeledScope(activeNavigation, state.assemblyId, state.partId, params.get('nav')),
+        ),
+      );
       setDetailOpen(
-        !!params.get('nav') ||
-          (!!state.partId &&
-            activeCatalog.parts.find((part) => part.id === state.partId)?.kind === 'component'),
+        !window.matchMedia('(max-width: 1100px)').matches &&
+          (!!params.get('nav') ||
+            (!!state.partId &&
+              activeCatalog.parts.find((part) => part.id === state.partId)?.kind === 'component')),
       );
       setExpanded(
         new Set([
@@ -326,6 +405,7 @@ export default function Explorer() {
           ),
         ]),
       );
+      setInitialized(true);
     }
     void initialize();
     return () => {
@@ -346,8 +426,8 @@ export default function Explorer() {
           ? catalog
           : withProjectParts(toExplorerCatalog(database, nextFilters));
       if (!demoMode && !localWorkspace) setCatalog(active);
-      const activeNavigation = curatedEnabled
-        ? buildCuratedNavigation(database, active, {
+      const activeNavigation = !demoMode
+        ? buildModeledNavigation(database, active, modeledPartIds, {
             modelYear: nextFilters.modelYear,
             configurationId: params.get('configuration') ?? '',
             configurations: verifiedConfigurations,
@@ -358,8 +438,9 @@ export default function Explorer() {
       setSelectedId(state.partId);
       const activeIndex = buildCatalogIndex(active);
       setDetailOpen(
-        !!params.get('nav') ||
-          (!!state.partId && activeIndex.byId.get(state.partId)?.kind === 'component'),
+        !compact &&
+          (!!params.get('nav') ||
+            (!!state.partId && activeIndex.byId.get(state.partId)?.kind === 'component')),
       );
       setExpanded(
         new Set([
@@ -372,19 +453,36 @@ export default function Explorer() {
       setHoveredId(null);
       setHiddenIds([]);
       setIsolatedId(null);
-      setExplosion(0);
+      setExplosion(
+        assemblyExplosion(
+          modeledScope(activeNavigation, state.assemblyId, state.partId, params.get('nav')),
+        ),
+      );
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
-  }, [catalog, database, demoMode, localWorkspace, curatedEnabled, compact]);
+  }, [catalog, database, demoMode, localWorkspace, modeledPartIds, compact]);
 
   const navigate = useCallback(
     (partId: string, presentationId?: string) => {
       const part = index.byId.get(partId);
       if (!part) return;
-      setNavId(presentationId ?? null);
+      const partNode = navigation ? navigationForOccurrence(navigation, partId) : undefined;
+      // Selecting a child keeps the open assembly spread and camera context.
+      const context =
+        part.kind === 'component' && activeNode?.modelPartIds?.includes(partId)
+          ? activeNode
+          : undefined;
+      const nextNavId =
+        context?.id ??
+        presentationId ??
+        partNode?.id ??
+        (navigation?.byId.has(part.id) ? part.id : null);
+      const nextNode = nextNavId ? navigation?.byId.get(nextNavId) : undefined;
+      setNavId(nextNavId);
       const nextAssembly =
-        part.kind === 'component' ? (part.parentId ?? catalog.motorcycleId) : part.id;
+        nextNode?.scopeId ??
+        (part.kind === 'component' ? (part.parentId ?? catalog.motorcycleId) : part.id);
       const nextPart = part.kind === 'motorcycle' ? null : part.id;
       const url = createExplorerUrl(
         { assemblyId: nextAssembly, partId: nextPart },
@@ -396,12 +494,12 @@ export default function Explorer() {
       if (filters.modelYear) target.searchParams.set('year', String(filters.modelYear));
       if (filters.sourceId) target.searchParams.set('source', filters.sourceId);
       if (configurationId) target.searchParams.set('configuration', configurationId);
-      if (presentationId) target.searchParams.set('nav', presentationId);
+      if (nextNavId) target.searchParams.set('nav', nextNavId);
       if (
         `${window.location.pathname}${window.location.search}` !==
         `${target.pathname}${target.search}`
       )
-        window.history.pushState(null, '', `${target.pathname}${target.search}`);
+        writeNavigation(`${target.pathname}${target.search}`);
       setAssemblyId(nextAssembly);
       setSelectedId(nextPart);
       setExpanded(
@@ -412,10 +510,11 @@ export default function Explorer() {
         nextAssembly !== assemblyId ? [] : previous.filter((id) => id !== partId),
       );
       setHoveredId(null);
-      if (nextAssembly !== assemblyId) setExplosion(0);
+      if (nextAssembly !== assemblyId || nextNavId !== (activeNode?.id ?? null))
+        setExplosion(assemblyExplosion(nextNode));
       if (compact) setNavOpen(false);
       setQuery('');
-      setDetailOpen(!!presentationId || part.kind === 'component');
+      setDetailOpen(!compact && (!!nextNavId || part.kind === 'component'));
       setNotice(`${part.name} selected`);
     },
     [
@@ -426,7 +525,10 @@ export default function Explorer() {
       demoMode,
       filters,
       configurationId,
+      navigation,
+      activeNode,
       compact,
+      writeNavigation,
     ],
   );
 
@@ -539,7 +641,7 @@ export default function Explorer() {
     const state = resolveNavigationLocation(
       url.search,
       active,
-      buildCuratedNavigation(database, active, {
+      buildModeledNavigation(database, active, modeledPartIds, {
         modelYear: next.modelYear,
         configurationId,
         configurations: verifiedConfigurations,
@@ -552,24 +654,21 @@ export default function Explorer() {
     setHiddenIds([]);
     setIsolatedId(null);
     setExplosion(0);
-    window.history.pushState(null, '', url.pathname + url.search);
+    writeNavigation(url.pathname + url.search);
+    if (compact) {
+      setNavOpen(false);
+      setDetailOpen(false);
+    }
   }
   const activeMapping = mapping ?? assetEntry?.mapping;
   const hasImportedGeometry = !!(localAsset ?? assetEntry?.asset);
   const scopePartIds = useMemo(
-    () =>
-      hasImportedGeometry && activeNode
-        ? [
-            ...new Set([
-              ...(activeNode.kind === 'system' && activeNode.scopeId !== catalog.motorcycleId
-                ? [activeNode.scopeId]
-                : []),
-              ...activeNode.references.flatMap((reference) => reference.occurrenceIds),
-              ...(activeNode.modelPartIds ?? []),
-            ]),
-          ]
-        : undefined,
-    [hasImportedGeometry, activeNode, catalog.motorcycleId],
+    () => (hasImportedGeometry && activeNode ? activeNode.modelPartIds : undefined),
+    [hasImportedGeometry, activeNode],
+  );
+  const explosionGroups = useMemo(
+    () => (hasImportedGeometry ? closedAssemblyGroups(navigation, activeNode) : undefined),
+    [hasImportedGeometry, navigation, activeNode],
   );
   const mappedIds = new Set(activeMapping?.mappings.map((entry) => entry.partId) ?? []);
   const geometryIds = (scopePartIds ?? [detail.id]).flatMap((id) => [
@@ -578,11 +677,14 @@ export default function Explorer() {
   ]);
   const hasGeometry =
     demoMode || (hasImportedGeometry && geometryIds.some((id) => mappedIds.has(id)));
+  const canExplode = demoMode || new Set(geometryIds.filter((id) => mappedIds.has(id))).size > 1;
   const showDemonstration = !hasImportedGeometry && !demoMode && overview && !selection;
   const showViewer = hasGeometry || showDemonstration || (overview && hasImportedGeometry);
   const sceneCatalog = showDemonstration ? demoCatalog : catalog;
   const selectGeometry = (id: string) => {
-    if (index.byId.has(id)) navigate(id);
+    const parent = geometrySelectionAssembly(navigation, activeNode, id);
+    if (parent) navigateNode(parent);
+    else if (index.byId.has(id)) navigate(id);
     else if (showDemonstration) {
       const parents = getAncestors(buildCatalogIndex(demoCatalog), id).reverse();
       const match = parents.find((parent) => index.byId.has(parent.id) && parent.id !== 'lbx');
@@ -607,13 +709,9 @@ export default function Explorer() {
     setIsolatedId(null);
     setHoveredId(null);
     setExplosion(0);
-    setDetailOpen(true);
+    setDetailOpen(!compact);
     setExpanded(new Set(['lbx', part.parentId ?? 'lbx']));
-    window.history.pushState(
-      null,
-      '',
-      createExplorerUrl({ assemblyId: part.parentId ?? 'lbx', partId: id }),
-    );
+    writeNavigation(createExplorerUrl({ assemblyId: part.parentId ?? 'lbx', partId: id }));
   };
   const navigateNode = (node: NavigationNode) => {
     if (node.occurrenceId) {
@@ -672,7 +770,8 @@ export default function Explorer() {
           )
         : navPanel.current?.querySelector<HTMLElement>('.tree-row.active');
       row?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
-      if (target) row?.querySelector<HTMLButtonElement>('.tree-select')?.focus();
+      if (target)
+        row?.querySelector<HTMLButtonElement>('.tree-select')?.focus({ preventScroll: true });
     });
     return () => cancelAnimationFrame(frame);
   }, [selectedId, navId, navOpen, query, revealRequest]);
@@ -693,7 +792,7 @@ export default function Explorer() {
           <div
             className={`tree-row ${selectedId === part.id || (!selectedId && assemblyId === part.id) ? 'active' : ''} ${hiddenIds.includes(part.id) ? 'is-hidden' : ''}`}
             data-navigation-id={part.id}
-            style={{ paddingLeft: 8 + depth * 15 }}
+            style={{ paddingLeft: 8 + depth * 15, '--tree-depth': depth } as CSSProperties}
           >
             {children.length > 0 ? (
               <button
@@ -744,6 +843,7 @@ export default function Explorer() {
         onClick={() => {
           setIsolatedId(isolatedId === detail.id ? null : detail.id);
           setHiddenIds((previous) => previous.filter((id) => id !== detail.id));
+          if (compact) setDetailOpen(false);
         }}
       >
         <Focus size={16} />
@@ -754,6 +854,7 @@ export default function Explorer() {
         onClick={() => {
           setIsolatedId(null);
           toggleHidden(detail.id);
+          if (compact) setDetailOpen(false);
         }}
       >
         {hiddenIds.includes(detail.id) ? <Eye size={16} /> : <EyeOff size={16} />}
@@ -762,8 +863,42 @@ export default function Explorer() {
     </div>
   );
 
+  const partsControl = (
+    <Button
+      variant="ghost"
+      ref={partsButton}
+      className="toolbar-button"
+      aria-expanded={navOpen}
+      aria-controls="parts-navigation"
+      onClick={() => {
+        if (navOpen) setNavOpen(false);
+        else browseParts();
+      }}
+    >
+      <Menu size={20} />
+      Parts
+    </Button>
+  );
+  const detailsControl = (
+    <Button
+      variant="ghost"
+      ref={detailsButton}
+      className="toolbar-button"
+      disabled={overview}
+      aria-expanded={detailsVisible}
+      aria-controls="component-details"
+      onClick={() => {
+        setDetailOpen((value) => !value);
+        if (compact) setNavOpen(false);
+      }}
+    >
+      {compact && <Info size={20} />}
+      Details
+    </Button>
+  );
+
   return (
-    <main className="explorer-shell explorer-ux">
+    <main className="explorer-shell explorer-ux" aria-busy={!initialized}>
       <header className="topbar" inert={compact && (navOpen || detailsVisible)}>
         <Link
           className="brand"
@@ -787,8 +922,10 @@ export default function Explorer() {
             Tools <Settings2 size={16} />
           </summary>
           <div className="tools-menu">
+            {compact && localAsset && <p className="workspace-source">Saved local parts</p>}
+            <AppInstall />
             <Link href="/catalog">Catalog review</Link>
-            <Link href={demoMode ? '/editor?demo=1' : '/editor'}>Model editor</Link>
+            <Link href={editorHref}>Model editor</Link>
             <a href="/?workspace=project">Project parts</a>
             {!demoMode && <a href="/?workspace=local">Saved local parts</a>}
             {!demoMode && <Link href="/?demo=1">Geometry demonstration</Link>}
@@ -796,6 +933,7 @@ export default function Explorer() {
           </div>
         </details>
       </header>
+      <ConnectionStatus />
 
       <div
         ref={workspace}
@@ -825,7 +963,9 @@ export default function Explorer() {
           <div className="panel-heading">
             <span className="eyebrow">Parts</span>
             <span className="count-tag">
-              {navigation ? `${navigation.roots.length} systems` : catalog.parts.length - 1}
+              {navigation
+                ? `${modeledCount} ${modeledCount === 1 ? 'part' : 'parts'}`
+                : catalog.parts.length - 1}
             </span>
             <IconButton
               className="icon-button"
@@ -861,7 +1001,7 @@ export default function Explorer() {
               <kbd>/</kbd>
             )}
           </div>
-          {!demoMode && !localWorkspace && (
+          {!demoMode && !localWorkspace && (!!filters.modelYear || !!filters.sourceId) && (
             <details
               className="catalog-filter-disclosure"
               open={!!filters.modelYear || !!filters.sourceId || undefined}
@@ -944,8 +1084,7 @@ export default function Explorer() {
             {query.trim() ? (
               <div className="search-results">
                 <p className="eyebrow" role="status" aria-live="polite" aria-atomic="true">
-                  {results.length > 100 ? '100+' : results.length}{' '}
-                  {navigation ? 'Reference matches' : 'Matching parts'}
+                  {results.length > 100 ? '100+' : results.length} Matching parts
                 </p>
                 {results.length ? (
                   results.slice(0, 100).map((part) => (
@@ -976,8 +1115,9 @@ export default function Explorer() {
                   ))
                 ) : (
                   <p className="empty-state">
-                    No matching parts. Try a part name or OEM number
-                    {filters.modelYear || filters.sourceId ? ', or clear the catalog filters' : ''}.
+                    {navigation
+                      ? 'No modeled parts match. Parts appear here as their models are added.'
+                      : 'No matching parts. Try a part name or OEM number.'}
                   </p>
                 )}
                 {results.length > 100 && (
@@ -986,6 +1126,11 @@ export default function Explorer() {
               </div>
             ) : (
               <ul className="parts-tree">
+                {navigation && !navigation.roots.length && (
+                  <li className="empty-state">
+                    No parts have models yet. <Link href={editorHref}>Add a part model</Link>.
+                  </li>
+                )}
                 {navigation ? (
                   <CuratedPartsTree
                     nodes={navigation.roots}
@@ -1022,20 +1167,7 @@ export default function Explorer() {
           inert={compact && (navOpen || detailsVisible)}
         >
           <div className="viewer-bar">
-            <Button
-              variant="ghost"
-              ref={partsButton}
-              className="toolbar-button"
-              aria-expanded={navOpen}
-              aria-controls="parts-navigation"
-              onClick={() => {
-                setNavOpen((value) => !value);
-                if (compact) setDetailOpen(false);
-              }}
-            >
-              <Menu size={18} />
-              Parts
-            </Button>
+            {!compact && partsControl}
             {!overview && (
               <IconButton
                 className="icon-button"
@@ -1046,62 +1178,69 @@ export default function Explorer() {
                 <ArrowLeft size={18} />
               </IconButton>
             )}
-            <nav className="breadcrumbs" aria-label="Assembly breadcrumb">
-              {navigationPath.length ? (
-                <>
-                  <span>
-                    <button onClick={() => navigate(catalog.motorcycleId)}>Light Bee X</button>
-                  </span>
-                  {navigationPath.map((node) => (
-                    <span key={node.id}>
-                      <ChevronRight size={12} />
+            {compact ? (
+              <div className="mobile-model-context" aria-live="polite" aria-atomic="true">
+                <span>
+                  {overview ? '3D parts explorer' : (detailParentNode?.name ?? 'Light Bee X')}
+                </span>
+                <strong>
+                  {overview ? 'Light Bee X' : (presentationNode?.name ?? detail.name)}
+                </strong>
+              </div>
+            ) : (
+              <nav className="breadcrumbs" aria-label="Assembly breadcrumb">
+                {navigationPath.length ? (
+                  <>
+                    <span>
+                      <button onClick={() => navigate(catalog.motorcycleId)}>Light Bee X</button>
+                    </span>
+                    {navigationPath.map((node) => (
+                      <span key={node.id}>
+                        <ChevronRight size={12} />
+                        <button
+                          onClick={() => navigateNode(node)}
+                          aria-current={node.id === presentationNode?.id ? 'location' : undefined}
+                        >
+                          {node.name}
+                        </button>
+                      </span>
+                    ))}
+                  </>
+                ) : (
+                  breadcrumbs.map((part, i) => (
+                    <span key={part.id}>
+                      {i > 0 && <ChevronRight size={12} />}
                       <button
-                        onClick={() => navigateNode(node)}
-                        aria-current={node.id === presentationNode?.id ? 'location' : undefined}
+                        onClick={() => navigate(part.id)}
+                        aria-current={i === breadcrumbs.length - 1 ? 'location' : undefined}
                       >
-                        {node.name}
+                        {part.kind === 'motorcycle' ? 'Light Bee X' : part.name}
                       </button>
                     </span>
-                  ))}
-                </>
-              ) : (
-                breadcrumbs.map((part, i) => (
-                  <span key={part.id}>
-                    {i > 0 && <ChevronRight size={12} />}
-                    <button
-                      onClick={() => navigate(part.id)}
-                      aria-current={i === breadcrumbs.length - 1 ? 'location' : undefined}
-                    >
-                      {part.kind === 'motorcycle' ? 'Light Bee X' : part.name}
-                    </button>
-                  </span>
-                ))
-              )}
-            </nav>
-            <Button
-              variant="ghost"
-              ref={detailsButton}
-              className="toolbar-button"
-              disabled={overview}
-              aria-expanded={detailOpen && !overview}
-              aria-controls="component-details"
-              onClick={() => {
-                setDetailOpen((value) => !value);
-                if (compact) setNavOpen(false);
-              }}
-            >
-              Details
-            </Button>
+                  ))
+                )}
+              </nav>
+            )}
+            {!compact && detailsControl}
           </div>
           <h1 className="sr-only">
             {overview ? 'Sur-Ron Light Bee X' : (activeNode?.name ?? assembly.name)}
           </h1>
-          <div className={`canvas-wrap ${!overview && hasGeometry ? 'assembly-canvas' : ''}`}>
-            {showViewer ? (
+          <div
+            className={`canvas-wrap ${!overview && hasGeometry ? 'assembly-canvas' : ''}`}
+            onPointerDownCapture={compact ? dismissTouchHint : undefined}
+          >
+            {!initialized ? (
+              <div className="viewer-loading" role="status">
+                <span className="loader" />
+                Loading parts…
+              </div>
+            ) : showViewer ? (
               <Viewer
                 catalog={sceneCatalog}
                 assemblyId={assemblyId}
                 scopePartIds={scopePartIds}
+                explosionGroups={explosionGroups}
                 selectedId={selectedId}
                 hoveredId={hoveredId}
                 explosion={explosion}
@@ -1122,7 +1261,9 @@ export default function Explorer() {
                 <Link
                   className="text-button"
                   href={
-                    activeNode ? `/editor?part=${encodeURIComponent(activeNode.id)}` : '/editor'
+                    activeNode
+                      ? `${editorHref}${editorHref.includes('?') ? '&' : '?'}part=${encodeURIComponent(activeNode.id)}`
+                      : editorHref
                   }
                 >
                   Add {activeNode?.name ?? 'a part'} model
@@ -1144,19 +1285,31 @@ export default function Explorer() {
                 </details>
               </div>
             )}
+            {compact && touchHint && initialized && showViewer && (
+              <div className="mobile-touch-guide">
+                Drag to rotate · Pinch to zoom
+                <br />
+                Tap a part to explore
+              </div>
+            )}
           </div>
           <div className="viewer-tools">
-            <IconButton
-              className="icon-button"
-              label="Reset camera"
-              title="Reset camera (R)"
-              disabled={!showViewer}
-              onClick={() => setResetToken((value) => value + 1)}
-            >
-              <RotateCcw size={18} />
-            </IconButton>
+            {!compact && (
+              <IconButton
+                className="icon-button"
+                label="Reset camera"
+                title="Reset camera (R)"
+                disabled={!showViewer}
+                onClick={() => setResetToken((value) => value + 1)}
+              >
+                <RotateCcw size={18} />
+              </IconButton>
+            )}
             <details className="viewer-options">
-              <summary>Viewer options</summary>
+              <summary aria-label="Viewer options">
+                <span>Viewer options</span>
+                {compact && <Settings2 size={19} />}
+              </summary>
               <div
                 className="tools-menu"
                 onClick={(event) => {
@@ -1167,10 +1320,14 @@ export default function Explorer() {
                 <button
                   onClick={() => {
                     if (document.fullscreenElement) void document.exitFullscreen();
-                    else
+                    else if (workspace.current?.requestFullscreen)
                       void workspace.current
-                        ?.requestFullscreen()
+                        .requestFullscreen()
                         .catch(() => setNotice('Fullscreen is unavailable in this browser.'));
+                    else
+                      setNotice(
+                        'Fullscreen is unavailable here. Install the app for a full-screen view.',
+                      );
                   }}
                 >
                   Toggle fullscreen <Expand size={16} />
@@ -1239,7 +1396,7 @@ export default function Explorer() {
               <p>Demand rendering · Y up · metres</p>
             </div>
           )}
-          {assetMessage && (
+          {assetMessage && (!compact || !localAsset) && (
             <div className="asset-notice" role="status">
               {assetMessage}
             </div>
@@ -1266,7 +1423,7 @@ export default function Explorer() {
                 )}
               </div>
             )}
-            {!overview && hasGeometry ? (
+            {!overview && hasGeometry && canExplode ? (
               <div className="explosion-controls">
                 <div className="explosion-title">
                   <strong>Exploded view</strong>
@@ -1302,6 +1459,22 @@ export default function Explorer() {
               </small>
             )}
           </div>
+          {compact && (
+            <nav className="mobile-dock" aria-label="Model controls">
+              {partsControl}
+              <Button
+                variant="ghost"
+                className="toolbar-button"
+                aria-label="Reset camera"
+                disabled={!showViewer}
+                onClick={() => setResetToken((value) => value + 1)}
+              >
+                <RotateCcw size={20} />
+                Reset view
+              </Button>
+              {detailsControl}
+            </nav>
+          )}
         </section>
 
         <aside
@@ -1368,6 +1541,17 @@ export default function Explorer() {
                 actions={detailActions}
                 onNavigate={navigateOccurrence}
               />
+            ) : selection?.kind === 'component' ? (
+              <PartDetails
+                key={detail.id}
+                part={detail}
+                actions={detailActions}
+                parentName={detailParentNode?.name ?? index.byId.get(detail.parentId ?? '')?.name}
+                onNavigate={(id) => {
+                  if (detailParentNode && id === detail.parentId) navigateNode(detailParentNode);
+                  else navigate(id);
+                }}
+              />
             ) : navigation && (activeNode || isFull) ? (
               <CuratedAssemblyDetails
                 key={activeNode?.id ?? 'overview'}
@@ -1377,6 +1561,7 @@ export default function Explorer() {
                 onNavigate={navigateNode}
                 onSelectOccurrence={navigateOccurrence}
                 onBrowseParts={browseParts}
+                modeledOnly
               />
             ) : !demoMode && !localWorkspace ? (
               <>

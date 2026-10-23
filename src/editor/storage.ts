@@ -1,6 +1,7 @@
 import type { AssetModelSource, Catalog, MappingConfig } from '@/core/types';
 import { validateCatalog } from '@/core/catalog';
 import { validateMapping } from '@/core/mapping';
+import { projectPartsAsset } from '@/config/project-parts';
 
 export interface EditorProject {
   version: 1;
@@ -15,6 +16,8 @@ export interface PartModel {
   fileName: string;
   originalName: string;
   partId: string;
+  /** Registered project asset; absent for a browser-local uploaded file. */
+  projectModelId?: string;
 }
 
 export const PROJECT_STORAGE_KEY = 'surron-editor-project';
@@ -59,11 +62,19 @@ export function parseEditorProject(value: unknown): EditorProject {
       ids.add(model.id as string);
       if (!catalog.data.parts.some((part) => part.id === model.partId))
         throw new Error('Part model references an unknown catalog part.');
+      if (
+        model.projectModelId !== undefined &&
+        !projectPartsAsset.models?.some((asset) => asset.id === model.projectModelId)
+      )
+        throw new Error('Part model references an unknown project model.');
       return {
         id: model.id as string,
         fileName: model.fileName as string,
         originalName: model.originalName as string,
         partId: model.partId as string,
+        ...(model.projectModelId !== undefined
+          ? { projectModelId: model.projectModelId as string }
+          : {}),
       };
     });
   }
@@ -228,7 +239,15 @@ export async function materializeProjectFiles(
         ? retained?.get(model.id)
         : undefined;
       if (!resource) {
-        const asset = await materializeFiles(files, model.fileName);
+        let asset: LocalAsset;
+        if (!model.projectModelId) asset = await materializeFiles(files, model.fileName);
+        else {
+          const source = projectPartsAsset.models?.find(
+            (entry) => entry.id === model.projectModelId,
+          );
+          if (!source) throw new Error(`Unknown project model: ${model.projectModelId}.`);
+          asset = { url: source.url, dispose: () => {} };
+        }
         resource = { asset, references: 0 };
       }
       resource.references++;
@@ -281,7 +300,10 @@ export async function loadSavedEditorFiles(): Promise<File[]> {
 export async function loadSavedEditorAsset(): Promise<LocalAsset | null> {
   const project = loadEditorProject();
   if (!project?.assetFileName) return null;
-  return materializeProjectFiles(await loadSavedEditorFiles(), project);
+  const files = project.partModels?.every((model) => model.projectModelId)
+    ? []
+    : await loadSavedEditorFiles();
+  return materializeProjectFiles(files, project);
 }
 
 export function downloadJSON(value: unknown, filename: string): void {

@@ -49,7 +49,8 @@ import { EditorCanvas, type CameraCommand } from './EditorCanvas';
 import { ImportPreflightReport } from './ImportPreflightReport';
 import { inspectImport, preflightImportedModel, type ImportPreflight } from './preflight';
 import { PartModelPanel } from './PartModelPanel';
-import { assignPartModel } from './part-project';
+import { assignPartModel, partModelTarget } from './part-project';
+import { createProjectWorkspace } from './project-workspace';
 import {
   assignMappings,
   disposeScene,
@@ -126,6 +127,13 @@ export function Editor() {
       typeof window !== 'undefined' &&
       new URLSearchParams(window.location.search).get('demo') === '1',
   );
+  const [restoreLocal] = useState(
+    () =>
+      demoMode ||
+      (typeof window !== 'undefined' &&
+        new URLSearchParams(window.location.search).get('workspace') === 'local'),
+  );
+  const [localWorkspace, setLocalWorkspace] = useState(restoreLocal);
   const [advanced, setAdvanced] = useState(
     () =>
       demoMode ||
@@ -137,7 +145,7 @@ export function Editor() {
       ? (new URLSearchParams(window.location.search).get('part') ?? '')
       : '',
   );
-  const [scene, setScene] = useState(() => createDemoScene());
+  const [scene, setScene] = useState(() => (demoMode ? createDemoScene() : new THREE.Group()));
   const [preflight, setPreflight] = useState<ImportPreflight | null>(null);
   const [project, setProject] = useState<EditorProject>(() => ({
     version: 1,
@@ -375,18 +383,20 @@ export function Editor() {
       let asset: LocalAsset | null = null;
       let imported: THREE.Group | undefined;
       try {
-        const saved = loadEditorProject();
+        const reviewed = () =>
+          toExplorerCatalog(applyReviewPatches(oemDatabase, loadReviewPatches()));
+        const saved = restoreLocal ? loadEditorProject() : createProjectWorkspace(reviewed());
         if (!saved) {
           if (!demoMode) {
-            const reviewed = toExplorerCatalog(
-              applyReviewPatches(oemDatabase, loadReviewPatches()),
-            );
-            setProject((current) => ({ ...current, catalog: reviewed }));
+            setProject((current) => ({ ...current, catalog: reviewed() }));
           }
           return;
         }
         setBusy(true);
-        asset = await loadSavedEditorAsset();
+        if (!restoreLocal) pendingFiles.current = [];
+        asset = restoreLocal
+          ? await loadSavedEditorAsset()
+          : await materializeProjectFiles([], saved);
         if (cancelled) {
           asset?.dispose();
           return;
@@ -421,7 +431,7 @@ export function Editor() {
           imported = undefined;
         }
         setProject(saved);
-        if (!new URLSearchParams(window.location.search).has('part')) {
+        if (restoreLocal && !new URLSearchParams(window.location.search).has('part')) {
           const navigation = buildCuratedNavigation(oemDatabase, saved.catalog);
           const mappedRole = saved.mapping.mappings
             .map((entry) => navigationForOccurrence(navigation, entry.partId))
@@ -436,13 +446,15 @@ export function Editor() {
         setMessage(
           loader.getSnapshot().failed
             ? `${loader.getSnapshot().loaded} of ${loader.getSnapshot().total} models loaded. Retry the failed files in the preview.`
-            : saved.partModels
-              ? `${saved.partModels.length} saved part models restored. Add another part or replace its GLB.`
-              : advanced
-                ? 'Saved local workspace restored intact. Use Merge current OEM catalog to add missing sourced records.'
-                : saved.assetFileName
-                  ? 'Your saved model is restored. Choose its bike part to finish adding it.'
-                  : 'Your workspace is restored. Choose a bike part and import its GLB.',
+            : !restoreLocal
+              ? `${saved.partModels!.length} current project models loaded. These are the same parts shown in the explorer.`
+              : saved.partModels
+                ? `${saved.partModels.length} saved part models restored. Add another part or replace its GLB.`
+                : advanced
+                  ? 'Saved local workspace restored intact. Use Merge current OEM catalog to add missing sourced records.'
+                  : saved.assetFileName
+                    ? 'Your saved model is restored. Choose its bike part to finish adding it.'
+                    : 'Your workspace is restored. Choose a bike part and import its GLB.',
         );
         setCameraCommand((command) => ({
           id: command.id + 1,
@@ -465,7 +477,7 @@ export function Editor() {
       loader.dispose();
       if (modelLoader.current === loader) modelLoader.current = null;
     };
-  }, [demoMode]);
+  }, [demoMode, restoreLocal]);
 
   useEffect(
     () => () => {
@@ -580,7 +592,7 @@ export function Editor() {
   }
 
   async function addPart(file?: File) {
-    const node = partNavigation.byId.get(partRole);
+    const { node, model } = partModelTarget(project, partNavigation, partRole);
     if (!node) {
       setError('Choose a bike part first.');
       return;
@@ -597,10 +609,10 @@ export function Editor() {
     try {
       let files =
         pendingFiles.current ?? (project.assetFileName ? await loadSavedEditorFiles() : []);
-      const fileName = file ? `part-${node.id}.glb` : project.assetFileName;
+      const fileName = file ? `part-${model?.id ?? node.id}.glb` : project.assetFileName;
       if (!fileName) throw new Error('Import a GLB for this part first.');
       if (file) {
-        const previousFile = project.partModels?.find((model) => model.id === node.id)?.fileName;
+        const previousFile = model?.fileName;
         files = [
           ...files.filter((entry) => {
             const path = entry.webkitRelativePath || entry.name;
@@ -612,13 +624,19 @@ export function Editor() {
           new File([file], fileName, { type: file.type }),
         ];
       }
-      const next = assignPartModel(project, node, fileName, file?.name ?? project.assetFileName!);
+      const next = assignPartModel(
+        project,
+        node,
+        fileName,
+        file?.name ?? project.assetFileName!,
+        model?.id,
+      );
       asset = await materializeProjectFiles(
         files,
         next,
         localAsset.current ? { project, asset: localAsset.current } : undefined,
       );
-      const id = node.id;
+      const id = model?.id ?? node.id;
       const source = asset.models!.find((entry) => entry.id === id)!;
       imported = wrapPartModel(await loadModel(source.url), id);
       const configuration = validateMapping(next.mapping, next.catalog);
@@ -654,9 +672,10 @@ export function Editor() {
       setIsolated(null);
       setAmount(0);
       frame('all');
-      const replacing = project.partModels?.some((model) => model.id === id);
+      const name =
+        project.catalog.parts.find((part) => part.id === model?.partId)?.name ?? node.name;
       setMessage(
-        `${node.name} ${replacing ? 'replaced' : 'added and assigned'}. Save & preview to see it in the explorer.`,
+        `${name} ${model ? 'replaced' : 'added and assigned'}. Save & preview to see it in the explorer.`,
       );
     } catch (cause) {
       asset?.dispose();
@@ -835,6 +854,10 @@ export function Editor() {
       pendingFiles.current = undefined;
       dirtyRef.current = false;
       setDirty(false);
+      setLocalWorkspace(true);
+      const url = new URL(window.location.href);
+      url.searchParams.set('workspace', 'local');
+      window.history.replaceState(null, '', url);
       setMessage(
         'Workspace saved in this browser. Export JSON and keep your original model files as a backup.',
       );
@@ -850,15 +873,20 @@ export function Editor() {
   return (
     <div className={`editor-shell ${advanced ? '' : 'editor-simple'}`}>
       <header className="editor-header">
-        <a href={demoMode ? '/?demo=1' : '/'} className="editor-back">
+        <a
+          href={demoMode ? '/?demo=1' : localWorkspace ? '/?workspace=local' : '/'}
+          className="editor-back"
+        >
           <ArrowLeft size={17} /> Explorer
         </a>
         <div className="editor-title">
-          <span className="editor-eyebrow">Local workspace</span>
+          <span className="editor-eyebrow">
+            {localWorkspace ? 'Local workspace' : 'Current project parts'}
+          </span>
           <h1>{advanced ? 'Model mapping studio' : 'Add bike parts'}</h1>
         </div>
         <span className={`editor-save-state ${dirty ? 'dirty' : ''}`}>
-          {dirty ? 'Unsaved changes' : 'Local only'}
+          {dirty ? 'Unsaved changes' : localWorkspace ? 'Local only' : 'Project models'}
         </span>
         <Button
           onClick={() => setAdvanced((value) => !value)}
@@ -925,7 +953,12 @@ export function Editor() {
         />
       </header>
       <div className="editor-message" role="status" aria-label="Editor status">
-        {busy ? 'Loading local model workspace…' : message}
+        <span>{busy ? 'Loading model workspace…' : message}</span>
+        {!demoMode && (
+          <a href={localWorkspace ? '/editor' : '/editor?workspace=local'}>
+            {localWorkspace ? 'Current project parts' : 'Saved local parts'}
+          </a>
+        )}
       </div>
       {error && (
         <div className="editor-error" role="alert" aria-label="Editor error">

@@ -1,10 +1,11 @@
 # Sur-Ron Interactive 3D Parts Explorer
+
 <img width="1978" height="1271" alt="image" src="https://github.com/user-attachments/assets/12a92cb4-dbf3-401e-9115-7e323b2de34e" />
 **Early development screenshot**
 
 A working, browser-based motorcycle parts explorer and local model-mapping studio. Built with Next.js, TypeScript, React Three Fiber, Three.js and Drei. There are no accounts, purchase flows, backend databases, or upload/write endpoints.
 
-**The explorer includes the supplied Blender parts and a separate source-backed OEM catalog.** The project assembly contains 39 individually selectable GLBs in `public/parts/`, with their authored positions and materials. The catalog contains 1,396 source occurrences representing 683 exact catalog identities, extracted from three local PDFs and 16 accessible supplemental retailer collections. Original descriptions, quantities, source locations, missing values and conflicting claims are preserved. Supplied model roles do not claim an installed OEM variant. The synthetic motorcycle silhouette and jackshaft fixture remain available through `?demo=1`.
+**The explorer includes the supplied Blender parts and a separate source-backed OEM catalog.** The project assembly contains 88 individually selectable GLBs in `public/parts/`, with their authored positions and materials. The motor and jackshaft pulleys are omitted for now. The catalog contains 1,396 source occurrences representing 683 exact catalog identities, extracted from three local PDFs and 16 accessible supplemental retailer collections. Original descriptions, quantities, source locations, missing values and conflicting claims are preserved. Supplied model roles do not claim an installed OEM variant. The synthetic motorcycle silhouette and jackshaft fixture remain available through `?demo=1`.
 
 Start with [the OEM integration and review workflow](docs/oem-catalog.md) and [the generated source coverage report](data/oem/report.md). Source coverage is not a claim of complete stock equipment or verified model-year compatibility; eleven newer reference collections were unavailable during ingestion.
 
@@ -19,7 +20,7 @@ npm run dev
 
 Open **http://127.0.0.1:3000** for the OEM explorer, **http://127.0.0.1:3000/catalog** for local source review, and **http://127.0.0.1:3000/editor** for OEM model mapping. The original interactive demonstration is available at `/?demo=1` and `/editor?demo=1`.
 
-Choose **Tools → Project parts**, or open `/?workspace=project`, to view the checked-in 39-part assembly even when this browser has a saved local workspace. The main frame was reduced from 889,358 to 60,000 triangles; the whole assembly has 1,283,637 triangles. Purple metallic material belongs to the main frame and swingarm. Textures are embedded in the GLBs. Blender working files and source backups remain local under `reference/models/`; the browser-ready exports and their manifest are versioned in Git.
+The normal explorer and model editor open the checked-in 88-part styled assembly, including when this browser has older local imports. **Tools → Project parts** (`/?workspace=project`) also opens this set; **Tools → Saved local parts** explicitly opens saved imports. In the editor, **Saved local parts** (`/editor?workspace=local`) restores the saved workspace. Saving a project-model edit creates a browser-local workspace; it does not change the checked-in GLBs. The main frame was reduced from 889,358 to 60,000 triangles; the whole assembly has 1,815,043 triangles. Purple metallic material belongs to the main frame and swingarm. Textures are embedded in the GLBs. Blender working files and source backups remain local under `reference/models/`; the browser-ready exports and their manifest are versioned in Git.
 
 ```sh
 npm run build
@@ -35,20 +36,28 @@ For a purely static host, set `output: 'export'` in `next.config.ts`, build, and
 - A responsive, dark 3D workbench with orbit, zoom, pan, reset, framing, mesh hover/tooltips, selection and non-destructive highlights.
 - A metadata-driven recursive parts index, search across names/numbers/specifications/assembly names, keyboard alternatives, source/verification details and part breadcrumbs.
 - A real OEM domain separating exact part identities, source occurrences, assembly groups, source-year claims, review overlays and future revision/interchangeability relationships. Missing geometry never removes a catalog entry.
-- A [curated 14-system motorcycle tree](docs/navigation.md) with service hardware collapsed and source variants separated from installed components. The complete OEM catalog remains searchable; no installed variant is guessed from an edition year or a mesh mapping.
+- A [model-driven motorcycle tree](docs/navigation.md) showing assigned models and their populated assembly ancestors. Parts appear as models are added; empty roles and catalog-only parts stay out of the public tree and search. The complete OEM catalog remains searchable in `/catalog`; a model assignment does not imply verified fitment.
 - Local catalog review with source/assembly/year/issue filters, original source evidence, conflicting claims, normalized name and quantity/OEM corrections, bulk review/assembly edits and complete JSON export. Local PDF attachments are fingerprint checked and never uploaded.
-- Nested assembly navigation, isolation, component visibility, animated axial exploded views, adjustable amount, configurable timing/easing, and exact reassembly. Approximate layouts are explicitly labeled.
+- Nested assembly navigation, isolation, component visibility and exact reassembly. Opening an assembly with multiple modeled parts starts its exploded view; selecting a child preserves the assembly and explosion amount. Authored directions are retained, and automatic layouts scale to the geometry and are explicitly labeled approximate.
 - Shareable `motorcycle`, `assembly` and `part` query parameters with browser history, plus OEM `year` and `source` filters. Example source group: `/?assembly=jackshaft&source=lbx2021&year=2021`. Source years are evidence filters, not a fitment guarantee.
 - A GLB/glTF editor with object hierarchy, viewport selection, bulk mapping, confirmed name suggestions, catalog regrouping/naming, explosion editing, camera presets and JSON import/export.
 - Explicit local save stores metadata in localStorage and imported model files in IndexedDB. **Preview in explorer** loads that same saved model at `/?workspace=local`. Local workspace links are specific to your browser; they do not upload or share the geometry.
 - Catalog CSV/JSON import/export, validation, GLB/glTF inspection tools, sample templates and a conservative Blender export helper.
 - Demand rendering, material/geometry reuse, instanced demonstration tread, lazy assembly asset replacement, Meshopt/Draco support and live renderer diagnostics.
 
-Drag to orbit, scroll to zoom, right-drag to pan. On touch devices use one finger to orbit and two to pan/pinch. **Parts** toggles the navigation panel; **Details** opens information for the selection. `R` resets the camera; `/` focuses search; `Esc` dismisses the active menu or panel before exiting isolation. Expand a branch with its arrow, or select it by name. The parts list supports Tab and Enter. Assemblies open assembled; use **Exploded**, **Assembled** or the slider to inspect them. Use `/?demo=1`, expand **Motor & drivetrain**, and select **Jackshaft assembly** to exercise the original synthetic fixture. Catalog filters, source evidence and viewer diagnostics are available through disclosures; the header **Tools** menu opens the review and mapping workspaces.
+Drag to orbit, scroll to zoom, right-drag to pan. On touch devices use one finger to orbit and two to pan/pinch. **Parts** toggles the navigation panel; **Details** opens information for the selection. `R` resets the camera; `/` focuses search; `Esc` dismisses the active menu or panel before exiting isolation. Expand a branch with its arrow, or select it by name. The parts list supports Tab and Enter. Modeled assemblies with several parts open exploded; **Assembled** brings them back together. Single parts have no explosion slider. The original synthetic fixture at `/?demo=1` retains manual explosion controls. The header **Tools** menu opens the complete reference catalog and model editor.
+
+## Mobile app
+
+On phones and tablets, the explorer stays within the screen: drag to rotate, pinch to zoom, and move two fingers to pan. Tap a part to enter its assembly; the bottom **Parts**, **Reset view**, and **Details** controls stay available. Information panels scroll independently and close with browser Back. The hub remains together in the wheel explosion until you enter the hub itself.
+
+Use **Tools → Install app** (when offered) or the home-screen guidance to open a standalone explorer window. Serve over HTTPS for installation and offline recovery. Models require a connection to load; the app does not download the whole collection for offline storage. Run `npm run build` followed by `npm start` when testing the production service worker.
+
+Run `npm run build` then `npm run test:mobile` for the touch, panel-history, installation and offline-recovery browser checks. This uses an isolated production server on port 31397. The ordinary development-server test run skips only the production-only offline check.
 
 ## Bring in your models
 
-For separate part GLBs, open `/editor`, choose a bike part, import its GLB, then click **Save & preview**. Repeat for each part; existing models are kept. A previously imported seat can be assigned with **Use this model for Seat**. Export the parts in a shared assembled coordinate system so their original positions line up. No manual mesh mapping or OEM selection is required for this workflow.
+For separate part GLBs, open `/editor`, choose a bike part, import its GLB, then click **Save & preview**. Repeat for each part; existing models are kept and the explorer hierarchy grows with the assigned models. A previously imported seat can be assigned with **Use this model for Seat**. Export the parts in a shared assembled coordinate system so their original positions line up. For independently selectable assembly children, use separate part GLBs or map their objects individually in the advanced editor. No OEM selection is required for the simple workflow.
 
 For whole-bike models and detailed OEM mapping, open **Advanced tools**:
 

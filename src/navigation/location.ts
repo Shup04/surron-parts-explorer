@@ -11,11 +11,14 @@ export function resolveNavigationLocation(
   const state = parseExplorerUrl(search, catalog);
   const params = new URLSearchParams(search);
   if (params.has('motorcycle') && params.get('motorcycle') !== catalog.motorcycleId) return state;
-  if (catalog.parts.find((part) => part.id === state.partId)?.kind === 'component') return state;
   const node = navigation?.byId.get(params.get('nav') ?? '');
+  if (catalog.parts.find((part) => part.id === state.partId)?.kind === 'component')
+    return node?.modelPartIds?.includes(state.partId!)
+      ? { ...state, assemblyId: node.scopeId }
+      : state;
   if (!node) return state;
   return {
     assemblyId: node.scopeId,
-    partId: node.scopeId === catalog.motorcycleId ? null : node.scopeId,
+    partId: node.occurrenceId ?? (node.scopeId === catalog.motorcycleId ? null : node.scopeId),
   };
 }

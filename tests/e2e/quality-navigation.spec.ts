@@ -53,6 +53,7 @@ test('viewer disclosures restore focus without closing component details', async
 test('Escape dismisses mobile drawers before changing isolation', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/?demo=1&assembly=jackshaft&part=bearing-left');
+  await page.getByRole('button', { name: 'Details', exact: true }).click();
   const details = page.locator('#component-details');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
@@ -64,6 +65,7 @@ test('Escape dismisses mobile drawers before changing isolation', async ({ page 
     .toBeLessThan(assemblyMeshCount);
   const isolatedMeshCount = Number(await viewer.getAttribute('data-visible-meshes'));
   expect(isolatedMeshCount).toBeGreaterThan(0);
+  await page.getByRole('button', { name: 'Details', exact: true }).click();
   await page.keyboard.press('Escape');
   await expect(details).toBeHidden();
   await expect(page.getByRole('button', { name: 'Details', exact: true })).toBeFocused();
@@ -85,13 +87,13 @@ test('Escape dismisses mobile drawers before changing isolation', async ({ page 
 test('curated component details use the right label and avoid a duplicate information action', async ({
   page,
 }) => {
-  await page.goto('/?nav=nav.jackshaft.bearings');
+  await page.goto('/?nav=nav.frame.frame');
   const details = page.locator('#component-details');
   await expect(details.locator('.panel-heading .eyebrow')).toHaveText('Part details');
-  await expect(details.getByRole('heading', { name: 'Jackshaft bearings' })).toBeVisible();
+  await expect(details.getByRole('heading', { name: 'Main Frame' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'View part information' })).toBeHidden();
   await page.getByRole('button', { name: 'Close component details' }).click();
-  await page.getByRole('button', { name: 'View part information' }).click();
+  await page.getByRole('button', { name: 'Details', exact: true }).click();
   await expect(details).toBeVisible();
   await expect(page.getByRole('button', { name: 'View part information' })).toBeHidden();
   await page.getByRole('button', { name: 'Parent assembly', exact: true }).click();

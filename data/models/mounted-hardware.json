@@ -1,0 +1,625 @@
+{
+  "version": 1,
+  "mmToBlenderUnit": 1,
+  "finish": "Raw aluminum",
+  "finishBasis": "User-requested visual finish for this batch; not a verified material alloy.",
+  "geometryNotes": "Nominal thread diameter and under-head length; threads omitted. Socket depth, edge chamfers and button curvature are illustrative. Hex opening across flats and head envelope use the cited head standard.",
+  "placementNotes": "Axes and seating planes fitted to the supplied mounted meshes. These meshes contain irregular/internal triangles, especially the left peg bores and open right peg bores; placement is a visual assembly alignment, not a mechanical clearance certification.",
+  "specs": {
+    "peg-m8x20": {
+      "oemNumber": "B3-001-08-020-F0",
+      "thread": "M8",
+      "diameterMm": 8,
+      "lengthMm": 20,
+      "headType": "Socket cap",
+      "headDiameterMm": 13,
+      "headHeightMm": 8,
+      "allenKeyMm": 6,
+      "catalogQuantity": 4,
+      "headStandard": "GB/T 70.1-2008 / ISO 4762",
+      "visualSocketDepthMm": 4,
+      "sources": [
+        {
+          "document": "reference/parts-catalogue/katalog-zapchastej-surron-light-bee-2021.pdf",
+          "page": "13",
+          "item": "14_10",
+          "notes": "Nominal thread, under-head length and catalog quantity."
+        },
+        {
+          "document": "LIGHT BEE components and parts",
+          "page": "11",
+          "item": "12_11",
+          "url": "https://somobil.de/mediafiles/Sonstiges/surron/Surron-Light-Bee-Ersatzteilkatalog.pdf",
+          "notes": "Head standard. This older catalog uses different illustration numbers."
+        },
+        {
+          "document": "Norelem standard screw dimensions",
+          "url": "https://norelem.partcommunity.com/3d-cad-models/07160-hexagon-socket-head-cap-screw-din-912-en-iso-4762-long-lok-secured-norelem?info=norelem%2Fflexibles_normteilesystem%2Fgruppe_07000%2Fmuttern_schrauben_u-scheibe_sicherungselemente%2F07160_4.prj",
+          "notes": "Standard head diameter, height and hex-key size; not measurements of an OEM sample."
+        }
+      ]
+    },
+    "motor-cover-m6x10": {
+      "oemNumber": "B3-002-06-010-F0",
+      "thread": "M6",
+      "diameterMm": 6,
+      "lengthMm": 10,
+      "headType": "Button",
+      "headDiameterMm": 10.5,
+      "headHeightMm": 3.3,
+      "allenKeyMm": 4,
+      "catalogQuantity": 2,
+      "headStandard": "GB/T 70.2-2008 / ISO 7380-1",
+      "visualSocketDepthMm": 2,
+      "sources": [
+        {
+          "document": "reference/parts-catalogue/katalog-zapchastej-surron-light-bee-2021.pdf",
+          "page": "4",
+          "item": "5_09",
+          "notes": "Nominal thread, under-head length and catalog quantity."
+        },
+        {
+          "document": "LIGHT BEE components and parts",
+          "page": "3",
+          "item": "4_09",
+          "url": "https://somobil.de/mediafiles/Sonstiges/surron/Surron-Light-Bee-Ersatzteilkatalog.pdf",
+          "notes": "Head standard. This older catalog uses different illustration numbers."
+        },
+        {
+          "document": "Norelem standard screw dimensions",
+          "url": "https://www.marek.eu/data/katalogove-listy/norelem/07174.pdf",
+          "notes": "Standard head diameter, height and hex-key size; not measurements of an OEM sample."
+        }
+      ]
+    },
+    "jackshaft-cover-m5x10": {
+      "oemNumber": "B3-002-05-010-F0",
+      "thread": "M5",
+      "diameterMm": 5,
+      "lengthMm": 10,
+      "headType": "Button",
+      "headDiameterMm": 9.5,
+      "headHeightMm": 2.75,
+      "allenKeyMm": 3,
+      "catalogQuantity": 3,
+      "headStandard": "GB/T 70.2-2008 / ISO 7380-1",
+      "visualSocketDepthMm": 1.7,
+      "sources": [
+        {
+          "document": "reference/parts-catalogue/katalog-zapchastej-surron-light-bee-2021.pdf",
+          "page": "2",
+          "item": "2_03",
+          "notes": "Nominal thread, under-head length and catalog quantity."
+        },
+        {
+          "document": "LIGHT BEE components and parts",
+          "page": "2",
+          "item": "2_03",
+          "url": "https://somobil.de/mediafiles/Sonstiges/surron/Surron-Light-Bee-Ersatzteilkatalog.pdf",
+          "notes": "Head standard. This older catalog uses different illustration numbers."
+        },
+        {
+          "document": "Norelem standard screw dimensions",
+          "url": "https://www.marek.eu/data/katalogove-listy/norelem/07174.pdf",
+          "notes": "Standard head diameter, height and hex-key size; not measurements of an OEM sample."
+        }
+      ]
+    },
+    "suspension-m8x35": {
+      "oemNumber": "B3-001-08-035-F2",
+      "thread": "M8",
+      "diameterMm": 8,
+      "lengthMm": 35,
+      "headType": "Socket cap",
+      "headDiameterMm": 13,
+      "headHeightMm": 8,
+      "allenKeyMm": 6,
+      "catalogQuantity": 2,
+      "headStandard": "GB/T 70.1-2008 / ISO 4762",
+      "visualSocketDepthMm": 4,
+      "sources": [
+        {
+          "document": "reference/parts-catalogue/katalog-zapchastej-surron-light-bee-2021.pdf",
+          "page": "12",
+          "item": "13_01",
+          "notes": "Nominal thread, under-head length and catalog quantity."
+        },
+        {
+          "document": "LIGHT BEE components and parts",
+          "page": "10",
+          "item": "11_04",
+          "url": "https://somobil.de/mediafiles/Sonstiges/surron/Surron-Light-Bee-Ersatzteilkatalog.pdf",
+          "notes": "Head standard. This older catalog uses different illustration numbers."
+        },
+        {
+          "document": "Norelem standard screw dimensions",
+          "url": "https://norelem.partcommunity.com/3d-cad-models/07160-hexagon-socket-head-cap-screw-din-912-en-iso-4762-long-lok-secured-norelem?info=norelem%2Fflexibles_normteilesystem%2Fgruppe_07000%2Fmuttern_schrauben_u-scheibe_sicherungselemente%2F07160_4.prj",
+          "notes": "Standard head diameter, height and hex-key size; not measurements of an OEM sample."
+        }
+      ],
+      "application": "Connecting rod"
+    },
+    "suspension-m8x55": {
+      "oemNumber": "B3-001-08-055-F2",
+      "thread": "M8",
+      "diameterMm": 8,
+      "lengthMm": 55,
+      "headType": "Socket cap",
+      "headDiameterMm": 13,
+      "headHeightMm": 8,
+      "allenKeyMm": 6,
+      "catalogQuantity": 2,
+      "headStandard": "GB/T 70.1-2008 / ISO 4762",
+      "visualSocketDepthMm": 4,
+      "sources": [
+        {
+          "document": "reference/parts-catalogue/katalog-zapchastej-surron-light-bee-2021.pdf",
+          "page": "12",
+          "item": "13_08",
+          "notes": "Nominal thread, under-head length and catalog quantity."
+        },
+        {
+          "document": "LIGHT BEE components and parts",
+          "page": "10",
+          "item": "11_05",
+          "url": "https://somobil.de/mediafiles/Sonstiges/surron/Surron-Light-Bee-Ersatzteilkatalog.pdf",
+          "notes": "Head standard. This older catalog uses different illustration numbers."
+        },
+        {
+          "document": "Norelem standard screw dimensions",
+          "url": "https://norelem.partcommunity.com/3d-cad-models/07160-hexagon-socket-head-cap-screw-din-912-en-iso-4762-long-lok-secured-norelem?info=norelem%2Fflexibles_normteilesystem%2Fgruppe_07000%2Fmuttern_schrauben_u-scheibe_sicherungselemente%2F07160_4.prj",
+          "notes": "Standard head diameter, height and hex-key size; not measurements of an OEM sample."
+        }
+      ],
+      "application": "Rocker arm"
+    },
+    "suspension-m8x50": {
+      "oemNumber": "B3-001-08-050-F2",
+      "thread": "M8",
+      "diameterMm": 8,
+      "lengthMm": 50,
+      "headType": "Socket cap",
+      "headDiameterMm": 13,
+      "headHeightMm": 8,
+      "allenKeyMm": 6,
+      "catalogQuantity": 1,
+      "headStandard": "GB/T 70.1-2008 / ISO 4762",
+      "visualSocketDepthMm": 4,
+      "sources": [
+        {
+          "document": "reference/parts-catalogue/katalog-zapchastej-surron-light-bee-2021.pdf",
+          "page": "12",
+          "item": "13_15",
+          "notes": "Nominal thread, under-head length and catalog quantity."
+        },
+        {
+          "document": "LIGHT BEE components and parts",
+          "page": "10",
+          "item": "11_06",
+          "url": "https://somobil.de/mediafiles/Sonstiges/surron/Surron-Light-Bee-Ersatzteilkatalog.pdf",
+          "notes": "Head standard. This older catalog uses different illustration numbers."
+        },
+        {
+          "document": "Norelem standard screw dimensions",
+          "url": "https://norelem.partcommunity.com/3d-cad-models/07160-hexagon-socket-head-cap-screw-din-912-en-iso-4762-long-lok-secured-norelem?info=norelem%2Fflexibles_normteilesystem%2Fgruppe_07000%2Fmuttern_schrauben_u-scheibe_sicherungselemente%2F07160_4.prj",
+          "notes": "Standard head diameter, height and hex-key size; not measurements of an OEM sample."
+        }
+      ],
+      "application": "Upper shock"
+    },
+    "suspension-m8x45": {
+      "oemNumber": "B3-001-08-045-F2",
+      "thread": "M8",
+      "diameterMm": 8,
+      "lengthMm": 45,
+      "headType": "Socket cap",
+      "headDiameterMm": 13,
+      "headHeightMm": 8,
+      "allenKeyMm": 6,
+      "catalogQuantity": 1,
+      "headStandard": "GB/T 70.1-2008 / ISO 4762",
+      "visualSocketDepthMm": 4,
+      "sources": [
+        {
+          "document": "reference/parts-catalogue/katalog-zapchastej-surron-light-bee-2021.pdf",
+          "page": "12",
+          "item": "13_18",
+          "notes": "Nominal thread, under-head length and catalog quantity."
+        },
+        {
+          "document": "LIGHT BEE components and parts",
+          "page": "10",
+          "item": "11_07",
+          "url": "https://somobil.de/mediafiles/Sonstiges/surron/Surron-Light-Bee-Ersatzteilkatalog.pdf",
+          "notes": "Head standard. This older catalog uses different illustration numbers."
+        },
+        {
+          "document": "Norelem standard screw dimensions",
+          "url": "https://norelem.partcommunity.com/3d-cad-models/07160-hexagon-socket-head-cap-screw-din-912-en-iso-4762-long-lok-secured-norelem?info=norelem%2Fflexibles_normteilesystem%2Fgruppe_07000%2Fmuttern_schrauben_u-scheibe_sicherungselemente%2F07160_4.prj",
+          "notes": "Standard head diameter, height and hex-key size; not measurements of an OEM sample."
+        }
+      ],
+      "application": "Lower shock"
+    }
+  },
+  "instances": [
+    {
+      "id": "bolt-peg-left-upper",
+      "name": "Footpeg Bracket Bolt Left Upper",
+      "spec": "peg-m8x20",
+      "role": "nav.footpegs-stand.brackets.bolts",
+      "mountObject": "Peg_Mount___Left_001",
+      "seatMm": [98.7408150288268, -42.73627583234274, 27.34061262623026],
+      "shaftDirection": [-0.9999558165869619, 0.00917697306884341, -0.0020366735614452697],
+      "mountEvidence": {
+        "boreRadiusMm": 4.314149335786337,
+        "bearingPlaneRmsMm": 0.039708726102232736,
+        "bearingAreaMm2": 48.76514633235354,
+        "radialChecks": [
+          {
+            "depth": 1,
+            "samples": 72,
+            "minRadius": 3.9936375617980957,
+            "maxRadius": 4.416367053985596
+          },
+          {
+            "depth": 2,
+            "samples": 72,
+            "minRadius": 3.4703924655914307,
+            "maxRadius": 4.379276752471924
+          },
+          {
+            "depth": 4,
+            "samples": 72,
+            "minRadius": 3.4429733753204346,
+            "maxRadius": 4.395807266235352
+          },
+          {
+            "depth": 6,
+            "samples": 72,
+            "minRadius": 4.09592342376709,
+            "maxRadius": 4.41088342666626
+          }
+        ]
+      }
+    },
+    {
+      "id": "bolt-peg-left-lower",
+      "name": "Footpeg Bracket Bolt Left Lower",
+      "spec": "peg-m8x20",
+      "role": "nav.footpegs-stand.brackets.bolts",
+      "mountObject": "Peg_Mount___Left_001",
+      "seatMm": [98.27975211113258, -72.97443043467699, -19.083858580885924],
+      "shaftDirection": [-0.9999717301532174, 0.0074592316764698135, -0.0009480280469040336],
+      "mountEvidence": {
+        "boreRadiusMm": 4.329551243789714,
+        "bearingPlaneRmsMm": 0.057651048453174855,
+        "bearingAreaMm2": 47.712875971642525,
+        "radialChecks": [
+          {
+            "depth": 1,
+            "samples": 72,
+            "minRadius": 4.122900485992432,
+            "maxRadius": 4.43829345703125
+          },
+          {
+            "depth": 2,
+            "samples": 72,
+            "minRadius": 3.8377273082733154,
+            "maxRadius": 4.456205368041992
+          },
+          {
+            "depth": 4,
+            "samples": 72,
+            "minRadius": 3.933927297592163,
+            "maxRadius": 4.346020221710205
+          },
+          {
+            "depth": 6,
+            "samples": 72,
+            "minRadius": 4.2799153327941895,
+            "maxRadius": 4.356058120727539
+          }
+        ]
+      }
+    },
+    {
+      "id": "bolt-peg-right-upper",
+      "name": "Footpeg Bracket Bolt Right Upper",
+      "spec": "peg-m8x20",
+      "role": "nav.footpegs-stand.brackets.bolts",
+      "mountObject": "Peg_Mount___Right_001",
+      "seatMm": [-92.22641710486168, -41.36130743718605, 27.222363376617764],
+      "shaftDirection": [0.9998970968386875, 0.014230464020802022, 0.0018137329783603068],
+      "mountEvidence": {
+        "boreRadiusMm": 4.311130001900994,
+        "bearingPlaneRmsMm": 0.06352288483402442,
+        "bearingAreaMm2": 45.608692785492856,
+        "radialChecks": [
+          {
+            "depth": 1,
+            "samples": 3,
+            "minRadius": 4.353803634643555,
+            "maxRadius": 6.511898040771484
+          },
+          {
+            "depth": 2,
+            "samples": 1,
+            "minRadius": 6.762452125549316,
+            "maxRadius": 6.762452125549316
+          },
+          {
+            "depth": 4,
+            "samples": 1,
+            "minRadius": 4.233537197113037,
+            "maxRadius": 4.233537197113037
+          },
+          {
+            "depth": 6,
+            "samples": 9,
+            "minRadius": 4.247443675994873,
+            "maxRadius": 4.34980583190918
+          }
+        ]
+      }
+    },
+    {
+      "id": "bolt-peg-right-lower",
+      "name": "Footpeg Bracket Bolt Right Lower",
+      "spec": "peg-m8x20",
+      "role": "nav.footpegs-stand.brackets.bolts",
+      "mountObject": "Peg_Mount___Right_001",
+      "seatMm": [-91.47943218706341, -71.30453517274687, -19.37103869232657],
+      "shaftDirection": [0.9999805734065915, 0.003183378641423377, 0.005359002691732134],
+      "mountEvidence": {
+        "boreRadiusMm": 4.304364729493984,
+        "bearingPlaneRmsMm": 0.11103776600982687,
+        "bearingAreaMm2": 24.926252505310018,
+        "radialChecks": [
+          {
+            "depth": 1,
+            "samples": 43,
+            "minRadius": 4.195490837097168,
+            "maxRadius": 6.798903942108154
+          },
+          {
+            "depth": 2,
+            "samples": 54,
+            "minRadius": 4.216818332672119,
+            "maxRadius": 4.4025397300720215
+          },
+          {
+            "depth": 4,
+            "samples": 57,
+            "minRadius": 4.246944427490234,
+            "maxRadius": 4.3805718421936035
+          },
+          {
+            "depth": 6,
+            "samples": 67,
+            "minRadius": 4.251108646392822,
+            "maxRadius": 4.3114213943481445
+          }
+        ]
+      }
+    },
+    {
+      "id": "bolt-motor-cover-upper",
+      "name": "Motor Cover Upper Screw",
+      "spec": "motor-cover-m6x10",
+      "role": "nav.motor.guard.screws",
+      "mountObject": "Motor_Gear_Cover_001",
+      "seatMm": [57.74556897796236, -217.24216362854241, 56.8114679544792],
+      "shaftDirection": [-0.9997966301012531, 0.008855332620237608, 0.018118540845313252],
+      "mountEvidence": {
+        "boreRadiusMm": 3.1706325346045654,
+        "bearingPlaneRmsMm": 0.04620690798230525,
+        "bearingAreaMm2": 41.809669748090265,
+        "radialChecks": [
+          {
+            "depth": 0.5,
+            "samples": 72,
+            "minRadius": 3.0034067630767822,
+            "maxRadius": 3.1391513347625732
+          },
+          {
+            "depth": 1,
+            "samples": 72,
+            "minRadius": 3.034881591796875,
+            "maxRadius": 3.153447389602661
+          },
+          {
+            "depth": 1.5,
+            "samples": 72,
+            "minRadius": 3.0908524990081787,
+            "maxRadius": 3.1691133975982666
+          }
+        ]
+      }
+    },
+    {
+      "id": "bolt-motor-cover-lower",
+      "name": "Motor Cover Lower Screw",
+      "spec": "motor-cover-m6x10",
+      "role": "nav.motor.guard.screws",
+      "mountObject": "Motor_Gear_Cover_001",
+      "seatMm": [57.99609490016537, -135.97053348626338, -34.46240344548227],
+      "shaftDirection": [-0.9995716646836851, 0.025421110597141295, -0.014500148188708468],
+      "mountEvidence": {
+        "boreRadiusMm": 3.1830753359724677,
+        "bearingPlaneRmsMm": 0.045088701368433584,
+        "bearingAreaMm2": 42.54922157890493,
+        "radialChecks": [
+          {
+            "depth": 0.5,
+            "samples": 72,
+            "minRadius": 3.0025768280029297,
+            "maxRadius": 3.1675455570220947
+          },
+          {
+            "depth": 1,
+            "samples": 72,
+            "minRadius": 3.0453906059265137,
+            "maxRadius": 3.1877477169036865
+          },
+          {
+            "depth": 1.5,
+            "samples": 72,
+            "minRadius": 3.0650360584259033,
+            "maxRadius": 3.2185468673706055
+          }
+        ]
+      }
+    },
+    {
+      "id": "bolt-jackshaft-cover-left-upper",
+      "name": "Jackshaft Cover Left Upper Screw",
+      "spec": "jackshaft-cover-m5x10",
+      "role": "nav.swingarm.guard.screws",
+      "mountObject": "Jackshaft_Cover_001",
+      "seatMm": [71.34132678926444, 15.627983393697429, 100.80553093115194],
+      "shaftDirection": [-0.9997001993716788, 0.01616629162877119, 0.018389192238895666],
+      "mountEvidence": {
+        "boreRadiusMm": 2.832517493608955,
+        "bearingPlaneRmsMm": 0.003268470308497917,
+        "bearingAreaMm2": 16.78463608163286,
+        "radialChecks": [
+          {
+            "depth": 0.5,
+            "samples": 72,
+            "minRadius": 2.648146629333496,
+            "maxRadius": 3.2381036281585693
+          },
+          {
+            "depth": 1,
+            "samples": 72,
+            "minRadius": 2.598313570022583,
+            "maxRadius": 3.0944507122039795
+          },
+          {
+            "depth": 1.5,
+            "samples": 72,
+            "minRadius": 2.6661438941955566,
+            "maxRadius": 2.934918165206909
+          }
+        ]
+      }
+    },
+    {
+      "id": "bolt-jackshaft-cover-left-lower",
+      "name": "Jackshaft Cover Left Lower Screw",
+      "spec": "jackshaft-cover-m5x10",
+      "role": "nav.swingarm.guard.screws",
+      "mountObject": "Jackshaft_Cover_001",
+      "seatMm": [70.62092562138717, 25.737150026781467, 64.82205346022343],
+      "shaftDirection": [-0.9997358621767153, -0.0019781317955615187, 0.022897442485552887],
+      "mountEvidence": {
+        "boreRadiusMm": 2.83973653267455,
+        "bearingPlaneRmsMm": 0.01703107240690809,
+        "bearingAreaMm2": 22.307180544245316,
+        "radialChecks": [
+          {
+            "depth": 0.5,
+            "samples": 72,
+            "minRadius": 2.479837656021118,
+            "maxRadius": 3.597817897796631
+          },
+          {
+            "depth": 1,
+            "samples": 72,
+            "minRadius": 2.6317286491394043,
+            "maxRadius": 3.1357223987579346
+          },
+          {
+            "depth": 1.5,
+            "samples": 72,
+            "minRadius": 2.6294641494750977,
+            "maxRadius": 2.991483688354492
+          }
+        ]
+      }
+    },
+    {
+      "id": "bolt-jackshaft-cover-right",
+      "name": "Jackshaft Cover Right Screw",
+      "spec": "jackshaft-cover-m5x10",
+      "role": "nav.swingarm.guard.screws",
+      "mountObject": "Jackshaft_Cover_001",
+      "seatMm": [-67.65501439232771, -6.321247135709483, 69.48056408132834],
+      "shaftDirection": [0.9996462550153827, -0.000875867426749638, -0.0265819053111568],
+      "mountEvidence": {
+        "boreRadiusMm": 2.8877865833126917,
+        "bearingPlaneRmsMm": 0.027914062909997078,
+        "bearingAreaMm2": 31.53464943209776,
+        "radialChecks": [
+          {
+            "depth": 0.5,
+            "samples": 72,
+            "minRadius": 2.634521245956421,
+            "maxRadius": 2.9739556312561035
+          },
+          {
+            "depth": 1,
+            "samples": 72,
+            "minRadius": 2.6512653827667236,
+            "maxRadius": 2.9357268810272217
+          },
+          {
+            "depth": 1.5,
+            "samples": 72,
+            "minRadius": 2.714099884033203,
+            "maxRadius": 2.920023202896118
+          }
+        ]
+      }
+    }
+  ],
+  "unplaced": [
+    {
+      "id": "suspension-m8x35",
+      "name": "Connecting rod Bolt M8x35",
+      "spec": "suspension-m8x35",
+      "reason": "Spacer/washer stack and installed head orientation not established in the supplied scene."
+    },
+    {
+      "id": "suspension-m8x55",
+      "name": "Rocker arm Bolt M8x55",
+      "spec": "suspension-m8x55",
+      "reason": "Spacer/washer stack and installed head orientation not established in the supplied scene."
+    },
+    {
+      "id": "suspension-m8x50",
+      "name": "Upper shock Bolt M8x50",
+      "spec": "suspension-m8x50",
+      "reason": "Spacer/washer stack and installed head orientation not established in the supplied scene."
+    },
+    {
+      "id": "suspension-m8x45",
+      "name": "Lower shock Bolt M8x45",
+      "spec": "suspension-m8x45",
+      "reason": "Spacer/washer stack and installed head orientation not established in the supplied scene."
+    }
+  ],
+  "deferred": [
+    {
+      "application": "Subframe and bash plate",
+      "oemNumber": "B3-009-08-020-F0",
+      "thread": "M8",
+      "lengthMm": 20,
+      "quantity": 8,
+      "reason": "OEM catalog specifies JB/ZQ 4725-2006 thin socket head. Exact head/drive dimensions not substantiated; do not substitute DIN 7984 or infer a key size from M8."
+    },
+    {
+      "application": "Battery lock covers",
+      "reason": "Front screw specification known (M6x10, 4 mm key); seating/axis fit was ambiguous. Other mount uses a custom head."
+    },
+    {
+      "application": "Rear fender and lower-right motor mount",
+      "reason": "Catalog nominal length conflicts with its part-number suffix."
+    },
+    {
+      "application": "Handlebars and pulleys",
+      "reason": "Outside this batch per user instruction."
+    }
+  ]
+}

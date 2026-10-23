@@ -48,6 +48,12 @@ export interface Explosion {
   easing?: 'linear' | 'smooth' | 'cubic';
   verification: Verification;
 }
+/** A closed child assembly moves as one unit until its own view is opened. */
+export interface ExplosionGroup {
+  id: string;
+  partIds: string[];
+  anchorPartId: string;
+}
 export interface ObjectMapping {
   objectKey: string;
   partId: string;
@@ -95,6 +101,7 @@ export interface ViewerProps {
   assemblyId: string;
   /** Explicit catalog IDs represented by a curated view, across source assemblies. */
   scopePartIds?: string[];
+  explosionGroups?: ExplosionGroup[];
   selectedId: string | null;
   hoveredId?: string | null;
   explosion: number;

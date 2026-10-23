@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "blenderVersion": "5.2.1 LTS",
+  "lowPolySource": "reference/models/surron-parts/frame-update/surron-parts-ready.blend",
+  "lowPolySourceSha256": "f794a1ed0de4e5ff72d4be657b2b9ce1f9cd13bdb5e428d4f3c5a38477849fdb",
+  "method": "Selected-to-active tangent-space bake, shared by base and clearcoat. Metallic/roughness flakes retained; flake-only bump replaced by source surface normals.",
+  "parts": [
+    {
+      "id": "main-frame",
+      "file": "Main Frame.glb",
+      "sourceObject": "03",
+      "referenceBlend": "reference/models/surron-parts/frame-update/before-frame-optimization.blend",
+      "referenceSha256": "09fa01b326cb5bb73486d7930388658da2776340e23ad4e8100b723bad3fd79c",
+      "sourceTriangles": 889358,
+      "triangles": 60000,
+      "geometryPerCornerSha256": {
+        "POSITION": "1309e3a32a9293a133338884ad0636fe00b3c26b63762cb8e4e583a95e63e55a",
+        "TEXCOORD_0": "337465c3b3d5271b6fcdfd938ef19b862c79c9f611f049adcf412e182634211a"
+      },
+      "nodes": [
+        {
+          "mesh": 0,
+          "name": "03",
+          "rotation": [
+            -0.004890709649771452, 0.707089900970459, -0.004890710115432739, 0.7070898413658142
+          ],
+          "scale": [0.9953678846359253, 0.9953678846359253, 0.9953678846359253],
+          "translation": [0, 3.814697265625e-6, 3.814697265625e-6]
+        }
+      ],
+      "normalTextureSize": 2048,
+      "normalTextureSha256": "b9d5b279b5d990812feb9c01e27dfa6840bc9aae92cafde34be27c02c37379a7",
+      "metallicRoughnessTextureSha256": "06e2a20a1fe77ea0566f72d98d9a0f3979104a029349af793e735133f6aa4d99",
+      "previousBytes": 3320380,
+      "bytes": 5075840,
+      "sha256": "da6c9a31b3989d7283487c3fdcb2d94930541207a5da618973444cab76ba094e",
+      "previousSha256": "2d5aeaed134bf32158dc297f043d5eb2a15a47721ea4d9caba991c1bcdfcfb42"
+    },
+    {
+      "id": "swingarm",
+      "file": "Swingarm.glb",
+      "sourceObject": "Swingarm_001",
+      "referenceBlend": "reference/models/surron-parts/surron-parts-original.blend",
+      "referenceSha256": "3fbc1686a7a7201c8b70450bb1a00e766ce484ebc34d7f88ab9568ddaee61ed2",
+      "sourceTriangles": 307498,
+      "triangles": 30000,
+      "geometryPerCornerSha256": {
+        "POSITION": "618acad1dfc96d498b54f1fc31344af62a7797de34cb1933fae0d95d3a82b408",
+        "TEXCOORD_0": "e7c901c4552a79b1370dfca99205c6bf9092b9b49f9229ff3fb96d496868bc0d",
+        "TEXCOORD_1": "1e1300098013f11482e7d342f6f58144a584440f6b93c3ce90677214aa65d42d"
+      },
+      "nodes": [
+        {
+          "mesh": 0,
+          "name": "Swingarm_001",
+          "rotation": [0.7071068286895752, 0, 0, 0.7071068286895752]
+        }
+      ],
+      "normalTextureSize": 1024,
+      "normalTextureSha256": "2f0ff0ca68f2dda2be25f5bcfec5a658bd7110e3b4f804e3adaccc9718eb6482",
+      "metallicRoughnessTextureSha256": "06e2a20a1fe77ea0566f72d98d9a0f3979104a029349af793e735133f6aa4d99",
+      "previousBytes": 1765384,
+      "bytes": 2431956,
+      "sha256": "55d5dcadf6296979094407c991acff0cd6a92201ee4f9c1d3b69e659c8fe1567",
+      "previousSha256": "7f2bc5b2ab5797fee06316396746f32eedda183b72f5a6df7f7700ab7b996fe9"
+    }
+  ]
+}

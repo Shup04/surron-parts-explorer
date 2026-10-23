@@ -6,7 +6,7 @@
   "frameOriginalTriangles": 889358,
   "frameOptimizedTriangles": 60000,
   "totalTriangles": 1283637,
-  "totalBytes": 42663220,
+  "totalBytes": 45085252,
   "parts": [
     {
       "id": "main-frame",
@@ -15,8 +15,8 @@
       "role": "nav.frame.frame",
       "sourceObject": "03",
       "triangles": 60000,
-      "bytes": 3320380,
-      "sha256": "84c522c0032bef42a4f820c678ff76f45f0631c9ac70f8314268f058335431a2",
+      "bytes": 5075840,
+      "sha256": "da6c9a31b3989d7283487c3fdcb2d94930541207a5da618973444cab76ba094e",
       "materials": ["Deep Purple Metallic"],
       "sourceWorldBounds": [
         [-99.9051742553711, -590.21630859375, -85.3314208984375],
@@ -540,8 +540,8 @@
       "role": "nav.swingarm.arm",
       "sourceObject": "Swingarm_001",
       "triangles": 30000,
-      "bytes": 1765384,
-      "sha256": "00bf0790ffd0b722429e19f2b9ada239876d8c76d5c97cabaaeb1e2a295b9ea8",
+      "bytes": 2431956,
+      "sha256": "55d5dcadf6296979094407c991acff0cd6a92201ee4f9c1d3b69e659c8fe1567",
       "materials": ["Deep Purple Metallic"],
       "sourceWorldBounds": [
         [-91.73725891113281, -80.63097381591797, -83.21774291992188],

@@ -15,3 +15,16 @@ Work on a saved copy of the `.blend`. The studio inspects imports without repair
 The report covers the loaded default scene. Loaded counts can include extra render meshes for material primitives, and triangle totals count repeated instances. It flags local/inherited scale factors below 0.01 or above 100 and static mesh origins more than two local bounding-box diagonals outside their geometry. These are deliberately broad review thresholds. Skinned/morphing and instanced-mesh pivots require manual inspection. No warning establishes Sur-Ron dimensions or fitment.
 
 See the [full model pipeline](model-pipeline.md) for CLI validation and the optional conservative Blender export helper. Blender export itself still requires testing with your installed version and actual models.
+
+## Shading after mesh reduction
+
+Keeping smooth vertex normals does not preserve every highlight after aggressive decimation. For the supplied frame and swingarm, bake the original high-resolution surface normals onto the reduced mesh's unique `FinishUV` layout. Finalize smoothing/sharp-edge modifiers before baking so the tangent basis stays consistent. Feed the bake to both the Principled shader's **Normal** and **Coat Normal** inputs; the clearcoat otherwise continues to show coarse geometry shading. The supplied correction keeps the existing metallic/roughness flake texture and replaces the flake-only bump.
+
+With the original local source files available, regenerate into a new staging directory:
+
+```sh
+blender --background reference/models/surron-parts/frame-update/surron-parts-ready.blend \
+  --python scripts/bake-part-normals.py -- --output /tmp/surron-normal-bakes
+```
+
+The script does not save either source `.blend`. It checks the exported triangle positions, UVs, transforms, paint color and metallic/roughness texture against the published models, then writes the GLBs, normal PNGs and provenance report. Inspect close-up renders under the same camera and lighting before replacing the two public GLBs, updating their manifest hashes/sizes and copying the report to `data/models/surface-normals.json`. Texture memory and download size increase; triangle counts and silhouettes remain unchanged.

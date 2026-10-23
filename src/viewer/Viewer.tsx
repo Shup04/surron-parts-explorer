@@ -4,8 +4,8 @@ import React, { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState 
 import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
 import { CameraControls, GizmoHelper, GizmoViewport, Grid } from '@react-three/drei';
 import * as THREE from 'three';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { scene as sceneColors } from '@/ui/tokens.json';
+import { createStudioEnvironment } from './studio-environment';
 import { loadAssetModel } from './part-models';
 import { savedCameraForScope, validateViewerAsset } from './asset-validation';
 import { buildCatalogIndex } from '@/core/catalog';
@@ -69,12 +69,12 @@ function MaterialEnvironment() {
     const previous = scene.environment;
     const previousIntensity = scene.environmentIntensity;
     const generator = new THREE.PMREMGenerator(gl);
-    const room = new RoomEnvironment();
-    const environment = generator.fromScene(room, 0.04);
-    room.dispose();
+    const studio = createStudioEnvironment();
+    const environment = generator.fromScene(studio, 0.24);
+    disposeScene(studio);
     generator.dispose();
     scene.environment = environment.texture;
-    scene.environmentIntensity = 0.7;
+    scene.environmentIntensity = 1;
     invalidate();
     return () => {
       scene.environment = previous;
@@ -401,11 +401,8 @@ function Scene({
           hideNegativeAxes
         />
       </GizmoHelper>
-      <ambientLight intensity={0.9} />
-      <hemisphereLight args={[sceneColors.hemisphereSky, sceneColors.hemisphereGround, 2]} />
-      <directionalLight position={[3, 5, 4]} intensity={4} color={sceneColors.key} />
-      <directionalLight position={[-3, 3, -4]} intensity={3} color={sceneColors.fill} />
-      <directionalLight position={[-2, 0.6, 3]} intensity={1} color={sceneColors.rim} />
+      <ambientLight intensity={0.15} />
+      <hemisphereLight args={[sceneColors.hemisphereSky, sceneColors.hemisphereGround, 0.35]} />
       {props.assemblyId === index.root.id && (
         <Grid
           position={[0, -0.018, 0]}

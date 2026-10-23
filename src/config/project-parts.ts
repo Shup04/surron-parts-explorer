@@ -5,6 +5,7 @@ import { CURATED_SYSTEMS } from '../navigation/definition';
 import { partModelKey } from '../viewer/part-models';
 import { jackshaftExplosion, jackshaftPartDetails } from './jackshaft-parts';
 import { rearWheelExplosion, rearWheelPartDetails } from './rear-wheel-parts';
+import { rearShockExplosion, rearShockPartDetails } from './rear-shock-parts';
 
 export const projectParts = manifest.parts;
 const hardwareSpecs: Record<string, (typeof hardware.specs)[keyof typeof hardware.specs]> =
@@ -74,6 +75,7 @@ export function withProjectParts(catalog: Catalog): Catalog {
       crossReferences: [],
       ...jackshaftPartDetails(model.id),
       ...rearWheelPartDetails(model.id),
+      ...rearShockPartDetails(model.id),
     };
   });
   const ids = new Set(parts.map((part) => part.id));
@@ -103,5 +105,6 @@ export const projectPartsMapping: MappingConfig = {
     partId: partId(model.id),
     ...(jackshaftExplosion(model.id) ? { explosion: jackshaftExplosion(model.id) } : {}),
     ...(rearWheelExplosion(model.id) ? { explosion: rearWheelExplosion(model.id) } : {}),
+    ...(rearShockExplosion(model.id) ? { explosion: rearShockExplosion(model.id) } : {}),
   })),
 };

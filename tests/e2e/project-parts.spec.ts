@@ -14,7 +14,7 @@ test('project parts load together and isolate the frame and purple swingarm', as
   await page.goto('/?workspace=project');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '72');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '99');
   await page.screenshot({ path: testInfo.outputPath('project-assembly.png'), fullPage: true });
   const tree = page.locator('.parts-tree');
   await tree.getByRole('button', { name: 'Expand Frame and subframe', exact: true }).click();
@@ -39,7 +39,7 @@ test('project parts load together and isolate the frame and purple swingarm', as
   });
   await page.goto('/');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '72');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '99');
   expect(errors).toEqual([]);
 });
 
@@ -63,10 +63,10 @@ test('a saved local import cannot override the styled project on normal entry', 
 
   await page.goto('/');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '72');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '99');
   await expect(page).not.toHaveURL(/workspace=local/);
   await page.reload();
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '72');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '99');
   await page.goto('/?nav=nav.body.seat');
   await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
   await expect(page.locator('.part-details')).toContainText(

@@ -7,8 +7,8 @@
   "sourceUnitScalePreserved": true,
   "frameOriginalTriangles": 889358,
   "frameOptimizedTriangles": 60000,
-  "totalTriangles": 1499093,
-  "totalBytes": 52947528,
+  "totalTriangles": 1815043,
+  "totalBytes": 66130860,
   "parts": [
     {
       "id": "main-frame",
@@ -2233,6 +2233,99 @@
           32.70000076293945,
           685.760009765625,
           229.55398559570312
+        ]
+      ]
+    },
+    {
+      "id": "rear-shock-body",
+      "name": "Rear Shock Main Body",
+      "file": "Rear Shock Main Body.glb",
+      "role": "nav.rear-suspension.shock.body",
+      "sourceObject": "Rear Shock Main Body",
+      "sourceBlend": "reference/models/lbx-rear-shock/lbx-rear-shock-separated.blend",
+      "sourceBlendSha256": "276e04d871f3647c074bb33ce78a5d9967f18921280a9ffc0e3d4d8d976412af",
+      "triangles": 183722,
+      "bytes": 10760220,
+      "sourceTriangles": 183733,
+      "degenerateTrianglesRemoved": 11,
+      "sha256": "d8df10029e252be1685bdf878275650d85500453e44bfb0d3aa76956ab2e8094",
+      "materials": [
+        "Rear Shock | Cast charcoal",
+        "Rear Shock | Champagne gold anodized aluminum",
+        "Rear Shock | Bronze threaded sleeve",
+        "Rear Shock | Polished piston chrome",
+        "Rear Shock | Black seals and lower spring seat",
+        "Rear Shock | Steel mounting bushings",
+        "Rear Shock | Gold reservoir with reference warning label"
+      ],
+      "sourceWorldBounds": [
+        [
+          -24.074203491210938,
+          -168.7221221923828,
+          85.35491943359375
+        ],
+        [
+          30.584423065185547,
+          37.19518280029297,
+          334.3859558105469
+        ]
+      ]
+    },
+    {
+      "id": "rear-shock-spring",
+      "name": "Rear Shock Spring",
+      "file": "Rear Shock Spring.glb",
+      "role": "nav.rear-suspension.shock.spring",
+      "sourceObject": "Rear Shock Spring",
+      "sourceBlend": "reference/models/lbx-rear-shock/lbx-rear-shock-separated.blend",
+      "sourceBlendSha256": "276e04d871f3647c074bb33ce78a5d9967f18921280a9ffc0e3d4d8d976412af",
+      "triangles": 112716,
+      "bytes": 2070524,
+      "sourceTriangles": 112716,
+      "degenerateTrianglesRemoved": 0,
+      "sha256": "67300ef2bd1c993c72825abe12416f9016266fd9dd64bd17b55efc493dde23f8",
+      "materials": [
+        "Rear Shock | White powder coat"
+      ],
+      "sourceWorldBounds": [
+        [
+          -26.343955993652344,
+          -143.0859375,
+          100.48416900634766
+        ],
+        [
+          32.269920349121094,
+          26.11910629272461,
+          278.3199768066406
+        ]
+      ]
+    },
+    {
+      "id": "rear-shock-preload-nut",
+      "name": "Rear Shock Preload Nut",
+      "file": "Rear Shock Preload Nut.glb",
+      "role": "nav.rear-suspension.shock.preload-nut",
+      "sourceObject": "Rear Shock Preload Nut",
+      "sourceBlend": "reference/models/lbx-rear-shock/lbx-rear-shock-separated.blend",
+      "sourceBlendSha256": "276e04d871f3647c074bb33ce78a5d9967f18921280a9ffc0e3d4d8d976412af",
+      "triangles": 19512,
+      "bytes": 352588,
+      "sourceTriangles": 19512,
+      "degenerateTrianglesRemoved": 0,
+      "sha256": "20a654653cb78e10bbbf10dc4c463cbc23c48343ac9c7a92eb784a7490314623",
+      "materials": [
+        "Rear Shock | Black preload adjuster"
+      ],
+      "sourceWorldBounds": [
+        [
+          -24.513504028320312,
+          -145.41969299316406,
+          241.65322875976562
+        ],
+        [
+          28.71204948425293,
+          -103.01644134521484,
+          280.32305908203125
         ]
       ]
     }

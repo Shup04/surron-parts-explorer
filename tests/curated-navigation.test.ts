@@ -271,6 +271,12 @@ describe('curated motorcycle presentation', () => {
   it('resolves presentation URLs to existing engine scopes and preserves exact part links', () => {
     const state = resolveNavigationLocation('?nav=nav.jackshaft.bearings', oemCatalog, model);
     expect(state).toEqual({ assemblyId: 'jackshaft', partId: 'jackshaft' });
+    expect(
+      resolveNavigationLocation('?nav=nav.jackshaft.bearings&part=', oemCatalog, model),
+    ).toEqual({
+      assemblyId: 'jackshaft',
+      partId: null,
+    });
     const unchanged = resolveNavigationLocation(
       `?nav=nav.jackshaft.bearings&part=${batteryOccurrence.id}`,
       oemCatalog,

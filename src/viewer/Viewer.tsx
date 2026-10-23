@@ -173,6 +173,7 @@ function SectionGuide({ bounds, plane }: { bounds: THREE.Box3; plane: THREE.Plan
 function Scene({
   object,
   revision,
+  gesture,
   props,
   onTip,
   onApproximate,
@@ -180,6 +181,7 @@ function Scene({
 }: {
   object: THREE.Group;
   revision: number;
+  gesture: PointerGesture;
   props: ViewerProps;
   onTip: (partId: string | null) => void;
   onApproximate: (value: boolean) => void;
@@ -189,7 +191,6 @@ function Scene({
   const reduced = useReducedMotion();
   const coarsePointer = useCoarsePointer();
   const controls = useRef<CameraControls>(null);
-  const gesture = useMemo(() => new PointerGesture(), []);
   const previousFrame = useRef<{ reset: number; object: THREE.Object3D; boundsKey: string } | null>(
     null,
   );
@@ -640,6 +641,7 @@ export default function Viewer(props: ViewerProps) {
   const [demo, setDemo] = useState<THREE.Group | null>(null);
   const [loadState, setLoadState] = useState<ModelLoadSnapshot | null>(null);
   const loader = useRef<AssetModelLoader | null>(null);
+  const gesture = useMemo(() => new PointerGesture(), []);
   const [fallback, setFallback] = useState(false);
   const [tip, setTip] = useState<string | null>(null);
   const [approximate, setApproximate] = useState(false);
@@ -737,6 +739,9 @@ export default function Viewer(props: ViewerProps) {
       <ViewerErrorBoundary key={renderAttempt} onRetry={retryRendering}>
         <Canvas
           frameloop="demand"
+          onPointerMissed={(event) => {
+            if (gesture.consumeClick(event)) props.onDeselect?.();
+          }}
           dpr={[1, 1.75]}
           camera={{ position: [2.4, 1.8, 3], fov: 38, near: 0.001, far: 100 }}
           gl={{
@@ -756,6 +761,7 @@ export default function Viewer(props: ViewerProps) {
               <Scene
                 object={object}
                 revision={revision}
+                gesture={gesture}
                 props={sceneProps}
                 onTip={setTip}
                 onApproximate={setApproximate}

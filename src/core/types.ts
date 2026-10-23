@@ -116,6 +116,7 @@ export interface ViewerProps {
   isolatedId: string | null;
   resetToken: number;
   onSelect: (partId: string) => void;
+  onDeselect?: () => void;
   onHover?: (partId: string | null) => void;
   onDiagnostics?: (diagnostics: ViewerDiagnostics) => void;
   mapping?: MappingConfig;

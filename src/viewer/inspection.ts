@@ -89,7 +89,7 @@ export function createInspectionMaterials(root: THREE.Object3D) {
             highlighted.color.lerp(tint, strength);
         }
         copies.faded.transparent = true;
-        copies.faded.opacity = Math.min(material.opacity, 0.12);
+        copies.faded.opacity = Math.min(material.opacity, 0.08);
         copies.faded.depthWrite = false;
         variants.set(material, copies);
       }

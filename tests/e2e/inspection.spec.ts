@@ -4,6 +4,26 @@ import { createProjectWorkspace } from '../../src/editor/project-workspace';
 import { projectPartsAsset } from '../../src/config/project-parts';
 import { seatGlb } from './fixtures/part-glb';
 
+test('clicking empty canvas deselects a part while a camera drag does not', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/?demo=1&assembly=jackshaft&part=bearing-left');
+  const viewer = page.getByTestId('viewer');
+  await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
+  const canvas = viewer.locator('canvas');
+  const box = (await canvas.boundingBox())!;
+  await page.mouse.move(box.x + 8, box.y + 8);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 34, box.y + 24);
+  await page.mouse.move(box.x + 8, box.y + 8);
+  await page.mouse.up();
+  await expect(page).toHaveURL(/part=bearing-left/);
+  await canvas.click({ position: { x: 8, y: 8 } });
+  await expect(page).toHaveURL(/part=(?:&|$)/);
+  await page.reload();
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-scene-ready', 'true');
+  expect(new URL(page.url()).searchParams.get('part')).toBe('');
+});
+
 test('inspect an assembled jackshaft, cut surroundings, and return to the bike', async ({
   page,
 }) => {

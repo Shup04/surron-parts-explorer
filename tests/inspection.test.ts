@@ -73,7 +73,7 @@ describe('assembled internal inspection', () => {
     const ghost = shell.material as THREE.MeshStandardMaterial;
     expect(ghost.transparent).toBe(true);
     expect(ghost.depthWrite).toBe(false);
-    expect(ghost.opacity).toBe(0.12);
+    expect(ghost.opacity).toBe(0.08);
     expect(ghost.roughness).toBe(source.roughness);
     expect(ghost.clippingPlanes).toEqual([plane]);
     expect((bearing.material as THREE.Material).clippingPlanes).toBeNull();
@@ -150,7 +150,7 @@ describe('assembled internal inspection', () => {
     materials.apply(inspected);
     const ghost = arriving.material as THREE.Material;
     const ghostDispose = vi.spyOn(ghost, 'dispose');
-    expect(ghost.opacity).toBe(0.12);
+    expect(ghost.opacity).toBe(0.08);
     expect(ghost.clippingPlanes).toEqual([inspected.plane]);
     expect(bearing.material).toBe(highlight);
 
@@ -175,7 +175,7 @@ describe('assembled internal inspection', () => {
     materials.dispose();
     materials.apply(faded);
     expect(shell.material).not.toBe(previous);
-    expect((shell.material as THREE.Material).opacity).toBe(0.12);
+    expect((shell.material as THREE.Material).opacity).toBe(0.08);
     materials.dispose();
   });
 });

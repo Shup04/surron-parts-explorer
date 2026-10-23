@@ -12,6 +12,8 @@ export function resolveNavigationLocation(
   const params = new URLSearchParams(search);
   if (params.has('motorcycle') && params.get('motorcycle') !== catalog.motorcycleId) return state;
   const node = navigation?.byId.get(params.get('nav') ?? '');
+  if (params.has('part') && params.get('part') === '')
+    return { assemblyId: node?.scopeId ?? state.assemblyId, partId: null };
   if (catalog.parts.find((part) => part.id === state.partId)?.kind === 'component')
     return node?.modelPartIds?.includes(state.partId!)
       ? { ...state, assemblyId: node.scopeId }

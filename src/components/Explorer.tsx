@@ -715,6 +715,16 @@ export default function Explorer() {
       if (match) navigate(match.id);
     }
   };
+  const deselectGeometry = () => {
+    if (!selectedId) return;
+    setSelectedId(null);
+    setHoveredId(null);
+    setDetailOpen(false);
+    const url = new URL(window.location.href);
+    // An empty part parameter keeps the current modeled scope without a selected part.
+    url.searchParams.set('part', '');
+    writeNavigation(url.pathname + url.search);
+  };
   const navigateOccurrence = (id: string) => {
     if (index.byId.has(id)) {
       navigate(id);
@@ -1275,6 +1285,7 @@ export default function Explorer() {
                 isolatedId={isolatedId}
                 resetToken={resetToken}
                 onSelect={selectGeometry}
+                onDeselect={deselectGeometry}
                 onHover={setHoveredId}
                 onDiagnostics={setDiagnostics}
                 asset={localAsset ?? assetEntry?.asset}

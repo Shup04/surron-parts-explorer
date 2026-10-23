@@ -5,7 +5,6 @@ import { buildCatalogIndex } from '../src/core/catalog';
 import type { Explosion, Part } from '../src/core/types';
 import { oemCatalog, oemDatabase } from '../src/data/oem';
 import {
-  assemblyExplosion,
   buildModeledNavigation,
   closedAssemblyGroups,
   geometrySelectionAssembly,
@@ -42,7 +41,6 @@ describe('nested rear hub assembly', () => {
     expect(hub.occurrenceId).toBeUndefined();
     expect(hub.selectAsAssembly).toBe(true);
     expect(hub.children.map((child) => child.name)).toEqual(['Hub body']);
-    expect(assemblyExplosion(hub)).toBe(0);
     expect(geometrySelectionAssembly(navigation, undefined, 'project-rear-hub')).toBe(wheel);
     expect(geometrySelectionAssembly(navigation, wheel, 'project-rear-hub')).toBe(hub);
     expect(geometrySelectionAssembly(navigation, hub, 'project-rear-hub')).toBeUndefined();
@@ -57,7 +55,6 @@ describe('nested rear hub assembly', () => {
     const hub = future.byId.get('nav.rear-wheel.hub')!;
     expect(wheel.children).toHaveLength(8);
     expect(hub.modelPartIds).toEqual(['project-rear-hub', ...internals.map((part) => part.id)]);
-    expect(assemblyExplosion(hub)).toBe(1);
     for (const part of internals) {
       expect(geometrySelectionAssembly(future, undefined, part.id)).toBe(wheel);
       expect(geometrySelectionAssembly(future, wheel, part.id)).toBe(hub);

@@ -31,6 +31,7 @@ import { availableModelYears } from '@/oem/queries';
 import { loadReviewPatches } from '@/catalog-review/storage';
 import { OemDetails } from './OemDetails';
 import { PartDetails } from './PartDetails';
+import { InspectionControls } from './InspectionControls';
 import { Button, IconButton } from './ui/Button';
 import { AppInstall, ConnectionStatus } from './AppInstall';
 import { useExplorerViewport, usePanelHistory } from './useExplorerViewport';
@@ -42,7 +43,6 @@ import {
   type NavigationNode,
 } from '@/navigation/model';
 import {
-  assemblyExplosion,
   buildModeledNavigation,
   closedAssemblyGroups,
   geometrySelectionAssembly,
@@ -75,7 +75,13 @@ import {
   searchParts,
 } from '@/core/catalog';
 import { createExplorerUrl } from '@/core/navigation';
-import type { AssetDefinition, Catalog, MappingConfig, ViewerDiagnostics } from '@/core/types';
+import type {
+  AssetDefinition,
+  Catalog,
+  MappingConfig,
+  ViewerDiagnostics,
+  InspectionSettings,
+} from '@/core/types';
 import { assetRegistry } from '@/config/assets';
 import { withProjectParts } from '@/config/project-parts';
 
@@ -115,6 +121,7 @@ export default function Explorer() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [explosion, setExplosion] = useState(0);
+  const [inspection, setInspection] = useState<InspectionSettings>();
   const [hiddenIds, setHiddenIds] = useState<string[]>([]);
   const [isolatedId, setIsolatedId] = useState<string | null>(null);
   const [resetToken, setResetToken] = useState(0);
@@ -385,11 +392,8 @@ export default function Explorer() {
       );
       setAssemblyId(state.assemblyId);
       setSelectedId(state.partId);
-      setExplosion(
-        assemblyExplosion(
-          modeledScope(activeNavigation, state.assemblyId, state.partId, params.get('nav')),
-        ),
-      );
+      setExplosion(0);
+      setInspection(undefined);
       setDetailOpen(
         !window.matchMedia('(max-width: 1100px)').matches &&
           (!!params.get('nav') ||
@@ -453,11 +457,8 @@ export default function Explorer() {
       setHoveredId(null);
       setHiddenIds([]);
       setIsolatedId(null);
-      setExplosion(
-        assemblyExplosion(
-          modeledScope(activeNavigation, state.assemblyId, state.partId, params.get('nav')),
-        ),
-      );
+      setExplosion(0);
+      setInspection(undefined);
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
@@ -510,8 +511,17 @@ export default function Explorer() {
         nextAssembly !== assemblyId ? [] : previous.filter((id) => id !== partId),
       );
       setHoveredId(null);
-      if (nextAssembly !== assemblyId || nextNavId !== (activeNode?.id ?? null))
-        setExplosion(assemblyExplosion(nextNode));
+      if (nextAssembly !== assemblyId || nextNavId !== (activeNode?.id ?? null)) {
+        setExplosion(0);
+        setInspection(
+          (previous) =>
+            previous && {
+              ...previous,
+              section: previous.section ? { ...previous.section, position: 0.5 } : null,
+            },
+        );
+      }
+      if (part.kind === 'motorcycle') setInspection(undefined);
       if (compact) setNavOpen(false);
       setQuery('');
       setDetailOpen(!compact && (!!nextNavId || part.kind === 'component'));
@@ -534,6 +544,7 @@ export default function Explorer() {
 
   const adjustExplosion = (amount: number) => {
     setExplosion(amount);
+    if (amount > 0) setInspection(undefined);
   };
 
   const closeViewerPopover = useCallback(() => {
@@ -578,6 +589,18 @@ export default function Explorer() {
           closeViewerPopover();
           return;
         }
+        if (detailsVisible && detailPanel.current?.contains(document.activeElement)) {
+          setDetailOpen(false);
+          detailsButton.current?.focus();
+          return;
+        }
+        if (inspection) {
+          setInspection(undefined);
+          workspace.current
+            ?.querySelector<HTMLButtonElement>('.inspection-modes button[aria-label="Reassemble"]')
+            ?.focus();
+          return;
+        }
         if (detailsVisible) {
           setDetailOpen(false);
           detailsButton.current?.focus();
@@ -602,7 +625,7 @@ export default function Explorer() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [compact, navOpen, detailsVisible, helpOpen, statsOpen, closeViewerPopover]);
+  }, [compact, navOpen, detailsVisible, helpOpen, statsOpen, inspection, closeViewerPopover]);
 
   const toggleHidden = (id: string) =>
     setHiddenIds((prev) =>
@@ -654,6 +677,7 @@ export default function Explorer() {
     setHiddenIds([]);
     setIsolatedId(null);
     setExplosion(0);
+    setInspection(undefined);
     writeNavigation(url.pathname + url.search);
     if (compact) {
       setNavOpen(false);
@@ -709,6 +733,7 @@ export default function Explorer() {
     setIsolatedId(null);
     setHoveredId(null);
     setExplosion(0);
+    setInspection(undefined);
     setDetailOpen(!compact);
     setExpanded(new Set(['lbx', part.parentId ?? 'lbx']));
     writeNavigation(createExplorerUrl({ assemblyId: part.parentId ?? 'lbx', partId: id }));
@@ -1227,7 +1252,7 @@ export default function Explorer() {
             {overview ? 'Sur-Ron Light Bee X' : (activeNode?.name ?? assembly.name)}
           </h1>
           <div
-            className={`canvas-wrap ${!overview && hasGeometry ? 'assembly-canvas' : ''}`}
+            className={`canvas-wrap ${!overview && hasGeometry ? 'assembly-canvas' : ''} ${inspection ? 'inspection-canvas' : ''} ${inspection?.section ? 'section-canvas' : ''}`}
             onPointerDownCapture={compact ? dismissTouchHint : undefined}
           >
             {!initialized ? (
@@ -1244,6 +1269,8 @@ export default function Explorer() {
                 selectedId={selectedId}
                 hoveredId={hoveredId}
                 explosion={explosion}
+                showSurroundings={explosion === 0}
+                inspection={inspection}
                 hiddenIds={hiddenIds}
                 isolatedId={isolatedId}
                 resetToken={resetToken}
@@ -1423,36 +1450,19 @@ export default function Explorer() {
                 )}
               </div>
             )}
-            {!overview && hasGeometry && canExplode ? (
-              <div className="explosion-controls">
-                <div className="explosion-title">
-                  <strong>Exploded view</strong>
-                  <output htmlFor="explosion-range">{Math.round(explosion * 100)}%</output>
-                </div>
-                <div className="explosion-slider">
-                  <button
-                    aria-label="Reassemble"
-                    aria-pressed={explosion === 0}
-                    onClick={() => adjustExplosion(0)}
-                  >
-                    Assembled
-                  </button>
-                  <input
-                    id="explosion-range"
-                    aria-label="Explosion amount"
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value={explosion}
-                    onChange={(event) => adjustExplosion(Number(event.target.value))}
-                  />
-                  <button aria-pressed={explosion === 1} onClick={() => adjustExplosion(1)}>
-                    Exploded
-                  </button>
-                </div>
-              </div>
-            ) : null}
+            {!overview && hasGeometry && (
+              <InspectionControls
+                inspection={inspection}
+                onInspectionChange={(value) => {
+                  setInspection(value);
+                  if (value && !inspection) setIsolatedId(null);
+                }}
+                explosion={explosion}
+                onExplosionChange={adjustExplosion}
+                canExplode={canExplode}
+                selectedPart={selection?.kind === 'component'}
+              />
+            )}
             {(demoMode || showDemonstration) && (
               <small className="model-status">
                 Demonstration geometry · not mechanically accurate

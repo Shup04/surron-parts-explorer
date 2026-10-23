@@ -44,8 +44,10 @@ test('simple uploads retain separate GLBs, replace one part, and preserve assign
   await page.getByRole('button', { name: 'Save & preview', exact: true }).click();
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '2');
   await openSeat(page);
-  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '2');
   await expect(page.getByTestId('geometry-unassigned')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Isolate', exact: true }).click();
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
   await expect(async () => {
     await page.getByTestId('viewer').locator('canvas').click();
     await expect
@@ -76,9 +78,9 @@ test('simple uploads retain separate GLBs, replace one part, and preserve assign
   await page.screenshot({ path: testInfo.outputPath('simple-parts-phone.png'), fullPage: true });
   await page.getByRole('button', { name: 'Save & preview', exact: true }).click();
   await page.goto('/?workspace=local&nav=nav.body.seat');
-  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '2');
   await page.reload();
-  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '2');
   const saved = await page.evaluate(() =>
     JSON.parse(localStorage.getItem('surron-editor-project')!),
   );

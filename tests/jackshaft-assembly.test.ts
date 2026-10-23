@@ -8,7 +8,7 @@ import { projectParts, projectPartsMapping, withProjectParts } from '../src/conf
 import { buildCatalogIndex } from '../src/core/catalog';
 import { oemCatalog, oemDatabase } from '../src/data/oem';
 import { createProjectWorkspace } from '../src/editor/project-workspace';
-import { assemblyExplosion, buildModeledNavigation } from '../src/navigation/modeled';
+import { buildModeledNavigation } from '../src/navigation/modeled';
 import { navigationAncestors } from '../src/navigation/model';
 import { wrapPartModel } from '../src/viewer/part-models';
 import {
@@ -53,7 +53,6 @@ describe('manual-based jackshaft assembly', () => {
   it('groups all 21 jackshaft parts, keeps the pivot washer with the swingarm, and uses the same mapping in the editor', () => {
     const node = navigation.byId.get('nav.jackshaft.assembly')!;
     expect(new Set(node.modelPartIds)).toEqual(new Set(ids));
-    expect(assemblyExplosion(node)).toBe(1);
     expect(navigation.byId.get('nav.jackshaft.bearings')?.modelPartIds).toHaveLength(3);
     expect(navigation.byId.get('nav.jackshaft.sprocket-bolts')?.modelPartIds).toHaveLength(6);
     expect(navigation.byId.get('nav.jackshaft.pulley-bolts')?.modelPartIds).toHaveLength(6);

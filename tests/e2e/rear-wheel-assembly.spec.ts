@@ -72,13 +72,21 @@ test('the complete wheel explodes into eight groups and reassembles around its h
   await page.goto('/');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
+  await expect
+    .poll(async () => Number(await viewer.getAttribute('data-visible-meshes')))
+    .toBeGreaterThan(19);
+  await expect(viewer).toHaveAttribute('data-load-complete', 'true');
+  const wholeBikeMeshes = (await viewer.getAttribute('data-visible-meshes'))!;
   await page.screenshot({ path: testInfo.outputPath('bike-with-rear-wheel.png'), fullPage: true });
   const tree = page.locator('.parts-tree');
   await tree.getByRole('button', { name: 'Expand Rear wheel', exact: true }).click();
   await tree.getByRole('button', { name: 'Rear wheel assembly', exact: true }).click();
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '19');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   const slider = page.getByRole('slider', { name: 'Explosion amount' });
+  await expect(slider).toHaveValue('0');
+  await page.getByRole('button', { name: 'Exploded', exact: true }).click();
   await expect(slider).toHaveValue('1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '19');
   // Wait for the WebGL viewport to catch up with the newly opened details panel.
   await expect
     .poll(() =>
@@ -112,28 +120,28 @@ test('the complete wheel explodes into eight groups and reassembles around its h
   await expect(page.locator('.part-details')).toContainText('202.8 × 2 mm');
   await expect(slider).toHaveValue('1');
   await page.reload();
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '19');
-  await expect(slider).toHaveValue('1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
+  await expect(slider).toHaveValue('0');
   await page.getByRole('button', { name: 'Isolate', exact: true }).click();
   await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
   await page.screenshot({ path: testInfo.outputPath('rear-disc-isolated.png'), fullPage: true });
   await page.getByRole('button', { name: 'Show assembly', exact: true }).click();
   await page.getByRole('button', { name: 'Reassemble', exact: true }).click();
   await expect(slider).toHaveValue('0');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '19');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await page.screenshot({ path: testInfo.outputPath('rear-wheel-assembled.png'), fullPage: true });
   await tree.getByRole('button', { name: 'Expand Rear wheel assembly', exact: true }).click();
   await tree.getByRole('button', { name: 'Hub', exact: true }).click();
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await expect(page.locator('#component-details h2')).toHaveText('Hub');
   await expect(tree.getByRole('button', { name: 'Hub body', exact: true })).toBeVisible();
   await expect(slider).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('rear-hub-assembly.png'), fullPage: true });
   await page.goto('/?part=project-rear-tire-18');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await expect(page.locator('.part-details')).toContainText('3.00-18');
   await expect(slider).toHaveCount(0);
-  await page.screenshot({ path: testInfo.outputPath('rear-tire-isolated.png'), fullPage: true });
+  await page.screenshot({ path: testInfo.outputPath('rear-tire-in-place.png'), fullPage: true });
   expect(errors).toEqual([]);
 });
 
@@ -141,6 +149,11 @@ test('the rear-wheel assembly remains usable on a phone', async ({ page }, testI
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/?nav=nav.rear-wheel.assembly');
+  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
+  await expect
+    .poll(async () => Number(await page.getByTestId('viewer').getAttribute('data-visible-meshes')))
+    .toBeGreaterThan(19);
+  await page.getByRole('button', { name: 'Exploded', exact: true }).click();
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '19');
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
   await expect(page.locator('#component-details')).toBeHidden();

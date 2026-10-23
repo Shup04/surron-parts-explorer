@@ -180,13 +180,13 @@ test('phone wheel navigation leaves the model usable and preserves nested scope 
   await tree.getByRole('button', { name: 'Rear wheel assembly', exact: true }).tap();
   await expect(page.locator('#parts-navigation')).toBeHidden();
   await expect(page.locator('#component-details')).toBeHidden();
-  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
+  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
   await expect(page.getByRole('button', { name: 'Reassemble', exact: true })).toBeInViewport();
   await page.screenshot({ path: testInfo.outputPath('phone-wheel.png') });
   await parts.tap();
   await tree.getByRole('button', { name: 'Hub', exact: true }).tap();
   await expect(page).toHaveURL(/nav=nav\.rear-wheel\.hub(?:&|$)/);
-  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '19');
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveCount(0);
   await details.tap();
   await expect(page.locator('#component-details h2')).toHaveText('Hub');
@@ -200,7 +200,7 @@ test('phone wheel navigation leaves the model usable and preserves nested scope 
   await page.goForward();
   await expect(page).toHaveURL(/nav=nav\.rear-wheel\.hub(?:&|$)/);
   await page.reload();
-  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '19');
   await expect(page.locator('#component-details')).toBeHidden();
   await page.getByRole('button', { name: 'Parent assembly', exact: true }).tap();
   await expect(page).toHaveURL(/nav=nav\.rear-wheel\.assembly/);

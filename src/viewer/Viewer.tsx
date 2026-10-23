@@ -11,10 +11,16 @@ import {
 } from '@react-three/drei';
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { scene as sceneColors } from '@/ui/tokens.json';
+import tokens from '@/ui/tokens.json';
 import { AssetModelLoader, priorityModelIds, type ModelLoadSnapshot } from './part-models';
 import { ModelLoadStatus } from './ModelLoadStatus';
 import { PointerGesture } from './pointer-gesture';
+import {
+  assembledScopeBounds,
+  createInspectionMaterials,
+  inspectionHit,
+  inspectionPlane,
+} from './inspection';
 import { savedCameraForScope, validateViewerAsset } from './asset-validation';
 import { buildCatalogIndex } from '@/core/catalog';
 import { easeProgress } from '@/core/explosion';
@@ -32,6 +38,8 @@ import {
   updateVisibility,
   visibleBounds,
 } from './scene';
+
+const sceneColors = tokens.scene;
 
 export type { ViewerProps } from '@/core/types';
 
@@ -130,6 +138,38 @@ function ContextRecovery({ onChange }: { onChange: (lost: boolean) => void }) {
   return null;
 }
 
+function SectionGuide({ bounds, plane }: { bounds: THREE.Box3; plane: THREE.Plane }) {
+  const axis = plane.normal.x ? 'x' : plane.normal.y ? 'y' : 'z';
+  const geometry = useMemo(() => {
+    const size = bounds.getSize(new THREE.Vector3()).multiplyScalar(1.08);
+    const width = Math.max(axis === 'x' ? size.z : size.x, 0.01) / 2;
+    const height = Math.max(axis === 'y' ? size.z : size.y, 0.01) / 2;
+    return new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(-width, -height, 0),
+      new THREE.Vector3(width, -height, 0),
+      new THREE.Vector3(width, height, 0),
+      new THREE.Vector3(-width, height, 0),
+    ]);
+  }, [bounds, axis]);
+  useEffect(() => () => geometry.dispose(), [geometry]);
+  const center = bounds.getCenter(new THREE.Vector3());
+  center[axis] = -plane.constant / plane.normal[axis];
+  const rotation = new THREE.Quaternion().setFromUnitVectors(
+    new THREE.Vector3(0, 0, 1),
+    plane.normal,
+  );
+  return (
+    <lineLoop geometry={geometry} position={center} quaternion={rotation} raycast={() => undefined}>
+      <lineBasicMaterial
+        color={sceneColors.selection}
+        transparent
+        opacity={0.65}
+        depthWrite={false}
+      />
+    </lineLoop>
+  );
+}
+
 function Scene({
   object,
   revision,
@@ -158,6 +198,18 @@ function Scene({
     () => prepareScene(object, props.mapping),
     [object, props.mapping, revision],
   );
+  const focusIds = useMemo(
+    () =>
+      new Set((props.scopePartIds ?? [props.assemblyId]).flatMap((id) => [...partSet(index, id)])),
+    [index, props.assemblyId, props.scopePartIds],
+  );
+  const focusBounds = useMemo(() => assembledScopeBounds(records, focusIds), [records, focusIds]);
+  const section = props.inspection?.section;
+  const plane = useMemo(
+    () => inspectionPlane(focusBounds, section ?? null),
+    [focusBounds, section?.axis, section?.position, section?.flipped],
+  );
+  const inspecting = !!props.inspection;
   const [localHover, setLocalHover] = useState<string | null>(null);
   const hovered = props.hoveredId ?? localHover;
   useEffect(() => {
@@ -235,6 +287,17 @@ function Scene({
     };
   }, [gl, gesture, onTip, props.onHover]);
   const hiddenKey = props.hiddenIds.join('|');
+  const frameContext = JSON.stringify([
+    props.assemblyId,
+    [...focusIds],
+    props.explosion,
+    props.showSurroundings,
+    hiddenKey,
+    props.isolatedId,
+    props.resetToken,
+    size.width,
+    size.height,
+  ]);
   const targetPositions = useMemo(
     () =>
       explosionTargets(
@@ -257,37 +320,18 @@ function Scene({
       easing: 'linear' | 'smooth' | 'cubic';
     }[];
   } | null>(null);
-  const materials = useMemo(
-    () => ({
-      original: new Map<THREE.Mesh, THREE.Material | THREE.Material[]>(),
-      selected: new Map<THREE.Material, THREE.Material>(),
-      hovered: new Map<THREE.Material, THREE.Material>(),
-    }),
-    [object],
-  );
-  useEffect(
-    () => () => {
-      materials.original.forEach((material, mesh) => {
-        mesh.material = material;
-      });
-      materials.selected.forEach((material) => material.dispose());
-      materials.hovered.forEach((material) => material.dispose());
-      materials.original.clear();
-      materials.selected.clear();
-      materials.hovered.clear();
-    },
-    [materials],
-  );
+  const materials = useMemo(() => createInspectionMaterials(object), [object]);
+  useLayoutEffect(() => () => materials.dispose(), [materials]);
 
   useLayoutEffect(() => {
     onVisibleCount(
       updateVisibility(
         object,
         index,
-        props.assemblyId,
+        props.showSurroundings ? index.root.id : props.assemblyId,
         props.hiddenIds,
         props.isolatedId,
-        props.scopePartIds,
+        props.showSurroundings ? undefined : props.scopePartIds,
       ),
     );
     setLocalHover(null);
@@ -310,71 +354,44 @@ function Scene({
     invalidate();
     // hiddenKey represents the full visibility set without recreating effects on every parent render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [object, index, props.assemblyId, hiddenKey, props.isolatedId, targetPositions]);
+  }, [
+    object,
+    index,
+    props.assemblyId,
+    props.showSurroundings,
+    hiddenKey,
+    props.isolatedId,
+    targetPositions,
+  ]);
 
   useLayoutEffect(() => {
-    const present = new Set<THREE.Mesh>();
-    const usedMaterials = new Set<THREE.Material>();
-    object.traverse((node) => {
-      if (!(node instanceof THREE.Mesh)) return;
-      present.add(node);
-      if (!materials.original.has(node)) materials.original.set(node, node.material);
-      const original = materials.original.get(node)!;
-      for (const material of Array.isArray(original) ? original : [original]) {
-        usedMaterials.add(material);
-        if (materials.selected.has(material)) continue;
-        for (const [destination, color, strength] of [
-          [materials.selected, sceneColors.selection, 0.13],
-          [materials.hovered, sceneColors.hover, 0.07],
-        ] as const) {
-          const highlighted = material.clone();
-          const tint = new THREE.Color(color);
-          if (highlighted instanceof THREE.MeshStandardMaterial) {
-            highlighted.emissive
-              .multiplyScalar(highlighted.emissiveIntensity)
-              .add(tint.clone().multiplyScalar(strength));
-            highlighted.emissiveIntensity = 1;
-          }
-          if ('color' in highlighted && highlighted.color instanceof THREE.Color)
-            highlighted.color.lerp(tint, strength);
-          destination.set(material, highlighted);
-        }
-      }
-    });
-    materials.original.forEach((original, mesh) => {
-      if (!present.has(mesh)) {
-        mesh.material = original;
-        materials.original.delete(mesh);
-      }
-    });
-    for (const variants of [materials.selected, materials.hovered])
-      variants.forEach((material, original) => {
-        if (!usedMaterials.has(original)) {
-          material.dispose();
-          variants.delete(original);
-        }
-      });
     const selected =
       props.selectedId && props.selectedId !== props.assemblyId
         ? partSet(index, props.selectedId)
         : new Set<string>();
-    const hover = hovered ? partSet(index, hovered) : new Set<string>();
-    materials.original.forEach((original, mesh) => {
-      const id = mappedPartId(mesh);
-      const highlights =
-        id && selected.has(id)
-          ? materials.selected
-          : id && hover.has(id)
-            ? materials.hovered
-            : null;
-      mesh.material = highlights
-        ? Array.isArray(original)
-          ? original.map((material) => highlights.get(material)!)
-          : highlights.get(original)!
-        : original;
+    const component = !!props.selectedId && index.byId.get(props.selectedId)?.kind === 'component';
+    materials.apply({
+      selected,
+      hovered: hovered ? partSet(index, hovered) : new Set<string>(),
+      solid: component ? selected : focusIds,
+      fade: props.inspection?.fadeSurroundings ?? false,
+      plane,
+      keepSelectedUncut: component && inspecting,
     });
     invalidate();
-  }, [object, revision, props.selectedId, props.assemblyId, hovered, index, materials, invalidate]);
+  }, [
+    revision,
+    props.selectedId,
+    props.assemblyId,
+    props.inspection?.fadeSurroundings,
+    inspecting,
+    hovered,
+    index,
+    materials,
+    focusIds,
+    plane,
+    invalidate,
+  ]);
 
   useLayoutEffect(() => {
     const entries = records.map((record) => ({
@@ -398,15 +415,18 @@ function Scene({
     const positions = records.map((record) => record.object.position.clone());
     records.forEach((record) => record.object.position.copy(targetPositions.get(record.object)!));
     const allBounds = visibleBounds(object);
-    let bounds = visibleBounds(
-      object,
-      props.scopePartIds && props.scopePartIds.length > 1
-        ? null
-        : props.selectedId !== props.assemblyId
-          ? props.selectedId
-          : null,
-      index,
-    );
+    let bounds =
+      props.showSurroundings && !props.isolatedId && !focusBounds.isEmpty()
+        ? focusBounds.clone()
+        : visibleBounds(
+            object,
+            props.scopePartIds && props.scopePartIds.length > 1
+              ? null
+              : props.selectedId !== props.assemblyId
+                ? props.selectedId
+                : null,
+            index,
+          );
     if (bounds.isEmpty()) bounds = allBounds.clone();
     records.forEach((record, i) => record.object.position.copy(positions[i]));
     object.updateMatrixWorld(true);
@@ -417,18 +437,13 @@ function Scene({
     const reset =
       previousFrame.current?.reset !== props.resetToken || previousFrame.current?.object !== object;
     const boundsKey = JSON.stringify([
-      allBounds.min,
-      allBounds.max,
       bounds.min,
       bounds.max,
-      size.width,
-      size.height,
-      props.assemblyId,
-      props.selectedId,
-      props.explosion,
+      frameContext,
+      inspecting ? null : props.selectedId,
     ]);
-    // Background parts outside the open scope must not interrupt an orbit or zoom.
-    if (!reset && previousFrame.current?.boundsKey === boundsKey) return;
+    // New surrounding models may extend clipping/zoom ranges without moving the view.
+    const shouldFrame = reset || previousFrame.current?.boundsKey !== boundsKey;
     const savedCamera = savedCameraForScope(
       props.mapping,
       props.asset,
@@ -438,8 +453,12 @@ function Scene({
     const direction = reset
       ? new THREE.Vector3(0.75, 0.37, 1)
       : control.getPosition(new THREE.Vector3()).sub(control.getTarget(new THREE.Vector3()));
-    const framing =
-      savedCamera && reset && !props.scopePartIds
+    const framing = !shouldFrame
+      ? {
+          position: control.getPosition(new THREE.Vector3()),
+          target: control.getTarget(new THREE.Vector3()),
+        }
+      : savedCamera && reset && !props.scopePartIds
         ? {
             position: new THREE.Vector3(...savedCamera.position),
             target: new THREE.Vector3(...savedCamera.target),
@@ -463,7 +482,8 @@ function Scene({
       );
       camera.updateProjectionMatrix();
     }
-    void control.setLookAt(...framing.position.toArray(), ...framing.target.toArray(), !reduced);
+    if (shouldFrame)
+      void control.setLookAt(...framing.position.toArray(), ...framing.target.toArray(), !reduced);
     previousFrame.current = { reset: props.resetToken, object, boundsKey };
     invalidate();
   }, [
@@ -472,6 +492,10 @@ function Scene({
     index,
     props.assemblyId,
     props.selectedId,
+    props.showSurroundings,
+    inspecting,
+    frameContext,
+    focusBounds,
     props.resetToken,
     props.isolatedId,
     hiddenKey,
@@ -527,7 +551,8 @@ function Scene({
     }
   });
   function identify(event: ThreeEvent<PointerEvent | MouseEvent>) {
-    const mapped = mappedPartId(event.object);
+    const hit = inspectionHit(event.intersections, materials.faded);
+    const mapped = hit ? mappedPartId(hit.object) : null;
     return mapped && index.byId.has(mapped)
       ? props.scopePartIds || props.asset?.models
         ? mapped
@@ -561,6 +586,7 @@ function Scene({
           if (id) props.onSelect(id);
         }}
       />
+      {plane && <SectionGuide bounds={focusBounds} plane={plane} />}
       <CameraControls
         ref={controls}
         makeDefault
@@ -713,7 +739,12 @@ export default function Viewer(props: ViewerProps) {
           frameloop="demand"
           dpr={[1, 1.75]}
           camera={{ position: [2.4, 1.8, 3], fov: 38, near: 0.001, far: 100 }}
-          gl={{ antialias: true, powerPreference: 'high-performance', alpha: true }}
+          gl={{
+            antialias: true,
+            powerPreference: 'high-performance',
+            alpha: true,
+            localClippingEnabled: true,
+          }}
           onCreated={({ gl }) => {
             gl.domElement.style.touchAction = 'none';
           }}

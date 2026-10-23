@@ -37,11 +37,11 @@ test('a saved seat GLB loads in the local preview, in Seat, and through mesh pic
   await tree.getByRole('button', { name: 'Expand Seat and bodywork', exact: true }).click();
   await tree.getByRole('button', { name: 'Seat', exact: true }).click();
   await expect(page).toHaveURL(/nav=nav.body.seat/);
-  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '2');
   await expect(page.getByTestId('geometry-unassigned')).toHaveCount(0);
   await page.reload();
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-scene-ready', 'true');
-  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '2');
   const canvas = page.getByTestId('viewer').locator('canvas');
   await expect(async () => {
     await canvas.click();
@@ -52,7 +52,7 @@ test('a saved seat GLB loads in the local preview, in Seat, and through mesh pic
   await expect(page.locator('.oem-part-details .oem-number')).toHaveText('32300-YQ2A-0001');
   await page.goto('/?workspace=local&nav=nav.body.seat');
   await expect(page).toHaveURL(/workspace=local/);
-  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '2');
   await page.goto('/?demo=1');
   await expect(page).not.toHaveURL(/workspace=local/);
   await expect(page.getByTestId('viewer')).toHaveAttribute(

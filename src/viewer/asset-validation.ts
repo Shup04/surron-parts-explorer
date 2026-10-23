@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { getObjectKey, validateMapping } from '@/core/mapping';
 import type { AssetDefinition, Catalog, MappingConfig, SceneObjectInfo, Vec3 } from '@/core/types';
+import { availableModelMapping } from './part-models';
 
 /** Validate configured registry assets as strictly as editor imports, before rendering. */
 export function validateViewerAsset(
@@ -8,6 +9,7 @@ export function validateViewerAsset(
   catalog: Catalog,
   mapping: MappingConfig | undefined,
   scene?: THREE.Object3D | null,
+  unavailableModelIds: string[] = [],
 ): string | null {
   if (
     typeof asset.id !== 'string' ||
@@ -33,7 +35,7 @@ export function validateViewerAsset(
       position: object.position.toArray() as Vec3,
     }),
   );
-  const validation = validateMapping(mapping, catalog, objects);
+  const validation = validateMapping(mapping, catalog);
   if (!validation.success)
     return `Invalid model mapping: ${validation.issues
       .slice(0, 5)
@@ -41,6 +43,20 @@ export function validateViewerAsset(
       .join('; ')}`;
   if (validation.data.assetId !== asset.id)
     return `Mapping asset ID "${validation.data.assetId}" does not match loaded asset "${asset.id}". Export the mapping for this model.`;
+  if (objects) {
+    // Only unavailable manifest entries may defer object-key validation. Other missing
+    // keys, duplicate IDs, and invalid catalog references must still be reported.
+    const deferred = (asset.models ?? [])
+      .filter((model) => unavailableModelIds.includes(model.id))
+      .map((model) => model.id);
+    const loadedMapping = availableModelMapping(mapping, deferred);
+    const sceneValidation = validateMapping(loadedMapping, catalog, objects);
+    if (!sceneValidation.success)
+      return `Invalid model mapping: ${sceneValidation.issues
+        .slice(0, 5)
+        .map((issue) => issue.message)
+        .join('; ')}`;
+  }
   return null;
 }
 

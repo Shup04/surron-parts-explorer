@@ -6,7 +6,8 @@ import { CameraControls, GizmoHelper, GizmoViewport, Grid } from '@react-three/d
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { scene as sceneColors } from '@/ui/tokens.json';
-import { loadAssetModel } from './part-models';
+import { AssetModelLoader, priorityModelIds, type ModelLoadSnapshot } from './part-models';
+import { ModelLoadStatus } from './ModelLoadStatus';
 import { savedCameraForScope, validateViewerAsset } from './asset-validation';
 import { buildCatalogIndex } from '@/core/catalog';
 import { easeProgress } from '@/core/explosion';
@@ -87,12 +88,14 @@ function MaterialEnvironment() {
 
 function Scene({
   object,
+  revision,
   props,
   onTip,
   onApproximate,
   onVisibleCount,
 }: {
   object: THREE.Group;
+  revision: number;
   props: ViewerProps;
   onTip: (partId: string | null) => void;
   onApproximate: (value: boolean) => void;
@@ -101,9 +104,14 @@ function Scene({
   const { camera, gl, invalidate, size } = useThree();
   const reduced = useReducedMotion();
   const controls = useRef<CameraControls>(null);
-  const previousFrame = useRef<{ reset: number; object: THREE.Object3D } | null>(null);
+  const previousFrame = useRef<{ reset: number; object: THREE.Object3D; boundsKey: string } | null>(
+    null,
+  );
   const index = useMemo(() => buildCatalogIndex(props.catalog), [props.catalog]);
-  const records = useMemo(() => prepareScene(object, props.mapping), [object, props.mapping]);
+  const records = useMemo(
+    () => prepareScene(object, props.mapping),
+    [object, props.mapping, revision],
+  );
   const [localHover, setLocalHover] = useState<string | null>(null);
   const hovered = props.hoveredId ?? localHover;
   const hiddenKey = props.hiddenIds.join('|');
@@ -121,36 +129,14 @@ function Scene({
       easing: 'linear' | 'smooth' | 'cubic';
     }[];
   } | null>(null);
-  const materials = useMemo(() => {
-    const original = new Map<THREE.Mesh, THREE.Material | THREE.Material[]>();
-    const selected = new Map<THREE.Material, THREE.Material>();
-    const hovered = new Map<THREE.Material, THREE.Material>();
-    object.traverse((node) => {
-      if (!(node instanceof THREE.Mesh)) return;
-      original.set(node, node.material);
-      for (const material of Array.isArray(node.material) ? node.material : [node.material]) {
-        if (selected.has(material)) continue;
-        for (const [destination, color, strength] of [
-          [selected, sceneColors.selection, 0.13],
-          [hovered, sceneColors.hover, 0.07],
-        ] as const) {
-          const highlighted = material.clone();
-          const tint = new THREE.Color(color);
-          if (highlighted instanceof THREE.MeshStandardMaterial) {
-            // Keep the source finish and emission; add a restrained interaction tint.
-            highlighted.emissive
-              .multiplyScalar(highlighted.emissiveIntensity)
-              .add(tint.clone().multiplyScalar(strength));
-            highlighted.emissiveIntensity = 1;
-          }
-          if ('color' in highlighted && highlighted.color instanceof THREE.Color)
-            highlighted.color.lerp(tint, strength);
-          destination.set(material, highlighted);
-        }
-      }
-    });
-    return { original, selected, hovered };
-  }, [object]);
+  const materials = useMemo(
+    () => ({
+      original: new Map<THREE.Mesh, THREE.Material | THREE.Material[]>(),
+      selected: new Map<THREE.Material, THREE.Material>(),
+      hovered: new Map<THREE.Material, THREE.Material>(),
+    }),
+    [object],
+  );
   useEffect(
     () => () => {
       materials.original.forEach((material, mesh) => {
@@ -158,6 +144,9 @@ function Scene({
       });
       materials.selected.forEach((material) => material.dispose());
       materials.hovered.forEach((material) => material.dispose());
+      materials.original.clear();
+      materials.selected.clear();
+      materials.hovered.clear();
     },
     [materials],
   );
@@ -195,6 +184,47 @@ function Scene({
   }, [object, index, props.assemblyId, hiddenKey, props.isolatedId, targetPositions]);
 
   useLayoutEffect(() => {
+    const present = new Set<THREE.Mesh>();
+    const usedMaterials = new Set<THREE.Material>();
+    object.traverse((node) => {
+      if (!(node instanceof THREE.Mesh)) return;
+      present.add(node);
+      if (!materials.original.has(node)) materials.original.set(node, node.material);
+      const original = materials.original.get(node)!;
+      for (const material of Array.isArray(original) ? original : [original]) {
+        usedMaterials.add(material);
+        if (materials.selected.has(material)) continue;
+        for (const [destination, color, strength] of [
+          [materials.selected, sceneColors.selection, 0.13],
+          [materials.hovered, sceneColors.hover, 0.07],
+        ] as const) {
+          const highlighted = material.clone();
+          const tint = new THREE.Color(color);
+          if (highlighted instanceof THREE.MeshStandardMaterial) {
+            highlighted.emissive
+              .multiplyScalar(highlighted.emissiveIntensity)
+              .add(tint.clone().multiplyScalar(strength));
+            highlighted.emissiveIntensity = 1;
+          }
+          if ('color' in highlighted && highlighted.color instanceof THREE.Color)
+            highlighted.color.lerp(tint, strength);
+          destination.set(material, highlighted);
+        }
+      }
+    });
+    materials.original.forEach((original, mesh) => {
+      if (!present.has(mesh)) {
+        mesh.material = original;
+        materials.original.delete(mesh);
+      }
+    });
+    for (const variants of [materials.selected, materials.hovered])
+      variants.forEach((material, original) => {
+        if (!usedMaterials.has(original)) {
+          material.dispose();
+          variants.delete(original);
+        }
+      });
     const selected =
       props.selectedId && props.selectedId !== props.assemblyId
         ? partSet(index, props.selectedId)
@@ -215,7 +245,7 @@ function Scene({
         : original;
     });
     invalidate();
-  }, [props.selectedId, props.assemblyId, hovered, index, materials, invalidate]);
+  }, [object, revision, props.selectedId, props.assemblyId, hovered, index, materials, invalidate]);
 
   useLayoutEffect(() => {
     const entries = records.map((record) => ({
@@ -253,6 +283,19 @@ function Scene({
     bounds.expandByScalar(padding);
     const reset =
       previousFrame.current?.reset !== props.resetToken || previousFrame.current?.object !== object;
+    const boundsKey = JSON.stringify([
+      allBounds.min,
+      allBounds.max,
+      bounds.min,
+      bounds.max,
+      size.width,
+      size.height,
+      props.assemblyId,
+      props.selectedId,
+      props.explosion,
+    ]);
+    // Background parts outside the open scope must not interrupt an orbit or zoom.
+    if (!reset && previousFrame.current?.boundsKey === boundsKey) return;
     const savedCamera = savedCameraForScope(
       props.mapping,
       props.asset,
@@ -288,7 +331,7 @@ function Scene({
       camera.updateProjectionMatrix();
     }
     void control.setLookAt(...framing.position.toArray(), ...framing.target.toArray(), !reduced);
-    previousFrame.current = { reset: props.resetToken, object };
+    previousFrame.current = { reset: props.resetToken, object, boundsKey };
     invalidate();
   }, [
     object,
@@ -362,6 +405,7 @@ function Scene({
     <>
       <primitive
         object={object}
+        dispose={null}
         onPointerMove={(event: ThreeEvent<PointerEvent>) => {
           event.stopPropagation();
           const id = identify(event);
@@ -426,71 +470,83 @@ function Scene({
 }
 
 export default function Viewer(props: ViewerProps) {
-  const [object, setObject] = useState<THREE.Group | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [demo, setDemo] = useState<THREE.Group | null>(null);
+  const [loadState, setLoadState] = useState<ModelLoadSnapshot | null>(null);
+  const loader = useRef<AssetModelLoader | null>(null);
   const [fallback, setFallback] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [tip, setTip] = useState<string | null>(null);
   const [approximate, setApproximate] = useState(false);
   const [visibleCount, setVisibleCount] = useState(0);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const pointer = useRef({ x: 0, y: 0 });
   const [contextLost, setContextLost] = useState(false);
+  const object = !props.asset || fallback ? demo : (loadState?.scene ?? null);
+  const loading = !!props.asset && !fallback && (!loadState || loadState.loading);
+  const revision = !props.asset || fallback ? 0 : (loadState?.revision ?? 0);
+  const index = useMemo(() => buildCatalogIndex(props.catalog), [props.catalog]);
+  const priority = useMemo(
+    () =>
+      props.asset
+        ? priorityModelIds(
+            props.asset,
+            props.mapping,
+            props.scopePartIds ? new Set(props.scopePartIds) : partSet(index, props.assemblyId),
+          )
+        : [],
+    [props.asset, props.mapping, props.scopePartIds, props.assemblyId, index],
+  );
   const label = props.catalog.parts.find((part) => part.id === tip)?.name;
   const sceneProps = fallback ? { ...props, mapping: undefined } : props;
   const configurationError = useMemo(
     () =>
       props.asset && !fallback
-        ? validateViewerAsset(props.asset, props.catalog, props.mapping, object)
+        ? validateViewerAsset(
+            props.asset,
+            props.catalog,
+            props.mapping,
+            object,
+            loadState?.models.filter((model) => model.status !== 'loaded').map((model) => model.id),
+          )
         : null,
-    [props.asset, props.catalog, props.mapping, object, fallback],
+    [props.asset, props.catalog, props.mapping, object, revision, loadState, fallback],
   );
-  const displayError = error ?? configurationError;
+  const displayError = configurationError;
   useEffect(() => {
     setFallback(false);
   }, [props.asset?.url]);
   useEffect(() => {
-    let cancelled = false;
-    let loaded: THREE.Group | null = null;
-    setError(null);
-    setObject(null);
-    setLoading(true);
-    if (!props.asset || fallback) {
-      loaded = createDemoScene();
-      setObject(loaded);
-      setLoading(false);
-    } else {
-      void loadAssetModel(props.asset)
-        .then((scene) => {
-          if (cancelled) {
-            disposeScene(scene);
-            return;
-          }
-          loaded = scene;
-          setObject(scene);
-          setLoading(false);
-        })
-        .catch((reason) => {
-          if (!cancelled) {
-            setError(
-              reason instanceof Error
-                ? reason.message
-                : 'The model could not be loaded. Check its URL and linked resources.',
-            );
-            setLoading(false);
-          }
-        });
-    }
+    const current = new AssetModelLoader();
+    loader.current = current;
+    const unsubscribe = current.subscribe(() => setLoadState(current.getSnapshot()));
     return () => {
-      cancelled = true;
-      if (loaded) disposeScene(loaded);
+      unsubscribe();
+      current.dispose();
     };
-  }, [props.asset?.url, props.asset?.models, fallback]);
+  }, []);
+  useEffect(() => {
+    loader.current?.update(!fallback ? (props.asset ?? null) : null, priority);
+    // Priority changes reorder the existing queue without replacing the asset.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.asset, fallback]);
+  useEffect(() => {
+    loader.current?.prioritize(priority);
+  }, [priority]);
+  useEffect(() => {
+    if (!props.asset || fallback) {
+      const scene = createDemoScene();
+      setDemo(scene);
+      return () => disposeScene(scene);
+    }
+    setDemo(null);
+  }, [!!props.asset, fallback]);
   return (
     <div
       className="viewer-canvas"
       data-testid="viewer"
-      data-scene-ready={!!object && !loading && !displayError}
+      data-scene-ready={!!object && visibleCount > 0 && !displayError && !contextLost}
+      data-load-complete={!loading}
+      data-loaded-models={loadState?.loaded ?? 0}
+      data-failed-models={loadState?.failed ?? 0}
       data-visible-meshes={visibleCount}
       aria-label="Interactive 3D motorcycle viewer"
       onPointerMove={(event) => {
@@ -522,6 +578,7 @@ export default function Viewer(props: ViewerProps) {
             {object && !displayError && (
               <Scene
                 object={object}
+                revision={revision}
                 props={sceneProps}
                 onTip={setTip}
                 onApproximate={setApproximate}
@@ -531,10 +588,12 @@ export default function Viewer(props: ViewerProps) {
           </Suspense>
         </Canvas>
       </ViewerErrorBoundary>
-      {loading && !displayError && (
-        <div className="viewer-warning viewer-loader" role="status">
-          Loading 3D geometry…
-        </div>
+      {!fallback && !displayError && (
+        <ModelLoadStatus
+          state={loadState}
+          onRetry={(id) => loader.current?.retry(id)}
+          onFallback={() => setFallback(true)}
+        />
       )}
       {displayError && (
         <div className="viewer-warning" role="alert">
@@ -545,7 +604,7 @@ export default function Viewer(props: ViewerProps) {
           </button>
         </div>
       )}
-      {object && !loading && !displayError && visibleCount === 0 && (
+      {object && !loading && !displayError && !loadState?.failed && visibleCount === 0 && (
         <div className="viewer-warning" role="status">
           No visible geometry for this selection. Show hidden components or add the missing catalog
           mappings in the model editor.

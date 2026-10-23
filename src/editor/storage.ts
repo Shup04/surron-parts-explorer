@@ -1,4 +1,4 @@
-import type { Catalog, MappingConfig } from '@/core/types';
+import type { AssetModelSource, Catalog, MappingConfig } from '@/core/types';
 import { validateCatalog } from '@/core/catalog';
 import { validateMapping } from '@/core/mapping';
 
@@ -23,7 +23,7 @@ const FILES = 'model-files';
 type StoredFile = { name: string; path: string; blob: Blob };
 export type LocalAsset = {
   url: string;
-  models?: { id: string; url: string }[];
+  models?: AssetModelSource[];
   dispose: () => void;
 };
 
@@ -209,25 +209,55 @@ export function materializeFiles(files: File[], primaryName: string): Promise<Lo
   );
 }
 
+type ModelResource = { asset: LocalAsset; references: number };
+const modelResources = new WeakMap<LocalAsset, Map<string, ModelResource>>();
+
 export async function materializeProjectFiles(
   files: File[],
   project: EditorProject,
+  previous?: { project: EditorProject; asset: LocalAsset },
 ): Promise<LocalAsset> {
   if (!project.partModels) return materializeFiles(files, project.assetFileName!);
+  const retained = previous && modelResources.get(previous.asset);
+  const resources = new Map<string, ModelResource>();
   const results = await Promise.allSettled(
-    project.partModels.map((model) => materializeFiles(files, model.fileName)),
+    project.partModels.map(async (model): Promise<ModelResource> => {
+      // assignPartModel preserves the records of unchanged files, even when the
+      // replacement uses the same filename. Keep those blob URLs valid across commits.
+      let resource = previous?.project.partModels?.includes(model)
+        ? retained?.get(model.id)
+        : undefined;
+      if (!resource) {
+        const asset = await materializeFiles(files, model.fileName);
+        resource = { asset, references: 0 };
+      }
+      resource.references++;
+      resources.set(model.id, resource);
+      return resource;
+    }),
   );
-  const assets = results.flatMap((result) => (result.status === 'fulfilled' ? [result.value] : []));
+  const dispose = () => {
+    resources.forEach((resource) => {
+      if (--resource.references === 0) resource.asset.dispose();
+    });
+    resources.clear();
+  };
   const failure = results.find((result) => result.status === 'rejected');
   if (failure?.status === 'rejected') {
-    assets.forEach((asset) => asset.dispose());
+    dispose();
     throw failure.reason;
   }
-  return {
-    url: assets[0].url,
-    models: project.partModels.map((model, i) => ({ id: model.id, url: assets[i].url })),
-    dispose: () => assets.forEach((asset) => asset.dispose()),
+  const asset: LocalAsset = {
+    url: resources.get(project.partModels[0].id)!.asset.url,
+    models: project.partModels.map((model) => ({
+      id: model.id,
+      url: resources.get(model.id)!.asset.url,
+      label: model.originalName,
+    })),
+    dispose,
   };
+  modelResources.set(asset, resources);
+  return asset;
 }
 
 export async function loadSavedEditorFiles(): Promise<File[]> {

@@ -53,15 +53,17 @@ export function ModelLoadStatus({
         <ul aria-label="Failed model files">
           {failed.map((model) => (
             <li key={model.id}>
-              <strong>{modelFileName(model)}</strong>
-              <span>{model.error}</span>
-              <button
-                type="button"
-                aria-label={`Retry ${modelFileName(model)}`}
-                onClick={() => onRetry(model.id)}
-              >
-                Retry
-              </button>
+              <div className="model-load-failure">
+                <strong>{modelFileName(model)}</strong>
+                <button
+                  type="button"
+                  aria-label={`Retry ${modelFileName(model)}`}
+                  onClick={() => onRetry(model.id)}
+                >
+                  Retry
+                </button>
+              </div>
+              <span>{model.error?.replace(/^fetch for ".+" responded with /, '')}</span>
             </li>
           ))}
         </ul>

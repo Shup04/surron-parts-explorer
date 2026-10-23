@@ -1,16 +1,24 @@
 import { expect, test } from '@playwright/test';
 
-test('the footpeg assembly opens pegs, brackets and bolts in one exploded view', async ({
+test('the footpeg assembly keeps its surroundings until explicitly exploded', async ({
   page,
 }, testInfo) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
+  await expect
+    .poll(async () => Number(await viewer.getAttribute('data-visible-meshes')))
+    .toBeGreaterThan(8);
+  await expect(viewer).toHaveAttribute('data-load-complete', 'true');
+  const wholeBikeMeshes = (await viewer.getAttribute('data-visible-meshes'))!;
   const tree = page.locator('.parts-tree');
   await tree.getByRole('button', { name: 'Expand Footpegs and side stand', exact: true }).click();
   await tree.getByRole('button', { name: 'Footpeg assembly', exact: true }).click();
   await expect(page).toHaveURL(/nav=nav\.footpegs-stand\.footpegs/);
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
+  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
+  await page.getByRole('button', { name: 'Exploded', exact: true }).click();
   await expect(viewer).toHaveAttribute('data-visible-meshes', '8');
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
   await page.screenshot({
@@ -24,8 +32,10 @@ test('the footpeg assembly opens pegs, brackets and bolts in one exploded view',
   await expect(viewer).toHaveAttribute('data-visible-meshes', '8');
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
   await page.reload();
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
+  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
+  await page.getByRole('button', { name: 'Exploded', exact: true }).click();
   await expect(viewer).toHaveAttribute('data-visible-meshes', '8');
-  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
   await page.getByRole('button', { name: 'Reassemble', exact: true }).click();
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
   await page.screenshot({
@@ -43,6 +53,13 @@ test('footpeg brackets include their mounted bolts and expose the 6 mm Allen key
   await page.goto('/?nav=nav.footpegs-stand.brackets');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
+  await expect
+    .poll(async () => Number(await viewer.getAttribute('data-visible-meshes')))
+    .toBeGreaterThan(6);
+  await expect(viewer).toHaveAttribute('data-load-complete', 'true');
+  const wholeBikeMeshes = (await viewer.getAttribute('data-visible-meshes'))!;
+  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
+  await page.getByRole('button', { name: 'Exploded', exact: true }).click();
   await expect(viewer).toHaveAttribute('data-visible-meshes', '6');
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
   await page.screenshot({ path: testInfo.outputPath('brackets-exploded.png'), fullPage: true });
@@ -51,7 +68,7 @@ test('footpeg brackets include their mounted bolts and expose the 6 mm Allen key
   await tree.getByRole('button', { name: 'Expand Footpeg brackets', exact: true }).click();
   await tree.getByRole('button', { name: 'Expand Bracket bolts', exact: true }).click();
   await tree.getByRole('button', { name: 'Footpeg Bracket Bolt Left Upper', exact: true }).click();
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '6');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   const details = page.locator('.part-details');
   await expect(details).toContainText('B3-001-08-020-F0');
   await expect(details.locator('.definition-pair').filter({ hasText: 'Allen key' })).toHaveText(
@@ -77,6 +94,13 @@ test('cover screws retain their tool sizes and assembly scopes after reload', as
     await page.goto(`/?nav=${role}&part=${part}`);
     const viewer = page.getByTestId('viewer');
     await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
+    await expect
+      .poll(async () => Number(await viewer.getAttribute('data-visible-meshes')))
+      .toBeGreaterThan(Number(count));
+    await expect(viewer).toHaveAttribute('data-load-complete', 'true');
+    const wholeBikeMeshes = (await viewer.getAttribute('data-visible-meshes'))!;
+    await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
+    await page.getByRole('button', { name: 'Exploded', exact: true }).click();
     await expect(viewer).toHaveAttribute('data-visible-meshes', count);
     await expect(page.locator('.definition-pair').filter({ hasText: 'Allen key' })).toContainText(
       key,
@@ -84,7 +108,8 @@ test('cover screws retain their tool sizes and assembly scopes after reload', as
     await page.getByRole('button', { name: 'Reassemble', exact: true }).click();
     await page.screenshot({ path: testInfo.outputPath(`${part}.png`), fullPage: true });
     await page.reload();
-    await expect(viewer).toHaveAttribute('data-visible-meshes', count);
+    await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
+    await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
     await expect(page.locator('.definition-pair').filter({ hasText: 'Allen key' })).toContainText(
       key,
     );

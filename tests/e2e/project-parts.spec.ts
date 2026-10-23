@@ -14,23 +14,34 @@ test('project parts load together and isolate the frame and purple swingarm', as
   await page.goto('/?workspace=project');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '99');
+  await expect
+    .poll(async () => Number(await viewer.getAttribute('data-visible-meshes')))
+    .toBeGreaterThan(7);
+  await expect(viewer).toHaveAttribute('data-load-complete', 'true');
+  const wholeBikeMeshes = (await viewer.getAttribute('data-visible-meshes'))!;
   await page.screenshot({ path: testInfo.outputPath('project-assembly.png'), fullPage: true });
   const tree = page.locator('.parts-tree');
   await tree.getByRole('button', { name: 'Expand Frame and subframe', exact: true }).click();
   await tree.getByRole('button', { name: 'Main frame', exact: true }).click();
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
+  await page.getByRole('button', { name: 'Isolate', exact: true }).click();
   await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
   await expect(page.getByTestId('geometry-unassigned')).toHaveCount(0);
   await page.mouse.move(5, 5);
   await page.screenshot({ path: testInfo.outputPath('main-frame.png'), fullPage: true });
   await page.goto('/?workspace=project&nav=nav.swingarm.arm');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
+  await page.getByRole('button', { name: 'Isolate', exact: true }).click();
   await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
   await page.screenshot({ path: testInfo.outputPath('purple-swingarm.png'), fullPage: true });
   await page.reload();
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await page.goto('/?workspace=project&nav=frame');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
+  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
+  await page.getByRole('button', { name: 'Exploded', exact: true }).click();
   await expect(viewer).toHaveAttribute('data-visible-meshes', '7');
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
   await page.screenshot({
@@ -39,7 +50,7 @@ test('project parts load together and isolate the frame and purple swingarm', as
   });
   await page.goto('/');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '99');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   expect(errors).toEqual([]);
 });
 
@@ -63,12 +74,16 @@ test('a saved local import cannot override the styled project on normal entry', 
 
   await page.goto('/');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '99');
+  await expect
+    .poll(async () => Number(await viewer.getAttribute('data-visible-meshes')))
+    .toBeGreaterThan(1);
+  await expect(viewer).toHaveAttribute('data-load-complete', 'true');
+  const wholeBikeMeshes = (await viewer.getAttribute('data-visible-meshes'))!;
   await expect(page).not.toHaveURL(/workspace=local/);
   await page.reload();
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '99');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await page.goto('/?nav=nav.body.seat');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await expect(page.locator('.part-details')).toContainText(
     'Supplied 3D part from the current Blender assembly.',
   );

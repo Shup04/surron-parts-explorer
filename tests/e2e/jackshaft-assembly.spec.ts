@@ -37,7 +37,7 @@ test('a real jackshaft screw opens its parent before it can be selected individu
   await expect(page).not.toHaveURL(new RegExp(`part=${boltId}`));
 });
 
-test('clicking the jackshaft assembly opens its exploded parts and retains the assembly while inspecting hardware', async ({
+test('the jackshaft opens assembled and retains its scope during an explicit explosion', async ({
   page,
 }, testInfo) => {
   const errors: string[] = [];
@@ -46,13 +46,21 @@ test('clicking the jackshaft assembly opens its exploded parts and retains the a
   await page.goto('/');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
+  await expect
+    .poll(async () => Number(await viewer.getAttribute('data-visible-meshes')))
+    .toBeGreaterThan(25);
+  await expect(viewer).toHaveAttribute('data-load-complete', 'true');
+  const wholeBikeMeshes = (await viewer.getAttribute('data-visible-meshes'))!;
   const tree = page.locator('.parts-tree');
   await tree.getByRole('button', { name: 'Expand Jackshaft and final drive', exact: true }).click();
   await tree.getByRole('button', { name: 'Jackshaft assembly', exact: true }).click();
   await expect(page).toHaveURL(/nav=nav\.jackshaft\.assembly/);
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '25');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   const slider = page.getByRole('slider', { name: 'Explosion amount' });
+  await expect(slider).toHaveValue('0');
+  await page.getByRole('button', { name: 'Exploded', exact: true }).click();
   await expect(slider).toHaveValue('1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '25');
   // Let the canvas resize after the details column opens before capturing its camera framing.
   await page.evaluate(
     () =>
@@ -68,29 +76,29 @@ test('clicking the jackshaft assembly opens its exploded parts and retains the a
   await expect(page.locator('.part-details')).toContainText('6000-2RS');
   await expect(page.locator('.part-details')).toContainText('Z-6000-2Z-26-10-08');
   await page.reload();
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '25');
-  await expect(slider).toHaveValue('1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
+  await expect(slider).toHaveValue('0');
   await page.getByRole('button', { name: 'Isolate', exact: true }).click();
   await expect(viewer).toHaveAttribute('data-visible-meshes', '2');
   await page.getByRole('button', { name: 'Show assembly', exact: true }).click();
   await page.getByRole('button', { name: 'Reassemble', exact: true }).click();
   await expect(slider).toHaveValue('0');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '25');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await page.screenshot({ path: testInfo.outputPath('jackshaft-assembled.png'), fullPage: true });
   await page.goto('/?nav=nav.jackshaft.assembly&part=project-jackshaft-sprocket-bolt-01');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '25');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await expect(page.locator('.part-details')).toContainText('M6 × 25');
   await expect(page.locator('.part-details')).toContainText('Modeled Allen key (provisional)');
   await page.goto('/?part=project-jackshaft-inner-spacer');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await expect(slider).toHaveCount(0);
   await page
     .locator('.part-details')
     .getByRole('button', { name: 'Jackshaft assembly', exact: true })
     .click();
   await expect(page).toHaveURL(/nav=nav\.jackshaft\.assembly/);
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '25');
-  await expect(slider).toHaveValue('1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
+  await expect(slider).toHaveValue('0');
   expect(errors).toEqual([]);
 });
 
@@ -98,6 +106,11 @@ test('a phone can open the jackshaft explosion and reassemble it', async ({ page
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/?nav=nav.jackshaft.assembly');
+  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');
+  await expect
+    .poll(async () => Number(await page.getByTestId('viewer').getAttribute('data-visible-meshes')))
+    .toBeGreaterThan(25);
+  await page.getByRole('button', { name: 'Exploded', exact: true }).click();
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '25');
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
   await expect(page.locator('#component-details')).toBeHidden();

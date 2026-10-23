@@ -48,7 +48,7 @@ test('opens the requested part before background files finish and retries only a
   await page.getByRole('button', { name: 'Retry Main Frame.glb', exact: true }).click();
   await expect(viewer).toHaveAttribute('data-loaded-models', String(total));
   await expect(page.getByLabel('Model loading')).toHaveCount(0);
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', String(total));
   expect(requests.filter((url) => url === seatURL)).toHaveLength(1);
   expect(requests).toHaveLength(total + 1);
   expect(errors).toEqual([]);

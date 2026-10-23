@@ -96,12 +96,19 @@ export interface ViewerDiagnostics {
   geometries: number;
   textures: number;
 }
+export interface InspectionSettings {
+  fadeSurroundings: boolean;
+  section: { axis: 'x' | 'y' | 'z'; position: number; flipped: boolean } | null;
+}
 export interface ViewerProps {
   catalog: Catalog;
   assemblyId: string;
   /** Explicit catalog IDs represented by a curated view, across source assemblies. */
   scopePartIds?: string[];
   explosionGroups?: ExplosionGroup[];
+  /** Retain the assembled motorcycle around the active scope. */
+  showSurroundings?: boolean;
+  inspection?: InspectionSettings;
   selectedId: string | null;
   hoveredId?: string | null;
   explosion: number;

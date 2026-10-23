@@ -14,7 +14,9 @@ test('rear shock loads its finishes, separates, and exposes each component', asy
   await page.goto('/?workspace=project&nav=nav.rear-suspension.shock');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '9');
+  await expect(viewer).toHaveAttribute('data-load-complete', 'true');
+  const wholeBikeMeshes = (await viewer.getAttribute('data-visible-meshes'))!;
+  expect(Number(wholeBikeMeshes)).toBeGreaterThan(9);
   await expect(page.getByTestId('geometry-unassigned')).toHaveCount(0);
   const slider = page.getByRole('slider', { name: 'Explosion amount' });
   await page.getByRole('button', { name: 'Reassemble', exact: true }).click();
@@ -41,13 +43,14 @@ test('rear shock loads its finishes, separates, and exposes each component', asy
     // The component's own link also works independently of the open assembly.
     await page.goto(`/?workspace=project&nav=nav.rear-suspension.shock.${role}`);
     await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
+    await page.getByRole('button', { name: 'Isolate', exact: true }).click();
     await expect(viewer).toHaveAttribute('data-visible-meshes', meshCount);
     await expect(page.getByTestId('geometry-unassigned')).toHaveCount(0);
     await page.screenshot({ path: testInfo.outputPath(`rear-shock-${role}.png`) });
   }
   await page.reload();
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   expect(errors).toEqual([]);
 });
 
@@ -58,7 +61,10 @@ test('rear shock remains usable on a phone', async ({ page }, testInfo) => {
   await page.goto('/?workspace=project&nav=nav.rear-suspension.shock');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '9');
+  await expect(viewer).toHaveAttribute('data-load-complete', 'true');
+  await expect
+    .poll(async () => Number(await viewer.getAttribute('data-visible-meshes')))
+    .toBeGreaterThan(9);
   const slider = page.getByRole('slider', { name: 'Explosion amount' });
   const closeDetails = page.getByRole('button', { name: 'Close component details' });
   if (await closeDetails.isVisible()) await closeDetails.click();

@@ -112,10 +112,6 @@ export function buildModeledNavigation(
   return { roots, byId, warnings: reference.warnings };
 }
 
-export function assemblyExplosion(node: NavigationNode | undefined): number {
-  return node && !node.occurrenceId && (node.modelPartIds?.length ?? 0) > 1 ? 1 : 0;
-}
-
 /** Only unopened assemblies are rigid. Their first modeled child anchors the group. */
 export function closedAssemblyGroups(
   navigation: NavigationModel | null,

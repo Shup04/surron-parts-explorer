@@ -4,7 +4,6 @@ import { demoCatalog } from '../src/data/catalog';
 import { projectParts, projectPartsMapping, withProjectParts } from '../src/config/project-parts';
 import {
   buildModeledNavigation,
-  assemblyExplosion,
   geometrySelectionAssembly,
   modeledScope,
 } from '../src/navigation/modeled';
@@ -95,15 +94,12 @@ describe('model-driven explorer navigation', () => {
     const added = buildModeledNavigation(oemDatabase, expanded, ids);
     expect(added.byId.get('jackshaft')?.modelPartIds).toHaveLength(4);
     expect(added.byId.get('nav.jackshaft.bearings')?.children).toHaveLength(2);
-    expect(assemblyExplosion(added.byId.get('jackshaft'))).toBe(1);
-    expect(assemblyExplosion(navigation.byId.get('jackshaft'))).toBe(1);
-    expect(assemblyExplosion(added.byId.get('nav.jackshaft.inner-spacer'))).toBe(0);
     const removed = buildModeledNavigation(oemDatabase, expanded, baseline);
     expect(removed.byId.has('nav.jackshaft.bearings')).toBe(false);
     expect(removed.byId.has('jackshaft')).toBe(false);
   });
 
-  it('opens both pegs, their brackets and all four bolts as one exploded footpeg assembly', () => {
+  it('opens both pegs, their brackets and all four bolts as one footpeg assembly', () => {
     const assembly = navigation.byId.get('nav.footpegs-stand.footpegs')!;
     expect(new Set(assembly.modelPartIds)).toEqual(
       new Set([
@@ -117,7 +113,6 @@ describe('model-driven explorer navigation', () => {
         'project-bolt-peg-right-lower',
       ]),
     );
-    expect(assemblyExplosion(assembly)).toBe(1);
     expect(navigation.byId.get('nav.footpegs-stand.brackets')?.modelPartIds).toHaveLength(6);
     expect(navigationAncestors(navigation, 'nav.footpegs-stand.left-peg')).toEqual([
       'footpegs-stand',
@@ -163,13 +158,11 @@ describe('model-driven explorer navigation', () => {
     });
   });
 
-  it('opens direct part links assembled and rejects unrelated assembly scopes', () => {
+  it('resolves direct part links and rejects unrelated assembly scopes', () => {
     const part = modeledScope(navigation, 'frame', 'project-main-frame', null);
     expect(part?.id).toBe('nav.frame.frame');
-    expect(assemblyExplosion(part)).toBe(0);
     const assembly = modeledScope(navigation, 'frame', 'project-main-frame', 'frame');
     expect(assembly?.id).toBe('frame');
-    expect(assemblyExplosion(assembly)).toBe(1);
     expect(modeledScope(navigation, 'frame', 'project-main-frame', 'jackshaft')).toBe(part);
     expect(modeledScope(navigation, 'jackshaft', 'occ-lbx2021-p15-r16', null)).toBeUndefined();
   });

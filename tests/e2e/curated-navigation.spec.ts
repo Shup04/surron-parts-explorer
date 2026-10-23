@@ -11,6 +11,9 @@ test('the public hierarchy contains only modeled parts and their assemblies', as
   await page.goto('/?workspace=project');
   const tree = page.locator('.parts-tree');
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-scene-ready', 'true');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', /^[1-9]\d*$/);
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-load-complete', 'true');
+  const wholeBikeMeshes = (await page.getByTestId('viewer').getAttribute('data-visible-meshes'))!;
   await expect(tree.getByRole('button', { name: 'Front wheel', exact: true })).toHaveCount(0);
   await expect(tree.getByRole('button', { name: 'Front suspension', exact: true })).toHaveCount(0);
   await expect(page.locator('.catalog-filter-disclosure')).toHaveCount(0);
@@ -32,7 +35,7 @@ test('the public hierarchy contains only modeled parts and their assemblies', as
   await expect(tree.getByRole('button', { name: 'M6 Hardware Left', exact: true })).toBeVisible();
   await expect(tree.getByRole('button', { name: 'M6 Hardware Right', exact: true })).toBeVisible();
   await tree.getByRole('button', { name: 'Main frame', exact: true }).click();
-  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await expect(page.locator('.part-details h2')).toHaveText('Main Frame');
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('modeled-hierarchy.png'), fullPage: true });
@@ -42,6 +45,9 @@ test('search finds supplied models without adding unmodeled reference records', 
   page,
 }) => {
   await page.goto('/?workspace=project');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', /^[1-9]\d*$/);
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-load-complete', 'true');
+  const wholeBikeMeshes = (await page.getByTestId('viewer').getAttribute('data-visible-meshes'))!;
   const search = page.getByRole('textbox', { name: 'Search parts' });
   await search.fill('61234-YQ2A-0000');
   await expect(page.locator('.search-result')).toHaveCount(1);
@@ -54,7 +60,7 @@ test('search finds supplied models without adding unmodeled reference records', 
   await expect(page.locator('.search-result')).toHaveCount(1);
   await page.locator('.search-result').click();
   await expect(page.locator('.part-details h2')).toHaveText('Suspension Rocker');
-  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', wholeBikeMeshes);
   await page.reload();
   await expect(page.locator('.part-details h2')).toHaveText('Suspension Rocker');
   await expect(page.locator('.tree-row.active')).toHaveAttribute(
@@ -87,6 +93,8 @@ test('new local jackshaft models populate one assembly and stay exploded while s
   await expect(tree.locator(':scope > li')).toHaveCount(1);
   await tree.getByRole('button', { name: 'Jackshaft and final drive', exact: true }).click();
   const slider = page.getByRole('slider', { name: 'Explosion amount' });
+  await expect(slider).toHaveValue('0');
+  await page.getByRole('button', { name: 'Exploded', exact: true }).click();
   await expect(slider).toHaveValue('1');
   await expect(page.locator('#component-details')).toContainText('3 modeled parts');
   await expect(page.locator('#component-details')).not.toContainText('OEM reference');
@@ -110,7 +118,7 @@ test('new local jackshaft models populate one assembly and stay exploded while s
   await expect(page.locator('.part-details h2')).toHaveText('Jackshaft bearings');
   await expect(viewer).toHaveAttribute('data-visible-meshes', '3');
   await page.reload();
-  await expect(slider).toHaveValue('1');
+  await expect(slider).toHaveValue('0');
   await expect(viewer).toHaveAttribute('data-visible-meshes', '3');
   await page.screenshot({ path: testInfo.outputPath('jackshaft-assembly.png'), fullPage: true });
   expect(errors).toEqual([]);

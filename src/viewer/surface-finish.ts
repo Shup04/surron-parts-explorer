@@ -9,7 +9,7 @@ import {
 } from 'three';
 
 type SurfaceShader = Parameters<MeshStandardMaterial['onBeforeCompile']>[0];
-type FinishKind = 'metal' | 'plastic' | 'rubber';
+type FinishKind = 'aluminum' | 'coated' | 'plastic' | 'rubber';
 interface FinishState {
   kind: FinishKind;
   millimetersPerUnit: number;
@@ -23,7 +23,8 @@ const settings: Record<
   FinishKind,
   { tile: number; bump: number; roughness: number; wear: number; grainColor: number }
 > = {
-  metal: { tile: 32, bump: 0.025, roughness: 0.1, wear: 0.06, grainColor: 0.025 },
+  aluminum: { tile: 32, bump: 0.025, roughness: 0.1, wear: 0.06, grainColor: 0.025 },
+  coated: { tile: 32, bump: 0.008, roughness: 0.03, wear: 0, grainColor: 0 },
   plastic: { tile: 48, bump: 0.02, roughness: 0.06, wear: 0, grainColor: 0.03 },
   rubber: { tile: 48, bump: 0.03, roughness: 0.05, wear: 0, grainColor: 0.025 },
 };
@@ -46,12 +47,14 @@ function finishTexture(kind: FinishKind): DataTexture {
       const fine = random(x, y, 17) - 0.5;
       const broad =
         Math.sin((x / textureSize) * Math.PI * 12) * Math.sin((y / textureSize) * Math.PI * 14);
-      const grain = kind === 'metal' ? 0.16 : kind === 'plastic' ? 0.34 : 0.26;
-      height[index] = 0.5 + fine * grain + broad * (kind === 'metal' ? 0.025 : 0.08);
+      const grain =
+        kind === 'aluminum' || kind === 'coated' ? 0.16 : kind === 'plastic' ? 0.34 : 0.26;
+      height[index] =
+        0.5 + fine * grain + broad * (kind === 'aluminum' || kind === 'coated' ? 0.025 : 0.08);
       roughness[index] = 0.5 + fine * 0.65 + broad * 0.12;
     }
   }
-  if (kind === 'metal') {
+  if (kind === 'aluminum') {
     // Short, uneven tool marks; the texture repeats seamlessly around each part.
     for (let line = 0; line < 65; line++) {
       const y = Math.floor(random(line, 1, 101) * textureSize);
@@ -180,9 +183,10 @@ export function applySurfaceFinish(
     material.metalnessMap
   )
     return;
-  kind ??=
-    material.metalness >= 0.4
-      ? 'metal'
+  kind ??= /^raw aluminum$/i.test(material.name)
+    ? 'aluminum'
+    : material.metalness >= 0.4
+      ? 'coated'
       : material.roughness >= 0.7 || /rubber|vinyl|tire/i.test(material.name)
         ? 'rubber'
         : 'plastic';

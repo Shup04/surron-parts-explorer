@@ -14,8 +14,8 @@ function compile(material: MeshStandardMaterial) {
 }
 
 describe('procedural surface finish', () => {
-  it('adds UV-free metal scratches and preserves them on inspection clones', () => {
-    const metal = new MeshStandardMaterial({ metalness: 0.85, roughness: 0.3 });
+  it('adds UV-free raw-aluminum scratches and preserves them on inspection clones', () => {
+    const metal = new MeshStandardMaterial({ name: 'Raw aluminum', metalness: 1, roughness: 0.58 });
     applySurfaceFinish(metal, 1);
     const shader = compile(metal);
     expect(shader.vertexShader).toContain(
@@ -38,6 +38,19 @@ describe('procedural surface finish', () => {
     expect(cloneShader.uniforms.uFinishUnitScale.value).toBe(1);
     expect(cloneShader.fragmentShader).toContain('finishSample()');
     expect(selected.customProgramCacheKey()).toBe(metal.customProgramCacheKey());
+  });
+
+  it('does not draw generic scratch lines on coated metal', () => {
+    const coated = new MeshStandardMaterial({
+      name: 'Black Metal',
+      metalness: 0.45,
+      roughness: 0.36,
+    });
+    applySurfaceFinish(coated, 1);
+    const shader = compile(coated);
+    const pixels = shader.uniforms.uFinishTexture.value.image.data as Uint8Array;
+    expect(shader.uniforms.uFinishWear.value).toBe(0);
+    expect(pixels.every((value, index) => index % 4 !== 2 || value === 0)).toBe(true);
   });
 
   it('uses different grain for plastic and rubber and leaves authored textures alone', () => {

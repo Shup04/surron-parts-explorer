@@ -28,32 +28,34 @@ test.describe('short viewport layouts', () => {
     await page.getByRole('button', { name: 'Parts', exact: true }).click();
     await expect(page.getByRole('combobox', { name: 'Catalog model year' })).toHaveValue('2021');
     const tree = page.locator('.parts-tree');
-    await tree.getByRole('button', { name: 'Expand Front wheel', exact: true }).click();
-    const bearings = tree.getByRole('button', { name: 'Wheel bearings', exact: true });
+    await tree.getByRole('button', { name: 'Expand Frame and subframe', exact: true }).click();
+    const bearings = tree.getByRole('button', { name: 'Main frame', exact: true });
     await bearings.scrollIntoViewIfNeeded();
     await expect(bearings).toBeInViewport();
     await expect(page.getByRole('button', { name: 'Close parts navigation' })).toBeInViewport();
     await page.screenshot({ path: testInfo.outputPath('landscape-filtered-navigation.png') });
     await bearings.click();
-    await expect(page.getByRole('heading', { level: 2, name: 'Wheel bearings' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 2, name: 'Main Frame' })).toBeVisible();
     await expect(page.locator('#parts-navigation')).toBeHidden();
   });
 
   test('missing geometry actions remain reachable without overlapping the viewer toolbar', async ({
     page,
   }, testInfo) => {
-    await page.goto('/?nav=nav.jackshaft.bearings');
+    await page.goto('/?part=occ-lbx2021-p15-r16');
     await page.getByRole('button', { name: 'Close component details' }).click();
     const empty = page.getByTestId('geometry-unassigned');
     const information = empty.getByRole('button', { name: 'View part information' });
     await information.scrollIntoViewIfNeeded();
     await expect(information).toBeInViewport();
     await information.click();
-    await expect(page.getByRole('heading', { level: 2, name: 'Jackshaft bearings' })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 2, name: 'Midshaft right bushing' }),
+    ).toBeVisible();
     await expect(page.getByRole('button', { name: 'Close component details' })).toBeInViewport();
     await page.getByRole('button', { name: 'Close component details' }).click();
     await empty.getByText('Model options', { exact: true }).click();
-    const editor = empty.getByRole('link', { name: 'Add Jackshaft bearings model' });
+    const editor = empty.getByRole('link', { name: 'Add a part model' });
     await editor.scrollIntoViewIfNeeded();
     await expect(editor).toBeInViewport();
     await page.screenshot({ path: testInfo.outputPath('landscape-missing-geometry.png') });
@@ -63,7 +65,7 @@ test.describe('short viewport layouts', () => {
     page,
   }, testInfo) => {
     await page.setViewportSize({ width: 390, height: 600 });
-    await page.goto('/?nav=nav.jackshaft.bearings');
+    await page.goto('/?part=occ-lbx2021-p15-r16');
     await page.getByRole('button', { name: 'Close component details' }).click();
     const empty = page.getByTestId('geometry-unassigned');
     const icon = await empty.locator(':scope > svg').boundingBox();
@@ -74,12 +76,14 @@ test.describe('short viewport layouts', () => {
     await information.scrollIntoViewIfNeeded();
     await expect(information).toBeInViewport();
     await information.click();
-    await expect(page.getByRole('heading', { level: 2, name: 'Jackshaft bearings' })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 2, name: 'Midshaft right bushing' }),
+    ).toBeVisible();
     await page.getByRole('button', { name: 'Close component details' }).click();
     await empty.getByText('Model options', { exact: true }).click();
-    const editor = empty.getByRole('link', { name: 'Add Jackshaft bearings model' });
+    const editor = empty.getByRole('link', { name: 'Add a part model' });
     await editor.scrollIntoViewIfNeeded();
     await expect(editor).toBeInViewport();
-    await expect(editor).toHaveAttribute('href', '/editor?part=nav.jackshaft.bearings');
+    await expect(editor).toHaveAttribute('href', '/editor');
   });
 });

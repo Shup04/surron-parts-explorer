@@ -111,6 +111,7 @@ interface DetailsProps {
   onNavigate: (node: NavigationNode) => void;
   onSelectOccurrence: (id: string) => void;
   onBrowseParts?: (nodeId: string | null) => void;
+  modeledOnly?: boolean;
 }
 
 /** Each button opens one exact source occurrence; source quantities are never summed. */
@@ -208,7 +209,23 @@ export function CuratedAssemblyDetails({
   onNavigate,
   onSelectOccurrence,
   onBrowseParts,
+  modeledOnly,
 }: DetailsProps) {
+  if (modeledOnly && node)
+    return (
+      <>
+        <h2>{node.name}</h2>
+        <p className="muted">
+          {node.modelPartIds?.length ?? 0} modeled{' '}
+          {node.modelPartIds?.length === 1 ? 'part' : 'parts'}
+        </p>
+        {node.children.length > 0 && onBrowseParts && (
+          <button className="text-button" onClick={() => onBrowseParts(node.id)}>
+            Browse components <ChevronRight size={14} aria-hidden="true" />
+          </button>
+        )}
+      </>
+    );
   if (!node)
     return (
       <>

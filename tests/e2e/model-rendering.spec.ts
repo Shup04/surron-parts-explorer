@@ -30,7 +30,7 @@ test('large imported geometry remains rendered after camera framing, hovering an
 }, testInfo) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.goto('/editor?part=nav.body.seat');
+  await page.goto('/editor?workspace=local&part=nav.body.seat');
   await page.getByLabel('Import part GLB').setInputFiles({
     name: 'large-seat.glb',
     mimeType: 'model/gltf-binary',

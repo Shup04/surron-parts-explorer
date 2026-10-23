@@ -33,11 +33,17 @@ import { PartDetails } from './PartDetails';
 import { Button, IconButton } from './ui/Button';
 import { CuratedPartsTree, CuratedAssemblyDetails } from './CuratedParts';
 import {
-  buildCuratedNavigation,
   navigationAncestors,
   navigationForOccurrence,
   type NavigationNode,
 } from '@/navigation/model';
+import {
+  assemblyExplosion,
+  buildModeledNavigation,
+  closedAssemblyGroups,
+  geometrySelectionAssembly,
+  modeledScope,
+} from '@/navigation/modeled';
 import { resolveNavigationLocation } from '@/navigation/location';
 import { verifiedConfigurations } from '@/navigation/configurations';
 import type { CatalogFilters } from '@/oem/types';
@@ -69,6 +75,10 @@ import type { AssetDefinition, Catalog, MappingConfig, ViewerDiagnostics } from 
 import { assetRegistry } from '@/config/assets';
 import { withProjectParts } from '@/config/project-parts';
 
+const registeredPartIds = new Set(
+  assetRegistry.flatMap((entry) => entry.mapping.mappings.map((mapping) => mapping.partId)),
+);
+
 const Viewer = dynamic(() => import('@/viewer/Viewer'), {
   ssr: false,
   loading: () => (
@@ -80,6 +90,7 @@ const Viewer = dynamic(() => import('@/viewer/Viewer'), {
 });
 
 export default function Explorer() {
+  const [initialized, setInitialized] = useState(false);
   const [catalog, setCatalog] = useState<Catalog>(() => withProjectParts(oemCatalog));
   const [demoMode, setDemoMode] = useState(false);
   const [database, setDatabase] = useState(oemDatabase);
@@ -88,6 +99,11 @@ export default function Explorer() {
   const [configurationId, setConfigurationId] = useState('');
   const [localAsset, setLocalAsset] = useState<AssetDefinition>();
   const [localWorkspace, setLocalWorkspace] = useState(false);
+  const editorHref = demoMode
+    ? '/editor?demo=1'
+    : localWorkspace
+      ? '/editor?workspace=local'
+      : '/editor';
   const [mapping, setMapping] = useState<MappingConfig>();
   const [assetMessage, setAssetMessage] = useState('');
   const [assemblyId, setAssemblyId] = useState(demoCatalog.motorcycleId);
@@ -118,31 +134,31 @@ export default function Explorer() {
   const detailsButton = useRef<HTMLButtonElement>(null);
   const revealNode = useRef<string | null>(null);
   const index = useMemo(() => buildCatalogIndex(catalog), [catalog]);
-  const curatedEnabled =
-    !demoMode &&
-    (!localWorkspace ||
-      catalog.parts.some(
-        (part) => part.specifications['Catalog identity'] || part.specifications['Model role'],
-      ));
+  const modeledPartIds = useMemo(
+    () =>
+      localWorkspace
+        ? new Set(localAsset ? (mapping?.mappings.map((entry) => entry.partId) ?? []) : [])
+        : registeredPartIds,
+    [localWorkspace, localAsset, mapping],
+  );
   const navigation = useMemo(
     () =>
-      curatedEnabled
-        ? buildCuratedNavigation(database, catalog, {
+      !demoMode
+        ? buildModeledNavigation(database, catalog, modeledPartIds, {
             modelYear: filters.modelYear,
             configurationId,
             configurations: verifiedConfigurations,
           })
         : null,
-    [curatedEnabled, database, catalog, filters.modelYear, configurationId],
+    [demoMode, database, catalog, modeledPartIds, filters.modelYear, configurationId],
   );
   const assembly = index.byId.get(assemblyId) ?? index.byId.get(catalog.motorcycleId)!;
   const selection = selectedId ? index.byId.get(selectedId) : undefined;
   const detail = selection ?? assembly;
-  const activeNode =
-    selection?.kind === 'component' ? undefined : navigation?.byId.get(navId ?? assemblyId);
   const selectionNode =
     selectedId && navigation ? navigationForOccurrence(navigation, selectedId) : undefined;
-  const presentationNode = activeNode ?? selectionNode;
+  const activeNode = modeledScope(navigation, assemblyId, selectedId, navId);
+  const presentationNode = selectionNode ?? activeNode;
   const navigationPath =
     presentationNode && navigation
       ? [
@@ -152,15 +168,24 @@ export default function Explorer() {
           presentationNode,
         ]
       : [];
+  const detailParentNode = navigationPath.at(-2);
   const overview =
     assemblyId === catalog.motorcycleId &&
     !activeNode &&
     (!selection || selection.kind === 'motorcycle');
   const detailsVisible = detailOpen && !overview;
   const isFull = assemblyId === catalog.motorcycleId;
+  const modeledCount = new Set(navigation?.roots.flatMap((node) => node.modelPartIds ?? [])).size;
   const results = useMemo(
-    () => (query.trim() ? searchParts(index, query, 101) : []),
-    [index, query],
+    () =>
+      query.trim()
+        ? searchParts(index, query, Number.MAX_SAFE_INTEGER)
+            .filter(
+              (part) => !navigation || modeledPartIds.has(part.id) || navigation.byId.has(part.id),
+            )
+            .slice(0, 101)
+        : [],
+    [index, query, navigation, modeledPartIds],
   );
   const breadcrumbs = [...getAncestors(index, assembly.id), assembly];
   const childParts = getChildren(index, detail.id);
@@ -241,10 +266,10 @@ export default function Explorer() {
       let activeCatalog = demo
         ? demoCatalog
         : withProjectParts(toExplorerCatalog(reviewed, initialFilters));
-      let usingLocalWorkspace = false;
+      let activeModeledIds = registeredPartIds;
       setCatalog(activeCatalog);
       const requestedLocal = params.get('workspace') === 'local';
-      if (requestedLocal || (!demo && !params.has('workspace'))) {
+      if (requestedLocal) {
         try {
           const { loadEditorProject, loadSavedEditorAsset } = await import('@/editor/storage');
           const project = loadEditorProject();
@@ -262,7 +287,9 @@ export default function Explorer() {
               return;
             }
             activeCatalog = project.catalog;
-            usingLocalWorkspace = true;
+            activeModeledIds = new Set(
+              loaded ? project.mapping.mappings.map((entry) => entry.partId) : [],
+            );
             setCatalog(activeCatalog);
             setMapping(project.mapping);
             setLocalWorkspace(true);
@@ -293,18 +320,13 @@ export default function Explorer() {
         }
       }
       if (disposed) return;
-      const activeNavigation =
-        !demo &&
-        (!usingLocalWorkspace ||
-          activeCatalog.parts.some(
-            (part) => part.specifications['Catalog identity'] || part.specifications['Model role'],
-          ))
-          ? buildCuratedNavigation(reviewed, activeCatalog, {
-              modelYear: initialFilters.modelYear,
-              configurationId: params.get('configuration') ?? '',
-              configurations: verifiedConfigurations,
-            })
-          : null;
+      const activeNavigation = !demo
+        ? buildModeledNavigation(reviewed, activeCatalog, activeModeledIds, {
+            modelYear: initialFilters.modelYear,
+            configurationId: params.get('configuration') ?? '',
+            configurations: verifiedConfigurations,
+          })
+        : null;
       const state = resolveNavigationLocation(
         window.location.search,
         activeCatalog,
@@ -312,6 +334,11 @@ export default function Explorer() {
       );
       setAssemblyId(state.assemblyId);
       setSelectedId(state.partId);
+      setExplosion(
+        assemblyExplosion(
+          modeledScope(activeNavigation, state.assemblyId, state.partId, params.get('nav')),
+        ),
+      );
       setDetailOpen(
         !!params.get('nav') ||
           (!!state.partId &&
@@ -326,6 +353,7 @@ export default function Explorer() {
           ),
         ]),
       );
+      setInitialized(true);
     }
     void initialize();
     return () => {
@@ -346,8 +374,8 @@ export default function Explorer() {
           ? catalog
           : withProjectParts(toExplorerCatalog(database, nextFilters));
       if (!demoMode && !localWorkspace) setCatalog(active);
-      const activeNavigation = curatedEnabled
-        ? buildCuratedNavigation(database, active, {
+      const activeNavigation = !demoMode
+        ? buildModeledNavigation(database, active, modeledPartIds, {
             modelYear: nextFilters.modelYear,
             configurationId: params.get('configuration') ?? '',
             configurations: verifiedConfigurations,
@@ -372,19 +400,36 @@ export default function Explorer() {
       setHoveredId(null);
       setHiddenIds([]);
       setIsolatedId(null);
-      setExplosion(0);
+      setExplosion(
+        assemblyExplosion(
+          modeledScope(activeNavigation, state.assemblyId, state.partId, params.get('nav')),
+        ),
+      );
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
-  }, [catalog, database, demoMode, localWorkspace, curatedEnabled, compact]);
+  }, [catalog, database, demoMode, localWorkspace, modeledPartIds, compact]);
 
   const navigate = useCallback(
     (partId: string, presentationId?: string) => {
       const part = index.byId.get(partId);
       if (!part) return;
-      setNavId(presentationId ?? null);
+      const partNode = navigation ? navigationForOccurrence(navigation, partId) : undefined;
+      // Selecting a child keeps the open assembly spread and camera context.
+      const context =
+        part.kind === 'component' && activeNode?.modelPartIds?.includes(partId)
+          ? activeNode
+          : undefined;
+      const nextNavId =
+        context?.id ??
+        presentationId ??
+        partNode?.id ??
+        (navigation?.byId.has(part.id) ? part.id : null);
+      const nextNode = nextNavId ? navigation?.byId.get(nextNavId) : undefined;
+      setNavId(nextNavId);
       const nextAssembly =
-        part.kind === 'component' ? (part.parentId ?? catalog.motorcycleId) : part.id;
+        nextNode?.scopeId ??
+        (part.kind === 'component' ? (part.parentId ?? catalog.motorcycleId) : part.id);
       const nextPart = part.kind === 'motorcycle' ? null : part.id;
       const url = createExplorerUrl(
         { assemblyId: nextAssembly, partId: nextPart },
@@ -396,7 +441,7 @@ export default function Explorer() {
       if (filters.modelYear) target.searchParams.set('year', String(filters.modelYear));
       if (filters.sourceId) target.searchParams.set('source', filters.sourceId);
       if (configurationId) target.searchParams.set('configuration', configurationId);
-      if (presentationId) target.searchParams.set('nav', presentationId);
+      if (nextNavId) target.searchParams.set('nav', nextNavId);
       if (
         `${window.location.pathname}${window.location.search}` !==
         `${target.pathname}${target.search}`
@@ -412,10 +457,11 @@ export default function Explorer() {
         nextAssembly !== assemblyId ? [] : previous.filter((id) => id !== partId),
       );
       setHoveredId(null);
-      if (nextAssembly !== assemblyId) setExplosion(0);
+      if (nextAssembly !== assemblyId || nextNavId !== (activeNode?.id ?? null))
+        setExplosion(assemblyExplosion(nextNode));
       if (compact) setNavOpen(false);
       setQuery('');
-      setDetailOpen(!!presentationId || part.kind === 'component');
+      setDetailOpen(!!nextNavId || part.kind === 'component');
       setNotice(`${part.name} selected`);
     },
     [
@@ -426,6 +472,8 @@ export default function Explorer() {
       demoMode,
       filters,
       configurationId,
+      navigation,
+      activeNode,
       compact,
     ],
   );
@@ -539,7 +587,7 @@ export default function Explorer() {
     const state = resolveNavigationLocation(
       url.search,
       active,
-      buildCuratedNavigation(database, active, {
+      buildModeledNavigation(database, active, modeledPartIds, {
         modelYear: next.modelYear,
         configurationId,
         configurations: verifiedConfigurations,
@@ -557,19 +605,12 @@ export default function Explorer() {
   const activeMapping = mapping ?? assetEntry?.mapping;
   const hasImportedGeometry = !!(localAsset ?? assetEntry?.asset);
   const scopePartIds = useMemo(
-    () =>
-      hasImportedGeometry && activeNode
-        ? [
-            ...new Set([
-              ...(activeNode.kind === 'system' && activeNode.scopeId !== catalog.motorcycleId
-                ? [activeNode.scopeId]
-                : []),
-              ...activeNode.references.flatMap((reference) => reference.occurrenceIds),
-              ...(activeNode.modelPartIds ?? []),
-            ]),
-          ]
-        : undefined,
-    [hasImportedGeometry, activeNode, catalog.motorcycleId],
+    () => (hasImportedGeometry && activeNode ? activeNode.modelPartIds : undefined),
+    [hasImportedGeometry, activeNode],
+  );
+  const explosionGroups = useMemo(
+    () => (hasImportedGeometry ? closedAssemblyGroups(navigation, activeNode) : undefined),
+    [hasImportedGeometry, navigation, activeNode],
   );
   const mappedIds = new Set(activeMapping?.mappings.map((entry) => entry.partId) ?? []);
   const geometryIds = (scopePartIds ?? [detail.id]).flatMap((id) => [
@@ -578,11 +619,14 @@ export default function Explorer() {
   ]);
   const hasGeometry =
     demoMode || (hasImportedGeometry && geometryIds.some((id) => mappedIds.has(id)));
+  const canExplode = demoMode || new Set(geometryIds.filter((id) => mappedIds.has(id))).size > 1;
   const showDemonstration = !hasImportedGeometry && !demoMode && overview && !selection;
   const showViewer = hasGeometry || showDemonstration || (overview && hasImportedGeometry);
   const sceneCatalog = showDemonstration ? demoCatalog : catalog;
   const selectGeometry = (id: string) => {
-    if (index.byId.has(id)) navigate(id);
+    const parent = geometrySelectionAssembly(navigation, activeNode, id);
+    if (parent) navigateNode(parent);
+    else if (index.byId.has(id)) navigate(id);
     else if (showDemonstration) {
       const parents = getAncestors(buildCatalogIndex(demoCatalog), id).reverse();
       const match = parents.find((parent) => index.byId.has(parent.id) && parent.id !== 'lbx');
@@ -763,7 +807,7 @@ export default function Explorer() {
   );
 
   return (
-    <main className="explorer-shell explorer-ux">
+    <main className="explorer-shell explorer-ux" aria-busy={!initialized}>
       <header className="topbar" inert={compact && (navOpen || detailsVisible)}>
         <Link
           className="brand"
@@ -788,7 +832,7 @@ export default function Explorer() {
           </summary>
           <div className="tools-menu">
             <Link href="/catalog">Catalog review</Link>
-            <Link href={demoMode ? '/editor?demo=1' : '/editor'}>Model editor</Link>
+            <Link href={editorHref}>Model editor</Link>
             <a href="/?workspace=project">Project parts</a>
             {!demoMode && <a href="/?workspace=local">Saved local parts</a>}
             {!demoMode && <Link href="/?demo=1">Geometry demonstration</Link>}
@@ -825,7 +869,9 @@ export default function Explorer() {
           <div className="panel-heading">
             <span className="eyebrow">Parts</span>
             <span className="count-tag">
-              {navigation ? `${navigation.roots.length} systems` : catalog.parts.length - 1}
+              {navigation
+                ? `${modeledCount} ${modeledCount === 1 ? 'part' : 'parts'}`
+                : catalog.parts.length - 1}
             </span>
             <IconButton
               className="icon-button"
@@ -861,7 +907,7 @@ export default function Explorer() {
               <kbd>/</kbd>
             )}
           </div>
-          {!demoMode && !localWorkspace && (
+          {!demoMode && !localWorkspace && (!!filters.modelYear || !!filters.sourceId) && (
             <details
               className="catalog-filter-disclosure"
               open={!!filters.modelYear || !!filters.sourceId || undefined}
@@ -944,8 +990,7 @@ export default function Explorer() {
             {query.trim() ? (
               <div className="search-results">
                 <p className="eyebrow" role="status" aria-live="polite" aria-atomic="true">
-                  {results.length > 100 ? '100+' : results.length}{' '}
-                  {navigation ? 'Reference matches' : 'Matching parts'}
+                  {results.length > 100 ? '100+' : results.length} Matching parts
                 </p>
                 {results.length ? (
                   results.slice(0, 100).map((part) => (
@@ -976,8 +1021,9 @@ export default function Explorer() {
                   ))
                 ) : (
                   <p className="empty-state">
-                    No matching parts. Try a part name or OEM number
-                    {filters.modelYear || filters.sourceId ? ', or clear the catalog filters' : ''}.
+                    {navigation
+                      ? 'No modeled parts match. Parts appear here as their models are added.'
+                      : 'No matching parts. Try a part name or OEM number.'}
                   </p>
                 )}
                 {results.length > 100 && (
@@ -986,6 +1032,11 @@ export default function Explorer() {
               </div>
             ) : (
               <ul className="parts-tree">
+                {navigation && !navigation.roots.length && (
+                  <li className="empty-state">
+                    No parts have models yet. <Link href={editorHref}>Add a part model</Link>.
+                  </li>
+                )}
                 {navigation ? (
                   <CuratedPartsTree
                     nodes={navigation.roots}
@@ -1097,11 +1148,17 @@ export default function Explorer() {
             {overview ? 'Sur-Ron Light Bee X' : (activeNode?.name ?? assembly.name)}
           </h1>
           <div className={`canvas-wrap ${!overview && hasGeometry ? 'assembly-canvas' : ''}`}>
-            {showViewer ? (
+            {!initialized ? (
+              <div className="viewer-loading" role="status">
+                <span className="loader" />
+                Loading parts…
+              </div>
+            ) : showViewer ? (
               <Viewer
                 catalog={sceneCatalog}
                 assemblyId={assemblyId}
                 scopePartIds={scopePartIds}
+                explosionGroups={explosionGroups}
                 selectedId={selectedId}
                 hoveredId={hoveredId}
                 explosion={explosion}
@@ -1122,7 +1179,9 @@ export default function Explorer() {
                 <Link
                   className="text-button"
                   href={
-                    activeNode ? `/editor?part=${encodeURIComponent(activeNode.id)}` : '/editor'
+                    activeNode
+                      ? `${editorHref}${editorHref.includes('?') ? '&' : '?'}part=${encodeURIComponent(activeNode.id)}`
+                      : editorHref
                   }
                 >
                   Add {activeNode?.name ?? 'a part'} model
@@ -1266,7 +1325,7 @@ export default function Explorer() {
                 )}
               </div>
             )}
-            {!overview && hasGeometry ? (
+            {!overview && hasGeometry && canExplode ? (
               <div className="explosion-controls">
                 <div className="explosion-title">
                   <strong>Exploded view</strong>
@@ -1368,6 +1427,17 @@ export default function Explorer() {
                 actions={detailActions}
                 onNavigate={navigateOccurrence}
               />
+            ) : selection?.kind === 'component' ? (
+              <PartDetails
+                key={detail.id}
+                part={detail}
+                actions={detailActions}
+                parentName={detailParentNode?.name ?? index.byId.get(detail.parentId ?? '')?.name}
+                onNavigate={(id) => {
+                  if (detailParentNode && id === detail.parentId) navigateNode(detailParentNode);
+                  else navigate(id);
+                }}
+              />
             ) : navigation && (activeNode || isFull) ? (
               <CuratedAssemblyDetails
                 key={activeNode?.id ?? 'overview'}
@@ -1377,6 +1447,7 @@ export default function Explorer() {
                 onNavigate={navigateNode}
                 onSelectOccurrence={navigateOccurrence}
                 onBrowseParts={browseParts}
+                modeledOnly
               />
             ) : !demoMode && !localWorkspace ? (
               <>

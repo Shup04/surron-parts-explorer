@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { seatGlb } from './fixtures/part-glb';
 
 test('project parts load together and isolate the frame and purple swingarm', async ({
   page,
@@ -13,7 +14,7 @@ test('project parts load together and isolate the frame and purple swingarm', as
   await page.goto('/?workspace=project');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '39');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '72');
   await page.screenshot({ path: testInfo.outputPath('project-assembly.png'), fullPage: true });
   const tree = page.locator('.parts-tree');
   await tree.getByRole('button', { name: 'Expand Frame and subframe', exact: true }).click();
@@ -31,8 +32,50 @@ test('project parts load together and isolate the frame and purple swingarm', as
   await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
   await page.goto('/?workspace=project&nav=frame');
   await expect(viewer).toHaveAttribute('data-visible-meshes', '7');
+  await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
+  await page.screenshot({
+    path: testInfo.outputPath('frame-assembly-exploded.png'),
+    fullPage: true,
+  });
   await page.goto('/');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
-  await expect(viewer).toHaveAttribute('data-visible-meshes', '39');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '72');
   expect(errors).toEqual([]);
+});
+
+test('a saved local import cannot override the styled project on normal entry', async ({
+  page,
+}) => {
+  await page.goto('/editor?workspace=local');
+  await page
+    .getByRole('combobox', { name: '1. Choose the bike part' })
+    .selectOption('nav.body.seat');
+  await page.getByLabel('Import part GLB').setInputFiles({
+    name: 'older-seat.glb',
+    mimeType: 'model/gltf-binary',
+    buffer: seatGlb(false),
+  });
+  await expect(page.getByLabel('Added parts').locator('li')).toHaveCount(1);
+  await page.getByRole('button', { name: 'Save & preview', exact: true }).click();
+  const viewer = page.getByTestId('viewer');
+  await expect(page).toHaveURL(/workspace=local/);
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
+
+  await page.goto('/');
+  await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '72');
+  await expect(page).not.toHaveURL(/workspace=local/);
+  await page.reload();
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '72');
+  await page.goto('/?nav=nav.body.seat');
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.locator('.part-details')).toContainText(
+    'Supplied 3D part from the current Blender assembly.',
+  );
+
+  await page.getByText('Tools', { exact: true }).click();
+  await page.getByRole('link', { name: 'Saved local parts', exact: true }).click();
+  await expect(page).toHaveURL(/workspace=local/);
+  await expect(viewer).toHaveAttribute('data-visible-meshes', '1');
+  await expect(page.locator('.asset-notice')).toContainText('Local model');
 });

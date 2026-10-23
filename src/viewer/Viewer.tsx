@@ -108,8 +108,16 @@ function Scene({
   const hovered = props.hoveredId ?? localHover;
   const hiddenKey = props.hiddenIds.join('|');
   const targetPositions = useMemo(
-    () => explosionTargets(records, index, props.assemblyId, props.explosion, props.scopePartIds),
-    [records, index, props.assemblyId, props.explosion, props.scopePartIds],
+    () =>
+      explosionTargets(
+        records,
+        index,
+        props.assemblyId,
+        props.explosion,
+        props.scopePartIds,
+        props.explosionGroups,
+      ),
+    [records, index, props.assemblyId, props.explosion, props.scopePartIds, props.explosionGroups],
   );
   const animation = useRef<{
     elapsed: number;
@@ -185,6 +193,7 @@ function Scene({
       moving.some(
         (record) =>
           record.automatic ||
+          record.explosion?.verification !== 'mechanically-verified' ||
           (!props.scopePartIds &&
             selectionAtLevel(index, record.partId, props.assemblyId) !== record.partId),
       ),
@@ -241,7 +250,11 @@ function Scene({
     const allBounds = visibleBounds(object);
     let bounds = visibleBounds(
       object,
-      props.selectedId !== props.assemblyId ? props.selectedId : null,
+      props.scopePartIds && props.scopePartIds.length > 1
+        ? null
+        : props.selectedId !== props.assemblyId
+          ? props.selectedId
+          : null,
       index,
     );
     if (bounds.isEmpty()) bounds = allBounds.clone();

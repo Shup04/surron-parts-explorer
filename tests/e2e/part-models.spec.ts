@@ -14,8 +14,12 @@ test('simple uploads retain separate GLBs, replace one part, and preserve assign
 }, testInfo) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
+  const projectRequests: string[] = [];
+  page.on('request', (request) => {
+    if (new URL(request.url()).pathname.startsWith('/parts/')) projectRequests.push(request.url());
+  });
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/editor');
+  await page.goto('/editor?workspace=local');
   await expect(page.getByRole('heading', { name: 'Add bike parts' })).toBeVisible();
   await expect(
     page.getByRole('complementary', { name: 'Mapping and catalog inspector' }),
@@ -49,7 +53,7 @@ test('simple uploads retain separate GLBs, replace one part, and preserve assign
       .toBe('model-nav.body.seat');
   }).toPass({ timeout: 10_000 });
   await expect(page.locator('.part-details h2')).toHaveText('Seat');
-  await page.goto('/editor');
+  await page.goto('/editor?workspace=local');
   await expect(page.getByLabel('Added parts').locator('li')).toHaveCount(2);
   await role.selectOption('nav.body.seat');
   await page.getByLabel('Import part GLB').setInputFiles({
@@ -71,7 +75,7 @@ test('simple uploads retain separate GLBs, replace one part, and preserve assign
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: testInfo.outputPath('simple-parts-phone.png'), fullPage: true });
   await page.getByRole('button', { name: 'Save & preview', exact: true }).click();
-  await page.goto('/?nav=nav.body.seat');
+  await page.goto('/?workspace=local&nav=nav.body.seat');
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
   await page.reload();
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
@@ -87,13 +91,14 @@ test('simple uploads retain separate GLBs, replace one part, and preserve assign
       .originalName,
   ).toBe('part.glb');
   expect(errors).toEqual([]);
+  expect(projectRequests).toEqual([]);
 });
 
 test('an existing imported seat can be assigned without uploading or selecting meshes again', async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/editor?advanced=1');
+  await page.goto('/editor?workspace=local&advanced=1');
   await page
     .getByLabel('Import model and companion files')
     .setInputFiles({ name: 'my-seat.glb', mimeType: 'model/gltf-binary', buffer: seatGlb() });
@@ -102,11 +107,8 @@ test('an existing imported seat can be assigned without uploading or selecting m
   );
   await page.getByRole('button', { name: 'Save locally', exact: true }).click();
   await expect(page.locator('.editor-save-state')).toHaveText('Local only');
-  await page.goto('/?nav=nav.body.seat');
-  const empty = page.getByTestId('geometry-unassigned');
-  await expect(empty).toBeVisible();
-  await empty.getByText('Model options', { exact: true }).click();
-  await empty.getByRole('link', { name: 'Add Seat model', exact: true }).click();
+  // Unmodeled roles remain in the editor's picker, not the public parts tree.
+  await page.goto('/editor?workspace=local&part=nav.body.seat');
   await expect(page.getByRole('combobox', { name: '1. Choose the bike part' })).toHaveValue(
     'nav.body.seat',
   );

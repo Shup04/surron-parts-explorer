@@ -164,7 +164,8 @@ describe('curated motorcycle presentation', () => {
       expect(navigationForOccurrence(model, occurrence.id)).toBeDefined();
       expect(parseExplorerUrl(`?part=${occurrence.id}`, oemCatalog).partId).toBe(occurrence.id);
     }
-    expect(shaft.children.some((node) => node.kind === 'service')).toBe(true);
+    const assembly = shaft.children.find((node) => node.id === 'nav.jackshaft.assembly')!;
+    expect(assembly.children.some((node) => node.kind === 'service')).toBe(true);
   });
 
   it('keeps front and rear brake locations distinct and unresolved caliper positions out of both', () => {

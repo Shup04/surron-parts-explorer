@@ -15,6 +15,7 @@ async function expectNoHorizontalOverflow(page: Page) {
 }
 
 async function openParts(page: Page) {
+  await expect(page.locator('.explorer-shell')).toHaveAttribute('aria-busy', 'false');
   if (!(await page.locator('.catalog-panel').isVisible())) {
     await page.getByRole('button', { name: 'Parts', exact: true }).click();
   }
@@ -141,9 +142,9 @@ for (const viewport of viewports) {
         .getByRole('textbox', { name: 'Search parts', exact: true })
         .fill('61234-YQ2A-0000');
       const result = page.locator('.search-result').filter({ hasText: '61234-YQ2A-0000' });
-      await expect(result).toHaveCount(1);
-      await capture(page, testInfo, '05-oem-search');
-      await result.click();
+      await expect(result).toHaveCount(0);
+      await capture(page, testInfo, '05-modeled-search');
+      await page.goto('/?part=occ-lbx2021-p15-r16&source=lbx2021&year=2021');
       await expect(page.locator('.oem-number')).toHaveText('61234-YQ2A-0000');
       await expect(page.locator('.oem-number')).toHaveCSS('font-family', /monospace/i);
       await expect(page.getByTestId('geometry-unassigned')).toBeVisible();

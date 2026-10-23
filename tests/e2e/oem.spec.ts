@@ -7,13 +7,9 @@ const bushingNumber = '61234-YQ2A-0000';
 const sourceName = 'Sur-Ron Light Bee X Spare Parts Catalog (2021 reference)';
 
 async function selectHistoricalReference(page: Page) {
-  const filters = page.locator('.catalog-filter-disclosure');
-  if (!(await filters.evaluate((element) => (element as HTMLDetailsElement).open)))
-    await filters.getByText('Catalog filters', { exact: true }).click();
-  await page.getByLabel('Catalog source', { exact: true }).selectOption('lbx2021');
-  await page.getByLabel('Catalog model year', { exact: true }).selectOption('2021');
-  await page.getByRole('textbox', { name: 'Search parts', exact: true }).fill(bushingNumber);
-  await page.locator('.search-result').filter({ hasText: bushingNumber }).click();
+  await page.goto('/catalog');
+  await selectReviewBushing(page);
+  await page.getByRole('link', { name: 'Open in explorer' }).click();
 }
 
 async function selectReviewBushing(page: Page) {
@@ -65,42 +61,28 @@ test('real OEM lookup works without geometry and retains source page, quantity a
       .getByRole('heading', { level: 2 }),
   ).toHaveText('Midshaft right bushing');
   await expect(page).toHaveURL(link);
-  await expect(page.getByLabel('Catalog source', { exact: true })).toHaveValue('lbx2021');
-  await expect(page.getByLabel('Catalog model year', { exact: true })).toHaveValue('2021');
   expect(errors).toEqual([]);
 });
 
-test('source filters, occurrence navigation and browser history retain historical and MY26 separation', async ({
+test('the full reference catalog retains source and year filtering outside modeled-part search', async ({
   page,
 }) => {
-  await page.goto('/');
-  await selectHistoricalReference(page);
-  await page.getByRole('textbox', { name: 'Search parts', exact: true }).fill('B3-003-06-025-F3');
-  await page.locator('.search-result').filter({ hasText: 'B3-003-06-025-F3' }).click();
-  await expect(page).toHaveURL(/part=occ-lbx2021-p15-r17/);
-  await page.goBack();
+  await page.goto('/catalog');
+  await page.getByLabel('Filter model year', { exact: true }).selectOption('2026');
+  const search = page.getByRole('textbox', { name: 'Search OEM records' });
+  await search.fill('61280-Y029E-Z2');
+  const result = page.getByRole('table').getByRole('button', { name: /61280-Y029E-Z2/ });
+  await expect(result).toHaveCount(1);
+  await page.getByLabel('Filter model year', { exact: true }).selectOption('2025');
+  await expect(result).toHaveCount(0);
+  await page.getByLabel('Filter model year', { exact: true }).selectOption('unknown');
+  await search.fill(bushingNumber);
   await expect(
     page
-      .getByRole('complementary', { name: 'Component information' })
-      .getByRole('heading', { level: 2 }),
-  ).toHaveText('Midshaft right bushing');
-  await page.goForward();
-  await expect(page).toHaveURL(/part=occ-lbx2021-p15-r17/);
-  await page.getByLabel('Catalog source', { exact: true }).selectOption('');
-  await page.getByLabel('Catalog model year', { exact: true }).selectOption('2026');
-  await page.getByRole('textbox', { name: 'Search parts', exact: true }).fill('61280-Y029E-Z2');
-  const result = page.locator('.search-result').filter({ hasText: '61280-Y029E-Z2' });
-  await expect(result).toHaveCount(1);
-  await result.click();
-  await expect(page.getByRole('complementary', { name: 'Component information' })).toContainText(
-    '61280-Y029E-Z2',
-  );
-  await page.getByLabel('Catalog model year', { exact: true }).selectOption('2025');
-  await page.getByRole('textbox', { name: 'Search parts', exact: true }).fill('61280-Y029E-Z2');
-  await expect(page.locator('.search-result').filter({ hasText: '61280-Y029E-Z2' })).toHaveCount(0);
-  await page.getByLabel('Catalog model year', { exact: true }).selectOption('unknown');
-  await page.getByRole('textbox', { name: 'Search parts', exact: true }).fill(bushingNumber);
-  await expect(page.locator('.search-result').first()).toBeVisible();
+      .getByRole('table')
+      .getByRole('button', { name: new RegExp(bushingNumber) })
+      .first(),
+  ).toBeVisible();
 });
 
 test('mobile browser history restores a selected part and its detail sheet', async ({ page }) => {

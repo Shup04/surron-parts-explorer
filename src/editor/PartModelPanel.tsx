@@ -2,6 +2,7 @@ import { Upload, Check } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import type { NavigationModel, NavigationNode } from '@/navigation/model';
 import type { EditorProject } from './storage';
+import { partModelTarget } from './part-project';
 
 function uploadChoices(nodes: NavigationNode[]): NavigationNode[] {
   return nodes.flatMap((node) =>
@@ -29,8 +30,11 @@ export function PartModelPanel({
   busy: boolean;
 }) {
   const existingImport = !!project.assetFileName && !project.partModels;
-  const role = navigation.byId.get(roleId);
-  const replacing = project.partModels?.some((model) => model.id === roleId);
+  const { node: role, model: replacing } = partModelTarget(project, navigation, roleId);
+  const modelName = (partId: string) =>
+    project.catalog.parts.find((part) => part.id === partId)?.name;
+  const selectedName = (replacing && modelName(replacing.partId)) || role?.name;
+  const individualModels = project.partModels?.filter((model) => !navigation.byId.has(model.id));
   return (
     <aside className="editor-part-panel" aria-label="Add part models">
       <div>
@@ -45,6 +49,15 @@ export function PartModelPanel({
           disabled={busy}
         >
           <option value="">Choose a part…</option>
+          {!!individualModels?.length && (
+            <optgroup label="Current models">
+              {individualModels.map((model) => (
+                <option key={model.id} value={model.id}>
+                  {modelName(model.partId) ?? model.id}
+                </option>
+              ))}
+            </optgroup>
+          )}
           {navigation.roots.map((system) => (
             <optgroup key={system.id} label={system.name}>
               {uploadChoices([system]).map((node) => (
@@ -69,7 +82,7 @@ export function PartModelPanel({
         ) : (
           <>
             <Button variant="primary" disabled={!role || busy} onClick={onUpload}>
-              <Upload size={16} /> {replacing ? 'Replace' : 'Import'} {role?.name ?? 'part'} GLB
+              <Upload size={16} /> {replacing ? 'Replace' : 'Import'} {selectedName ?? 'part'} GLB
             </Button>
             <p className="editor-part-hint">
               Other parts stay in the workspace. Positions are kept as exported.
@@ -95,9 +108,10 @@ export function PartModelPanel({
                 <Check size={16} aria-hidden="true" />
                 <button
                   onClick={() => onRoleChange(model.id)}
-                  aria-label={`Choose ${navigation.byId.get(model.id)?.name ?? model.id}`}
+                  disabled={busy}
+                  aria-label={`Choose ${modelName(model.partId) ?? model.id}`}
                 >
-                  <strong>{navigation.byId.get(model.id)?.name ?? model.id}</strong>
+                  <strong>{modelName(model.partId) ?? model.id}</strong>
                   <small>{model.originalName}</small>
                 </button>
                 <span>Assigned</span>

@@ -11,16 +11,18 @@ import {
 } from '../src/config/project-parts';
 
 describe('supplied project assembly', () => {
-  it('maps all 39 individual assets to distinct draft part identities', () => {
+  it('maps the styled assembly, hardware and rear wheel without pulleys', () => {
     const catalog = withProjectParts(oemCatalog);
     expect(validateCatalog(catalog).success).toBe(true);
     expect(validateMapping(projectPartsMapping, catalog).success).toBe(true);
-    expect(projectPartsAsset.models).toHaveLength(39);
-    expect(new Set(projectPartsMapping.mappings.map((entry) => entry.objectKey)).size).toBe(39);
-    expect(new Set(projectPartsMapping.mappings.map((entry) => entry.partId)).size).toBe(39);
-    expect(projectParts.reduce((sum, part) => sum + part.triangles, 0)).toBe(1283637);
+    expect(projectPartsAsset.models).toHaveLength(85);
+    expect(new Set(projectPartsMapping.mappings.map((entry) => entry.objectKey)).size).toBe(85);
+    expect(new Set(projectPartsMapping.mappings.map((entry) => entry.partId)).size).toBe(85);
+    expect(projectParts.reduce((sum, part) => sum + part.triangles, 0)).toBe(1499093);
+    expect(projectParts.some((part) => part.id === 'jackshaft-pulley')).toBe(false);
+    expect(projectParts.some((part) => part.id === 'motor-pulley')).toBe(false);
     expect(projectParts.find((part) => part.id === 'main-frame')?.triangles).toBe(60000);
-    expect(catalog.parts.filter((part) => part.id.startsWith('project-'))).toHaveLength(39);
+    expect(catalog.parts.filter((part) => part.id.startsWith('project-'))).toHaveLength(85);
     expect(oemCatalog.parts.some((part) => part.id.startsWith('project-'))).toBe(false);
     expect(withProjectParts(catalog)).toEqual(catalog);
   });
@@ -48,7 +50,7 @@ describe('supplied project assembly', () => {
     expect(validateCatalog(filtered).success).toBe(true);
     expect(validateMapping(projectPartsMapping, filtered).success).toBe(true);
     expect(filtered.parts.filter((part) => part.parentId === filtered.motorcycleId)).toHaveLength(
-      39,
+      85,
     );
   });
 });

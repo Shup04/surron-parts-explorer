@@ -1,5 +1,45 @@
 # Verification record
 
+## Rear wheel and nested hub
+
+Verified on 2026-10-23: the mounted 18-inch/48T wheel opens as one assembly with eight groups. Hub remains a nested assembly with its existing body. Unit fixtures add future bearings and seals only in tests: they stay rigid in the wheel view, then separate after entering Hub. Shared displacement is checked with rotated/scaled parents, authored and automatic offsets, and repeated exact restoration.
+
+TypeScript, the production build and 59 focused tests pass. Seven distinct Chromium flows pass across the serial run and one corrected test rerun, covering wheel and jackshaft geometry selection, wheel → hub → body clicks, reload, isolation, reassembly and phone navigation. The full-wheel test explicitly reopens the tree branch after reload and waits for the WebGL viewport resize before capturing the explosion. Mounted, exploded, assembled and nested-hub views were inspected. No additional hub internals were published, and the original hub GLB remains unchanged. Existing Next.js dependency-security advisory remains; no deployment was performed.
+
+## Jackshaft assembly integration
+
+Assembly-first selection follow-up: 27 focused unit/integration tests and three Chromium flows pass, along with TypeScript and the production build. Every jackshaft member resolves to the parent before entry. A real exported screw is clicked in the canvas to verify parent entry, subsequent individual selection, and restoration of parent selection after returning to the motorcycle.
+
+Verified on 2026-10-22 (local time): 22 new GLBs contain the revision-02 shaft, three bearings, three spacers, two oil seals, twelve bolts, and the separate swingarm pivot washer. All 68 public assets match their hashes and byte counts. The 46 prior assets and three original Blender files remain unchanged. A separate repeat export produced identical records and a clean 22-part review scene.
+
+Production build/TypeScript, 53 focused unit/integration tests, formatting and diff checks pass. Actual GLB tests cover the nominal axial stack, bolt circles, finite geometry, manual-order explosion and exact repeated reassembly. All ten selected Chromium flows pass across focused serial runs: project hierarchy/search, local model hierarchy, phone navigation, editor loading/replacement, saved-workspace separation, full project rendering, and the new desktop/phone jackshaft flows. The jackshaft checks include selecting an individual bearing or bolt, retaining assembly scope after reload, isolation, reassembly, direct part links, and the details-panel parent link. Desktop assembled/exploded views, phone view and the complete bike were visually reviewed.
+
+The first system-Chrome run had renderer crashes while host memory/swap was pressured; a broader bundled-browser run ended with SIGTERM. Focused bundled-Chromium follow-ups passed. One old saved-model expectation was corrected from 45 to 67 retained project references after replacement. Final review artifacts are in `/tmp/jackshaft-browser-review/`; project/editor captures are in `/tmp/jackshaft-browser-followup/`.
+
+The assembly follows manual order and quantities, but internal seats, hole circles and omitted sprocket/pulley mounting faces remain provisional. The 2RS visual bearing is not relabeled as the source catalog's 2Z. Next.js also emitted an existing dependency-security advisory; the build succeeds after its reminder retry. Dependencies were not changed and no deployment was performed.
+
+## Current project models in the editor
+
+Verified on 2026-10-16: `/editor` loads the same registered assets and mappings as the main explorer, independently of older browser saves. Production build/TypeScript, 24 focused unit tests, formatting and diff checks pass. Six Chromium flows pass on an isolated production preview: current 46-model geometry with unchanged old storage, replacing a project part and saving/reloading the full assembly, separate local uploads, legacy whole-file assignment, OEM mapping/replacement, and explicit legacy catalog merging. The current editor screenshot was inspected. Browser saves remain local; no model assets or placements changed in this fix.
+
+## Mounted hardware batch
+
+Verified on 2026-10-15 (local time): nine mounted fasteners and four unplaced suspension masters were generated through the live Blender MCP instance. All 13 meshes are closed/manifold with positive volume. All hardware GLBs parse with their raw-aluminum material, correct nominal envelopes and hex-drive sizes. Nine published exports also have tests for actual hex flats, mounted transforms, transformed vertex bounds and hashes. All 46 published files match the manifest; the original styled Blender source hash is unchanged. Build/TypeScript, 36 focused unit tests, formatting and diff checks pass.
+
+Four distinct Chromium flows pass across separate runs: assembled/exploded brackets with tool details and isolation, both cover screw types with reload, the full 46-part styled assembly, and saved-local-import separation. Blender close-ups and portal bracket/bolt captures were inspected. The first new bracket test required opening its collapsed parent in the test. Later grouped runs crashed Chromium renderers before assertions completed while host RAM/swap was pressured; the isolated corrected bracket test passed. The two additional hierarchy/search browser flows remain unverified for this batch; crash cause is unconfirmed. This is not a full browser-suite or physical-fit certification. Suspension placement and bash/subframe head dimensions remain deferred as recorded in `data/models/mounted-hardware.json`.
+
+## Styled assembly reimport
+
+Verified on 2026-10-15: re-exported the latest saved styled assembly into an empty staging directory, validated all 37 GLBs, and replaced the published set. Motor and jackshaft pulleys are excluded. File hashes, materials, embedded purple textures, triangle counts and transformed bounds pass; the source Blender file is unchanged. Production build/TypeScript, 15 focused model/navigation tests and formatting/diff checks pass.
+
+All 14 selected Chromium flows pass across two runs on an isolated production preview. The first process ended with SIGTERM after 12 passing flows; the remaining two passed in a focused follow-up. Coverage includes the 37-part hierarchy, pulley omission, rendered frame/swingarm materials, assembly navigation, local imports/replacement and an older saved import that cannot override ordinary project entry. Full-assembly and isolated-part screenshots were inspected. Saved imports still open through explicit local preview links.
+
+## Modeled parts navigation
+
+Verified on 2026-10-15: the production build and TypeScript checks pass, along with 70 focused tests across `modeled-navigation`, `curated-navigation`, `project-parts`, `part-models`, `viewer` and `catalog`. Changed files pass formatting and diff checks.
+
+All 30 selected Chromium flows pass on an isolated production preview at `127.0.0.1:31391`, using one worker. Coverage includes all 39 supplied models, empty-branch removal, modeled-part search, adding jackshaft children through local imports, assembly explosion/reassembly and selection, history/reload, advanced OEM mappings, catalog review, saved-model replacement and four viewport sizes. Saved local imports are checked for unwanted project-model requests. The actual frame assembly's exploded view and desktop/phone screenshots were inspected. The preview was stopped after verification; the existing development server was left running. This was a focused regression run, not the complete browser suite or a physical-device performance benchmark.
+
 ## Import preflight addition
 
 Verified on 2026-10-13: 25 focused unit tests (`preflight`, `editor`, `model`) pass, including nine new preflight checks. They cover original names, shared/instanced triangles, hierarchy, mapping-key ambiguity, metre bounds, inherited/matrix scales, conservative origin checks, unchanged geometry/transforms, and unavailable source metadata. The production build and TypeScript checks pass.
@@ -44,3 +84,5 @@ The positive local-PDF browser test runs when the ignored original PDF is availa
 The initial production build inside the execution sandbox failed because a detached TypeScript subprocess returned empty stdout. Running with normal process permissions passed the unchanged build and its TypeScript validation. Local server/browser execution likewise required normal socket/process permissions. Type checking was never disabled.
 
 Still unverified: real stock assets and mechanical alignment, source claims as physical measurements/fitment, exact contents of explicitly listed unreadable or missing diagram callouts, eleven unavailable newer-reference collections, final-model load time/FPS/memory on target phones, physical touch gestures, Safari/Firefox, Blender helper execution, optional static-export hosting and a deployed public URL. The three PDF table transcriptions were audited; that is not a mechanical certification. See [source coverage](../data/oem/report.md).
+
+Rear-wheel checks: `tests/rear-wheel-assembly.test.ts` loads all 18 wheel assets, checks preserved hub hash, geometry scale, open mounting holes, fastener patterns, eight-group hierarchy, assembly-first picking and exact explosion restoration. `tests/e2e/rear-wheel-assembly.spec.ts` covers real screw picking, assembled/exploded views, isolation, deep links and phone controls.

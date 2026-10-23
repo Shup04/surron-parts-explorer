@@ -67,7 +67,7 @@ test('OEM targets include review edits and geometry replacement preserves the so
       ),
     targetId,
   );
-  await page.goto('/editor?advanced=1');
+  await page.goto('/editor?workspace=local&advanced=1');
   await expect(page.getByRole('heading', { name: 'Model mapping studio' })).toBeVisible();
   await expect(page.locator('.editor-stats')).toContainText('0 mapped');
   await page
@@ -166,7 +166,7 @@ test('an older local workspace receives OEM records only through explicit additi
     (saved) => localStorage.setItem('surron-editor-project', JSON.stringify(saved)),
     legacy,
   );
-  await page.goto('/editor?advanced=1');
+  await page.goto('/editor?workspace=local&advanced=1');
   await expect(page.getByRole('status', { name: 'Editor status' })).toContainText(
     'restored intact',
   );

@@ -85,13 +85,13 @@ test('Escape dismisses mobile drawers before changing isolation', async ({ page 
 test('curated component details use the right label and avoid a duplicate information action', async ({
   page,
 }) => {
-  await page.goto('/?nav=nav.jackshaft.bearings');
+  await page.goto('/?nav=nav.frame.frame');
   const details = page.locator('#component-details');
   await expect(details.locator('.panel-heading .eyebrow')).toHaveText('Part details');
-  await expect(details.getByRole('heading', { name: 'Jackshaft bearings' })).toBeVisible();
+  await expect(details.getByRole('heading', { name: 'Main Frame' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'View part information' })).toBeHidden();
   await page.getByRole('button', { name: 'Close component details' }).click();
-  await page.getByRole('button', { name: 'View part information' }).click();
+  await page.getByRole('button', { name: 'Details', exact: true }).click();
   await expect(details).toBeVisible();
   await expect(page.getByRole('button', { name: 'View part information' })).toBeHidden();
   await page.getByRole('button', { name: 'Parent assembly', exact: true }).click();

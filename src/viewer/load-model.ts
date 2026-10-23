@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import { disposeScene } from './scene';
+import { applySurfaceFinish } from './surface-finish';
 
 /** Self-host the Draco files at /draco/ and pass decoderPath for offline deployments. */
 export const DRACO_DECODER_PATH = 'https://www.gstatic.com/draco/versioned/decoders/1.5.7/';
@@ -23,19 +24,21 @@ export async function loadModel(
     const adjusted = new Set<MeshStandardMaterial>();
     scene.traverse((object) => {
       if (!(object instanceof Mesh)) return;
-      for (const material of Array.isArray(object.material) ? object.material : [object.material])
+      for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
+        if (!(material instanceof MeshStandardMaterial) || adjusted.has(material)) continue;
+        adjusted.add(material);
         if (
-          material instanceof MeshStandardMaterial &&
           material.name.toLowerCase() === 'raw aluminum' &&
           !material.map &&
-          !material.roughnessMap &&
-          !adjusted.has(material)
+          !material.roughnessMap
         ) {
-          adjusted.add(material);
           material.color.multiplyScalar(0.62);
           material.roughness = Math.max(material.roughness, 0.58);
           material.envMapIntensity = Math.min(material.envMapIntensity, 0.65);
         }
+        // Shipped part GLBs use millimeter coordinates; imported glTF assets use meters.
+        applySurfaceFinish(material, url.startsWith('/parts/') ? 1 : 1000);
+      }
     });
     const box = new Box3().setFromObject(scene);
     if (box.isEmpty() || !Number.isFinite(box.max.length())) {

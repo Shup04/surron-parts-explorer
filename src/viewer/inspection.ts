@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { InspectionSettings } from '@/core/types';
 import tokens from '@/ui/tokens.json';
 import { mappedPartId, type SceneRecord } from './scene';
+import { copySurfaceFinish } from './surface-finish';
 
 const sceneColors = tokens.scene;
 
@@ -73,6 +74,10 @@ export function createInspectionMaterials(root: THREE.Object3D) {
           hovered: material.clone(),
           faded: material.clone(),
         };
+        if (material instanceof THREE.MeshStandardMaterial)
+          Object.values(copies).forEach((copy) =>
+            copySurfaceFinish(material, copy as THREE.MeshStandardMaterial),
+          );
         for (const [variant, color, strength] of [
           ['selected', sceneColors.selection, 0.13],
           ['hovered', sceneColors.hover, 0.07],

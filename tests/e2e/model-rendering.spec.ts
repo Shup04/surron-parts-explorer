@@ -48,13 +48,13 @@ test('large imported geometry remains rendered after camera framing, hovering an
   const tree = page.locator('.parts-tree');
   await tree.getByRole('button', { name: 'Expand Seat and bodywork', exact: true }).click();
   await tree.getByRole('button', { name: 'Seat', exact: true }).click();
-  await page.getByRole('button', { name: 'Close component details', exact: true }).click();
+  await expect(page.locator('#component-details')).toBeHidden();
   await expect.poll(() => brightModelPixels(page)).toBeGreaterThan(5000);
   await page.getByRole('button', { name: 'Reset camera', exact: true }).click();
   await expect.poll(() => brightModelPixels(page)).toBeGreaterThan(5000);
   await page.reload();
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
-  await page.getByRole('button', { name: 'Close component details', exact: true }).click();
+  await expect(page.locator('#component-details')).toBeHidden();
   await expect.poll(() => brightModelPixels(page)).toBeGreaterThan(5000);
   expect(errors).toEqual([]);
 });

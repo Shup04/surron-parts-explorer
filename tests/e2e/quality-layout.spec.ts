@@ -35,6 +35,7 @@ test.describe('short viewport layouts', () => {
     await expect(page.getByRole('button', { name: 'Close parts navigation' })).toBeInViewport();
     await page.screenshot({ path: testInfo.outputPath('landscape-filtered-navigation.png') });
     await bearings.click();
+    await page.getByRole('button', { name: 'Details', exact: true }).click();
     await expect(page.getByRole('heading', { level: 2, name: 'Main Frame' })).toBeVisible();
     await expect(page.locator('#parts-navigation')).toBeHidden();
   });
@@ -43,7 +44,7 @@ test.describe('short viewport layouts', () => {
     page,
   }, testInfo) => {
     await page.goto('/?part=occ-lbx2021-p15-r16');
-    await page.getByRole('button', { name: 'Close component details' }).click();
+    await expect(page.locator('#component-details')).toBeHidden();
     const empty = page.getByTestId('geometry-unassigned');
     const information = empty.getByRole('button', { name: 'View part information' });
     await information.scrollIntoViewIfNeeded();
@@ -66,7 +67,7 @@ test.describe('short viewport layouts', () => {
   }, testInfo) => {
     await page.setViewportSize({ width: 390, height: 600 });
     await page.goto('/?part=occ-lbx2021-p15-r16');
-    await page.getByRole('button', { name: 'Close component details' }).click();
+    await expect(page.locator('#component-details')).toBeHidden();
     const empty = page.getByTestId('geometry-unassigned');
     const icon = await empty.locator(':scope > svg').boundingBox();
     const toolbar = await page.locator('.viewer-tools').boundingBox();

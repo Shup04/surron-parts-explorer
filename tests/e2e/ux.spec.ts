@@ -216,6 +216,7 @@ test.describe('touch layouts', () => {
       await page.locator('.search-result').filter({ hasText: 'Left jackshaft bearing' }).tap();
       await expect(page).toHaveURL(/part=bearing-left/);
       await expect(navigation).not.toBeVisible();
+      await page.getByRole('button', { name: 'Details', exact: true }).tap();
       await expect(
         page.getByRole('heading', { level: 2, name: 'Left jackshaft bearing' }),
       ).toBeVisible();
@@ -231,6 +232,7 @@ test.describe('touch layouts', () => {
       });
 
       await page.reload();
+      await page.getByRole('button', { name: 'Details', exact: true }).tap();
       await expect(
         page.getByRole('heading', { level: 2, name: 'Left jackshaft bearing' }),
       ).toBeVisible();

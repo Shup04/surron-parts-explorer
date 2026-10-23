@@ -2,11 +2,18 @@
 
 import React, { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
-import { CameraControls, GizmoHelper, GizmoViewport, Grid } from '@react-three/drei';
+import {
+  CameraControls,
+  CameraControlsImpl,
+  GizmoHelper,
+  GizmoViewport,
+  Grid,
+} from '@react-three/drei';
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { scene as sceneColors } from '@/ui/tokens.json';
 import { loadAssetModel } from './part-models';
+import { PointerGesture } from './pointer-gesture';
 import { savedCameraForScope, validateViewerAsset } from './asset-validation';
 import { buildCatalogIndex } from '@/core/catalog';
 import { easeProgress } from '@/core/explosion';
@@ -28,7 +35,7 @@ import {
 export type { ViewerProps } from '@/core/types';
 
 class ViewerErrorBoundary extends React.Component<
-  { children: React.ReactNode },
+  { children: React.ReactNode; onRetry: () => void },
   { message: string | null }
 > {
   state = { message: null as string | null };
@@ -45,6 +52,9 @@ class ViewerErrorBoundary extends React.Component<
             The catalog and component navigation remain available. Enable WebGL or try another
             browser.
           </p>
+          <button type="button" onClick={this.props.onRetry}>
+            Try 3D again
+          </button>
         </div>
       );
     return this.props.children;
@@ -61,6 +71,18 @@ function useReducedMotion() {
     return () => query.removeEventListener('change', change);
   }, []);
   return reduced;
+}
+
+function useCoarsePointer() {
+  const [coarse, setCoarse] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia('(pointer: coarse)');
+    setCoarse(query.matches);
+    const change = () => setCoarse(query.matches);
+    query.addEventListener('change', change);
+    return () => query.removeEventListener('change', change);
+  }, []);
+  return coarse;
 }
 
 function MaterialEnvironment() {
@@ -85,6 +107,28 @@ function MaterialEnvironment() {
   return null;
 }
 
+function ContextRecovery({ onChange }: { onChange: (lost: boolean) => void }) {
+  const { gl, invalidate } = useThree();
+  useEffect(() => {
+    const canvas = gl.domElement;
+    const lost = (event: Event) => {
+      event.preventDefault();
+      onChange(true);
+    };
+    const restored = () => {
+      onChange(false);
+      invalidate();
+    };
+    canvas.addEventListener('webglcontextlost', lost);
+    canvas.addEventListener('webglcontextrestored', restored);
+    return () => {
+      canvas.removeEventListener('webglcontextlost', lost);
+      canvas.removeEventListener('webglcontextrestored', restored);
+    };
+  }, [gl, invalidate, onChange]);
+  return null;
+}
+
 function Scene({
   object,
   props,
@@ -100,12 +144,88 @@ function Scene({
 }) {
   const { camera, gl, invalidate, size } = useThree();
   const reduced = useReducedMotion();
+  const coarsePointer = useCoarsePointer();
   const controls = useRef<CameraControls>(null);
+  const gesture = useMemo(() => new PointerGesture(), []);
   const previousFrame = useRef<{ reset: number; object: THREE.Object3D } | null>(null);
   const index = useMemo(() => buildCatalogIndex(props.catalog), [props.catalog]);
   const records = useMemo(() => prepareScene(object, props.mapping), [object, props.mapping]);
   const [localHover, setLocalHover] = useState<string | null>(null);
   const hovered = props.hoveredId ?? localHover;
+  useEffect(() => {
+    const canvas = gl.domElement;
+    const document = canvas.ownerDocument;
+    const window = document.defaultView;
+    const clearHover = () => {
+      setLocalHover(null);
+      onTip(null);
+      props.onHover?.(null);
+    };
+    const cancel = () => {
+      gesture.cancel();
+      controls.current?.cancel();
+      clearHover();
+      canvas.style.cursor = 'grab';
+    };
+    const down = (event: PointerEvent) => {
+      gesture.start(event);
+      clearHover();
+      canvas.style.cursor = 'grabbing';
+      // Retain an ongoing drag when a finger or mouse leaves the canvas.
+      try {
+        canvas.setPointerCapture(event.pointerId);
+      } catch {
+        // Synthetic events and an already-cancelled pointer have no active capture.
+      }
+    };
+    const move = (event: PointerEvent) => {
+      if (!gesture.hasPointer(event.pointerId)) return;
+      if (event.pointerType === 'mouse' && event.buttons === 0) cancel();
+      else gesture.move(event);
+    };
+    const up = (event: PointerEvent) => {
+      gesture.end(event);
+      if (!gesture.active) canvas.style.cursor = 'grab';
+    };
+    const interrupted = (event: PointerEvent) => {
+      if (gesture.hasPointer(event.pointerId)) cancel();
+    };
+    const visibility = () => {
+      if (document.hidden) cancel();
+    };
+    const preventGesture = (event: Event) => {
+      if (event.cancelable) event.preventDefault();
+    };
+    const preventTouchScroll = (event: TouchEvent) => {
+      if (gesture.dragging) preventGesture(event);
+    };
+    canvas.addEventListener('pointerdown', down, true);
+    document.addEventListener('pointermove', move, true);
+    document.addEventListener('pointerup', up, true);
+    document.addEventListener('pointercancel', interrupted, true);
+    canvas.addEventListener('lostpointercapture', interrupted);
+    canvas.addEventListener('webglcontextlost', cancel);
+    // Scope Safari's native gesture suppression to the interactive canvas.
+    canvas.addEventListener('gesturestart', preventGesture, { passive: false });
+    canvas.addEventListener('gesturechange', preventGesture, { passive: false });
+    canvas.addEventListener('touchmove', preventTouchScroll, { passive: false });
+    document.addEventListener('visibilitychange', visibility);
+    window?.addEventListener('blur', cancel);
+    return () => {
+      cancel();
+      canvas.removeEventListener('pointerdown', down, true);
+      document.removeEventListener('pointermove', move, true);
+      document.removeEventListener('pointerup', up, true);
+      document.removeEventListener('pointercancel', interrupted, true);
+      canvas.removeEventListener('lostpointercapture', interrupted);
+      canvas.removeEventListener('webglcontextlost', cancel);
+      canvas.removeEventListener('gesturestart', preventGesture);
+      canvas.removeEventListener('gesturechange', preventGesture);
+      canvas.removeEventListener('touchmove', preventTouchScroll);
+      document.removeEventListener('visibilitychange', visibility);
+      window?.removeEventListener('blur', cancel);
+    };
+  }, [gl, gesture, onTip, props.onHover]);
   const hiddenKey = props.hiddenIds.join('|');
   const targetPositions = useMemo(
     () =>
@@ -377,6 +497,7 @@ function Scene({
         object={object}
         onPointerMove={(event: ThreeEvent<PointerEvent>) => {
           event.stopPropagation();
+          if (event.pointerType === 'touch' || gesture.active) return;
           const id = identify(event);
           setLocalHover(id);
           onTip(id);
@@ -391,7 +512,7 @@ function Scene({
         }}
         onClick={(event: ThreeEvent<MouseEvent>) => {
           event.stopPropagation();
-          if (event.delta > 5) return;
+          if (!gesture.consumeClick(event.nativeEvent)) return;
           const id = identify(event);
           if (id) props.onSelect(id);
         }}
@@ -405,15 +526,22 @@ function Scene({
         draggingSmoothTime={reduced ? 0 : 0.12}
         dollySpeed={0.7}
         truckSpeed={1.2}
+        touches={{
+          one: CameraControlsImpl.ACTION.TOUCH_ROTATE,
+          two: CameraControlsImpl.ACTION.TOUCH_DOLLY_TRUCK,
+          three: CameraControlsImpl.ACTION.TOUCH_DOLLY_TRUCK,
+        }}
         onChange={() => invalidate()}
       />
-      <GizmoHelper alignment="bottom-right" margin={[48, 72]}>
-        <GizmoViewport
-          axisColors={[sceneColors.axisX, sceneColors.axisY, sceneColors.axisZ]}
-          labelColor={sceneColors.background}
-          hideNegativeAxes
-        />
-      </GizmoHelper>
+      {!coarsePointer && (
+        <GizmoHelper alignment="bottom-right" margin={[48, 72]}>
+          <GizmoViewport
+            axisColors={[sceneColors.axisX, sceneColors.axisY, sceneColors.axisZ]}
+            labelColor={sceneColors.background}
+            hideNegativeAxes
+          />
+        </GizmoHelper>
+      )}
       <ambientLight intensity={0.9} />
       <hemisphereLight args={[sceneColors.hemisphereSky, sceneColors.hemisphereGround, 2]} />
       <directionalLight position={[3, 5, 4]} intensity={4} color={sceneColors.key} />
@@ -449,6 +577,12 @@ export default function Viewer(props: ViewerProps) {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const pointer = useRef({ x: 0, y: 0 });
   const [contextLost, setContextLost] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
+  const [renderAttempt, setRenderAttempt] = useState(0);
+  const retryRendering = () => {
+    setContextLost(false);
+    setRenderAttempt((attempt) => attempt + 1);
+  };
   const label = props.catalog.parts.find((part) => part.id === tip)?.name;
   const sceneProps = fallback ? { ...props, mapping: undefined } : props;
   const configurationError = useMemo(
@@ -498,15 +632,16 @@ export default function Viewer(props: ViewerProps) {
       cancelled = true;
       if (loaded) disposeScene(loaded);
     };
-  }, [props.asset?.url, props.asset?.models, fallback]);
+  }, [props.asset?.url, props.asset?.models, fallback, loadAttempt]);
   return (
     <div
       className="viewer-canvas"
       data-testid="viewer"
-      data-scene-ready={!!object && !loading && !displayError}
+      data-scene-ready={!!object && !loading && !displayError && !contextLost}
       data-visible-meshes={visibleCount}
       aria-label="Interactive 3D motorcycle viewer"
       onPointerMove={(event) => {
+        if (event.pointerType === 'touch') return;
         const box = event.currentTarget.getBoundingClientRect();
         pointer.current = {
           x: Math.max(8, Math.min(event.clientX - box.left + 16, box.width - 220)),
@@ -518,7 +653,7 @@ export default function Viewer(props: ViewerProps) {
         }
       }}
     >
-      <ViewerErrorBoundary>
+      <ViewerErrorBoundary key={renderAttempt} onRetry={retryRendering}>
         <Canvas
           frameloop="demand"
           dpr={[1, 1.75]}
@@ -526,10 +661,9 @@ export default function Viewer(props: ViewerProps) {
           gl={{ antialias: true, powerPreference: 'high-performance', alpha: true }}
           onCreated={({ gl }) => {
             gl.domElement.style.touchAction = 'none';
-            gl.domElement.addEventListener('webglcontextlost', () => setContextLost(true));
-            gl.domElement.addEventListener('webglcontextrestored', () => setContextLost(false));
           }}
         >
+          <ContextRecovery onChange={setContextLost} />
           <MaterialEnvironment />
           <Suspense fallback={null}>
             {object && !displayError && (
@@ -553,6 +687,11 @@ export default function Viewer(props: ViewerProps) {
         <div className="viewer-warning" role="alert">
           <strong>Asset unavailable</strong>
           <p>{displayError}</p>
+          {error && props.asset && (
+            <button type="button" onClick={() => setLoadAttempt((attempt) => attempt + 1)}>
+              Retry loading
+            </button>
+          )}
           <button type="button" onClick={() => setFallback(true)}>
             Use demonstration geometry
           </button>
@@ -566,7 +705,13 @@ export default function Viewer(props: ViewerProps) {
       )}
       {contextLost && (
         <div className="viewer-warning" role="alert">
-          The graphics context was interrupted. Reload the page to restore the viewer.
+          <strong>3D view interrupted</strong>
+          <p>
+            Your selection is unchanged. You can continue browsing parts or restore the 3D view.
+          </p>
+          <button type="button" onClick={retryRendering}>
+            Restore 3D view
+          </button>
         </div>
       )}
       {fallback && (

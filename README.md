@@ -20,7 +20,7 @@ npm run dev
 
 Open **http://127.0.0.1:3000** for the OEM explorer, **http://127.0.0.1:3000/catalog** for local source review, and **http://127.0.0.1:3000/editor** for OEM model mapping. The original interactive demonstration is available at `/?demo=1` and `/editor?demo=1`.
 
-The normal explorer and model editor open the checked-in 68-part styled assembly, including when this browser has older local imports. **Tools → Project parts** (`/?workspace=project`) also opens this set; **Tools → Saved local parts** explicitly opens saved imports. In the editor, **Saved local parts** (`/editor?workspace=local`) restores the saved workspace. Saving a project-model edit creates a browser-local workspace; it does not change the checked-in GLBs. The main frame was reduced from 889,358 to 60,000 triangles; the whole assembly has 1,219,281 triangles. Purple metallic material belongs to the main frame and swingarm. Textures are embedded in the GLBs. Blender working files and source backups remain local under `reference/models/`; the browser-ready exports and their manifest are versioned in Git.
+The normal explorer and model editor open the checked-in 85-part styled assembly, including when this browser has older local imports. **Tools → Project parts** (`/?workspace=project`) also opens this set; **Tools → Saved local parts** explicitly opens saved imports. In the editor, **Saved local parts** (`/editor?workspace=local`) restores the saved workspace. Saving a project-model edit creates a browser-local workspace; it does not change the checked-in GLBs. The main frame was reduced from 889,358 to 60,000 triangles; the whole assembly has 1,499,093 triangles. Purple metallic material belongs to the main frame and swingarm. Textures are embedded in the GLBs. Blender working files and source backups remain local under `reference/models/`; the browser-ready exports and their manifest are versioned in Git.
 
 ```sh
 npm run build
@@ -46,6 +46,14 @@ For a purely static host, set `output: 'export'` in `next.config.ts`, build, and
 - Demand rendering, material/geometry reuse, instanced demonstration tread, lazy assembly asset replacement, Meshopt/Draco support and live renderer diagnostics.
 
 Drag to orbit, scroll to zoom, right-drag to pan. On touch devices use one finger to orbit and two to pan/pinch. **Parts** toggles the navigation panel; **Details** opens information for the selection. `R` resets the camera; `/` focuses search; `Esc` dismisses the active menu or panel before exiting isolation. Expand a branch with its arrow, or select it by name. The parts list supports Tab and Enter. Modeled assemblies with several parts open exploded; **Assembled** brings them back together. Single parts have no explosion slider. The original synthetic fixture at `/?demo=1` retains manual explosion controls. The header **Tools** menu opens the complete reference catalog and model editor.
+
+## Mobile app
+
+On phones and tablets, the explorer stays within the screen: drag to rotate, pinch to zoom, and move two fingers to pan. Tap a part to enter its assembly; the bottom **Parts**, **Reset view**, and **Details** controls stay available. Information panels scroll independently and close with browser Back. The hub remains together in the wheel explosion until you enter the hub itself.
+
+Use **Tools → Install app** (when offered) or the home-screen guidance to open a standalone explorer window. Serve over HTTPS for installation and offline recovery. Models require a connection to load; the app does not download the whole collection for offline storage. Run `npm run build` followed by `npm start` when testing the production service worker.
+
+Run `npm run build` then `npm run test:mobile` for the touch, panel-history, installation and offline-recovery browser checks. This uses an isolated production server on port 31397. The ordinary development-server test run skips only the production-only offline check.
 
 ## Bring in your models
 

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import type { CSSProperties } from 'react';
 import { ChevronDown, ChevronRight, Eye, EyeOff } from 'lucide-react';
 import type { NavigationNode, ReferenceGroup } from '@/navigation/model';
 import type { OemDatabase } from '@/oem/types';
@@ -43,7 +44,7 @@ export function CuratedPartsTree({
         <div
           className={`tree-row ${active ? 'active' : ''} ${hidden ? 'is-hidden' : ''}`}
           data-navigation-id={node.id}
-          style={{ paddingLeft: 8 + depth * 15 }}
+          style={{ paddingLeft: 8 + depth * 15, '--tree-depth': depth } as CSSProperties}
         >
           {node.children.length ? (
             <button

@@ -76,6 +76,7 @@ test('mobile parts navigation and detail sheet remain usable without horizontal 
   await page.getByRole('button', { name: 'Parts', exact: true }).click();
   await page.getByRole('textbox', { name: 'Search parts' }).fill('sprocket');
   await page.locator('.search-result').filter({ hasText: 'Jackshaft sprocket' }).click();
+  await page.getByRole('button', { name: 'Details', exact: true }).click();
   await expect(page.getByRole('heading', { level: 2 })).toHaveText('Jackshaft sprocket');
   await page.getByRole('button', { name: 'Close component details' }).click();
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toBeVisible();

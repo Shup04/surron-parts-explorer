@@ -1,5 +1,13 @@
 # Verification record
 
+## Mobile explorer and installed app
+
+Verified on 2026-10-23 in the isolated `codex/mobile-experience` worktree: all 202 unit tests, TypeScript, production build, formatting and diff checks pass. All 12 dedicated production mobile/PWA scenarios pass across the main run and a focused rerun of the viewport case after Chromium crashed during screenshot capture. Use `npm run build` then `npm run test:mobile` to repeat them; the normal dev-server suite skips only offline recovery.
+
+Native Chromium touch injection covers rotate, pinch, pan, drag-return-to-origin, cancellation, and subsequent valid model taps without navigation or page scrolling. Browser checks cover wheel → hub → body, Parts/Details Back/Forward/reload, source filters, keyboard-sized viewports, independent panel scrolling, recovery from a failed GLB or lost WebGL context, installation prompts/guidance, offline launch and reconnect. Actual project phone overview/navigation/details and 320×568, 844×390 and 1024×768 wheel views were visually inspected. The offline cache contains only its recovery page, not model assets.
+
+Broader desktop/legacy regression runs completed many scenarios but repeatedly lost Chromium renderer processes during model loading or screenshot capture; one exhaustive hierarchy run reached its final screenshot before timing out. The host had concurrent Blender/browser work and full swap. A clean pass of the entire browser suite is therefore unverified. Physical iPhone/Android hardware, Safari/WebKit touch behavior, native OS installation, and device-specific performance remain unverified. The existing Next.js security advisory remains; dependencies were not upgraded and no deployment was performed.
+
 ## Rear wheel and nested hub
 
 Verified on 2026-10-23: the mounted 18-inch/48T wheel opens as one assembly with eight groups. Hub remains a nested assembly with its existing body. Unit fixtures add future bearings and seals only in tests: they stay rigid in the wheel view, then separate after entering Hub. Shared displacement is checked with rotated/scaled parents, authored and automatic offsets, and repeated exact restoration.

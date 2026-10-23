@@ -127,6 +127,8 @@ for (const viewport of viewports) {
       await openParts(page);
       await page.locator('.tree-select').filter({ hasText: 'Left jackshaft bearing' }).click();
       await expect(page).toHaveURL(/part=bearing-left/);
+      if (viewport.width <= 1100)
+        await page.getByRole('button', { name: 'Details', exact: true }).click();
       await expect(
         page.getByRole('heading', { level: 2, name: 'Left jackshaft bearing' }),
       ).toBeVisible();
@@ -145,6 +147,8 @@ for (const viewport of viewports) {
       await expect(result).toHaveCount(0);
       await capture(page, testInfo, '05-modeled-search');
       await page.goto('/?part=occ-lbx2021-p15-r16&source=lbx2021&year=2021');
+      if (viewport.width <= 1100)
+        await page.getByRole('button', { name: 'Details', exact: true }).click();
       await expect(page.locator('.oem-number')).toHaveText('61234-YQ2A-0000');
       await expect(page.locator('.oem-number')).toHaveCSS('font-family', /monospace/i);
       await expect(page.getByTestId('geometry-unassigned')).toBeVisible();

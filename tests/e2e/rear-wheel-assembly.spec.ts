@@ -143,7 +143,7 @@ test('the rear-wheel assembly remains usable on a phone', async ({ page }, testI
   await page.goto('/?nav=nav.rear-wheel.assembly');
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '19');
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
-  await page.getByRole('button', { name: 'Close component details', exact: true }).click();
+  await expect(page.locator('#component-details')).toBeHidden();
   await page.screenshot({ path: testInfo.outputPath('rear-wheel-phone.png'), fullPage: true });
   await page.getByRole('button', { name: 'Reassemble', exact: true }).click();
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');

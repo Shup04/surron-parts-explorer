@@ -100,7 +100,7 @@ test('a phone can open the jackshaft explosion and reassemble it', async ({ page
   await page.goto('/?nav=nav.jackshaft.assembly');
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '25');
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('1');
-  await page.getByRole('button', { name: 'Close component details', exact: true }).click();
+  await expect(page.locator('#component-details')).toBeHidden();
   await page.screenshot({ path: testInfo.outputPath('jackshaft-phone.png'), fullPage: true });
   await page.getByRole('button', { name: 'Reassemble', exact: true }).click();
   await expect(page.getByRole('slider', { name: 'Explosion amount' })).toHaveValue('0');

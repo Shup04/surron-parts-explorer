@@ -1,9 +1,13 @@
 import { expect, test } from '@playwright/test';
+import partsManifest from '../../public/parts/manifest.json';
 import { seatGlb } from './fixtures/part-glb';
 
 test('the public hierarchy contains only modeled parts and their assemblies', async ({
   page,
 }, testInfo) => {
+  // This exhaustively expands every modeled branch, including both nested assemblies.
+  test.setTimeout(120_000);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/?workspace=project');
   const tree = page.locator('.parts-tree');
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-scene-ready', 'true');
@@ -15,7 +19,9 @@ test('the public hierarchy contains only modeled parts and their assemblies', as
       .getByRole('button', { name: /^Expand / })
       .first()
       .click();
-  await expect(tree.locator('[data-navigation-kind="component"]')).toHaveCount(68);
+  await expect(tree.locator('[data-navigation-kind="component"]')).toHaveCount(
+    partsManifest.parts.length,
+  );
   await expect(
     tree.getByRole('button', { name: 'Jackshaft and final drive', exact: true }),
   ).toHaveCount(1);
@@ -124,9 +130,11 @@ test('mobile navigation contains only available parts and returns from a part to
   );
   await tree.getByRole('button', { name: 'Main frame', exact: true }).click();
   await expect(page.locator('#parts-navigation')).toBeHidden();
+  await page.getByRole('button', { name: 'Details', exact: true }).click();
   await expect(page.locator('#component-details h2')).toHaveText('Main Frame');
   await page.getByRole('button', { name: 'Close component details' }).click();
   await page.getByRole('button', { name: 'Parent assembly', exact: true }).click();
+  await page.getByRole('button', { name: 'Details', exact: true }).click();
   await expect(page.locator('#component-details h2')).toHaveText('Frame and subframe');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: testInfo.outputPath('modeled-phone.png'), fullPage: true });

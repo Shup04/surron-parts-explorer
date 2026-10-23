@@ -34,6 +34,8 @@ Highlight materials are clones cached per original material. Hover and selection
 
 CameraControls supports drag to orbit, wheel/pinch to zoom, and right-drag/two-finger pan. Camera framing computes a perspective fit from all bounding-box corners and the viewport aspect ratio. It preserves the current viewing angle; explicit reset restores the default angle. A saved mapping camera is used at the loaded asset's assembly root when resetting. This supports both full-motorcycle and dedicated nested-assembly models. All navigation, reset, and explosion framing animate unless the browser requests reduced motion.
 
+Touch controls explicitly map one finger to rotation and two fingers to combined pinch/pan. A gesture guard tracks maximum movement and pointer count: dragging back to the starting point, using a second finger, or cancelling the gesture never selects a part. Touch does not create hover tooltips. Pointer capture, cancellation, blur and visibility changes clear stale gestures. Canvas-only native gesture prevention complements `touch-action: none`; scrollable information panels remain usable. The desktop axis gizmo is hidden on coarse pointers, where its small pointer-down targets conflict with swipes. Reset remains available in the mobile dock.
+
 Camera clipping planes and zoom limits adapt to the visible model bounds, including large imports and saved camera positions. Geometry keeps its original scale; displaying a large asset does not establish that its export units are correct.
 
 ## Explosion configuration
@@ -74,7 +76,13 @@ The normal explorer opens the styled project assembly. Saved browser imports loa
 
 Configured assets are validated against their declared asset ID, catalog assembly, metre/Y-up conventions, mapping schema, catalog part IDs, and actual loaded scene object keys. Missing, ambiguous, or mismatched references produce explicit errors rather than silent selection failures.
 
-Network errors, invalid geometry, and missing buffers/textures produce a visible load error with an explicit demonstration-fallback button. A graphics initialization error leaves the DOM catalog available. A graphics-context interruption displays recovery guidance. Empty selections explain that mappings or visibility may need attention. A late response from a superseded load is discarded and disposed.
+Network errors, invalid geometry, and missing buffers/textures produce a visible load error with **Retry loading** and an explicit demonstration-fallback button. **Restore 3D view** recovers from a graphics failure without reloading the page or losing the selected assembly. The DOM catalog remains available. Empty selections explain that mappings or visibility may need attention. A late response from a superseded load is discarded and disposed.
+
+## Installed app and offline behavior
+
+The web manifest provides a standalone app identity and separate ordinary, maskable and Apple icons. **Tools** offers installation when the browser supplies an invitation, otherwise platform-specific home-screen guidance. Browser zoom remains enabled outside the 3D surface. Installation requires a supported browser and HTTPS (or localhost).
+
+The production-only service worker caches just the small offline recovery document. Application bundles and GLBs retain normal network/browser-cache behavior; the worker does not cache the entire model collection or force reloads when an update appears. Loaded scenes remain usable when connectivity drops. An offline launch shows a reconnect/retry page and preserves the requested deep link. Connection status is announced in the shell. Native installation, iOS browser chrome, and hardware-specific WebGL limits still require physical-device checks.
 
 ## Performance and verification
 

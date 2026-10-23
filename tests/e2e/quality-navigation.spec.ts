@@ -53,6 +53,7 @@ test('viewer disclosures restore focus without closing component details', async
 test('Escape dismisses mobile drawers before changing isolation', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/?demo=1&assembly=jackshaft&part=bearing-left');
+  await page.getByRole('button', { name: 'Details', exact: true }).click();
   const details = page.locator('#component-details');
   const viewer = page.getByTestId('viewer');
   await expect(viewer).toHaveAttribute('data-scene-ready', 'true');
@@ -64,6 +65,7 @@ test('Escape dismisses mobile drawers before changing isolation', async ({ page 
     .toBeLessThan(assemblyMeshCount);
   const isolatedMeshCount = Number(await viewer.getAttribute('data-visible-meshes'));
   expect(isolatedMeshCount).toBeGreaterThan(0);
+  await page.getByRole('button', { name: 'Details', exact: true }).click();
   await page.keyboard.press('Escape');
   await expect(details).toBeHidden();
   await expect(page.getByRole('button', { name: 'Details', exact: true })).toBeFocused();

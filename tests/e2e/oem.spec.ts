@@ -85,9 +85,13 @@ test('the full reference catalog retains source and year filtering outside model
   ).toBeVisible();
 });
 
-test('mobile browser history restores a selected part and its detail sheet', async ({ page }) => {
+test('mobile browser history restores the selected part while keeping details optional', async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(`/?assembly=jackshaft&part=${bushingId}&source=lbx2021&year=2021`);
+  await expect(page.locator('#component-details')).toBeHidden();
+  await page.getByRole('button', { name: 'Details', exact: true }).click();
   const details = page.getByRole('dialog', { name: 'Component information' });
   await expect(details).toHaveClass(/mobile-open/);
   await expect(details.getByRole('heading', { level: 2 })).toHaveText('Midshaft right bushing');
@@ -98,8 +102,8 @@ test('mobile browser history restores a selected part and its detail sheet', asy
   await expect(details).toBeHidden();
   await page.goBack();
   await expect(page).toHaveURL(new RegExp(`part=${bushingId}`));
-  await expect(details).toHaveClass(/mobile-open/);
-  await expect(details.getByRole('heading', { level: 2 })).toHaveText('Midshaft right bushing');
+  await expect(details).toBeHidden();
+  await expect(page.locator('#component-details h2')).toHaveText('Midshaft right bushing');
   await expect(page.getByLabel('Catalog source', { exact: true })).toHaveValue('lbx2021');
   await expect(page.getByLabel('Catalog model year', { exact: true })).toHaveValue('2021');
   await page.goForward();

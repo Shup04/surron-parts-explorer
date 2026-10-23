@@ -1,6 +1,7 @@
 import type { Catalog, MappingConfig } from '@/core/types';
 import { validateCatalog } from '@/core/catalog';
 import { validateMapping } from '@/core/mapping';
+import { projectPartsAsset } from '@/config/project-parts';
 
 export interface EditorProject {
   version: 1;
@@ -15,6 +16,8 @@ export interface PartModel {
   fileName: string;
   originalName: string;
   partId: string;
+  /** Registered project asset; absent for a browser-local uploaded file. */
+  projectModelId?: string;
 }
 
 export const PROJECT_STORAGE_KEY = 'surron-editor-project';
@@ -59,11 +62,19 @@ export function parseEditorProject(value: unknown): EditorProject {
       ids.add(model.id as string);
       if (!catalog.data.parts.some((part) => part.id === model.partId))
         throw new Error('Part model references an unknown catalog part.');
+      if (
+        model.projectModelId !== undefined &&
+        !projectPartsAsset.models?.some((asset) => asset.id === model.projectModelId)
+      )
+        throw new Error('Part model references an unknown project model.');
       return {
         id: model.id as string,
         fileName: model.fileName as string,
         originalName: model.originalName as string,
         partId: model.partId as string,
+        ...(model.projectModelId !== undefined
+          ? { projectModelId: model.projectModelId as string }
+          : {}),
       };
     });
   }
@@ -215,7 +226,12 @@ export async function materializeProjectFiles(
 ): Promise<LocalAsset> {
   if (!project.partModels) return materializeFiles(files, project.assetFileName!);
   const results = await Promise.allSettled(
-    project.partModels.map((model) => materializeFiles(files, model.fileName)),
+    project.partModels.map(async (model): Promise<LocalAsset> => {
+      if (!model.projectModelId) return materializeFiles(files, model.fileName);
+      const asset = projectPartsAsset.models?.find((entry) => entry.id === model.projectModelId);
+      if (!asset) throw new Error(`Unknown project model: ${model.projectModelId}.`);
+      return { url: asset.url, dispose: () => {} };
+    }),
   );
   const assets = results.flatMap((result) => (result.status === 'fulfilled' ? [result.value] : []));
   const failure = results.find((result) => result.status === 'rejected');
@@ -251,7 +267,10 @@ export async function loadSavedEditorFiles(): Promise<File[]> {
 export async function loadSavedEditorAsset(): Promise<LocalAsset | null> {
   const project = loadEditorProject();
   if (!project?.assetFileName) return null;
-  return materializeProjectFiles(await loadSavedEditorFiles(), project);
+  const files = project.partModels?.every((model) => model.projectModelId)
+    ? []
+    : await loadSavedEditorFiles();
+  return materializeProjectFiles(files, project);
 }
 
 export function downloadJSON(value: unknown, filename: string): void {

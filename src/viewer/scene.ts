@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import type { CatalogIndex } from '@/core/catalog';
 import { getAncestors, getDescendants } from '@/core/catalog';
 import { automaticExplosion, explodedPosition } from '@/core/explosion';
-import type { Explosion, MappingConfig, Vec3 } from '@/core/types';
+import type { Explosion, ExplosionGroup, MappingConfig, Vec3 } from '@/core/types';
 import { getObjectKey } from '@/core/mapping';
 
 const originalLayers = new WeakMap<THREE.Object3D, number>();
@@ -14,6 +14,8 @@ export interface SceneRecord {
   original: Vec3;
   explosion?: Explosion;
   automatic: boolean;
+  assembledBounds?: THREE.Box3;
+  parentWorldInverse?: THREE.Matrix4;
 }
 
 /** Catalog IDs are external metadata. Names never become a selection identifier. */
@@ -61,6 +63,12 @@ export function prepareScene(root: THREE.Object3D, mapping?: MappingConfig): Sce
     } else delete object.userData.viewerPartId;
   });
   root.updateMatrixWorld(true);
+  for (const record of records) {
+    record.assembledBounds = new THREE.Box3().setFromObject(record.object);
+    record.parentWorldInverse = record.object.parent
+      ? record.object.parent.matrixWorld.clone().invert()
+      : new THREE.Matrix4();
+  }
   return records;
 }
 
@@ -131,12 +139,27 @@ export function explosionTargets(
   assemblyId: string,
   amount: number,
   scopePartIds?: string[],
+  closedGroups: ExplosionGroup[] = [],
 ): Map<THREE.Object3D, THREE.Vector3> {
   const targets = new Map<THREE.Object3D, THREE.Vector3>();
   const recordObjects = new Set(records.map((record) => record.object));
   const allowed = scopePartIds
     ? new Set(scopePartIds.flatMap((id) => [...partSet(index, id)]))
     : partSet(index, assemblyId);
+  const groupByPart = new Map(
+    closedGroups.flatMap((group) => group.partIds.map((id) => [id, group] as const)),
+  );
+  const anchoredOffsets = new Map<string, { offset: THREE.Vector3; explosion: Explosion }>();
+  for (const group of closedGroups) {
+    const anchor = records.find((record) => record.partId === group.anchorPartId);
+    if (!anchor?.explosion) continue;
+    const parentWorld = anchor.parentWorldInverse?.clone().invert() ?? new THREE.Matrix4();
+    const offset = new THREE.Vector3(...anchor.explosion.direction)
+      .normalize()
+      .multiplyScalar(anchor.explosion.distance)
+      .applyMatrix3(new THREE.Matrix3().setFromMatrix4(parentWorld));
+    anchoredOffsets.set(group.id, { offset, explosion: anchor.explosion });
+  }
   const scoped = records.map((record) => {
     const active = allowed.has(record.partId) && record.partId !== assemblyId;
     let mappedParent = record.object.parent;
@@ -150,7 +173,9 @@ export function explosionTargets(
     }
     return {
       record,
-      scopeId: scopePartIds ? record.partId : selectionAtLevel(index, record.partId, assemblyId),
+      scopeId:
+        groupByPart.get(record.partId)?.id ??
+        (scopePartIds ? record.partId : selectionAtLevel(index, record.partId, assemblyId)),
       active: active && !movesWithAncestor,
     };
   });
@@ -167,13 +192,63 @@ export function explosionTargets(
     entry.count++;
     centers.set(scopeId, entry);
   });
+  // Imported files often share the same origin. Use their assembled geometry to
+  // spread parts at the assembly's scale, independent of the current animation.
+  const assemblyBounds = new THREE.Box3();
+  const componentBounds = new Map<string, THREE.Box3>();
+  if (scopePartIds)
+    scoped.forEach(({ record, scopeId, active }) => {
+      if (!active || !record.assembledBounds || record.assembledBounds.isEmpty()) return;
+      assemblyBounds.union(record.assembledBounds);
+      const bounds = componentBounds.get(scopeId) ?? new THREE.Box3();
+      bounds.union(record.assembledBounds);
+      componentBounds.set(scopeId, bounds);
+    });
   scoped.forEach(({ record, scopeId, active }) => {
     const entry = centers.get(scopeId);
     const center = entry
       ? (entry.sum.clone().divideScalar(entry.count).toArray() as Vec3)
       : record.original;
-    const fallback = automaticExplosion(center, [0, 0, 0], entry?.ordinal ?? 0);
-    const config = record.partId === scopeId ? (record.explosion ?? fallback) : fallback;
+    let fallback = automaticExplosion(center, [0, 0, 0], entry?.ordinal ?? 0);
+    const bounds = componentBounds.get(scopeId);
+    if (bounds && record.parentWorldInverse && !assemblyBounds.isEmpty()) {
+      const origin = assemblyBounds.getCenter(new THREE.Vector3());
+      const worldExplosion = automaticExplosion(
+        bounds.getCenter(new THREE.Vector3()).toArray() as Vec3,
+        origin.toArray() as Vec3,
+        entry?.ordinal ?? 0,
+        assemblyBounds.getSize(new THREE.Vector3()).length() * 0.3,
+      );
+      const offset = new THREE.Vector3(...worldExplosion.direction)
+        .normalize()
+        .multiplyScalar(worldExplosion.distance);
+      const localOffset = origin
+        .clone()
+        .add(offset)
+        .applyMatrix4(record.parentWorldInverse)
+        .sub(origin.clone().applyMatrix4(record.parentWorldInverse));
+      fallback = {
+        ...worldExplosion,
+        direction: localOffset.toArray() as Vec3,
+        distance: localOffset.length(),
+      };
+    }
+    let config = record.partId === scopeId ? (record.explosion ?? fallback) : fallback;
+    const anchored = anchoredOffsets.get(scopeId);
+    if (anchored) {
+      // Each imported file may have a different parent transform. Convert the
+      // shared world displacement back to its local space, preserving the group.
+      const local = anchored.offset
+        .clone()
+        .applyMatrix3(
+          new THREE.Matrix3().setFromMatrix4(record.parentWorldInverse ?? new THREE.Matrix4()),
+        );
+      config = {
+        ...anchored.explosion,
+        direction: local.toArray() as Vec3,
+        distance: local.length(),
+      };
+    }
     targets.set(
       record.object,
       new THREE.Vector3(...explodedPosition(record.original, config, active ? amount : 0)),

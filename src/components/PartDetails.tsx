@@ -17,7 +17,7 @@ export function PartDetails({
   actions?: ReactNode;
 }) {
   const specifications = Object.entries(part.specifications).filter(
-    ([key, value]) => key !== 'Model role' && value.trim(),
+    ([key, value]) => key !== 'Model role' && key !== 'Model file' && value.trim(),
   );
   const images = part.images.filter((image) => /^(https?:\/\/|\/(?!\/))/.test(image.url));
   const hasSpecifications =

@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test';
 import { seatGlb } from './fixtures/part-glb';
 
-test('a saved seat GLB loads on return to the explorer, in Seat, and through mesh picking', async ({
+test('a saved seat GLB loads in the local preview, in Seat, and through mesh picking', async ({
   page,
 }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/editor?advanced=1');
+  await page.goto('/editor?workspace=local&advanced=1');
   await page.getByLabel('Import model and companion files').setInputFiles({
     name: 'seat.glb',
     mimeType: 'model/gltf-binary',
@@ -29,7 +29,7 @@ test('a saved seat GLB loads on return to the explorer, in Seat, and through mes
   await page.getByRole('button', { name: 'Map 1 selected', exact: true }).click();
   await page.getByRole('button', { name: 'Save locally', exact: true }).click();
   await expect(page.locator('.editor-save-state')).toHaveText('Local only');
-  await page.getByRole('link', { name: 'Explorer', exact: true }).click();
+  await page.getByRole('button', { name: 'Preview in explorer', exact: true }).click();
   await expect(page).toHaveURL(/workspace=local/);
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-scene-ready', 'true');
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '2');
@@ -50,7 +50,7 @@ test('a saved seat GLB loads on return to the explorer, in Seat, and through mes
       .toBe('occ-lbx2021-p10-r4');
   }).toPass({ timeout: 10_000 });
   await expect(page.locator('.oem-part-details .oem-number')).toHaveText('32300-YQ2A-0001');
-  await page.goto('/?nav=nav.body.seat');
+  await page.goto('/?workspace=local&nav=nav.body.seat');
   await expect(page).toHaveURL(/workspace=local/);
   await expect(page.getByTestId('viewer')).toHaveAttribute('data-visible-meshes', '1');
   await page.goto('/?demo=1');

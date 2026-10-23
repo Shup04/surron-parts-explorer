@@ -42,6 +42,7 @@ export interface NavigationNode {
   installedOccurrenceIds: string[];
   occurrenceId?: string;
   modelPartIds?: string[];
+  selectAsAssembly?: boolean;
 }
 
 export interface NavigationModel {
@@ -130,6 +131,7 @@ export function buildCuratedNavigation(
       id: definition.id,
       name: definition.name,
       kind: definition.kind,
+      ...(definition.selectAsAssembly ? { selectAsAssembly: true } : {}),
       scopeId: available.has(system.id) ? system.id : catalog.motorcycleId,
       parentId,
       children: [],

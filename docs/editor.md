@@ -1,14 +1,14 @@
 # Model mapping studio
 
-Open `/editor` from the explorer. The default **Add bike parts** screen is for building a bike from separate GLBs. Models and assignments are saved in this browser.
+Open `/editor` from the explorer. The default **Add bike parts** screen loads the same current project models as the main explorer, with their materials, positions and assignments. Older browser saves cannot override this view. **Saved local parts** (`/editor?workspace=local`) restores your saved workspace; with no save, it opens an empty workspace. The explorer's **Model editor** link follows the workspace you are viewing.
 
 ## Add separate part GLBs
 
 1. Choose the physical part, such as **Seat**, in **Choose the bike part**.
-2. Click **Import Seat GLB** and select its file. All meshes in that file are assigned to Seat automatically. **Your parts** shows the filename and assignment.
+2. Click **Import Seat GLB** (or **Replace Seat GLB** if already modeled) and select its file. All meshes in that file are assigned to Seat automatically. **Your parts** shows the filename and assignment. Choose an individual model in this list to replace one of several models with the same role, such as a bracket bolt.
 3. Click **Save & preview**. Open **Seat and bodywork → Seat** in the explorer, or click its geometry.
 
-Repeat for the frame, wheels and other parts. Adding a part keeps the models already added. Choosing an existing part and importing another GLB replaces only that part. Export every GLB in metres, Y-up, using the same assembled coordinate system; original positions, rotations and scales are preserved. The app does not guess their placement.
+Repeat for the frame, wheels and other parts. Adding a part keeps the models already added and automatically adds it to the explorer hierarchy. The explorer lists assigned models and populated assemblies; unmodeled roles remain available in this editor. Choosing an existing part and importing another GLB replaces only that part. A whole-file assignment is one selectable part; use separate part imports or individual advanced object mappings for assembly children that should explode separately. Export every GLB in metres, Y-up, using the same assembled coordinate system; original positions, rotations and scales are preserved. The app does not guess their placement.
 
 For a model imported with the previous editor, choose its physical part and click **Use this model for Seat**. This reuses the stored file and assigns the whole file without requiring mesh selection or another upload.
 
@@ -59,9 +59,9 @@ Editor preview applies configured transforms throughout the imported object hier
 
 ## Save, export, and test in the explorer
 
-**Save locally** stores validated project metadata in `localStorage` under `surron-editor-project`. Imported model files are stored as browser-local blobs in IndexedDB (`surron-model-workspace`). **Preview in explorer** saves the workspace and opens `/?workspace=local`, where the same catalog, mappings, and imported geometry power search, selection, assembly navigation, and explosion.
+**Save locally** stores validated project metadata in `localStorage` under `surron-editor-project` and changes the editor URL to `workspace=local` so reloading restores that save. Imported model files are stored as browser-local blobs in IndexedDB (`surron-model-workspace`). Unchanged project models reference the registered public assets; replacing one keeps the other project models. **Preview in explorer** saves the workspace and opens `/?workspace=local`, where the same catalog, mappings, and geometry power search, selection, assembly navigation, and explosion. Opening the current project does not overwrite an existing browser save; saving explicitly replaces that local workspace.
 
-After saving, returning through **Explorer** or opening the normal explorer in the same browser restores the models and marks the URL with `workspace=local`. Curated views such as **Seat** show their local model assignments and geometry mapped to source references, including references filed under different source assemblies. Separate part uploads compose your own bike; the explicit `?demo=1` route shows the demonstration.
+The editor's **Explorer** link follows the current workspace. Opening `/` always shows the styled project assembly. To view saved imports, use **Save & preview**, **Preview in explorer**, or **Tools → Saved local parts** (`/?workspace=local`). In that local view, curated views such as **Seat** show their local model assignments and geometry mapped to source references, including references filed under different source assemblies. Separate part uploads compose your own bike; the explicit `?demo=1` route shows the demonstration.
 
 Leaving through **Explorer** or **Review factual catalog data** uses the same unsaved-change confirmation as closing the tab. Choose **Save locally** first to retain edits.
 
@@ -82,4 +82,4 @@ The tool cannot verify mechanical alignment, disassembly order, tolerances, OEM 
 
 ## Updating an older workspace
 
-Saved projects restore intact. **Merge current OEM catalog** adds missing stable records without replacing existing IDs, custom edits or mappings, and reports retained differences. Review source corrections in `/catalog`; export those patches separately from model-project JSON. Existing saved projects retain their own record snapshots until explicitly reconciled.
+Saved projects restore intact through **Saved local parts**. **Merge current OEM catalog** adds missing stable records without replacing existing IDs, custom edits or mappings, and reports retained differences. Review source corrections in `/catalog`; export those patches separately from model-project JSON. Existing saved projects retain their own record snapshots until explicitly reconciled.

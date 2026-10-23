@@ -25,12 +25,27 @@ const theme = Object.fromEntries(
 export const metadata: Metadata = {
   title: 'Sur-Ron · Parts Explorer',
   description:
-    'Interactive motorcycle assembly explorer and local model-mapping workbench. Demonstration geometry; mechanical data awaits verification.',
+    'Explore Sur-Ron motorcycle assemblies, inspect parts in 3D, and follow the model hierarchy from the whole bike to individual components.',
+  applicationName: 'Sur-Ron Parts Explorer',
+  appleWebApp: {
+    capable: true,
+    title: 'Parts Explorer',
+    statusBarStyle: 'black-translucent',
+  },
+  icons: {
+    icon: [{ url: '/icons/app.svg', type: 'image/svg+xml' }],
+    apple: [{ url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
   // The app is already dark; prevent Dark Reader from changing SVG attributes before hydration.
   other: { 'darkreader-lock': 'true' },
 };
 
 export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  interactiveWidget: 'resizes-content',
+  themeColor: tokens.css.panel,
   colorScheme: 'dark',
 };
 

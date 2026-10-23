@@ -22,6 +22,33 @@ import type { AssetDefinition, MappingConfig } from '../src/core/types';
 const index = buildCatalogIndex(demoCatalog);
 
 describe('real Three.js scene integration', () => {
+  it('spreads shared-origin imported parts at their geometry scale and restores them without drift', () => {
+    const scene = new THREE.Group();
+    scene.scale.setScalar(0.001);
+    const groups = ['shaft', 'bearing-left', 'bearing-right'].map((id, i) => {
+      const group = new THREE.Group();
+      group.userData.partId = id;
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(100, 100, 100));
+      mesh.position.z = (i - 1) * 150;
+      group.add(mesh);
+      scene.add(group);
+      return group;
+    });
+    const records = prepareScene(scene);
+    const ids = records.map((record) => record.partId);
+    const targets = explosionTargets(records, index, 'jackshaft', 1, ids);
+    expect(targets.get(groups[0])!.z).toBeLessThan(-100);
+    expect(targets.get(groups[2])!.z).toBeGreaterThan(100);
+    targets.forEach((position, object) => object.position.copy(position));
+    const repeated = explosionTargets(records, index, 'jackshaft', 1, ids);
+    targets.forEach((position, object) =>
+      expect(repeated.get(object)!.toArray()).toEqual(position.toArray()),
+    );
+    const originals = explosionTargets(records, index, 'jackshaft', 0, ids);
+    originals.forEach((position) => expect(position.toArray()).toEqual([0, 0, 0]));
+    disposeScene(scene);
+  });
+
   it('keeps large imported geometry inside the camera range after framing and zooming', () => {
     const bounds = new THREE.Box3(
       new THREE.Vector3(-250, -35, -90),

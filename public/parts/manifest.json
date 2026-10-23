@@ -1,12 +1,14 @@
 {
   "version": 1,
   "id": "project-parts-v1",
-  "createdUtc": "2026-10-15T00:19:17.223595+00:00",
+  "createdUtc": "2026-10-15T20:22:21.744272+00:00",
+  "sourceBlend": "reference/models/surron-parts/frame-update/surron-parts-ready.blend",
+  "sourceBlendSha256": "f794a1ed0de4e5ff72d4be657b2b9ce1f9cd13bdb5e428d4f3c5a38477849fdb",
   "sourceUnitScalePreserved": true,
   "frameOriginalTriangles": 889358,
   "frameOptimizedTriangles": 60000,
-  "totalTriangles": 1599587,
-  "totalBytes": 58268584,
+  "totalTriangles": 1815043,
+  "totalBytes": 66130860,
   "parts": [
     {
       "id": "main-frame",
@@ -17,10 +19,20 @@
       "triangles": 60000,
       "bytes": 5075840,
       "sha256": "da6c9a31b3989d7283487c3fdcb2d94930541207a5da618973444cab76ba094e",
-      "materials": ["Deep Purple Metallic"],
+      "materials": [
+        "Deep Purple Metallic"
+      ],
       "sourceWorldBounds": [
-        [-99.9051742553711, -590.21630859375, -85.3314208984375],
-        [103.12251281738281, -30.38850975036621, 569.9346313476562]
+        [
+          -99.9051742553711,
+          -590.21630859375,
+          -85.3314208984375
+        ],
+        [
+          103.12251281738281,
+          -30.38850975036621,
+          569.9346313476562
+        ]
       ]
     },
     {
@@ -32,10 +44,20 @@
       "triangles": 14000,
       "bytes": 337448,
       "sha256": "6482b54c78287dc4f7c87b817364a7a0afe30478184039afd858ad0d48260f1d",
-      "materials": ["Black Metal"],
+      "materials": [
+        "Black Metal"
+      ],
       "sourceWorldBounds": [
-        [-71.68086242675781, -367.0594482421875, -94.74353790283203],
-        [77.22303771972656, -134.87513732910156, 63.084415435791016]
+        [
+          -71.68086242675781,
+          -367.0594482421875,
+          -94.74353790283203
+        ],
+        [
+          77.22303771972656,
+          -134.87513732910156,
+          63.084415435791016
+        ]
       ]
     },
     {
@@ -47,10 +69,20 @@
       "triangles": 22399,
       "bytes": 654328,
       "sha256": "4acd05db1adc1564888f2152e73d7b372e7525307201cca5087fe046c3789c64",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [-76.90325927734375, -416.0063171386719, 406.7341613769531],
-        [74.78524017333984, -168.71324157714844, 496.6806640625]
+        [
+          -76.90325927734375,
+          -416.0063171386719,
+          406.7341613769531
+        ],
+        [
+          74.78524017333984,
+          -168.71324157714844,
+          496.6806640625
+        ]
       ]
     },
     {
@@ -62,10 +94,20 @@
       "triangles": 12000,
       "bytes": 307476,
       "sha256": "a2956e0045e3d5851efff07f8c36de8ff0e8720082938b4aad20f3251cab7d3c",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [-4.847682476043701, -260.0821228027344, 354.7514953613281],
-        [87.26702117919922, -94.59188842773438, 431.53814697265625]
+        [
+          -4.847682476043701,
+          -260.0821228027344,
+          354.7514953613281
+        ],
+        [
+          87.26702117919922,
+          -94.59188842773438,
+          431.53814697265625
+        ]
       ]
     },
     {
@@ -77,10 +119,20 @@
       "triangles": 12000,
       "bytes": 326584,
       "sha256": "d1558e614bdd46ee556abf1043864d31d215a4d7989bbe337c14b14350e6c761",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [-84.60289764404297, -258.2023620605469, 355.3078918457031],
-        [14.693202018737793, -94.61934661865234, 432.10772705078125]
+        [
+          -84.60289764404297,
+          -258.2023620605469,
+          355.3078918457031
+        ],
+        [
+          14.693202018737793,
+          -94.61934661865234,
+          432.10772705078125
+        ]
       ]
     },
     {
@@ -92,10 +144,20 @@
       "triangles": 15358,
       "bytes": 368076,
       "sha256": "6ab7d00badea0e6d7d2b9d3a00f8b7998672c5d7e4c6b3047f56614cb3e21723",
-      "materials": ["Raw aluminum"],
+      "materials": [
+        "Raw aluminum"
+      ],
       "sourceWorldBounds": [
-        [-23.831871032714844, -214.14723205566406, 405.4319763183594],
-        [29.99147605895996, -191.5589599609375, 443.9136962890625]
+        [
+          -23.831871032714844,
+          -214.14723205566406,
+          405.4319763183594
+        ],
+        [
+          29.99147605895996,
+          -191.5589599609375,
+          443.9136962890625
+        ]
       ]
     },
     {
@@ -107,10 +169,20 @@
       "triangles": 25600,
       "bytes": 738920,
       "sha256": "398e8164ddf96b0c8c51f71fde94db71597a6c1d9a79abde7ef53d58610b63d4",
-      "materials": ["Raw aluminum"],
+      "materials": [
+        "Raw aluminum"
+      ],
       "sourceWorldBounds": [
-        [-80.947021484375, -203.4659881591797, 375.3050537109375],
-        [36.94057083129883, -155.5470428466797, 428.2035827636719]
+        [
+          -80.947021484375,
+          -203.4659881591797,
+          375.3050537109375
+        ],
+        [
+          36.94057083129883,
+          -155.5470428466797,
+          428.2035827636719
+        ]
       ]
     },
     {
@@ -122,10 +194,20 @@
       "triangles": 10000,
       "bytes": 290380,
       "sha256": "0e2ea1a2c4292c7d35df0596ce681d1d03129df5ce437ec1e2b2106cf63da4dd",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [-79.20790100097656, -188.431884765625, 115.32347869873047],
-        [82.94890594482422, -133.99600219726562, 295.3341064453125]
+        [
+          -79.20790100097656,
+          -188.431884765625,
+          115.32347869873047
+        ],
+        [
+          82.94890594482422,
+          -133.99600219726562,
+          295.3341064453125
+        ]
       ]
     },
     {
@@ -137,40 +219,20 @@
       "triangles": 12800,
       "bytes": 297716,
       "sha256": "1c59490471a39dfe867ff8446579d35827a1bf3b40a2b1b3425c6756eb87c089",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [14.541115760803223, -153.2461395263672, 83.21326446533203],
-        [87.5794906616211, -104.38935852050781, 165.2292938232422]
-      ]
-    },
-    {
-      "id": "jackshaft-pulley",
-      "name": "Jackshaft Pulley",
-      "file": "Jackshaft Pulley.glb",
-      "role": "nav.jackshaft.pulley",
-      "sourceObject": "Belt_Pulley_Large_001",
-      "triangles": 35200,
-      "bytes": 1668652,
-      "sha256": "fa4fe6485ffefb982a72a4e1c941f2d98066f519d74706c3d1bc14285197f8e8",
-      "materials": ["Raw aluminum"],
-      "sourceWorldBounds": [
-        [988.116943359375, -433.04296875, -49.39397048950195],
-        [1013.1702270507812, -297.0281982421875, 86.50501251220703]
-      ]
-    },
-    {
-      "id": "motor-pulley",
-      "name": "Motor Pulley",
-      "file": "Motor Pulley.glb",
-      "role": "nav.motor.pulley",
-      "sourceObject": "Belt_Pulley_Small_001",
-      "triangles": 90112,
-      "bytes": 2117108,
-      "sha256": "060753810b225078b30929b897750d0ba60d45a0aea3dcc5389fef8063ca0ad8",
-      "materials": ["Raw aluminum"],
-      "sourceWorldBounds": [
-        [944.8566284179688, -324.88677978515625, -113.33831024169922],
-        [966.5606689453125, -259.6564636230469, -48.080379486083984]
+        [
+          14.541115760803223,
+          -153.2461395263672,
+          83.21326446533203
+        ],
+        [
+          87.5794906616211,
+          -104.38935852050781,
+          165.2292938232422
+        ]
       ]
     },
     {
@@ -182,10 +244,20 @@
       "triangles": 28670,
       "bytes": 651800,
       "sha256": "f6cbe1fa9fc8358c1669aa7b04f98aea6986bb655718faaa84de852debf26583",
-      "materials": ["Chain Damper Rubber"],
+      "materials": [
+        "Chain Damper Rubber"
+      ],
       "sourceWorldBounds": [
-        [-69.57454681396484, 72.7450180053711, 81.54438781738281],
-        [-32.395843505859375, 107.66918182373047, 118.83472442626953]
+        [
+          -69.57454681396484,
+          72.7450180053711,
+          81.54438781738281
+        ],
+        [
+          -32.395843505859375,
+          107.66918182373047,
+          118.83472442626953
+        ]
       ]
     },
     {
@@ -197,10 +269,20 @@
       "triangles": 32000,
       "bytes": 1016308,
       "sha256": "29f907142a83092c8764af7a719954a48de4b10311540c6039be203f7b49768f",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [-80.27779388427734, -380.3689270019531, 34.122005462646484],
-        [88.65040588378906, -292.3824157714844, 146.68426513671875]
+        [
+          -80.27779388427734,
+          -380.3689270019531,
+          34.122005462646484
+        ],
+        [
+          88.65040588378906,
+          -292.3824157714844,
+          146.68426513671875
+        ]
       ]
     },
     {
@@ -212,10 +294,20 @@
       "triangles": 25600,
       "bytes": 612512,
       "sha256": "c0aea5fbf064854ec2caa0a2861f29df248c4021f35fee6f78e0a4a183c2ba06",
-      "materials": ["Raw aluminum"],
+      "materials": [
+        "Raw aluminum"
+      ],
       "sourceWorldBounds": [
-        [-216.08543395996094, -70.16120910644531, -67.13603210449219],
-        [-100.09793090820312, -26.535024642944336, -21.487506866455078]
+        [
+          -216.08543395996094,
+          -70.16120910644531,
+          -67.13603210449219
+        ],
+        [
+          -100.09793090820312,
+          -26.535024642944336,
+          -21.487506866455078
+        ]
       ]
     },
     {
@@ -227,10 +319,20 @@
       "triangles": 25600,
       "bytes": 612348,
       "sha256": "b46098d450d755bdd012825de6e6db3ee03b1c15d45f03a16d1bb495e1e063b8",
-      "materials": ["Raw aluminum"],
+      "materials": [
+        "Raw aluminum"
+      ],
       "sourceWorldBounds": [
-        [106.62985229492188, -70.16109466552734, -67.1360092163086],
-        [222.61734008789062, -26.534852981567383, -21.487524032592773]
+        [
+          106.62985229492188,
+          -70.16109466552734,
+          -67.1360092163086
+        ],
+        [
+          222.61734008789062,
+          -26.534852981567383,
+          -21.487524032592773
+        ]
       ]
     },
     {
@@ -242,10 +344,20 @@
       "triangles": 10000,
       "bytes": 249240,
       "sha256": "75ca311e868747f7af08554c76307b5d05eecaf6c69ce768d9c8c16617dce6e9",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [71.96798706054688, -320.48333740234375, 278.2311096191406],
-        [89.26625061035156, -201.70155334472656, 395.3832092285156]
+        [
+          71.96798706054688,
+          -320.48333740234375,
+          278.2311096191406
+        ],
+        [
+          89.26625061035156,
+          -201.70155334472656,
+          395.3832092285156
+        ]
       ]
     },
     {
@@ -257,25 +369,45 @@
       "triangles": 16000,
       "bytes": 456804,
       "sha256": "3384730cc5c3328c8f95ca03e281c6e5890765ec4318c2eef885a52cdbba63b4",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [-83.12220001220703, -319.1380310058594, 279.213134765625],
-        [-67.44032287597656, -200.77647399902344, 396.3563537597656]
+        [
+          -83.12220001220703,
+          -319.1380310058594,
+          279.213134765625
+        ],
+        [
+          -67.44032287597656,
+          -200.77647399902344,
+          396.3563537597656
+        ]
       ]
     },
     {
       "id": "jackshaft-cover",
       "name": "Jackshaft Cover",
       "file": "Jackshaft Cover.glb",
-      "role": "nav.swingarm.guard",
+      "role": "nav.swingarm.guard.cover",
       "sourceObject": "Jackshaft_Cover_001",
       "triangles": 12000,
       "bytes": 294748,
       "sha256": "71f35e6300f1f84b1ecb834e04b2adc96b5d31241f5144bf62018d879b3b6726",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [-68.29673767089844, -89.1971664428711, 57.46992492675781],
-        [80.50636291503906, 32.75605773925781, 142.164306640625]
+        [
+          -68.29673767089844,
+          -89.1971664428711,
+          57.46992492675781
+        ],
+        [
+          80.50636291503906,
+          32.75605773925781,
+          142.164306640625
+        ]
       ]
     },
     {
@@ -287,10 +419,20 @@
       "triangles": 108,
       "bytes": 4632,
       "sha256": "d1c1ecd11bf9530c91082fc996fc3b0d3c41c5f795f2d1343d652932b843049e",
-      "materials": ["Raw aluminum"],
+      "materials": [
+        "Raw aluminum"
+      ],
       "sourceWorldBounds": [
-        [-60.83750534057617, -406.3013610839844, 477.05401611328125],
-        [-27.337505340576172, -400.30133056640625, 483.0540466308594]
+        [
+          -60.83750534057617,
+          -406.3013610839844,
+          477.05401611328125
+        ],
+        [
+          -27.337505340576172,
+          -400.30133056640625,
+          483.0540466308594
+        ]
       ]
     },
     {
@@ -302,10 +444,20 @@
       "triangles": 108,
       "bytes": 4628,
       "sha256": "a759360351b80d0331ca982c75570171049662675a4319ec21a38c42599eb171",
-      "materials": ["Raw aluminum"],
+      "materials": [
+        "Raw aluminum"
+      ],
       "sourceWorldBounds": [
-        [25.374340057373047, -406.3013610839844, 477.05401611328125],
-        [58.87434005737305, -400.30133056640625, 483.0540466308594]
+        [
+          25.374340057373047,
+          -406.3013610839844,
+          477.05401611328125
+        ],
+        [
+          58.87434005737305,
+          -400.30133056640625,
+          483.0540466308594
+        ]
       ]
     },
     {
@@ -317,10 +469,20 @@
       "triangles": 22400,
       "bytes": 520096,
       "sha256": "25c0e17f2ee043871a126ec3f00cbd969cc690fc99e6b00933d5d05a1b7fcd0e",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [47.3455696105957, -225.87249755859375, -42.849185943603516],
-        [89.34276580810547, -109.22266387939453, 75.63575744628906]
+        [
+          47.3455696105957,
+          -225.87249755859375,
+          -42.849185943603516
+        ],
+        [
+          89.34276580810547,
+          -109.22266387939453,
+          75.63575744628906
+        ]
       ]
     },
     {
@@ -332,10 +494,20 @@
       "triangles": 16640,
       "bytes": 372980,
       "sha256": "4feac0643fe0da8a1e3c3b32b1002c0a49c82ecc5ba880654c1a2774f327b5cc",
-      "materials": ["Belt cover accent"],
+      "materials": [
+        "Belt cover accent"
+      ],
       "sourceWorldBounds": [
-        [75.90831756591797, -213.37518310546875, -12.57550048828125],
-        [83.21965026855469, -140.52735900878906, 47.71907424926758]
+        [
+          75.90831756591797,
+          -213.37518310546875,
+          -12.57550048828125
+        ],
+        [
+          83.21965026855469,
+          -140.52735900878906,
+          47.71907424926758
+        ]
       ]
     },
     {
@@ -347,10 +519,20 @@
       "triangles": 150000,
       "bytes": 4327520,
       "sha256": "9d904a7f03e641860921194c6560f532d02be389ece43a1a22424fbaa278aa41",
-      "materials": ["Black Metal"],
+      "materials": [
+        "Black Metal"
+      ],
       "sourceWorldBounds": [
-        [76.56591796875, -87.33074951171875, -82.63477325439453],
-        [106.49488830566406, 35.31184005737305, 39.230892181396484]
+        [
+          76.56591796875,
+          -87.33074951171875,
+          -82.63477325439453
+        ],
+        [
+          106.49488830566406,
+          35.31184005737305,
+          39.230892181396484
+        ]
       ]
     },
     {
@@ -362,10 +544,20 @@
       "triangles": 30718,
       "bytes": 875892,
       "sha256": "9dc9e59a9adc78d7fee2a5efe0c42f994f146198c0d4d10140cdce54360013c4",
-      "materials": ["Black Metal"],
+      "materials": [
+        "Black Metal"
+      ],
       "sourceWorldBounds": [
-        [-99.99776458740234, -85.25833129882812, -64.1131362915039],
-        [-83.30018615722656, -4.167191505432129, 39.02811050415039]
+        [
+          -99.99776458740234,
+          -85.25833129882812,
+          -64.1131362915039
+        ],
+        [
+          -83.30018615722656,
+          -4.167191505432129,
+          39.02811050415039
+        ]
       ]
     },
     {
@@ -377,10 +569,20 @@
       "triangles": 30720,
       "bytes": 707124,
       "sha256": "aef49a3b0ed8057501982f715a01e616ffa954f1c106d01e8497f81fddfffc3c",
-      "materials": ["Black Metal"],
+      "materials": [
+        "Black Metal"
+      ],
       "sourceWorldBounds": [
-        [-14.577713966369629, 14.391034126281738, 88.44269561767578],
-        [21.617876052856445, 55.069541931152344, 209.62940979003906]
+        [
+          -14.577713966369629,
+          14.391034126281738,
+          88.44269561767578
+        ],
+        [
+          21.617876052856445,
+          55.069541931152344,
+          209.62940979003906
+        ]
       ]
     },
     {
@@ -392,10 +594,20 @@
       "triangles": 16640,
       "bytes": 302336,
       "sha256": "486e6f7fcff350490702bb46f909174cbb2da14782c29359825c56e2be43e881",
-      "materials": ["Raw aluminum"],
+      "materials": [
+        "Raw aluminum"
+      ],
       "sourceWorldBounds": [
-        [81.14398956298828, 376.147705078125, -74.3091812133789],
-        [93.83402252197266, 411.336669921875, -41.8961296081543]
+        [
+          81.14398956298828,
+          376.147705078125,
+          -74.3091812133789
+        ],
+        [
+          93.83402252197266,
+          411.336669921875,
+          -41.8961296081543
+        ]
       ]
     },
     {
@@ -407,10 +619,20 @@
       "triangles": 16640,
       "bytes": 302408,
       "sha256": "b28e61384cd17b479eb64dc93fadbe338b049a684b8e498a14ee375391a9e8f0",
-      "materials": ["Raw aluminum"],
+      "materials": [
+        "Raw aluminum"
+      ],
       "sourceWorldBounds": [
-        [-88.93524932861328, 376.1476135253906, -74.30907440185547],
-        [-76.24522399902344, 411.3365783691406, -41.89601516723633]
+        [
+          -88.93524932861328,
+          376.1476135253906,
+          -74.30907440185547
+        ],
+        [
+          -76.24522399902344,
+          411.3365783691406,
+          -41.89601516723633
+        ]
       ]
     },
     {
@@ -422,25 +644,45 @@
       "triangles": 12000,
       "bytes": 289108,
       "sha256": "4ca89094acb9518006efb09326193faf9a1cbd9db95d20b86406ff9a413a4e4d",
-      "materials": ["Black Metal"],
+      "materials": [
+        "Black Metal"
+      ],
       "sourceWorldBounds": [
-        [62.21598434448242, 318.3876953125, -74.31471252441406],
-        [73.71939086914062, 411.82208251953125, 40.23493957519531]
+        [
+          62.21598434448242,
+          318.3876953125,
+          -74.31471252441406
+        ],
+        [
+          73.71939086914062,
+          411.82208251953125,
+          40.23493957519531
+        ]
       ]
     },
     {
       "id": "rear-hub",
       "name": "Rear Hub",
       "file": "Rear Hub.glb",
-      "role": "nav.rear-wheel.hub",
+      "role": "nav.rear-wheel.hub.body",
       "sourceObject": "Rear_Hub_001",
       "triangles": 61440,
       "bytes": 1528532,
       "sha256": "309cdf8af4c2cd84f2b7dc9fe434a0556a789dc32497cbdd392afac6188b527c",
-      "materials": ["Black Metal"],
+      "materials": [
+        "Black Metal"
+      ],
       "sourceWorldBounds": [
-        [-51.896202087402344, 345.81695556640625, -110.22774505615234],
-        [59.50571823120117, 448.1056823730469, -8.264342308044434]
+        [
+          -51.896202087402344,
+          345.81695556640625,
+          -110.22774505615234
+        ],
+        [
+          59.50571823120117,
+          448.1056823730469,
+          -8.264342308044434
+        ]
       ]
     },
     {
@@ -452,10 +694,20 @@
       "triangles": 10000,
       "bytes": 229240,
       "sha256": "83f67f0414ef4f6c4f278211371cbcf9b00383b683cd9836fbf1a00123f255bc",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [-61.076499938964844, 62.972984313964844, 56.05058288574219],
-        [70.11531066894531, 232.22203063964844, 244.86740112304688]
+        [
+          -61.076499938964844,
+          62.972984313964844,
+          56.05058288574219
+        ],
+        [
+          70.11531066894531,
+          232.22203063964844,
+          244.86740112304688
+        ]
       ]
     },
     {
@@ -467,10 +719,20 @@
       "triangles": 18000,
       "bytes": 448648,
       "sha256": "115f63060d1bb74718dd07a150a187fc2a111d73b4a5c9f4b2a57b2d95c5e236",
-      "materials": ["Black Metal"],
+      "materials": [
+        "Black Metal"
+      ],
       "sourceWorldBounds": [
-        [-68.53142547607422, -101.18390655517578, 138.32872009277344],
-        [74.43597412109375, 42.79581069946289, 209.2587432861328]
+        [
+          -68.53142547607422,
+          -101.18390655517578,
+          138.32872009277344
+        ],
+        [
+          74.43597412109375,
+          42.79581069946289,
+          209.2587432861328
+        ]
       ]
     },
     {
@@ -482,10 +744,20 @@
       "triangles": 51200,
       "bytes": 1427368,
       "sha256": "0352d149d1d89206dbc25a8738edefecf0fd8541a6e6f393b4366d5189870114",
-      "materials": ["Seat Vinyl"],
+      "materials": [
+        "Seat Vinyl"
+      ],
       "sourceWorldBounds": [
-        [-81.578369140625, -157.16119384765625, 376.83184814453125],
-        [88.5480728149414, 281.26849365234375, 513.2796630859375]
+        [
+          -81.578369140625,
+          -157.16119384765625,
+          376.83184814453125
+        ],
+        [
+          88.5480728149414,
+          281.26849365234375,
+          513.2796630859375
+        ]
       ]
     },
     {
@@ -497,10 +769,20 @@
       "triangles": 14000,
       "bytes": 375108,
       "sha256": "1973acbee154770c2117f512f2f39b276e7d7fdba6bb2071347198d43cdec331",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [-49.251373291015625, -62.80278015136719, 371.6314392089844],
-        [56.80134201049805, 267.431640625, 486.1083068847656]
+        [
+          -49.251373291015625,
+          -62.80278015136719,
+          371.6314392089844
+        ],
+        [
+          56.80134201049805,
+          267.431640625,
+          486.1083068847656
+        ]
       ]
     },
     {
@@ -512,10 +794,20 @@
       "triangles": 14400,
       "bytes": 348708,
       "sha256": "47c1260238616a659fd3e767575d36276b91d311b280b6ab1536efb81aa3b95e",
-      "materials": ["Black Metal"],
+      "materials": [
+        "Black Metal"
+      ],
       "sourceWorldBounds": [
-        [-42.192054748535156, -194.1846923828125, 266.43499755859375],
-        [45.975399017333984, -114.69755554199219, 399.6883850097656]
+        [
+          -42.192054748535156,
+          -194.1846923828125,
+          266.43499755859375
+        ],
+        [
+          45.975399017333984,
+          -114.69755554199219,
+          399.6883850097656
+        ]
       ]
     },
     {
@@ -527,10 +819,20 @@
       "triangles": 18000,
       "bytes": 863476,
       "sha256": "341880aafc805c4c1a3d6245900f337cd8beda926f3ab41937a2e0b031246bbc",
-      "materials": ["Black Metal"],
+      "materials": [
+        "Black Metal"
+      ],
       "sourceWorldBounds": [
-        [-89.57598114013672, -207.37384033203125, 213.802978515625],
-        [97.40526580810547, 215.26934814453125, 470.2004699707031]
+        [
+          -89.57598114013672,
+          -207.37384033203125,
+          213.802978515625
+        ],
+        [
+          97.40526580810547,
+          215.26934814453125,
+          470.2004699707031
+        ]
       ]
     },
     {
@@ -542,10 +844,20 @@
       "triangles": 30000,
       "bytes": 2431956,
       "sha256": "55d5dcadf6296979094407c991acff0cd6a92201ee4f9c1d3b69e659c8fe1567",
-      "materials": ["Deep Purple Metallic"],
+      "materials": [
+        "Deep Purple Metallic"
+      ],
       "sourceWorldBounds": [
-        [-91.73725891113281, -80.63097381591797, -83.21774291992188],
-        [98.43757629394531, 436.19189453125, 158.16526794433594]
+        [
+          -91.73725891113281,
+          -80.63097381591797,
+          -83.21774291992188
+        ],
+        [
+          98.43757629394531,
+          436.19189453125,
+          158.16526794433594
+        ]
       ]
     },
     {
@@ -557,10 +869,20 @@
       "triangles": 272628,
       "bytes": 12748924,
       "sha256": "c2eaba6d8c56ba80e870b959d5a20ad363460e233de2868278162e8508e95124",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [-42.57528305053711, 34.602779388427734, 346.69525146484375],
-        [51.778785705566406, 70.07503509521484, 381.84423828125]
+        [
+          -42.57528305053711,
+          34.602779388427734,
+          346.69525146484375
+        ],
+        [
+          51.778785705566406,
+          70.07503509521484,
+          381.84423828125
+        ]
       ]
     },
     {
@@ -572,10 +894,20 @@
       "triangles": 14080,
       "bytes": 313464,
       "sha256": "81d28bc5c0f25232241967b6b6efac1cd23698a3f305e0566b0838028346a63c",
-      "materials": ["Black Metal"],
+      "materials": [
+        "Black Metal"
+      ],
       "sourceWorldBounds": [
-        [-27.0061092376709, 39.218074798583984, 364.4921875],
-        [35.428279876708984, 90.6048355102539, 407.84527587890625]
+        [
+          -27.0061092376709,
+          39.218074798583984,
+          364.4921875
+        ],
+        [
+          35.428279876708984,
+          90.6048355102539,
+          407.84527587890625
+        ]
       ]
     },
     {
@@ -587,10 +919,1321 @@
       "triangles": 24576,
       "bytes": 586816,
       "sha256": "fd565857c4a4097ac64f0d3fd987656f24f666db43a48f1594405e3dcbc02d9f",
-      "materials": ["Black Plastic"],
+      "materials": [
+        "Black Plastic"
+      ],
       "sourceWorldBounds": [
-        [997.8350219726562, 67.68101501464844, -26.58695411682129],
-        [1048.4671630859375, 95.23001098632812, 8.671875953674316]
+        [
+          997.8350219726562,
+          67.68101501464844,
+          -26.58695411682129
+        ],
+        [
+          1048.4671630859375,
+          95.23001098632812,
+          8.671875953674316
+        ]
+      ]
+    },
+    {
+      "id": "bolt-peg-left-upper",
+      "name": "Footpeg Bracket Bolt Left Upper",
+      "file": "Footpeg Bracket Bolt Left Upper.glb",
+      "role": "nav.footpegs-stand.brackets.bolts",
+      "sourceObject": "Footpeg Bracket Bolt Left Upper",
+      "sourceBlend": "reference/models/lbx-mounted-hardware/lbx-mounted-hardware.blend",
+      "hardwareSpec": "peg-m8x20",
+      "triangles": 1440,
+      "bytes": 46912,
+      "sha256": "9d3f04abccbcfaec9b9d0ea3c6bcc0216081bbdcdd5dfbe50a01eb8bcea02c53",
+      "materials": [
+        "Raw aluminum"
+      ],
+      "sourceWorldBounds": [
+        [
+          78.7069320678711,
+          -49.30638885498047,
+          20.841203689575195
+        ],
+        [
+          106.7987060546875,
+          -36.23820114135742,
+          33.85601043701172
+        ]
+      ]
+    },
+    {
+      "id": "bolt-peg-left-lower",
+      "name": "Footpeg Bracket Bolt Left Lower",
+      "file": "Footpeg Bracket Bolt Left Lower.glb",
+      "role": "nav.footpegs-stand.brackets.bolts",
+      "sourceObject": "Footpeg Bracket Bolt Left Lower",
+      "sourceBlend": "reference/models/lbx-mounted-hardware/lbx-mounted-hardware.blend",
+      "hardwareSpec": "peg-m8x20",
+      "triangles": 1440,
+      "bytes": 46916,
+      "sha256": "2c98f1299a09f026a86a54554730d4e892c39099bdff2566f6f0ef9e8e3ac0dc",
+      "materials": [
+        "Raw aluminum"
+      ],
+      "sourceWorldBounds": [
+        [
+          78.25251007080078,
+          -79.53150939941406,
+          -25.583532333374023
+        ],
+        [
+          106.32612609863281,
+          -66.47591400146484,
+          -12.576742172241211
+        ]
+      ]
+    },
+    {
+      "id": "bolt-peg-right-upper",
+      "name": "Footpeg Bracket Bolt Right Upper",
+      "file": "Footpeg Bracket Bolt Right Upper.glb",
+      "role": "nav.footpegs-stand.brackets.bolts",
+      "sourceObject": "Footpeg Bracket Bolt Right Upper",
+      "sourceBlend": "reference/models/lbx-mounted-hardware/lbx-mounted-hardware.blend",
+      "hardwareSpec": "peg-m8x20",
+      "triangles": 1440,
+      "bytes": 46916,
+      "sha256": "c1c0f302a51e3a0b23e7f6690c0c739aa6246383b0a8eff3b76f6430f38c288a",
+      "materials": [
+        "Raw aluminum"
+      ],
+      "sourceWorldBounds": [
+        [
+          -100.31448364257812,
+          -47.96957015991211,
+          20.70906639099121
+        ],
+        [
+          -72.17543029785156,
+          -34.8647575378418,
+          33.72142028808594
+        ]
+      ]
+    },
+    {
+      "id": "bolt-peg-right-lower",
+      "name": "Footpeg Bracket Bolt Right Lower",
+      "file": "Footpeg Bracket Bolt Right Lower.glb",
+      "role": "nav.footpegs-stand.brackets.bolts",
+      "sourceObject": "Footpeg Bracket Bolt Right Lower",
+      "sourceBlend": "reference/models/lbx-mounted-hardware/lbx-mounted-hardware.blend",
+      "hardwareSpec": "peg-m8x20",
+      "triangles": 1440,
+      "bytes": 46920,
+      "sha256": "4b1121576d96884bd02a7274af5e1c003430e26c3211809670e49cfb65d63414",
+      "materials": [
+        "Raw aluminum"
+      ],
+      "sourceWorldBounds": [
+        [
+          -99.5179214477539,
+          -77.8289794921875,
+          -25.91217613220215
+        ],
+        [
+          -71.45675659179688,
+          -64.8050765991211,
+          -12.871968269348145
+        ]
+      ]
+    },
+    {
+      "id": "bolt-motor-cover-upper",
+      "name": "Motor Cover Upper Screw",
+      "file": "Motor Cover Upper Screw.glb",
+      "role": "nav.motor.guard.screws",
+      "sourceObject": "Motor Cover Upper Screw",
+      "sourceBlend": "reference/models/lbx-mounted-hardware/lbx-mounted-hardware.blend",
+      "hardwareSpec": "motor-cover-m6x10",
+      "triangles": 2448,
+      "bytes": 76972,
+      "sha256": "74b76b92b44928b3d227c34b66e6414bfac04507613b4ebfae68b7ed81b3b374",
+      "materials": [
+        "Raw aluminum"
+      ],
+      "sourceWorldBounds": [
+        [
+          47.693153381347656,
+          -222.49334716796875,
+          51.55927276611328
+        ],
+        [
+          61.10054397583008,
+          -211.99327087402344,
+          62.0589485168457
+        ]
+      ]
+    },
+    {
+      "id": "bolt-motor-cover-lower",
+      "name": "Motor Cover Lower Screw",
+      "file": "Motor Cover Lower Screw.glb",
+      "role": "nav.motor.guard.screws",
+      "sourceObject": "Motor Cover Lower Screw",
+      "sourceBlend": "reference/models/lbx-mounted-hardware/lbx-mounted-hardware.blend",
+      "hardwareSpec": "motor-cover-m6x10",
+      "triangles": 2448,
+      "bytes": 76964,
+      "sha256": "e25c3c216b44a048ce6fa6cdc7a9088ecd000b87b6597a2ab68cf6dc7b815410",
+      "materials": [
+        "Raw aluminum"
+      ],
+      "sourceWorldBounds": [
+        [
+          47.9213981628418,
+          -141.22166442871094,
+          -39.7089958190918
+        ],
+        [
+          61.375396728515625,
+          -130.72601318359375,
+          -29.212039947509766
+        ]
+      ]
+    },
+    {
+      "id": "bolt-jackshaft-cover-left-upper",
+      "name": "Jackshaft Cover Left Upper Screw",
+      "file": "Jackshaft Cover Left Upper Screw.glb",
+      "role": "nav.swingarm.guard.screws",
+      "sourceObject": "Jackshaft Cover Left Upper Screw",
+      "sourceBlend": "reference/models/lbx-mounted-hardware/lbx-mounted-hardware.blend",
+      "hardwareSpec": "jackshaft-cover-m5x10",
+      "triangles": 2448,
+      "bytes": 76988,
+      "sha256": "ecb4fec4219014ccace9f6eeef939b9f3b315477f1b45796d6102fd7d4659732",
+      "materials": [
+        "Raw aluminum"
+      ],
+      "sourceWorldBounds": [
+        [
+          61.29045486450195,
+          10.87629222869873,
+          96.05364990234375
+        ],
+        [
+          74.14392852783203,
+          20.375471115112305,
+          105.55264282226562
+        ]
+      ]
+    },
+    {
+      "id": "bolt-jackshaft-cover-left-lower",
+      "name": "Jackshaft Cover Left Lower Screw",
+      "file": "Jackshaft Cover Left Lower Screw.glb",
+      "role": "nav.swingarm.guard.screws",
+      "sourceObject": "Jackshaft Cover Left Lower Screw",
+      "sourceBlend": "reference/models/lbx-mounted-hardware/lbx-mounted-hardware.blend",
+      "hardwareSpec": "jackshaft-cover-m5x10",
+      "triangles": 2448,
+      "bytes": 76988,
+      "sha256": "f29a07326dc8f82ee652b0529dda6b5d02cb89db73e1ae72ef73fe2364e13e33",
+      "materials": [
+        "Raw aluminum"
+      ],
+      "sourceWorldBounds": [
+        [
+          60.57300567626953,
+          20.98732566833496,
+          60.069183349609375
+        ],
+        [
+          73.42034912109375,
+          30.48748779296875,
+          69.5689697265625
+        ]
+      ]
+    },
+    {
+      "id": "bolt-jackshaft-cover-right",
+      "name": "Jackshaft Cover Right Screw",
+      "file": "Jackshaft Cover Right Screw.glb",
+      "role": "nav.swingarm.guard.screws",
+      "sourceObject": "Jackshaft Cover Right Screw",
+      "sourceBlend": "reference/models/lbx-mounted-hardware/lbx-mounted-hardware.blend",
+      "hardwareSpec": "jackshaft-cover-m5x10",
+      "triangles": 2448,
+      "bytes": 76972,
+      "sha256": "774d508111d0da08b9086cb08386abdb93447c6540acdb9d8964dd07484c8e2f",
+      "materials": [
+        "Raw aluminum"
+      ],
+      "sourceWorldBounds": [
+        [
+          -70.46204376220703,
+          -11.071173667907715,
+          64.73436737060547
+        ],
+        [
+          -57.60007095336914,
+          -1.571093201637268,
+          74.2336654663086
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-body",
+      "name": "Jackshaft Body",
+      "file": "Jackshaft Body.glb",
+      "role": "nav.jackshaft.shaft",
+      "sourceObject": "jackshaft_body_61281_visual",
+      "sourceBlend": "reference/models/lbx-jackshaft-body/revision-02/lbx-jackshaft-body-r02.blend",
+      "jackshaftSpec": "body",
+      "triangles": 18916,
+      "bytes": 491736,
+      "sha256": "205f3085178fefd044cefcf7384fc2eee21a62e0f6cf23a4d231f40bbd820f4b",
+      "materials": [
+        "LBX_Shaft_Black_Metal",
+        "LBX_Shaft_Machined_Metal"
+      ],
+      "sourceWorldBounds": [
+        [
+          -54.0,
+          -86.02955627441406,
+          35.5099983215332
+        ],
+        [
+          60.0,
+          -37.69044494628906,
+          89.50999450683594
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-bearing-right-inner",
+      "name": "Jackshaft Bearing Right Inner",
+      "file": "Jackshaft Bearing Right Inner.glb",
+      "role": "nav.jackshaft.bearings",
+      "sourceObject": "bearing_6000_2rs",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "bearing",
+      "triangles": 2048,
+      "bytes": 65348,
+      "sha256": "e74a3f83a5b686d116e719f85a9826fc8834a4820f2fca224ee8cbc7058a8c94",
+      "materials": [
+        "LBX_HW_Steel",
+        "LBX_HW_Rubber"
+      ],
+      "sourceWorldBounds": [
+        [
+          -39.0,
+          -74.86000061035156,
+          49.5099983215332
+        ],
+        [
+          -31.0,
+          -48.86000061035156,
+          75.51000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-bearing-right-outer",
+      "name": "Jackshaft Bearing Right Outer",
+      "file": "Jackshaft Bearing Right Outer.glb",
+      "role": "nav.jackshaft.bearings",
+      "sourceObject": "bearing_6000_2rs",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "bearing",
+      "triangles": 2048,
+      "bytes": 65348,
+      "sha256": "2daee0b97410d1086d66f992662fc9c130f7954f5496090daf4b5540717d2c09",
+      "materials": [
+        "LBX_HW_Steel",
+        "LBX_HW_Rubber"
+      ],
+      "sourceWorldBounds": [
+        [
+          -47.0,
+          -74.86000061035156,
+          49.5099983215332
+        ],
+        [
+          -39.0,
+          -48.86000061035156,
+          75.51000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-bearing-left",
+      "name": "Jackshaft Bearing Left",
+      "file": "Jackshaft Bearing Left.glb",
+      "role": "nav.jackshaft.bearings",
+      "sourceObject": "bearing_6000_2rs",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "bearing",
+      "triangles": 2048,
+      "bytes": 65336,
+      "sha256": "e176819e7aaba8489037d4493cde6ed7d472b5413ae4e29a225b9302cf16bb51",
+      "materials": [
+        "LBX_HW_Steel",
+        "LBX_HW_Rubber"
+      ],
+      "sourceWorldBounds": [
+        [
+          50.0,
+          -74.86000061035156,
+          49.5099983215332
+        ],
+        [
+          58.0,
+          -48.86000061035156,
+          75.51000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-inner-spacer",
+      "name": "Jackshaft Inner Spacer",
+      "file": "Jackshaft Inner Spacer.glb",
+      "role": "nav.jackshaft.inner-spacer",
+      "sourceObject": "spacer_jackshaft_centre_61282",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "inner-spacer",
+      "triangles": 768,
+      "bytes": 25904,
+      "sha256": "bcf5da0e3e04c9142c7116860e10cb96b0f702ad883fb64d3dfd974967246c2c",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -31.0,
+          -69.36000061035156,
+          55.0099983215332
+        ],
+        [
+          50.0,
+          -54.36000061035156,
+          70.01000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-right-spacer",
+      "name": "Jackshaft Right Spacer",
+      "file": "Jackshaft Right Spacer.glb",
+      "role": "nav.jackshaft.right-spacer",
+      "sourceObject": "spacer_jackshaft_right_61234",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "right-spacer",
+      "triangles": 768,
+      "bytes": 25820,
+      "sha256": "e9e5f82ebb0baf66f2a39e7eaf39f5ba56e2b42b47f42ea150a23496feb1da32",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -64.0,
+          -69.36000061035156,
+          55.0099983215332
+        ],
+        [
+          -47.0,
+          -54.36000061035156,
+          70.01000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-left-spacer",
+      "name": "Jackshaft Left Spacer",
+      "file": "Jackshaft Left Spacer.glb",
+      "role": "nav.jackshaft.left-spacer",
+      "sourceObject": "spacer_jackshaft_left_61233",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "left-spacer",
+      "triangles": 768,
+      "bytes": 25808,
+      "sha256": "da948b73584e8465931221e0633d3cddc951f68fbabbe8786e4e40c08d6c2dcf",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          58.0,
+          -69.36000061035156,
+          55.0099983215332
+        ],
+        [
+          70.0,
+          -54.36000061035156,
+          70.01000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-right-seal",
+      "name": "Jackshaft Right Oil Seal",
+      "file": "Jackshaft Right Oil Seal.glb",
+      "role": "nav.jackshaft.right-seal",
+      "sourceObject": "seal_jackshaft_right_15x24x7",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "right-seal",
+      "triangles": 1536,
+      "bytes": 48932,
+      "sha256": "7eb2e2199529659fe183db81d200a01d7032dac79755fdd6c443b6f2f615c5d5",
+      "materials": [
+        "LBX_HW_Rubber"
+      ],
+      "sourceWorldBounds": [
+        [
+          -54.0,
+          -73.86000061035156,
+          50.5099983215332
+        ],
+        [
+          -47.0,
+          -49.86000061035156,
+          74.51000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-left-seal",
+      "name": "Jackshaft Left Oil Seal",
+      "file": "Jackshaft Left Oil Seal.glb",
+      "role": "nav.jackshaft.left-seal",
+      "sourceObject": "seal_jackshaft_left_15x26x6",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "left-seal",
+      "triangles": 1536,
+      "bytes": 48920,
+      "sha256": "7a8c40a5ad368c5c9c1b4d16517c9944c408fa474904165fb2c0571d5436b3ba",
+      "materials": [
+        "LBX_HW_Rubber"
+      ],
+      "sourceWorldBounds": [
+        [
+          58.0,
+          -74.86000061035156,
+          49.5099983215332
+        ],
+        [
+          64.0,
+          -48.86000061035156,
+          75.51000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-01",
+      "name": "Jackshaft Sprocket Bolt 01",
+      "file": "Jackshaft Sprocket Bolt 01.glb",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "sourceObject": "bolt_sprocket_m6x25_01",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "sprocket-bolt",
+      "triangles": 956,
+      "bytes": 32904,
+      "sha256": "0abc03d5144a256ec5199e151bc48e38e63c80b4830def8f641dbc1049fea066",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -69.69999694824219,
+          -66.86000061035156,
+          75.01000213623047
+        ],
+        [
+          -37.5,
+          -56.86000061035156,
+          85.01000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-pulley-bolt-01",
+      "name": "Jackshaft Pulley Bolt 01",
+      "file": "Jackshaft Pulley Bolt 01.glb",
+      "role": "nav.jackshaft.pulley-bolts",
+      "sourceObject": "bolt_pulley_m6x16_01",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "pulley-bolt",
+      "triangles": 960,
+      "bytes": 32460,
+      "sha256": "5101799e0f6109906ffb274f7f5ba47ceb294cd69364f19b615348c719ef7be0",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          45.0,
+          -66.86000061035156,
+          78.51000213623047
+        ],
+        [
+          67.0,
+          -56.86000061035156,
+          88.51000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-02",
+      "name": "Jackshaft Sprocket Bolt 02",
+      "file": "Jackshaft Sprocket Bolt 02.glb",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "sourceObject": "bolt_sprocket_m6x25_02",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "sprocket-bolt",
+      "triangles": 956,
+      "bytes": 32904,
+      "sha256": "8e9f5b1ae52d33a03057700d9345e0cbdc0de7675294838f3c34f73c292a99c9",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -69.69999694824219,
+          -51.70455551147461,
+          66.26000213623047
+        ],
+        [
+          -37.5,
+          -41.70455551147461,
+          76.26000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-pulley-bolt-02",
+      "name": "Jackshaft Pulley Bolt 02",
+      "file": "Jackshaft Pulley Bolt 02.glb",
+      "role": "nav.jackshaft.pulley-bolts",
+      "sourceObject": "bolt_pulley_m6x16_02",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "pulley-bolt",
+      "triangles": 960,
+      "bytes": 32460,
+      "sha256": "fff7043104d267d712fe7417f719a4981e144a6437210d98a4bfa0dd9049332a",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          45.0,
+          -48.673465728759766,
+          68.01000213623047
+        ],
+        [
+          67.0,
+          -38.673465728759766,
+          78.01000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-03",
+      "name": "Jackshaft Sprocket Bolt 03",
+      "file": "Jackshaft Sprocket Bolt 03.glb",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "sourceObject": "bolt_sprocket_m6x25_03",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "sprocket-bolt",
+      "triangles": 956,
+      "bytes": 32900,
+      "sha256": "f350e39b38c65fa11564eb7db3cac39b2f197b311bb2c0b329f6e3576384c570",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -69.69999694824219,
+          -51.70455551147461,
+          48.7599983215332
+        ],
+        [
+          -37.5,
+          -41.70455551147461,
+          58.7599983215332
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-pulley-bolt-03",
+      "name": "Jackshaft Pulley Bolt 03",
+      "file": "Jackshaft Pulley Bolt 03.glb",
+      "role": "nav.jackshaft.pulley-bolts",
+      "sourceObject": "bolt_pulley_m6x16_03",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "pulley-bolt",
+      "triangles": 960,
+      "bytes": 32460,
+      "sha256": "d85147d16d56e55cfeaec95abd65df20d226d17e2f1e33f3f540b1a866939004",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          45.0,
+          -48.673465728759766,
+          47.0099983215332
+        ],
+        [
+          67.0,
+          -38.673465728759766,
+          57.0099983215332
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-04",
+      "name": "Jackshaft Sprocket Bolt 04",
+      "file": "Jackshaft Sprocket Bolt 04.glb",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "sourceObject": "bolt_sprocket_m6x25_04",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "sprocket-bolt",
+      "triangles": 956,
+      "bytes": 32900,
+      "sha256": "cf4042df28534931478b793e74bda31fe2ddaa1c3ac36ed81fb7f423c438ebe2",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -69.69999694824219,
+          -66.86000061035156,
+          40.0099983215332
+        ],
+        [
+          -37.5,
+          -56.86000061035156,
+          50.0099983215332
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-pulley-bolt-04",
+      "name": "Jackshaft Pulley Bolt 04",
+      "file": "Jackshaft Pulley Bolt 04.glb",
+      "role": "nav.jackshaft.pulley-bolts",
+      "sourceObject": "bolt_pulley_m6x16_04",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "pulley-bolt",
+      "triangles": 960,
+      "bytes": 32456,
+      "sha256": "e80a1248502b9821560b99091ec6baac7653f0dc30644e24099f26301327d345",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          45.0,
+          -66.86000061035156,
+          36.5099983215332
+        ],
+        [
+          67.0,
+          -56.86000061035156,
+          46.5099983215332
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-05",
+      "name": "Jackshaft Sprocket Bolt 05",
+      "file": "Jackshaft Sprocket Bolt 05.glb",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "sourceObject": "bolt_sprocket_m6x25_05",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "sprocket-bolt",
+      "triangles": 956,
+      "bytes": 32900,
+      "sha256": "e930c97fe366b3a425fcc70f542879f2fa651725b8a3537f91c004763b0f7a34",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -69.69999694824219,
+          -82.01544189453125,
+          48.7599983215332
+        ],
+        [
+          -37.5,
+          -72.01544189453125,
+          58.7599983215332
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-pulley-bolt-05",
+      "name": "Jackshaft Pulley Bolt 05",
+      "file": "Jackshaft Pulley Bolt 05.glb",
+      "role": "nav.jackshaft.pulley-bolts",
+      "sourceObject": "bolt_pulley_m6x16_05",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "pulley-bolt",
+      "triangles": 960,
+      "bytes": 32456,
+      "sha256": "2d544ed30451af1bc0132a6e7a3c608311967cf20995c69e0210c7a0400690f1",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          45.0,
+          -85.0465316772461,
+          47.0099983215332
+        ],
+        [
+          67.0,
+          -75.0465316772461,
+          57.0099983215332
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-sprocket-bolt-06",
+      "name": "Jackshaft Sprocket Bolt 06",
+      "file": "Jackshaft Sprocket Bolt 06.glb",
+      "role": "nav.jackshaft.sprocket-bolts",
+      "sourceObject": "bolt_sprocket_m6x25_06",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "sprocket-bolt",
+      "triangles": 956,
+      "bytes": 32904,
+      "sha256": "1c8376d4c271708abb8df06186fd6c39f901060171432dd7a4403f9e0335bb85",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -69.69999694824219,
+          -82.01544189453125,
+          66.26000213623047
+        ],
+        [
+          -37.5,
+          -72.01544189453125,
+          76.26000213623047
+        ]
+      ]
+    },
+    {
+      "id": "jackshaft-pulley-bolt-06",
+      "name": "Jackshaft Pulley Bolt 06",
+      "file": "Jackshaft Pulley Bolt 06.glb",
+      "role": "nav.jackshaft.pulley-bolts",
+      "sourceObject": "bolt_pulley_m6x16_06",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "pulley-bolt",
+      "triangles": 960,
+      "bytes": 32456,
+      "sha256": "70a2ab0c7bd9324d81d3cfca7368489974c936644c3212f50527c7e4f14ee3d2",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          45.0,
+          -85.0465316772461,
+          68.01000213623047
+        ],
+        [
+          67.0,
+          -75.0465316772461,
+          78.01000213623047
+        ]
+      ]
+    },
+    {
+      "id": "swingarm-pivot-washer",
+      "name": "Swingarm Pivot Washer",
+      "file": "Swingarm Pivot Washer.glb",
+      "role": "nav.swingarm.pivot-washer",
+      "sourceObject": "washer_pivot_10x20x2",
+      "sourceBlend": "reference/models/lbx-jackshaft-hardware/lbx-jackshaft-hardware.blend",
+      "jackshaftSpec": "pivot-washer",
+      "triangles": 1024,
+      "bytes": 33524,
+      "sha256": "226d60eff341b8c78d53c15998b6ebf7b806824c014e62866bbf51d17347e524",
+      "materials": [
+        "LBX_HW_Steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -93.5,
+          -71.86000061035156,
+          52.5099983215332
+        ],
+        [
+          -91.5,
+          -51.86000061035156,
+          72.51000213623047
+        ]
+      ]
+    },
+    {
+      "id": "rear-rim-18",
+      "name": "Rear Rim 18 inch",
+      "file": "Rear Rim 18 inch.glb",
+      "role": "nav.rear-wheel.rim.rim",
+      "sourceObject": "18 \u00d7 1.60 drop-center rim",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "rim",
+      "triangles": 17264,
+      "bytes": 373180,
+      "sha256": "ca27e57173488cc1eadbed2c16bbd7de49934acf2621d91f7c3fad5fb6cf9a72",
+      "materials": [
+        "Wheel \u00b7 black anodized rim"
+      ],
+      "sourceWorldBounds": [
+        [
+          -21.700000762939453,
+          158.45999145507812,
+          -297.7460021972656
+        ],
+        [
+          28.299999237060547,
+          635.4599609375,
+          179.25399780273438
+        ]
+      ]
+    },
+    {
+      "id": "rear-spokes",
+      "name": "Rear Wheel Spokes",
+      "file": "Rear Wheel Spokes.glb",
+      "role": "nav.rear-wheel.rim.spoke-set",
+      "sourceObject": "Sprocket spoke 01",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "spokes",
+      "triangles": 16272,
+      "bytes": 299356,
+      "sha256": "04b9e9c4cbb8b82afbdc64577de76a7e679bf0edf1f388e72b34b4e5cc08e609",
+      "materials": [
+        "Wheel \u00b7 stainless spokes"
+      ],
+      "sourceWorldBounds": [
+        [
+          -33.61093521118164,
+          181.9597930908203,
+          -274.20379638671875
+        ],
+        [
+          39.41877746582031,
+          611.6166381835938,
+          155.7483673095703
+        ]
+      ]
+    },
+    {
+      "id": "rear-sprocket-48t",
+      "name": "Rear Sprocket 48T",
+      "file": "Rear Sprocket 48T.glb",
+      "role": "nav.rear-wheel.sprocket",
+      "sourceObject": "48-tooth sprocket",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "sprocket",
+      "triangles": 15908,
+      "bytes": 807696,
+      "sha256": "59ce277f5b0ba3a03cd1a73374cb238f68e2a470469f9e3135b11c33eae48061",
+      "materials": [
+        "Wheel \u00b7 satin sprocket"
+      ],
+      "sourceWorldBounds": [
+        [
+          -55.79999923706055,
+          297.1754455566406,
+          -158.8861846923828
+        ],
+        [
+          -49.79999923706055,
+          496.0583801269531,
+          39.99677276611328
+        ]
+      ]
+    },
+    {
+      "id": "rear-sprocket-bolt-01",
+      "name": "Rear Sprocket Bolt 01",
+      "file": "Rear Sprocket Bolt 01.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Sprocket screw 01",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "sprocket-bolt",
+      "triangles": 2276,
+      "bytes": 47568,
+      "sha256": "2a97db3272ef5cc329a1c3852ed3be1bf79addb1f7f187bad654fdab0d6a8996",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -63.79999923706055,
+          383.05084228515625,
+          -32.680572509765625
+        ],
+        [
+          -39.79999923706055,
+          396.05084228515625,
+          -19.680570602416992
+        ]
+      ]
+    },
+    {
+      "id": "rear-sprocket-bolt-02",
+      "name": "Rear Sprocket Bolt 02",
+      "file": "Rear Sprocket Bolt 02.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Sprocket screw 02",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "sprocket-bolt",
+      "triangles": 2276,
+      "bytes": 47568,
+      "sha256": "73f7fdfe314f7e80d71830a60bf36aa09d4fb0c8f761e0e514ca63059e2cc7e8",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -63.79999923706055,
+          419.51397705078125,
+          -48.94906234741211
+        ],
+        [
+          -39.79999923706055,
+          432.51397705078125,
+          -35.94906234741211
+        ]
+      ]
+    },
+    {
+      "id": "rear-sprocket-bolt-03",
+      "name": "Rear Sprocket Bolt 03",
+      "file": "Rear Sprocket Bolt 03.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Sprocket screw 03",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "sprocket-bolt",
+      "triangles": 2276,
+      "bytes": 47564,
+      "sha256": "cb7e6026ab03e5f8019bf87f54d498f8d9d9f3537ac0b8cc22665905237187b9",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -63.79999923706055,
+          415.4451904296875,
+          -88.55574798583984
+        ],
+        [
+          -39.79999923706055,
+          428.4451904296875,
+          -75.55574798583984
+        ]
+      ]
+    },
+    {
+      "id": "rear-sprocket-bolt-04",
+      "name": "Rear Sprocket Bolt 04",
+      "file": "Rear Sprocket Bolt 04.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Sprocket screw 04",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "sprocket-bolt",
+      "triangles": 2276,
+      "bytes": 47564,
+      "sha256": "711b93944f41c6b17c8fe70eacee6e5df66776f02acbaf0f51ec923f79fff9b3",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -63.79999923706055,
+          376.2117919921875,
+          -96.9806900024414
+        ],
+        [
+          -39.79999923706055,
+          389.2117919921875,
+          -83.9806900024414
+        ]
+      ]
+    },
+    {
+      "id": "rear-sprocket-bolt-05",
+      "name": "Rear Sprocket Bolt 05",
+      "file": "Rear Sprocket Bolt 05.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Sprocket screw 05",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "sprocket-bolt",
+      "triangles": 2276,
+      "bytes": 47564,
+      "sha256": "5996d6f413b8d46a72ad579ca8a0826033e5c849db4de03a539d35aaffd85155",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          -63.79999923706055,
+          356.3866882324219,
+          -62.34589385986328
+        ],
+        [
+          -39.79999923706055,
+          369.3866882324219,
+          -49.34589385986328
+        ]
+      ]
+    },
+    {
+      "id": "rear-disc",
+      "name": "Rear Brake Disc",
+      "file": "Rear Brake Disc.glb",
+      "role": "nav.rear-wheel.rotor",
+      "sourceObject": "Wave disc \u00b7 202.8 \u00d7 2",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "disc",
+      "triangles": 31148,
+      "bytes": 1573744,
+      "sha256": "1609e4fc56cd5cea10eec06c629b6f8d5f1ba4910de3c0a22f576bb464fad989",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          58.599998474121094,
+          296.0863037109375,
+          -156.46937561035156
+        ],
+        [
+          60.599998474121094,
+          497.2881164550781,
+          41.736427307128906
+        ]
+      ]
+    },
+    {
+      "id": "rear-disc-bolt-01",
+      "name": "Rear Disc Bolt 01",
+      "file": "Rear Disc Bolt 01.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Disc screw 01",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "disc-bolt",
+      "triangles": 2372,
+      "bytes": 49272,
+      "sha256": "324e400d2d715d61db3765ad3a12982879cfbc65852d793d001bfce3e747c005",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          47.599998474121094,
+          386.2160949707031,
+          -38.08523178100586
+        ],
+        [
+          63.599998474121094,
+          396.7846984863281,
+          -27.516572952270508
+        ]
+      ]
+    },
+    {
+      "id": "rear-disc-bolt-02",
+      "name": "Rear Disc Bolt 02",
+      "file": "Rear Disc Bolt 02.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Disc screw 02",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "disc-bolt",
+      "triangles": 2372,
+      "bytes": 49272,
+      "sha256": "16268ee05ebf87c5cfde19a7b834a921f26514f54a0700e217891d4942d9d726",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          47.599998474121094,
+          411.7207336425781,
+          -46.373497009277344
+        ],
+        [
+          63.599998474121094,
+          422.2893371582031,
+          -35.80482482910156
+        ]
+      ]
+    },
+    {
+      "id": "rear-disc-bolt-03",
+      "name": "Rear Disc Bolt 03",
+      "file": "Rear Disc Bolt 03.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Disc screw 03",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "disc-bolt",
+      "triangles": 2372,
+      "bytes": 49268,
+      "sha256": "1eae4b7027bf602421acc2fbbc744e630a8fce5f36cb19c7a66eac566a05ab4f",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          47.599998474121094,
+          417.5694885253906,
+          -72.67981719970703
+        ],
+        [
+          63.599998474121094,
+          428.1380920410156,
+          -62.11115646362305
+        ]
+      ]
+    },
+    {
+      "id": "rear-disc-bolt-04",
+      "name": "Rear Disc Bolt 04",
+      "file": "Rear Disc Bolt 04.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Disc screw 04",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "disc-bolt",
+      "triangles": 2372,
+      "bytes": 49268,
+      "sha256": "4046dae48a309a2c7701c9fa9bed955650bc5766b7774dc650d16f92e672fd2e",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          47.599998474121094,
+          397.492919921875,
+          -90.92058563232422
+        ],
+        [
+          63.599998474121094,
+          408.0616455078125,
+          -80.35192108154297
+        ]
+      ]
+    },
+    {
+      "id": "rear-disc-bolt-05",
+      "name": "Rear Disc Bolt 05",
+      "file": "Rear Disc Bolt 05.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Disc screw 05",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "disc-bolt",
+      "triangles": 2372,
+      "bytes": 49264,
+      "sha256": "1a40de013a8c7160966ddeb640fb45116ae6daf7a2233e900ad84cf14d5146bc",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          47.599998474121094,
+          371.826171875,
+          -82.56806945800781
+        ],
+        [
+          63.599998474121094,
+          382.3948974609375,
+          -71.99940490722656
+        ]
+      ]
+    },
+    {
+      "id": "rear-disc-bolt-06",
+      "name": "Rear Disc Bolt 06",
+      "file": "Rear Disc Bolt 06.glb",
+      "role": "nav.rear-wheel.fasteners",
+      "sourceObject": "Disc screw 06",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "disc-bolt",
+      "triangles": 2372,
+      "bytes": 49272,
+      "sha256": "961928f08fd0109523a883ece990f9d05da85f8fae9bfd553e5aab712ad028dc",
+      "materials": [
+        "Wheel \u00b7 machined steel"
+      ],
+      "sourceWorldBounds": [
+        [
+          47.599998474121094,
+          366.1131896972656,
+          -56.080299377441406
+        ],
+        [
+          63.599998474121094,
+          376.6817932128906,
+          -45.511627197265625
+        ]
+      ]
+    },
+    {
+      "id": "rear-tire-18",
+      "name": "Rear Tire 3.00-18",
+      "file": "Rear Tire 3.00-18.glb",
+      "role": "nav.rear-wheel.tire",
+      "sourceObject": "3.00-18 hollow tire carcass",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "tire",
+      "triangles": 160928,
+      "bytes": 5968808,
+      "sha256": "dc03709495982d6ace4624309572c49e50102cd83aaf926ef506145e1caf0cf7",
+      "materials": [
+        "Wheel \u00b7 tire rubber"
+      ],
+      "sourceWorldBounds": [
+        [
+          -36.20000457763672,
+          91.85189819335938,
+          -364.3122253417969
+        ],
+        [
+          42.79999923706055,
+          702.068115234375,
+          245.8202362060547
+        ]
+      ]
+    },
+    {
+      "id": "rear-tube-18",
+      "name": "Rear Inner Tube 18 inch",
+      "file": "Rear Inner Tube 18 inch.glb",
+      "role": "nav.rear-wheel.tube",
+      "sourceObject": "Inflated 18-inch tube",
+      "sourceBlend": "reference/models/lbx-rear-wheel/lbx-rear-wheel-r01.blend",
+      "rearWheelSpec": "tube",
+      "triangles": 12680,
+      "bytes": 230424,
+      "sha256": "f124a26e7f1eb001bbcc9bd1ff8fda344dfdfbd199075960f92f5f2ad72c05af",
+      "materials": [
+        "Wheel \u00b7 machined steel",
+        "Wheel \u00b7 tube rubber"
+      ],
+      "sourceWorldBounds": [
+        [
+          -26.100000381469727,
+          108.16000366210938,
+          -348.0459899902344
+        ],
+        [
+          32.70000076293945,
+          685.760009765625,
+          229.55398559570312
+        ]
       ]
     },
     {
@@ -616,8 +2259,16 @@
         "Rear Shock | Gold reservoir with reference warning label"
       ],
       "sourceWorldBounds": [
-        [-24.074203491210938, -168.7221221923828, 85.35491943359375],
-        [30.584423065185547, 37.19518280029297, 334.3859558105469]
+        [
+          -24.074203491210938,
+          -168.7221221923828,
+          85.35491943359375
+        ],
+        [
+          30.584423065185547,
+          37.19518280029297,
+          334.3859558105469
+        ]
       ]
     },
     {
@@ -633,10 +2284,20 @@
       "sourceTriangles": 112716,
       "degenerateTrianglesRemoved": 0,
       "sha256": "67300ef2bd1c993c72825abe12416f9016266fd9dd64bd17b55efc493dde23f8",
-      "materials": ["Rear Shock | White powder coat"],
+      "materials": [
+        "Rear Shock | White powder coat"
+      ],
       "sourceWorldBounds": [
-        [-26.343955993652344, -143.0859375, 100.48416900634766],
-        [32.269920349121094, 26.11910629272461, 278.3199768066406]
+        [
+          -26.343955993652344,
+          -143.0859375,
+          100.48416900634766
+        ],
+        [
+          32.269920349121094,
+          26.11910629272461,
+          278.3199768066406
+        ]
       ]
     },
     {
@@ -652,11 +2313,24 @@
       "sourceTriangles": 19512,
       "degenerateTrianglesRemoved": 0,
       "sha256": "20a654653cb78e10bbbf10dc4c463cbc23c48343ac9c7a92eb784a7490314623",
-      "materials": ["Rear Shock | Black preload adjuster"],
+      "materials": [
+        "Rear Shock | Black preload adjuster"
+      ],
       "sourceWorldBounds": [
-        [-24.513504028320312, -145.41969299316406, 241.65322875976562],
-        [28.71204948425293, -103.01644134521484, 280.32305908203125]
+        [
+          -24.513504028320312,
+          -145.41969299316406,
+          241.65322875976562
+        ],
+        [
+          28.71204948425293,
+          -103.01644134521484,
+          280.32305908203125
+        ]
       ]
     }
-  ]
+  ],
+  "hardwareSource": "data/models/mounted-hardware.json",
+  "hardwareSourceBlend": "reference/models/lbx-mounted-hardware/lbx-mounted-hardware.blend",
+  "hardwareSourceBlendSha256": "de406197fdad0b50ebde1592ea28063ede5166f7f6a1f5ec9ada1903ba289350"
 }

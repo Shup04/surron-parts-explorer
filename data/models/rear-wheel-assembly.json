@@ -1,0 +1,595 @@
+{
+  "version": 1,
+  "units": "Raw millimetre coordinates, matching the existing portal GLBs",
+  "sourceFiles": {
+    "reference/models/lbx-rear-wheel/references/reference-01.png": "07c06e7162daf3b8c6162569e2a69187145a88de9450e659e6b797b931ed5552",
+    "reference/models/lbx-rear-wheel/references/reference-02.png": "1dc333d4b1378104289eb394cd6d4bdc73be9c40fa7efc189e3500afb1f26f18",
+    "reference/models/lbx-rear-wheel/references/reference-03.png": "d9ee2a39fa39c0aa6bf85c9cb6dc2446d517eb115e96048d6c31a33eb6a0bf49",
+    "reference/models/lbx-rear-wheel/references/reference-04.png": "10ae371b66e99b96d4167b29a18db394558fb984ba2f1dbb90a4308f1042618b",
+    "reference/models/lbx-rear-wheel/references/reference-05.png": "ac7256c1e148f3de56b77c162c4f6664773e091fb8afe76fcdfc0256a4d54c3a",
+    "reference/models/lbx-rear-wheel/references/reference-06.png": "ea744696e49a781dbc839f56416cc13c9c6f60808774072824ee4021d02febe0",
+    "public/parts/Rear Hub.glb": "309cdf8af4c2cd84f2b7dc9fe434a0556a789dc32497cbdd392afac6188b527c",
+    "reference/parts-catalogue/katalog-zapchastej-surron-light-bee-2021.pdf": "5a7100d973a84b32aaa7ddeacd7423edb5c43b32ab718bcbffec13dc9dc55505",
+    "reference/parts-catalogue/Sur-Ron-Spare-Parts.pdf": "015cbfa45681e9e72afed2afa5781aae427917b260dd6c1238d573ef3b3049e5",
+    "reference/models/lbx-rear-wheel/references/cm708-300-18-product.jpg": "067b8cd37d82fb3786fedab4cf85c24b34baa049f64a02b0fce627af938e6ad9"
+  },
+  "configuration": {
+    "rimInches": 18,
+    "rimWidthInches": 1.6,
+    "sprocketTeeth": 48,
+    "spokeCount": 36,
+    "tireNominal": "3.00-18 (provisional)",
+    "discDiameterMm": 202.8,
+    "discThicknessMm": 2
+  },
+  "axis": {
+    "centerMm": [3.3, 396.96, -59.246],
+    "direction": [1, 0, 0],
+    "sprocketSide": "negative X",
+    "discSide": "positive X",
+    "evidence": "Axis and flange openings fitted to the unchanged Rear Hub.glb. Approximate flange centers X=-29.2 and +35.0; mounting-hole residuals reflect the supplied mesh. No measured dishing or installed clearances supplied."
+  },
+  "mounts": {
+    "sprocket": {
+      "holes": [
+        {
+          "centerYZ": [389.55083269118813, -26.180570913709445],
+          "radius": 4.04109834691495,
+          "surfaceXrange": [-49.569271087646484, -48.03378677368164]
+        },
+        {
+          "centerYZ": [426.0139877564872, -42.449061285384694],
+          "radius": 3.9446984959871365,
+          "surfaceXrange": [-49.64320373535156, -48.08002471923828]
+        },
+        {
+          "centerYZ": [421.9451804540766, -82.05574573000003],
+          "radius": 4.066424830124093,
+          "surfaceXrange": [-49.603214263916016, -48.83772659301758]
+        },
+        {
+          "centerYZ": [382.7117777892087, -90.48068974811365],
+          "radius": 3.961926556919784,
+          "surfaceXrange": [-49.41492462158203, -48.376319885253906]
+        },
+        {
+          "centerYZ": [362.8866749699782, -55.845892886104494],
+          "radius": 4.0482599075134935,
+          "surfaceXrange": [-49.43162155151367, -48.07526397705078]
+        }
+      ],
+      "pitchCenterYZ": [396.6169149789238, -59.444705350047805],
+      "pitchRadius": 33.969139594457694,
+      "anglesRadians": [
+        1.7801084785459445, 0.524191391496223, -0.7287782190137642, -1.9920130757084833,
+        3.035300816633374
+      ]
+    },
+    "disc": {
+      "holes": [
+        {
+          "centerYZ": [391.5004003370912, -32.800903346312055],
+          "radius": 2.943867326699228,
+          "surfaceXrange": [56.062034606933594, 58.205039978027344]
+        },
+        {
+          "centerYZ": [417.00504054542193, -41.08916106623245],
+          "radius": 2.8839370156614015,
+          "surfaceXrange": [56.08287811279297, 58.10600662231445]
+        },
+        {
+          "centerYZ": [422.85378314139047, -67.39548465965183],
+          "radius": 2.911511560405111,
+          "surfaceXrange": [56.03871154785156, 58.09069061279297]
+        },
+        {
+          "centerYZ": [402.7772758634304, -85.63625288657792],
+          "radius": 2.9293514390753206,
+          "surfaceXrange": [56.33094024658203, 58.13376235961914]
+        },
+        {
+          "centerYZ": [377.1105311948657, -77.28373383096927],
+          "radius": 2.884500718577874,
+          "surfaceXrange": [56.005069732666016, 58.2049674987793]
+        },
+        {
+          "centerYZ": [371.3974917836297, -50.795964241332534],
+          "radius": 2.9733626027306905,
+          "surfaceXrange": [56.01004409790039, 58.288631439208984]
+        }
+      ],
+      "pitchCenterYZ": [397.0880040057826, -59.22537124443518],
+      "pitchRadius": 26.993402710595912,
+      "anglesRadians": [
+        1.7791823022235, 0.7386340060486698, -0.307062522935371, -1.3586245572247053,
+        -2.406607059529184, 2.824547172926513
+      ]
+    }
+  },
+  "spokeHoles": {
+    "sprocket": [
+      {
+        "centerYZ": [441.1409, -47.8415],
+        "radius": 1.8419
+      },
+      {
+        "centerYZ": [434.1645, -33.2667],
+        "radius": 1.6867
+      },
+      {
+        "centerYZ": [423.1795, -21.9717],
+        "radius": 1.6911
+      },
+      {
+        "centerYZ": [408.8369, -15.2549],
+        "radius": 1.8558
+      },
+      {
+        "centerYZ": [393.107, -13.8985],
+        "radius": 1.7366
+      },
+      {
+        "centerYZ": [377.8922, -17.9872],
+        "radius": 1.8143
+      },
+      {
+        "centerYZ": [364.8653, -27.0303],
+        "radius": 1.7858
+      },
+      {
+        "centerYZ": [355.8263, -40.0508],
+        "radius": 1.807
+      },
+      {
+        "centerYZ": [351.5727, -55.1866],
+        "radius": 1.7941
+      },
+      {
+        "centerYZ": [352.8412, -70.9593],
+        "radius": 1.7933
+      },
+      {
+        "centerYZ": [359.5911, -85.2519],
+        "radius": 1.7864
+      },
+      {
+        "centerYZ": [370.7339, -96.4489],
+        "radius": 1.7952
+      },
+      {
+        "centerYZ": [384.9947, -103.2205],
+        "radius": 1.8429
+      },
+      {
+        "centerYZ": [400.7609, -104.6548],
+        "radius": 1.8377
+      },
+      {
+        "centerYZ": [416.0283, -100.7712],
+        "radius": 1.681
+      },
+      {
+        "centerYZ": [429.0262, -91.6763],
+        "radius": 1.6841
+      },
+      {
+        "centerYZ": [438.2344, -78.7675],
+        "radius": 1.6714
+      },
+      {
+        "centerYZ": [442.4669, -63.5386],
+        "radius": 1.6676
+      }
+    ],
+    "disc": [
+      {
+        "centerYZ": [442.4674, -55.5744],
+        "radius": 1.8654
+      },
+      {
+        "centerYZ": [438.5403, -40.2377],
+        "radius": 1.8549
+      },
+      {
+        "centerYZ": [429.5096, -27.3629],
+        "radius": 1.8767
+      },
+      {
+        "centerYZ": [416.6229, -18.0412],
+        "radius": 1.7822
+      },
+      {
+        "centerYZ": [401.4455, -13.8206],
+        "radius": 1.8675
+      },
+      {
+        "centerYZ": [385.6726, -15.1273],
+        "radius": 1.7787
+      },
+      {
+        "centerYZ": [371.3526, -21.67],
+        "radius": 1.7836
+      },
+      {
+        "centerYZ": [359.6966, -33.0339],
+        "radius": 1.6702
+      },
+      {
+        "centerYZ": [353.0354, -47.1645],
+        "radius": 1.7832
+      },
+      {
+        "centerYZ": [351.6193, -62.8096],
+        "radius": 1.7167
+      },
+      {
+        "centerYZ": [355.4958, -78.2001],
+        "radius": 1.6589
+      },
+      {
+        "centerYZ": [364.5148, -91.2932],
+        "radius": 1.6715
+      },
+      {
+        "centerYZ": [377.4951, -100.3342],
+        "radius": 1.832
+      },
+      {
+        "centerYZ": [392.7127, -104.5271],
+        "radius": 1.791
+      },
+      {
+        "centerYZ": [408.5046, -103.2223],
+        "radius": 1.8516
+      },
+      {
+        "centerYZ": [422.8235, -96.6073],
+        "radius": 1.8451
+      },
+      {
+        "centerYZ": [434.1758, -85.6345],
+        "radius": 1.8251
+      },
+      {
+        "centerYZ": [440.9006, -71.3856],
+        "radius": 1.8419
+      }
+    ]
+  },
+  "placementNotes": "All parts share the existing hub axis. The sprocket seats at X=-49.8 (extends toward negative X); the disc seats at X=58.6 (extends toward positive X). The existing hub is preserved byte-for-byte in the portal. Rim dishing, tire section, spoke profiles and fastener seats remain visual estimates. This pass does not establish roadworthiness or manufacturing fit.",
+  "explosionNotes": "Lateral offsets follow the manual diagram: disc, tire, tube, hub, rim, spokes, sprocket, with fasteners beyond their mounting faces. Offsets are chosen for legibility and return exactly to authored assembly positions.",
+  "omitted": [
+    "Caliper, hose and additional brake hardware are deferred. Existing rear brake bracket remains in its previous system.",
+    "Hub internals, axle and separate axle spacers are not newly modeled in this eight-group pass."
+  ],
+  "specs": {
+    "hub": {
+      "designation": "Existing rear hub",
+      "notes": "Original portal geometry and finish retained. Both mounting patterns and spoke-hole centers were fitted to this mesh; the source mesh is not precision CAD.",
+      "reference": "51311-YQ2A-0000",
+      "dimensions": [],
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "8",
+          "diagram": "9",
+          "item": "9_13"
+        }
+      ]
+    },
+    "rim": {
+      "designation": "18 \u00d7 1.60 rim",
+      "notes": "18-inch size selected by the user. The 1.60-inch bead width and black finish follow supplied reference 1. The drop-center profile, flange height and nipple seats are visual estimates.",
+      "dimensions": [
+        {
+          "label": "Nominal bead-seat diameter",
+          "value": 457.2,
+          "unit": "mm"
+        },
+        {
+          "label": "Nominal bead-seat width",
+          "value": 40.64,
+          "unit": "mm"
+        }
+      ],
+      "sources": [
+        {
+          "document": "User rear-wheel references",
+          "notes": "Image 1: J 18 \u00d7 1.60. User confirmed 18-inch rear rim."
+        }
+      ]
+    },
+    "spokes": {
+      "designation": "36 crossed spokes with nipples",
+      "notes": "36 total spokes, 18 per flange, follow the manual and reference photos. Three-cross lacing is fitted to the existing hub and 18-inch rim. Gauge, nipple shape and lengths are modeled estimates; 19-inch catalog spoke lengths are not reused.",
+      "reference": "51390-YQ2A-0000",
+      "dimensions": [
+        {
+          "label": "Modeled spoke diameter",
+          "value": 2.8,
+          "unit": "mm"
+        }
+      ],
+      "quantity": 36,
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "8",
+          "diagram": "9",
+          "item": "9_18"
+        }
+      ]
+    },
+    "sprocket": {
+      "designation": "48T rear sprocket",
+      "notes": "User-selected 48 teeth; catalog 198.9 mm outside diameter and 6 mm thickness. Ten openings reconstruct the photographed five-point star web from two traced window templates. The 42T web is extended radially for 48T without scaling the 52 mm bore or existing hub pattern. Tooth flanks remain illustrative.",
+      "reference": "13204-YQ2A-0000",
+      "dimensions": [
+        {
+          "label": "Outside diameter",
+          "value": 198.9,
+          "unit": "mm"
+        },
+        {
+          "label": "Thickness",
+          "value": 6,
+          "unit": "mm"
+        }
+      ],
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "8",
+          "diagram": "9",
+          "item": "9_19"
+        }
+      ]
+    },
+    "sprocket-bolt": {
+      "designation": "M8 \u00d7 16 socket screw",
+      "notes": "Five screws follow the rear-wheel diagram. Length and thread designation follow the manual; socket-head dimensions use the existing project hardware convention. Threads are represented by a plain nominal shank.",
+      "reference": "B3-001-08-016-F0",
+      "dimensions": [
+        {
+          "label": "Nominal thread diameter",
+          "value": 8,
+          "unit": "mm"
+        },
+        {
+          "label": "Length under head",
+          "value": 16,
+          "unit": "mm"
+        },
+        {
+          "label": "Allen key",
+          "value": 6,
+          "unit": "mm"
+        }
+      ],
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "8",
+          "diagram": "9",
+          "item": "9_20"
+        }
+      ]
+    },
+    "disc": {
+      "designation": "202.8 \u00d7 2 mm rear disc",
+      "notes": "The wave outline, scalloped center, 18 large openings and 60 perimeter vents are traced from supplied reference 6 after planar perspective correction. Catalog envelope is 202.8 \u00d7 2 mm; six mounting holes align to the existing hub. The source photograph does not establish machining tolerances.",
+      "reference": "52271-YQ2A-0001",
+      "dimensions": [
+        {
+          "label": "Outside diameter",
+          "value": 202.8,
+          "unit": "mm"
+        },
+        {
+          "label": "Thickness",
+          "value": 2,
+          "unit": "mm"
+        }
+      ],
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "8",
+          "diagram": "9",
+          "item": "9_05"
+        }
+      ]
+    },
+    "disc-bolt": {
+      "designation": "M6 \u00d7 13 disc screw",
+      "notes": "Six screws follow the manual. Low button heads and 4 mm hex sockets are provisional visual details; the source does not establish the drive geometry. Threads are represented by a plain nominal shank.",
+      "reference": "FB03-006-06-013-F3",
+      "dimensions": [
+        {
+          "label": "Nominal thread diameter",
+          "value": 6,
+          "unit": "mm"
+        },
+        {
+          "label": "Length under head",
+          "value": 13,
+          "unit": "mm"
+        }
+      ],
+      "sources": [
+        {
+          "document": "2021 Light Bee parts catalog",
+          "page": "8",
+          "diagram": "9",
+          "item": "9_04"
+        }
+      ]
+    },
+    "tire": {
+      "designation": "3.00-18 knobby tire \u00b7 provisional profile",
+      "notes": "18-inch fit and sidewall silhouette follow supplied reference 4. The shoulder silhouette resolves 52 repeats. Alternating center blocks, slotted shoulder lugs and shallow sipes follow a matching CST CM708 3.00-18 product photograph. Block depth, carcass section and molded lettering remain modeled estimates; an installed tire identity has not been verified.",
+      "dimensions": [
+        {
+          "label": "Nominal section width",
+          "value": 76.2,
+          "unit": "mm"
+        },
+        {
+          "label": "Modeled tread envelope diameter",
+          "value": 609.6,
+          "unit": "mm"
+        }
+      ],
+      "sources": [
+        {
+          "document": "User rear-wheel references",
+          "notes": "Image 4: knobby 18-inch wheel. Local 3.00-18 retailer reference used for a provisional section."
+        },
+        {
+          "document": "CST CM708 3.00-18 product photograph",
+          "url": "https://torbaymx.co.uk/products/sur-ron-lbx-rear-tyre-cst-3-00-18-cm708-47m-tt-e-mark-mx-tyre",
+          "notes": "Visual tread reference. The supplied side-view wheel photo cannot establish all tread depths."
+        }
+      ]
+    },
+    "tube": {
+      "designation": "18-inch inner tube with valve",
+      "notes": "Separate inflated tube inside the tire cavity, with a valve through the rim. The matching local retailer reference lists 2.75/3.00-18; wall section, valve form and inflated dimensions remain estimates.",
+      "dimensions": [],
+      "sources": [
+        {
+          "document": "User rear-wheel references",
+          "notes": "Local 3.00-18 retailer snapshot lists a 2.75/3.00-18 inner tube."
+        }
+      ]
+    }
+  },
+  "instances": [
+    {
+      "id": "rear-hub",
+      "name": "Rear Hub",
+      "role": "nav.rear-wheel.hub.body",
+      "spec": "hub",
+      "explosionOffsetMm": 0
+    },
+    {
+      "id": "rear-rim-18",
+      "name": "Rear Rim 18 inch",
+      "role": "nav.rear-wheel.rim.rim",
+      "spec": "rim",
+      "explosionOffsetMm": -155
+    },
+    {
+      "id": "rear-spokes",
+      "name": "Rear Wheel Spokes",
+      "role": "nav.rear-wheel.rim.spoke-set",
+      "spec": "spokes",
+      "explosionOffsetMm": -285
+    },
+    {
+      "id": "rear-sprocket-48t",
+      "name": "Rear Sprocket 48T",
+      "role": "nav.rear-wheel.sprocket",
+      "spec": "sprocket",
+      "explosionOffsetMm": -420
+    },
+    {
+      "id": "rear-sprocket-bolt-01",
+      "name": "Rear Sprocket Bolt 01",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "sprocket-bolt",
+      "explosionOffsetMm": -475
+    },
+    {
+      "id": "rear-sprocket-bolt-02",
+      "name": "Rear Sprocket Bolt 02",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "sprocket-bolt",
+      "explosionOffsetMm": -475
+    },
+    {
+      "id": "rear-sprocket-bolt-03",
+      "name": "Rear Sprocket Bolt 03",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "sprocket-bolt",
+      "explosionOffsetMm": -475
+    },
+    {
+      "id": "rear-sprocket-bolt-04",
+      "name": "Rear Sprocket Bolt 04",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "sprocket-bolt",
+      "explosionOffsetMm": -475
+    },
+    {
+      "id": "rear-sprocket-bolt-05",
+      "name": "Rear Sprocket Bolt 05",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "sprocket-bolt",
+      "explosionOffsetMm": -475
+    },
+    {
+      "id": "rear-disc",
+      "name": "Rear Brake Disc",
+      "role": "nav.rear-wheel.rotor",
+      "spec": "disc",
+      "explosionOffsetMm": 430
+    },
+    {
+      "id": "rear-disc-bolt-01",
+      "name": "Rear Disc Bolt 01",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "disc-bolt",
+      "explosionOffsetMm": 480
+    },
+    {
+      "id": "rear-disc-bolt-02",
+      "name": "Rear Disc Bolt 02",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "disc-bolt",
+      "explosionOffsetMm": 480
+    },
+    {
+      "id": "rear-disc-bolt-03",
+      "name": "Rear Disc Bolt 03",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "disc-bolt",
+      "explosionOffsetMm": 480
+    },
+    {
+      "id": "rear-disc-bolt-04",
+      "name": "Rear Disc Bolt 04",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "disc-bolt",
+      "explosionOffsetMm": 480
+    },
+    {
+      "id": "rear-disc-bolt-05",
+      "name": "Rear Disc Bolt 05",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "disc-bolt",
+      "explosionOffsetMm": 480
+    },
+    {
+      "id": "rear-disc-bolt-06",
+      "name": "Rear Disc Bolt 06",
+      "role": "nav.rear-wheel.fasteners",
+      "spec": "disc-bolt",
+      "explosionOffsetMm": 480
+    },
+    {
+      "id": "rear-tire-18",
+      "name": "Rear Tire 3.00-18",
+      "role": "nav.rear-wheel.tire",
+      "spec": "tire",
+      "explosionOffsetMm": 280
+    },
+    {
+      "id": "rear-tube-18",
+      "name": "Rear Inner Tube 18 inch",
+      "role": "nav.rear-wheel.tube",
+      "spec": "tube",
+      "explosionOffsetMm": 140
+    }
+  ]
+}

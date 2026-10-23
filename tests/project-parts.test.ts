@@ -11,16 +11,18 @@ import {
 } from '../src/config/project-parts';
 
 describe('supplied project assembly', () => {
-  it('maps all 42 individual assets to distinct draft part identities', () => {
+  it('maps the styled assembly, hardware, rear wheel and rear shock without pulleys', () => {
     const catalog = withProjectParts(oemCatalog);
     expect(validateCatalog(catalog).success).toBe(true);
     expect(validateMapping(projectPartsMapping, catalog).success).toBe(true);
-    expect(projectPartsAsset.models).toHaveLength(42);
-    expect(new Set(projectPartsMapping.mappings.map((entry) => entry.objectKey)).size).toBe(42);
-    expect(new Set(projectPartsMapping.mappings.map((entry) => entry.partId)).size).toBe(42);
-    expect(projectParts.reduce((sum, part) => sum + part.triangles, 0)).toBe(1599587);
+    expect(projectPartsAsset.models).toHaveLength(88);
+    expect(new Set(projectPartsMapping.mappings.map((entry) => entry.objectKey)).size).toBe(88);
+    expect(new Set(projectPartsMapping.mappings.map((entry) => entry.partId)).size).toBe(88);
+    expect(projectParts.reduce((sum, part) => sum + part.triangles, 0)).toBe(1815043);
+    expect(projectParts.some((part) => part.id === 'jackshaft-pulley')).toBe(false);
+    expect(projectParts.some((part) => part.id === 'motor-pulley')).toBe(false);
     expect(projectParts.find((part) => part.id === 'main-frame')?.triangles).toBe(60000);
-    expect(catalog.parts.filter((part) => part.id.startsWith('project-'))).toHaveLength(42);
+    expect(catalog.parts.filter((part) => part.id.startsWith('project-'))).toHaveLength(88);
     expect(oemCatalog.parts.some((part) => part.id.startsWith('project-'))).toBe(false);
     expect(withProjectParts(catalog)).toEqual(catalog);
   });
@@ -48,7 +50,7 @@ describe('supplied project assembly', () => {
     expect(validateCatalog(filtered).success).toBe(true);
     expect(validateMapping(projectPartsMapping, filtered).success).toBe(true);
     expect(filtered.parts.filter((part) => part.parentId === filtered.motorcycleId)).toHaveLength(
-      42,
+      88,
     );
   });
 });

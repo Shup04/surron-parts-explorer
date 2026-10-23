@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import type { CSSProperties } from 'react';
 import { ChevronDown, ChevronRight, Eye, EyeOff } from 'lucide-react';
 import type { NavigationNode, ReferenceGroup } from '@/navigation/model';
 import type { OemDatabase } from '@/oem/types';
@@ -43,7 +44,7 @@ export function CuratedPartsTree({
         <div
           className={`tree-row ${active ? 'active' : ''} ${hidden ? 'is-hidden' : ''}`}
           data-navigation-id={node.id}
-          style={{ paddingLeft: 8 + depth * 15 }}
+          style={{ paddingLeft: 8 + depth * 15, '--tree-depth': depth } as CSSProperties}
         >
           {node.children.length ? (
             <button
@@ -111,6 +112,7 @@ interface DetailsProps {
   onNavigate: (node: NavigationNode) => void;
   onSelectOccurrence: (id: string) => void;
   onBrowseParts?: (nodeId: string | null) => void;
+  modeledOnly?: boolean;
 }
 
 /** Each button opens one exact source occurrence; source quantities are never summed. */
@@ -208,7 +210,23 @@ export function CuratedAssemblyDetails({
   onNavigate,
   onSelectOccurrence,
   onBrowseParts,
+  modeledOnly,
 }: DetailsProps) {
+  if (modeledOnly && node)
+    return (
+      <>
+        <h2>{node.name}</h2>
+        <p className="muted">
+          {node.modelPartIds?.length ?? 0} modeled{' '}
+          {node.modelPartIds?.length === 1 ? 'part' : 'parts'}
+        </p>
+        {node.children.length > 0 && onBrowseParts && (
+          <button className="text-button" onClick={() => onBrowseParts(node.id)}>
+            Browse components <ChevronRight size={14} aria-hidden="true" />
+          </button>
+        )}
+      </>
+    );
   if (!node)
     return (
       <>

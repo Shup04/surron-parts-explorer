@@ -13,7 +13,7 @@ describe('editing the current project assembly', () => {
     const project = createProjectWorkspace(oemCatalog);
     const createURL = vi.spyOn(URL, 'createObjectURL');
     const asset = await materializeProjectFiles([], project);
-    expect(asset.models).toEqual(projectPartsAsset.models);
+    expect(asset.models?.map(({ id, url }) => ({ id, url }))).toEqual(projectPartsAsset.models);
     expect(project.mapping).toEqual(projectPartsMapping);
     expect(project.partModels).toHaveLength(projectParts.length);
     expect(parseEditorProject(JSON.parse(JSON.stringify(project)))).toEqual(project);
@@ -63,7 +63,7 @@ describe('editing the current project assembly', () => {
     vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:replacement');
     const revoked = vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
     const asset = await materializeProjectFiles([new File(['glb'], 'replacement.glb')], roundTrip);
-    expect(asset.models).toEqual(
+    expect(asset.models?.map(({ id, url }) => ({ id, url }))).toEqual(
       projectPartsAsset.models!.map((model) =>
         model.id === modified.id ? { id: model.id, url: 'blob:replacement' } : model,
       ),

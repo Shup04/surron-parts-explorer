@@ -101,6 +101,64 @@ describe('separate part models', () => {
     expect(revoked).toHaveBeenCalledTimes(2);
   });
 
+  it('retains unchanged local URLs across same-filename replacements and releases each only after its last owner', async () => {
+    const project = assignPartModel(
+      assignPartModel(blank, seat, 'seat.glb', 'Seat.glb'),
+      fender,
+      'fender.glb',
+      'Fender.glb',
+    );
+    let ordinal = 0;
+    const created = vi
+      .spyOn(URL, 'createObjectURL')
+      .mockImplementation(() => `blob:revision-${++ordinal}`);
+    const revoked = vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
+    const files = ['seat.glb', 'fender.glb'].map((name) => new File(['glb'], name));
+    const original = await materializeProjectFiles(files, project);
+    const replaced = assignPartModel(project, seat, 'seat.glb', 'Revised seat.glb');
+    const next = await materializeProjectFiles(
+      [new File(['new'], 'seat.glb'), files[1]],
+      replaced,
+      { project, asset: original },
+    );
+    expect(created).toHaveBeenCalledTimes(3);
+    expect(next.models!.find((model) => model.id === seat.id)!.url).not.toBe(
+      original.models!.find((model) => model.id === seat.id)!.url,
+    );
+    expect(next.models!.find((model) => model.id === fender.id)!.url).toBe(
+      original.models!.find((model) => model.id === fender.id)!.url,
+    );
+    expect(next.models!.find((model) => model.id === seat.id)!.label).toBe('Revised seat.glb');
+    original.dispose();
+    expect(revoked.mock.calls).toEqual([[original.models![0].url]]);
+    next.dispose();
+    next.dispose();
+    expect(revoked).toHaveBeenCalledTimes(3);
+  });
+
+  it('releases a failed replacement without revoking files still owned by the active workspace', async () => {
+    const project = assignPartModel(
+      assignPartModel(blank, seat, 'seat.glb', 'Seat.glb'),
+      fender,
+      'fender.glb',
+      'Fender.glb',
+    );
+    let ordinal = 0;
+    vi.spyOn(URL, 'createObjectURL').mockImplementation(() => `blob:file-${++ordinal}`);
+    const revoked = vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
+    const original = await materializeProjectFiles(
+      ['seat.glb', 'fender.glb'].map((name) => new File(['glb'], name)),
+      project,
+    );
+    const invalid = assignPartModel(project, seat, 'missing.glb', 'Missing.glb');
+    await expect(
+      materializeProjectFiles([], invalid, { project, asset: original }),
+    ).rejects.toThrow('missing');
+    expect(revoked).not.toHaveBeenCalled();
+    original.dispose();
+    expect(revoked).toHaveBeenCalledTimes(2);
+  });
+
   it('rejects malformed manifests and cleans up when a companion model is missing', async () => {
     const project = assignPartModel(
       assignPartModel(blank, seat, 'seat.glb', 'seat.glb'),

@@ -33,7 +33,14 @@ import { applyReviewPatches } from '@/oem/review';
 import { toExplorerCatalog } from '@/oem/adapter';
 import { createDemoScene } from '@/viewer/demo-scene';
 import { loadModel } from '@/viewer/load-model';
-import { loadAssetModel } from '@/viewer/part-models';
+import {
+  AssetModelLoader,
+  availableModelMapping,
+  partModelKey,
+  wrapPartModel,
+  type ModelLoadSnapshot,
+} from '@/viewer/part-models';
+import { ModelLoadStatus } from '@/viewer/ModelLoadStatus';
 import { buildCuratedNavigation, navigationForOccurrence } from '@/navigation/model';
 import { validateCatalog } from '@/core/catalog';
 import { classifyObjects, getObjectKey, validateMapping } from '@/core/mapping';
@@ -177,6 +184,11 @@ export function Editor() {
   const cameraSnapshot = useRef<MappingConfig['camera']>(undefined);
   const pendingFiles = useRef<File[] | undefined>(undefined);
   const localAsset = useRef<LocalAsset | null>(null);
+  const modelLoader = useRef<AssetModelLoader | null>(null);
+  const managedScenes = useRef(new WeakSet<THREE.Group>());
+  const originalVisibilityByObject = useRef(new WeakMap<THREE.Object3D, boolean>());
+  const [modelLoad, setModelLoad] = useState<ModelLoadSnapshot | null>(null);
+  const sceneRevision = modelLoad?.scene === scene ? modelLoad.revision : 0;
   const importSequence = useRef(0);
   const [busy, setBusy] = useState(true);
   const [message, setMessage] = useState(
@@ -192,16 +204,20 @@ export function Editor() {
   const directoryInput = useRef<HTMLInputElement>(null);
   const jsonInput = useRef<HTMLInputElement>(null);
 
-  const objects = useMemo(() => inspectScene(scene), [scene]);
+  const objects = useMemo(() => inspectScene(scene), [scene, sceneRevision]);
   const partNavigation = useMemo(
     () => buildCuratedNavigation(oemDatabase, project.catalog),
     [project.catalog],
   );
   const originalVisibility = useMemo(() => {
     const visibility = new Map<string, boolean>();
-    scene.traverse((object) => visibility.set(getObjectKey(object, scene), object.visible));
+    scene.traverse((object) => {
+      if (!originalVisibilityByObject.current.has(object))
+        originalVisibilityByObject.current.set(object, object.visible);
+      visibility.set(getObjectKey(object, scene), originalVisibilityByObject.current.get(object)!);
+    });
     return visibility;
-  }, [scene]);
+  }, [scene, sceneRevision]);
   const objectByKey = useMemo(
     () => new Map(objects.map((object) => [object.key, object])),
     [objects],
@@ -259,10 +275,21 @@ export function Editor() {
     () => preflight?.warnings ?? [...new Set(sceneWarnings(scene))],
     [scene, preflight],
   );
-  const mappingValidation = useMemo(
-    () => validateMapping(project.mapping, project.catalog, objects),
-    [project.mapping, project.catalog, objects],
-  );
+  const mappingValidation = useMemo(() => {
+    const validation = validateMapping(project.mapping, project.catalog);
+    return validation.success
+      ? validateMapping(
+          availableModelMapping(
+            project.mapping,
+            modelLoad?.models
+              .filter((model) => model.status !== 'loaded')
+              .map((model) => model.id) ?? [],
+          ),
+          project.catalog,
+          objects,
+        )
+      : validation;
+  }, [project.mapping, project.catalog, objects, modelLoad]);
   const currentPart = partsById.get(targetPart);
   const selectedSet = useMemo(() => new Set(selected), [selected]);
   const hasDirectMapping = project.mapping.mappings.some((entry) =>
@@ -341,6 +368,17 @@ export function Editor() {
 
   useEffect(() => {
     let cancelled = false;
+    const loader = new AssetModelLoader();
+    modelLoader.current = loader;
+    const unsubscribe = loader.subscribe(() => {
+      const snapshot = loader.getSnapshot();
+      setModelLoad(snapshot);
+      if (snapshot.scene) {
+        managedScenes.current.add(snapshot.scene);
+        setScene(snapshot.scene);
+        if (!snapshot.loading) setPreflight(inspectImport(snapshot.scene));
+      }
+    });
     async function restore() {
       let asset: LocalAsset | null = null;
       let imported: THREE.Group | undefined;
@@ -364,12 +402,24 @@ export function Editor() {
           return;
         }
         if (asset) {
-          imported = await loadAssetModel(asset);
+          if (asset.models) {
+            setProject(saved);
+            const navigation = buildCuratedNavigation(oemDatabase, saved.catalog);
+            const scope = navigation.byId.get(partRole);
+            const priority =
+              saved.partModels
+                ?.filter(
+                  (model) => model.id === partRole || scope?.modelPartIds?.includes(model.partId),
+                )
+                .map((model) => model.id) ?? [];
+            loader.update(asset, priority);
+            imported = (await loader.settled()).scene!;
+          } else imported = await loadModel(asset.url);
           const report = asset.models
             ? inspectImport(imported)
             : await preflightImportedModel(imported, asset.url);
           if (cancelled) {
-            disposeScene(imported);
+            if (!managedScenes.current.has(imported)) disposeScene(imported);
             asset.dispose();
             return;
           }
@@ -394,15 +444,17 @@ export function Editor() {
         }
         setTargetPart(saved.catalog.motorcycleId);
         setMessage(
-          !restoreLocal
-            ? `${saved.partModels!.length} current project models loaded. These are the same parts shown in the explorer.`
-            : saved.partModels
-              ? `${saved.partModels.length} saved part models restored. Add another part or replace its GLB.`
-              : advanced
-                ? 'Saved local workspace restored intact. Use Merge current OEM catalog to add missing sourced records.'
-                : saved.assetFileName
-                  ? 'Your saved model is restored. Choose its bike part to finish adding it.'
-                  : 'Your workspace is restored. Choose a bike part and import its GLB.',
+          loader.getSnapshot().failed
+            ? `${loader.getSnapshot().loaded} of ${loader.getSnapshot().total} models loaded. Retry the failed files in the preview.`
+            : !restoreLocal
+              ? `${saved.partModels!.length} current project models loaded. These are the same parts shown in the explorer.`
+              : saved.partModels
+                ? `${saved.partModels.length} saved part models restored. Add another part or replace its GLB.`
+                : advanced
+                  ? 'Saved local workspace restored intact. Use Merge current OEM catalog to add missing sourced records.'
+                  : saved.assetFileName
+                    ? 'Your saved model is restored. Choose its bike part to finish adding it.'
+                    : 'Your workspace is restored. Choose a bike part and import its GLB.',
         );
         setCameraCommand((command) => ({
           id: command.id + 1,
@@ -410,7 +462,7 @@ export function Editor() {
         }));
       } catch (cause) {
         asset?.dispose();
-        if (imported) disposeScene(imported);
+        if (imported && !managedScenes.current.has(imported)) disposeScene(imported);
         if (!cancelled)
           setError(cause instanceof Error ? cause.message : 'Could not restore this workspace.');
       } finally {
@@ -420,10 +472,19 @@ export function Editor() {
     void restore();
     return () => {
       cancelled = true;
+      importSequence.current++;
+      unsubscribe();
+      loader.dispose();
+      if (modelLoader.current === loader) modelLoader.current = null;
     };
   }, [demoMode, restoreLocal]);
 
-  useEffect(() => () => disposeScene(scene), [scene]);
+  useEffect(
+    () => () => {
+      if (!managedScenes.current.has(scene)) disposeScene(scene);
+    },
+    [scene],
+  );
   useEffect(() => () => localAsset.current?.dispose(), []);
   useEffect(() => {
     const protect = (event: BeforeUnloadEvent) => {
@@ -461,6 +522,20 @@ export function Editor() {
     setCameraCommand((previous) => ({ id: previous.id + 1, kind }));
   }
 
+  function retryModel(id: string) {
+    const loader = modelLoader.current;
+    if (!loader) return;
+    loader.retry(id);
+    void loader.settled().then((snapshot) => {
+      if (modelLoader.current !== loader) return;
+      setMessage(
+        snapshot.failed
+          ? `${snapshot.loaded} of ${snapshot.total} models loaded. Retry the failed files in the preview.`
+          : `${snapshot.loaded} models loaded. All files are available.`,
+      );
+    });
+  }
+
   async function importModel(event: ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.target.files ?? []);
     event.target.value = '';
@@ -486,6 +561,7 @@ export function Editor() {
       localAsset.current?.dispose();
       localAsset.current = asset;
       pendingFiles.current = files;
+      modelLoader.current?.update(null);
       const preserve =
         project.assetFileName !== null || project.mapping.assetId !== 'demonstration';
       updateProject({
@@ -555,9 +631,28 @@ export function Editor() {
         file?.name ?? project.assetFileName!,
         model?.id,
       );
-      asset = await materializeProjectFiles(files, next);
-      imported = await loadAssetModel(asset);
-      const validated = validateMapping(next.mapping, next.catalog, inspectScene(imported));
+      asset = await materializeProjectFiles(
+        files,
+        next,
+        localAsset.current ? { project, asset: localAsset.current } : undefined,
+      );
+      const id = model?.id ?? node.id;
+      const source = asset.models!.find((entry) => entry.id === id)!;
+      imported = wrapPartModel(await loadModel(source.url), id);
+      const configuration = validateMapping(next.mapping, next.catalog);
+      if (!configuration.success)
+        throw new Error(configuration.issues.map((issue) => issue.message).join('; '));
+      const key = partModelKey(id);
+      const validated = validateMapping(
+        {
+          ...next.mapping,
+          mappings: next.mapping.mappings.filter(
+            (entry) => entry.objectKey === key || entry.objectKey.startsWith(`${key}:source:`),
+          ),
+        },
+        next.catalog,
+        inspectScene(imported),
+      );
       if (!validated.success)
         throw new Error(validated.issues.map((issue) => issue.message).join('; '));
       if (sequence !== importSequence.current) {
@@ -565,12 +660,13 @@ export function Editor() {
         disposeScene(imported);
         return;
       }
+      modelLoader.current!.update(asset, [id], new Map([[id, imported]]));
+      imported = undefined;
       localAsset.current?.dispose();
       localAsset.current = asset;
       pendingFiles.current = files;
       updateProject(next);
-      setPreflight(inspectImport(imported));
-      setScene(imported);
+      setPreflight(inspectImport(modelLoader.current!.getSnapshot().scene!));
       setSelected([]);
       setHidden([]);
       setIsolated(null);
@@ -1036,6 +1132,7 @@ export function Editor() {
               <CanvasBoundary key={scene.uuid}>
                 <EditorCanvas
                   scene={scene}
+                  revision={sceneRevision}
                   mapping={project.mapping}
                   selected={selected}
                   hovered={hovered}
@@ -1049,6 +1146,7 @@ export function Editor() {
                 />
               </CanvasBoundary>
             )}
+            <ModelLoadStatus state={modelLoad} onRetry={retryModel} />
             {hovered && (
               <div className="editor-hover">
                 {objectByKey.get(hovered)?.name}

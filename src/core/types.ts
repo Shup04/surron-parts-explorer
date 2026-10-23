@@ -66,7 +66,13 @@ export interface AssetDefinition {
   unit: 'm';
   upAxis: 'Y';
   label: string;
-  models?: { id: string; url: string }[];
+  models?: AssetModelSource[];
+}
+export interface AssetModelSource {
+  id: string;
+  /** Include a revision in the URL when the file contents change. */
+  url: string;
+  label?: string;
 }
 export interface MappingConfig {
   version: 1;

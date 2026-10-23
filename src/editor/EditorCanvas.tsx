@@ -13,6 +13,7 @@ import { easeProgress, explosionOffset } from '@/core/explosion';
 export type CameraCommand = { id: number; kind: 'all' | 'selection' | 'saved' };
 interface Props {
   scene: THREE.Group;
+  revision?: number;
   mapping: MappingConfig;
   selected: string[];
   hovered: string | null;
@@ -28,6 +29,7 @@ interface Props {
 function ModelScene(props: Props) {
   const {
     scene,
+    revision = 0,
     mapping,
     selected,
     hovered,
@@ -41,6 +43,9 @@ function ModelScene(props: Props) {
   } = props;
   const { camera, invalidate } = useThree();
   const controls = useRef<OrbitControlsImpl>(null);
+  const originals = useRef(
+    new WeakMap<THREE.Object3D, { position: THREE.Vector3; visible: boolean }>(),
+  );
   const entries = useMemo(() => {
     const result: {
       key: string;
@@ -48,16 +53,22 @@ function ModelScene(props: Props) {
       original: THREE.Vector3;
       visible: boolean;
     }[] = [];
-    scene.traverse((object) =>
+    scene.traverse((object) => {
+      if (!originals.current.has(object))
+        originals.current.set(object, {
+          position: object.position.clone(),
+          visible: object.visible,
+        });
+      const original = originals.current.get(object)!;
       result.push({
         key: getObjectKey(object, scene),
         object,
-        original: object.position.clone(),
-        visible: object.visible,
-      }),
-    );
+        original: original.position,
+        visible: original.visible,
+      });
+    });
     return result;
-  }, [scene]);
+  }, [scene, revision]);
   const keyByObject = useMemo(
     () => new Map(entries.map((entry) => [entry.object, entry.key])),
     [entries],
@@ -194,9 +205,9 @@ function ModelScene(props: Props) {
       target: controls.current.target.toArray() as Vec3,
     };
     invalidate();
-    // Camera framing is an explicit command, not a side effect of selection or sliders.
+    // Frame arriving geometry and explicit commands; selection alone does not reframe.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cameraCommand, scene]);
+  }, [cameraCommand, scene, revision]);
 
   useFrame((_, delta) => {
     let active = false;
